@@ -68,7 +68,10 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = UICollectionView.ScrollDirection.vertical
+        let collectionVC = CQCollectionViewController.init(collectionViewLayout: layout)
+        self.navigationController?.pushViewController(collectionVC, animated: true)
         
     }
     
