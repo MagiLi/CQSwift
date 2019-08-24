@@ -22,9 +22,9 @@ class CQCollectionViewController: UICollectionViewController, UICollectionViewDe
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView.alwaysBounceVertical = true
-    
-        self.collectionView.backgroundColor = UIColor.randomColor()
+        self.collectionView?.alwaysBounceVertical = true
+
+        self.collectionView?.backgroundColor = UIColor.randomColor()
         self.collectionView!.register(CQCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.

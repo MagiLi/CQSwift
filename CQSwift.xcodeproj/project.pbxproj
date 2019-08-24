@@ -10,6 +10,8 @@
 		3404B881230C1ACB004CFA91 /* CQMainNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404B880230C1ACB004CFA91 /* CQMainNavController.swift */; };
 		3404B883230C2663004CFA91 /* CQMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404B882230C2663004CFA91 /* CQMainController.swift */; };
 		3404B885230C29A9004CFA91 /* CQMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404B884230C29A9004CFA91 /* CQMainCell.swift */; };
+		3404E6CD2311137C00014104 /* CQTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404E6CC2311137C00014104 /* CQTableViewController.swift */; };
+		3404E6CF231117CE00014104 /* CQTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404E6CE231117CE00014104 /* CQTableViewModel.swift */; };
 		3412C450230D2EDF0048A095 /* CQCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3412C44F230D2EDF0048A095 /* CQCollectionViewController.swift */; };
 		3412C452230D2F400048A095 /* CQCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3412C451230D2F400048A095 /* CQCollectionViewCell.swift */; };
 		3412C455230D36DF0048A095 /* CQConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3412C454230D36DF0048A095 /* CQConstant.swift */; };
@@ -21,6 +23,7 @@
 		34744E0322EDEA9F007F52DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34744E0122EDEA9F007F52DC /* LaunchScreen.storyboard */; };
 		34744E0E22EDEA9F007F52DC /* CQSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34744E0D22EDEA9F007F52DC /* CQSwiftTests.swift */; };
 		34744E1922EDEA9F007F52DC /* CQSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34744E1822EDEA9F007F52DC /* CQSwiftUITests.swift */; };
+		58B6657D117F6F09A2A3668C /* Pods_CQSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEE63F04346C3CAF9CEA536 /* Pods_CQSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,9 +44,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2FEE63F04346C3CAF9CEA536 /* Pods_CQSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CQSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3404B880230C1ACB004CFA91 /* CQMainNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMainNavController.swift; sourceTree = "<group>"; };
 		3404B882230C2663004CFA91 /* CQMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMainController.swift; sourceTree = "<group>"; };
 		3404B884230C29A9004CFA91 /* CQMainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMainCell.swift; sourceTree = "<group>"; };
+		3404E6CC2311137C00014104 /* CQTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQTableViewController.swift; sourceTree = "<group>"; };
+		3404E6CE231117CE00014104 /* CQTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQTableViewModel.swift; sourceTree = "<group>"; };
 		3412C44F230D2EDF0048A095 /* CQCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCollectionViewController.swift; sourceTree = "<group>"; };
 		3412C451230D2F400048A095 /* CQCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCollectionViewCell.swift; sourceTree = "<group>"; };
 		3412C454230D36DF0048A095 /* CQConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQConstant.swift; sourceTree = "<group>"; };
@@ -61,6 +67,8 @@
 		34744E1422EDEA9F007F52DC /* CQSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CQSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34744E1822EDEA9F007F52DC /* CQSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSwiftUITests.swift; sourceTree = "<group>"; };
 		34744E1A22EDEA9F007F52DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		587643FE5871BF1FD3AC8A41 /* Pods-CQSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CQSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CQSwift/Pods-CQSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		67CD48A612D079967774FEDA /* Pods-CQSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CQSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-CQSwift/Pods-CQSwift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58B6657D117F6F09A2A3668C /* Pods_CQSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +97,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3404E6CB2311136200014104 /* CQTableView */ = {
+			isa = PBXGroup;
+			children = (
+				3404E6CC2311137C00014104 /* CQTableViewController.swift */,
+				3404E6CE231117CE00014104 /* CQTableViewModel.swift */,
+			);
+			path = CQTableView;
+			sourceTree = "<group>";
+		};
 		3412C44E230D2EAD0048A095 /* CQCollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +131,8 @@
 				34744E0C22EDEA9F007F52DC /* CQSwiftTests */,
 				34744E1722EDEA9F007F52DC /* CQSwiftUITests */,
 				34744DF622EDEA9D007F52DC /* Products */,
+				51FB9ACED9373FB80EAB99D4 /* Pods */,
+				897BE2416489BF9C34282B59 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				3412C44E230D2EAD0048A095 /* CQCollectionView */,
+				3404E6CB2311136200014104 /* CQTableView */,
 				34744DF822EDEA9D007F52DC /* AppDelegate.swift */,
 				3404B880230C1ACB004CFA91 /* CQMainNavController.swift */,
 				3404B882230C2663004CFA91 /* CQMainController.swift */,
@@ -162,6 +183,23 @@
 			path = CQSwiftUITests;
 			sourceTree = "<group>";
 		};
+		51FB9ACED9373FB80EAB99D4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				587643FE5871BF1FD3AC8A41 /* Pods-CQSwift.debug.xcconfig */,
+				67CD48A612D079967774FEDA /* Pods-CQSwift.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		897BE2416489BF9C34282B59 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2FEE63F04346C3CAF9CEA536 /* Pods_CQSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -169,9 +207,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34744E1D22EDEA9F007F52DC /* Build configuration list for PBXNativeTarget "CQSwift" */;
 			buildPhases = (
+				100624DCFBC6C901201C1521 /* [CP] Check Pods Manifest.lock */,
 				34744DF122EDEA9D007F52DC /* Sources */,
 				34744DF222EDEA9D007F52DC /* Frameworks */,
 				34744DF322EDEA9D007F52DC /* Resources */,
+				64DDDDFB3F9584E0D3823420 /* [CP] Embed Pods Frameworks */,
+				FB44730B58367AF236C04ED9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -290,6 +331,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		100624DCFBC6C901201C1521 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CQSwift-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		64DDDDFB3F9584E0D3823420 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CQSwift/Pods-CQSwift-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CQSwift/Pods-CQSwift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FB44730B58367AF236C04ED9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CQSwift/Pods-CQSwift-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		34744DF122EDEA9D007F52DC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -302,7 +403,9 @@
 				3404B885230C29A9004CFA91 /* CQMainCell.swift in Sources */,
 				34744DF922EDEA9D007F52DC /* AppDelegate.swift in Sources */,
 				3412C452230D2F400048A095 /* CQCollectionViewCell.swift in Sources */,
+				3404E6CD2311137C00014104 /* CQTableViewController.swift in Sources */,
 				3404B881230C1ACB004CFA91 /* CQMainNavController.swift in Sources */,
+				3404E6CF231117CE00014104 /* CQTableViewModel.swift in Sources */,
 				3412C460230D3CC30048A095 /* UIColor+CQExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,12 +579,14 @@
 		};
 		34744E1E22EDEA9F007F52DC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 587643FE5871BF1FD3AC8A41 /* Pods-CQSwift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U8A26JGV9K;
 				INFOPLIST_FILE = CQSwift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -489,26 +594,28 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.CQSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		34744E1F22EDEA9F007F52DC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67CD48A612D079967774FEDA /* Pods-CQSwift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U8A26JGV9K;
 				INFOPLIST_FILE = CQSwift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.CQSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

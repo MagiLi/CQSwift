@@ -15,7 +15,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     lazy var dataAray : [NSArray] = {
         () -> [NSArray] in
-        return [["支付宝"],["Dynamic"],["手机通讯录"],["CoreText"],["Player", "音乐🎵", "文字转语音"], ["collectionView"],["study"]]
+        return [["collectionView", "tableView"]]
     }()
     
     override func viewDidLoad() {
@@ -68,10 +68,24 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = UICollectionView.ScrollDirection.vertical
-        let collectionVC = CQCollectionViewController.init(collectionViewLayout: layout)
-        self.navigationController?.pushViewController(collectionVC, animated: true)
+        switch indexPath.section {
+        case 0:
+            do {
+            if indexPath.row == 0 {
+                let layout = UICollectionViewFlowLayout()
+                layout.scrollDirection = UICollectionView.ScrollDirection.vertical
+                let collectionVC = CQCollectionViewController.init(collectionViewLayout: layout)
+                self.navigationController?.pushViewController(collectionVC, animated: true)
+            } else if indexPath.row == 1 {
+                let tableViewVC = CQTableViewController()
+                self.navigationController?.pushViewController(tableViewVC, animated: true)
+            }
+        }
+        default:
+            break
+        }
+        
+        
         
     }
     
