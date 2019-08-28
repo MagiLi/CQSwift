@@ -28,7 +28,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableView?.dataSource = self
         tableView?.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView?.register(CQMainCell.self, forCellReuseIdentifier: "CQMainCellID")
-        tableView?.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "CQMainHeaderID")
+        tableView?.register(CQMainHeaderView.self, forHeaderFooterViewReuseIdentifier: "CQMainHeaderID")
         self.view.addSubview(tableView!)
         
     }
@@ -59,7 +59,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 5.0
+        return 50.0
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.0

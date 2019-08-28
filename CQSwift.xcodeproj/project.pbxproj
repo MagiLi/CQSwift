@@ -23,6 +23,8 @@
 		34744E0322EDEA9F007F52DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34744E0122EDEA9F007F52DC /* LaunchScreen.storyboard */; };
 		34744E0E22EDEA9F007F52DC /* CQSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34744E0D22EDEA9F007F52DC /* CQSwiftTests.swift */; };
 		34744E1922EDEA9F007F52DC /* CQSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34744E1822EDEA9F007F52DC /* CQSwiftUITests.swift */; };
+		34C1A3B3231658250079A935 /* CQMainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C1A3B2231658250079A935 /* CQMainHeaderView.swift */; };
+		34C1A3B62316598F0079A935 /* CQWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C1A3B52316598F0079A935 /* CQWaveView.swift */; };
 		58B6657D117F6F09A2A3668C /* Pods_CQSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEE63F04346C3CAF9CEA536 /* Pods_CQSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +69,8 @@
 		34744E1422EDEA9F007F52DC /* CQSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CQSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34744E1822EDEA9F007F52DC /* CQSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSwiftUITests.swift; sourceTree = "<group>"; };
 		34744E1A22EDEA9F007F52DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34C1A3B2231658250079A935 /* CQMainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMainHeaderView.swift; sourceTree = "<group>"; };
+		34C1A3B52316598F0079A935 /* CQWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQWaveView.swift; sourceTree = "<group>"; };
 		587643FE5871BF1FD3AC8A41 /* Pods-CQSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CQSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CQSwift/Pods-CQSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		67CD48A612D079967774FEDA /* Pods-CQSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CQSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-CQSwift/Pods-CQSwift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,11 +153,13 @@
 		34744DF722EDEA9D007F52DC /* CQSwift */ = {
 			isa = PBXGroup;
 			children = (
+				34C1A3B4231659780079A935 /* CQCustomView */,
 				3412C44E230D2EAD0048A095 /* CQCollectionView */,
 				3404E6CB2311136200014104 /* CQTableView */,
 				34744DF822EDEA9D007F52DC /* AppDelegate.swift */,
 				3404B880230C1ACB004CFA91 /* CQMainNavController.swift */,
 				3404B882230C2663004CFA91 /* CQMainController.swift */,
+				34C1A3B2231658250079A935 /* CQMainHeaderView.swift */,
 				3404B884230C29A9004CFA91 /* CQMainCell.swift */,
 				34744DFC22EDEA9D007F52DC /* Main.storyboard */,
 				34744DFF22EDEA9F007F52DC /* Assets.xcassets */,
@@ -181,6 +187,14 @@
 				34744E1A22EDEA9F007F52DC /* Info.plist */,
 			);
 			path = CQSwiftUITests;
+			sourceTree = "<group>";
+		};
+		34C1A3B4231659780079A935 /* CQCustomView */ = {
+			isa = PBXGroup;
+			children = (
+				34C1A3B52316598F0079A935 /* CQWaveView.swift */,
+			);
+			path = CQCustomView;
 			sourceTree = "<group>";
 		};
 		51FB9ACED9373FB80EAB99D4 /* Pods */ = {
@@ -405,7 +419,9 @@
 				3412C452230D2F400048A095 /* CQCollectionViewCell.swift in Sources */,
 				3404E6CD2311137C00014104 /* CQTableViewController.swift in Sources */,
 				3404B881230C1ACB004CFA91 /* CQMainNavController.swift in Sources */,
+				34C1A3B62316598F0079A935 /* CQWaveView.swift in Sources */,
 				3404E6CF231117CE00014104 /* CQTableViewModel.swift in Sources */,
+				34C1A3B3231658250079A935 /* CQMainHeaderView.swift in Sources */,
 				3412C460230D3CC30048A095 /* UIColor+CQExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
