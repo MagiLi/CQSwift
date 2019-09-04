@@ -30,6 +30,31 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableView?.register(CQMainCell.self, forCellReuseIdentifier: "CQMainCellID")
         tableView?.register(CQMainHeaderView.self, forHeaderFooterViewReuseIdentifier: "CQMainHeaderID")
         self.view.addSubview(tableView!)
+      
+        
+        let arr = [5,3,4]
+        let arrR = arr.map { (a) -> Int in
+            return a*2
+        }
+        
+        print(arrR)
+        let sortedArray:[Any?] = [2,3,5,6,7,"we"]
+        let resF = sortedArray.map{ (a) -> Any? in
+            return a
+        }
+        print(resF)
+        let result = sortedArray.compactMap { (a) -> Any? in
+            return a
+        }
+        print(result)
+//
+        _ = arr.sorted { (a, b) -> Bool in
+            return a > b
+        }
+        print(sortedArray) //[7, 6, 5, 3, 2]
+        
+        let sortArray = arr.sorted(by: {$0 < $1})
+        print(sortArray) //[2, 3, 5, 6, 7]
         
     }
 

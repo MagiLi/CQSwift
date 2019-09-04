@@ -17,6 +17,10 @@ class CQTableViewController: UIViewController {
     let disposeBag = DisposeBag()
     var tableView : UITableView!
     
+    var timer = Timer()
+    var gcdTimer : DispatchSourceTimer?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "tableView"
@@ -32,11 +36,7 @@ class CQTableViewController: UIViewController {
             return cell!
 
         }.disposed(by: disposeBag)
-        
-        tableView.rx.modelSelected(CQDataModel.self).subscribe(onNext:{ (model) in
-            print(model)
-        }).disposed(by: disposeBag)
-        
+
         tableView.rx.itemSelected.subscribe(onNext: { (indexPath) in
             print("indexPath \(indexPath.row)")
         }, onError: { (error) in
@@ -44,81 +44,56 @@ class CQTableViewController: UIViewController {
         }, onCompleted: {
             print("finished")
         }).disposed(by: disposeBag)
-//        self.tableView.rx.sec
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        tableView.rx.modelSelected(CQDataModel.self).subscribe(onNext:{ (model) in
+            print(model)
+        }).disposed(by: disposeBag)
+        
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        
     }
-
-    // MARK: - Table view data source
-
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 0
-//    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+    @objc func timefire() {
+        print("timer coming in!")
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+    
+    func timerTest() {
+        timer = Timer.init(timeInterval: 1, target: self, selector: #selector(timefire), userInfo: nil, repeats: true)
+        RunLoop.current.add(timer, forMode: .commonModes)
 
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    func gcdTimerTest()  {
+        gcdTimer = DispatchSource.makeTimerSource()
+        gcdTimer?.schedule(deadline: DispatchTime.now(), repeating: DispatchTimeInterval.seconds(1))
+        gcdTimer?.setEventHandler(handler: {[weak self] in
+            
+            self?.timefire()
+        })
+        gcdTimer?.resume()
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    //MARK: 订阅信号
+    func rxSwiftSubscribe() {
+        // 1.创建序列
+        // 创建AnonymousObservable(->Producer->Observable) 类遵循协议 ObservableType(->ObservableConvertibleType)
+        // AnonymousObservable类保存subscribe
+        let ob = Observable<Any>.create { (observer) -> Disposable in
+            observer.onNext("走起")
+            return Disposables.create()
+        }
+        // 2. ob(Observable类型) 订阅序列
+        // 创建临时工作区asObservable()
+        _ = ob.subscribe(onNext: { (content) in
+            print("订阅的内容：\(content)")
+        }, onError: { (Error) in
+            print("error")
+        }, onCompleted: {
+            print("完成")
+        }) {
+            print("销毁")
+        }
     }
-    */
 
 }
 

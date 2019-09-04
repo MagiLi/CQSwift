@@ -28,13 +28,17 @@ extension ObservableType {
     
     /**
      Subscribes an element handler, an error handler, a completion handler and disposed handler to an observable sequence.
+     订阅一个元素处理程序、一个错误处理程序、一个完成处理程序和一个可观察序列的已释放处理程序。
      
      - parameter onNext: Action to invoke for each element in the observable sequence.
+                 onNext:调用可观察序列里每个元素的行为
      - parameter onError: Action to invoke upon errored termination of the observable sequence.
+                 onError: 在可观测序列错误终止时调用的操作。
      - parameter onCompleted: Action to invoke upon graceful termination of the observable sequence.
      - parameter onDisposed: Action to invoke upon any type of termination of sequence (if the sequence has
      gracefully completed, errored, or if the generation is canceled by disposing subscription).
      - returns: Subscription object used to unsubscribe from the observable sequence.
+                订阅对象用于从可观察序列里取消订阅。
      */
     public func subscribe(onNext: ((E) -> Void)? = nil, onError: ((Swift.Error) -> Void)? = nil, onCompleted: (() -> Void)? = nil, onDisposed: (() -> Void)? = nil)
         -> Disposable {
@@ -53,6 +57,7 @@ extension ObservableType {
             
             let callStack = Hooks.recordCallStackOnError ? Hooks.customCaptureSubscriptionCallstack() : []
             
+            /// 初始化 AnonymousObserver
             let observer = AnonymousObserver<E> { event in
                 
                 #if DEBUG
@@ -77,6 +82,7 @@ extension ObservableType {
                 }
             }
             return Disposables.create(
+                /// asObservable()函数 实例化 序列（Observable）
                 self.asObservable().subscribe(observer),
                 disposable
             )

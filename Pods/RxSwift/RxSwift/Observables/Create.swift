@@ -11,13 +11,17 @@ extension ObservableType {
 
     /**
      Creates an observable sequence from a specified subscribe method implementation.
-
+     从一个特定的订阅方法实现里创建一个可观察序列
+     
      - seealso: [create operator on reactivex.io](http://reactivex.io/documentation/operators/create.html)
-
+     
      - parameter subscribe: Implementation of the resulting observable sequence's `subscribe` method.
+                subscribe：可观察序列的 ‘subscribe’方法 的结果实现
      - returns: The observable sequence with the specified implementation for the `subscribe` method.
+                带有“subscribe”方法指定实现的可观察序列。
      */
     public static func create(_ subscribe: @escaping (AnyObserver<E>) -> Disposable) -> Observable<E> {
+        /// AnonymousObservable持有了逃逸性函数subscribe
         return AnonymousObservable(subscribe)
     }
 }
@@ -67,6 +71,7 @@ final private class AnonymousObservable<Element>: Producer<Element> {
     let _subscribeHandler: SubscribeHandler
 
     init(_ subscribeHandler: @escaping SubscribeHandler) {
+        // 持有subscribeHandler
         self._subscribeHandler = subscribeHandler
     }
 

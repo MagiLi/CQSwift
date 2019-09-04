@@ -35,10 +35,10 @@ public protocol ObservableType : ObservableConvertibleType {
 }
 
 extension ObservableType {
-    
     /// Default implementation of converting `ObservableType` to `Observable`.
+    /// 将“observabletype”转换为“observable”的默认实现。
     public func asObservable() -> Observable<E> {
-        // temporary workaround
+        // temporary workaround(临时工作区)
         //return Observable.create(subscribe: self.subscribe)
         return Observable.create { o in
             return self.subscribe(o)
