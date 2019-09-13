@@ -18,7 +18,7 @@ struct CQDataModel {
 struct CQTableViewCellModel {
     var array = Array<CQDataModel>()
     init() {
-        array.append(CQDataModel(title: "0001", subTitle: "小李"))
+        array.append(CQDataModel(title: "0001", subTitle: "observable"))
         array.append(CQDataModel(title: "0002", subTitle: "小王"))
         array.append(CQDataModel(title: "0003", subTitle: "小刘"))
         array.append(CQDataModel(title: "0004", subTitle: "小黄"))

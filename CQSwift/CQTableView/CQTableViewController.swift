@@ -38,8 +38,17 @@ class CQTableViewController: UIViewController {
 
         }.disposed(by: disposeBag)
 
+        //MARK:itemSelected
         tableView.rx.itemSelected.subscribe(onNext: { (indexPath) in
             print("indexPath \(indexPath.row)")
+            switch indexPath.row {
+            case 0:
+                let observableVC = CQRXSwifObservableVC()
+                self.navigationController?.pushViewController(observableVC, animated: true)
+                break
+            default:
+                break
+            }
         }, onError: { (error) in
             print(error)
         }, onCompleted: {

@@ -8,6 +8,7 @@ target 'CQSwift' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxDataSources', '3.0'
+  pod 'SwiftTheme'
   
 end
 

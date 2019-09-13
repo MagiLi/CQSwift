@@ -25,6 +25,7 @@
 		34744E1922EDEA9F007F52DC /* CQSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34744E1822EDEA9F007F52DC /* CQSwiftUITests.swift */; };
 		34C1A3B3231658250079A935 /* CQMainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C1A3B2231658250079A935 /* CQMainHeaderView.swift */; };
 		34C1A3B62316598F0079A935 /* CQWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C1A3B52316598F0079A935 /* CQWaveView.swift */; };
+		34D6A5A6232B348500B740CA /* CQRXSwifObservableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D6A5A5232B348500B740CA /* CQRXSwifObservableVC.swift */; };
 		58B6657D117F6F09A2A3668C /* Pods_CQSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEE63F04346C3CAF9CEA536 /* Pods_CQSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		34744E1A22EDEA9F007F52DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34C1A3B2231658250079A935 /* CQMainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMainHeaderView.swift; sourceTree = "<group>"; };
 		34C1A3B52316598F0079A935 /* CQWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQWaveView.swift; sourceTree = "<group>"; };
+		34D6A5A5232B348500B740CA /* CQRXSwifObservableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQRXSwifObservableVC.swift; sourceTree = "<group>"; };
 		587643FE5871BF1FD3AC8A41 /* Pods-CQSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CQSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CQSwift/Pods-CQSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		67CD48A612D079967774FEDA /* Pods-CQSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CQSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-CQSwift/Pods-CQSwift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +108,7 @@
 			children = (
 				3404E6CC2311137C00014104 /* CQTableViewController.swift */,
 				3404E6CE231117CE00014104 /* CQTableViewModel.swift */,
+				34D6A5A5232B348500B740CA /* CQRXSwifObservableVC.swift */,
 			);
 			path = CQTableView;
 			sourceTree = "<group>";
@@ -226,7 +229,6 @@
 				34744DF222EDEA9D007F52DC /* Frameworks */,
 				34744DF322EDEA9D007F52DC /* Resources */,
 				64DDDDFB3F9584E0D3823420 /* [CP] Embed Pods Frameworks */,
-				FB44730B58367AF236C04ED9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -369,38 +371,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-CQSwift/Pods-CQSwift-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CQSwift/Pods-CQSwift-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CQSwift/Pods-CQSwift-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CQSwift/Pods-CQSwift-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FB44730B58367AF236C04ED9 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CQSwift/Pods-CQSwift-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CQSwift/Pods-CQSwift-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -412,6 +392,7 @@
 			files = (
 				3404B883230C2663004CFA91 /* CQMainController.swift in Sources */,
 				3412C450230D2EDF0048A095 /* CQCollectionViewController.swift in Sources */,
+				34D6A5A6232B348500B740CA /* CQRXSwifObservableVC.swift in Sources */,
 				3412C455230D36DF0048A095 /* CQConstant.swift in Sources */,
 				3412C462230D44380048A095 /* UIView+CQExtension.swift in Sources */,
 				3404B885230C29A9004CFA91 /* CQMainCell.swift in Sources */,
