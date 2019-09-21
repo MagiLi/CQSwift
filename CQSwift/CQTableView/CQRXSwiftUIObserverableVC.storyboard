@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M5y-n9-RSG">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--SwiftUI ObserverableVC-->
+        <scene sceneID="JP0-PD-JJt">
+            <objects>
+                <viewController storyboardIdentifier="CQRXSwiftUIObserverableVCID" id="M5y-n9-RSG" customClass="CQRXSwiftUIObserverableVC" customModule="CQSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8sd-Mh-drD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="fMI-EM-0du">
+                                <rect key="frame" x="27.5" y="20" width="320" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="590724670.38289297">
+                                    <!--2019-09-21 02:11:10 +0000-->
+                                </date>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sex:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GRV-sC-dsY">
+                                <rect key="frame" x="0.0" y="251" width="50" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="gRo-OE-YDx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pnz-aM-h3h">
+                                <rect key="frame" x="50" y="236.5" width="80" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="9q2-Nj-wPg"/>
+                                    <constraint firstAttribute="width" constant="80" id="Vou-Do-FXe"/>
+                                </constraints>
+                                <state key="normal" title="boy" image="uncheck">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <state key="selected" image="check"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1a-NE-9HK">
+                                <rect key="frame" x="130" y="236.5" width="80" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="2C8-0q-ken"/>
+                                    <constraint firstAttribute="height" constant="50" id="bnX-uE-nMW"/>
+                                </constraints>
+                                <state key="normal" title="girl" image="uncheck">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <state key="selected" image="check"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FfI-wU-Ikn">
+                                <rect key="frame" x="0.0" y="296.5" width="375" height="30"/>
+                                <color key="backgroundColor" red="0.92687809467315674" green="0.17367178839465983" blue="0.22339142531919812" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="V4y-ca-msx"/>
+                                </constraints>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zh7-4l-Sf9">
+                                <rect key="frame" x="18" y="376.5" width="51" height="31"/>
+                            </switch>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="RgV-4v-agh">
+                                <rect key="frame" x="16" y="437.5" width="343" height="31"/>
+                            </slider>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uWL-LC-Ytf">
+                                <rect key="frame" x="103" y="487.5" width="169" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Fp1-i5-CJU"/>
+                                    <constraint firstAttribute="width" constant="169" id="Vs1-Gh-j4o"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FfI-wU-Ikn" firstAttribute="leading" secondItem="Wim-sW-Go8" secondAttribute="leading" id="2hK-DR-mdI"/>
+                            <constraint firstItem="GRV-sC-dsY" firstAttribute="leading" secondItem="Wim-sW-Go8" secondAttribute="leading" id="9d3-tP-e2V"/>
+                            <constraint firstItem="zh7-4l-Sf9" firstAttribute="leading" secondItem="Wim-sW-Go8" secondAttribute="leading" constant="18" id="ArZ-68-Bnf"/>
+                            <constraint firstItem="RgV-4v-agh" firstAttribute="top" secondItem="zh7-4l-Sf9" secondAttribute="bottom" constant="30" id="C23-kW-2Fj"/>
+                            <constraint firstItem="pnz-aM-h3h" firstAttribute="centerY" secondItem="GRV-sC-dsY" secondAttribute="centerY" id="G76-0F-dwx"/>
+                            <constraint firstItem="x1a-NE-9HK" firstAttribute="centerY" secondItem="pnz-aM-h3h" secondAttribute="centerY" id="NCl-uA-JAg"/>
+                            <constraint firstItem="uWL-LC-Ytf" firstAttribute="centerX" secondItem="8sd-Mh-drD" secondAttribute="centerX" id="PKB-Ca-i3S"/>
+                            <constraint firstItem="uWL-LC-Ytf" firstAttribute="top" secondItem="RgV-4v-agh" secondAttribute="bottom" constant="20" id="Q7L-e3-E8H"/>
+                            <constraint firstItem="Wim-sW-Go8" firstAttribute="trailing" secondItem="FfI-wU-Ikn" secondAttribute="trailing" id="QGc-tx-rJl"/>
+                            <constraint firstItem="fMI-EM-0du" firstAttribute="top" secondItem="Wim-sW-Go8" secondAttribute="top" id="RJb-Sj-KEN"/>
+                            <constraint firstItem="Wim-sW-Go8" firstAttribute="trailing" secondItem="RgV-4v-agh" secondAttribute="trailing" constant="18" id="Z2r-Ug-sTV"/>
+                            <constraint firstItem="GRV-sC-dsY" firstAttribute="top" secondItem="fMI-EM-0du" secondAttribute="bottom" constant="15" id="fA2-W8-M6Y"/>
+                            <constraint firstItem="fMI-EM-0du" firstAttribute="centerX" secondItem="8sd-Mh-drD" secondAttribute="centerX" id="kAK-bF-dEW"/>
+                            <constraint firstItem="FfI-wU-Ikn" firstAttribute="top" secondItem="pnz-aM-h3h" secondAttribute="bottom" constant="10" id="pmH-WV-ypU"/>
+                            <constraint firstItem="pnz-aM-h3h" firstAttribute="leading" secondItem="GRV-sC-dsY" secondAttribute="trailing" id="qMu-cO-wTr"/>
+                            <constraint firstItem="RgV-4v-agh" firstAttribute="leading" secondItem="Wim-sW-Go8" secondAttribute="leading" constant="18" id="tVo-jB-Mnp"/>
+                            <constraint firstItem="zh7-4l-Sf9" firstAttribute="top" secondItem="FfI-wU-Ikn" secondAttribute="bottom" constant="50" id="uwy-VF-qsn"/>
+                            <constraint firstItem="x1a-NE-9HK" firstAttribute="leading" secondItem="pnz-aM-h3h" secondAttribute="trailing" id="zT6-80-mpW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Wim-sW-Go8"/>
+                    </view>
+                    <connections>
+                        <outlet property="boyBtn" destination="pnz-aM-h3h" id="EMi-Ze-7k6"/>
+                        <outlet property="datePick" destination="fMI-EM-0du" id="K6u-Sn-eck"/>
+                        <outlet property="girlBtn" destination="x1a-NE-9HK" id="Ua5-Re-hYd"/>
+                        <outlet property="slideView" destination="RgV-4v-agh" id="BQI-FX-OZg"/>
+                        <outlet property="switchBtn" destination="zh7-4l-Sf9" id="Cud-Zn-F6d"/>
+                        <outlet property="textField" destination="uWL-LC-Ytf" id="vxh-3y-GAs"/>
+                        <outlet property="updateBtn" destination="FfI-wU-Ikn" id="7X7-53-MZx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q3g-8C-hkG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-546.39999999999998" y="-15.742128935532236"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="check" width="19" height="20"/>
+        <image name="uncheck" width="19" height="20"/>
+    </resources>
+</document>

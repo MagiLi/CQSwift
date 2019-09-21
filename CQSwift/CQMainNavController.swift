@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftTheme
 
 class CQMainNavController: UINavigationController {
 

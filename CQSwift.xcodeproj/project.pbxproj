@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,6 +26,8 @@
 		34C1A3B3231658250079A935 /* CQMainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C1A3B2231658250079A935 /* CQMainHeaderView.swift */; };
 		34C1A3B62316598F0079A935 /* CQWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C1A3B52316598F0079A935 /* CQWaveView.swift */; };
 		34D6A5A6232B348500B740CA /* CQRXSwifObservableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D6A5A5232B348500B740CA /* CQRXSwifObservableVC.swift */; };
+		34ECF8C62335BDA800DDF8BD /* CQRXSwiftUIObserverableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ECF8C52335BDA800DDF8BD /* CQRXSwiftUIObserverableVC.swift */; };
+		34ECF8C82335BDCE00DDF8BD /* CQRXSwiftUIObserverableVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34ECF8C72335BDCE00DDF8BD /* CQRXSwiftUIObserverableVC.storyboard */; };
 		58B6657D117F6F09A2A3668C /* Pods_CQSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEE63F04346C3CAF9CEA536 /* Pods_CQSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +75,9 @@
 		34C1A3B2231658250079A935 /* CQMainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMainHeaderView.swift; sourceTree = "<group>"; };
 		34C1A3B52316598F0079A935 /* CQWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQWaveView.swift; sourceTree = "<group>"; };
 		34D6A5A5232B348500B740CA /* CQRXSwifObservableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQRXSwifObservableVC.swift; sourceTree = "<group>"; };
+		34D6A5A7232B396300B740CA /* SwiftTheme.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftTheme.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		34ECF8C52335BDA800DDF8BD /* CQRXSwiftUIObserverableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQRXSwiftUIObserverableVC.swift; sourceTree = "<group>"; };
+		34ECF8C72335BDCE00DDF8BD /* CQRXSwiftUIObserverableVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CQRXSwiftUIObserverableVC.storyboard; sourceTree = "<group>"; };
 		587643FE5871BF1FD3AC8A41 /* Pods-CQSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CQSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CQSwift/Pods-CQSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		67CD48A612D079967774FEDA /* Pods-CQSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CQSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-CQSwift/Pods-CQSwift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +114,8 @@
 				3404E6CC2311137C00014104 /* CQTableViewController.swift */,
 				3404E6CE231117CE00014104 /* CQTableViewModel.swift */,
 				34D6A5A5232B348500B740CA /* CQRXSwifObservableVC.swift */,
+				34ECF8C52335BDA800DDF8BD /* CQRXSwiftUIObserverableVC.swift */,
+				34ECF8C72335BDCE00DDF8BD /* CQRXSwiftUIObserverableVC.storyboard */,
 			);
 			path = CQTableView;
 			sourceTree = "<group>";
@@ -212,6 +219,7 @@
 		897BE2416489BF9C34282B59 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				34D6A5A7232B396300B740CA /* SwiftTheme.framework */,
 				2FEE63F04346C3CAF9CEA536 /* Pods_CQSwift.framework */,
 			);
 			name = Frameworks;
@@ -326,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				34744E0322EDEA9F007F52DC /* LaunchScreen.storyboard in Resources */,
+				34ECF8C82335BDCE00DDF8BD /* CQRXSwiftUIObserverableVC.storyboard in Resources */,
 				34744E0022EDEA9F007F52DC /* Assets.xcassets in Resources */,
 				34744DFE22EDEA9D007F52DC /* Main.storyboard in Resources */,
 			);
@@ -397,6 +406,7 @@
 				3412C462230D44380048A095 /* UIView+CQExtension.swift in Sources */,
 				3404B885230C29A9004CFA91 /* CQMainCell.swift in Sources */,
 				34744DF922EDEA9D007F52DC /* AppDelegate.swift in Sources */,
+				34ECF8C62335BDA800DDF8BD /* CQRXSwiftUIObserverableVC.swift in Sources */,
 				3412C452230D2F400048A095 /* CQCollectionViewCell.swift in Sources */,
 				3404E6CD2311137C00014104 /* CQTableViewController.swift in Sources */,
 				3404B881230C1ACB004CFA91 /* CQMainNavController.swift in Sources */,

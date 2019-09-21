@@ -28,7 +28,6 @@ class CQTableViewController: UIViewController {
         self.tableView.register(CQTableViewCell.self, forCellReuseIdentifier: cellID)
         self.view.addSubview(tableView)
         
-
         let items = Observable.just(CQTableViewCellModel().array)
         items.bind(to: self.tableView.rx.items) { (tableView, row, model) -> UITableViewCell in
             let cell = tableView.dequeueReusableCell(withIdentifier: cellID) as? CQTableViewCell
@@ -40,30 +39,35 @@ class CQTableViewController: UIViewController {
 
         //MARK:itemSelected
         tableView.rx.itemSelected.subscribe(onNext: { (indexPath) in
-            print("indexPath \(indexPath.row)")
+//            print("indexPath \(indexPath.row)")
             switch indexPath.row {
             case 0:
                 let observableVC = CQRXSwifObservableVC()
                 self.navigationController?.pushViewController(observableVC, animated: true)
                 break
+            case 1:
+                let sb = UIStoryboard.init(name: "CQRXSwiftUIObserverableVC", bundle: Bundle.main)
+                let vc = sb.instantiateViewController(withIdentifier: "CQRXSwiftUIObserverableVCID")
+                self.navigationController?.pushViewController(vc, animated: true)
+                break
             default:
                 break
             }
         }, onError: { (error) in
-            print(error)
+//            print(error)
         }, onCompleted: {
-            print("finished")
+//            print("finished")
         }).disposed(by: disposeBag)
         
         tableView.rx.modelSelected(CQDataModel.self).subscribe(onNext:{ (model) in
-            print(model)
+//            print(model)
         }).disposed(by: disposeBag)
         
         
-        let timer = Observable<Int>.interval(1, scheduler: MainScheduler.instance)
-        timer.subscribe(onNext: { (num) in
-            print(num)
-        }).disposed(by: disposeBag)
+//        let timer = Observable<Int>.interval(1, scheduler: MainScheduler.instance)
+//        timer.subscribe(onNext: { (num) in
+//            print(num)
+//        }).disposed(by: disposeBag)
         
     }
     
