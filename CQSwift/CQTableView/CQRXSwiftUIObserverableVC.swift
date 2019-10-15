@@ -80,9 +80,9 @@ class CQRXSwiftUIObserverableVC: UIViewController {
         .bind(to: switchBtn.rx.isOn)
         .disposed(by: disposeBag)
         
-        
+        // 两次1.初始化来一次 2.开始编辑的时候进来一次
         self.textField.rx.text.subscribe (onNext: { (text) in
-            print(text as Any)
+            print("text: \(text as Any)")
         }).disposed(by: disposeBag)
         
     }

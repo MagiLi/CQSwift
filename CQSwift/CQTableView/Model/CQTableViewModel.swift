@@ -20,7 +20,7 @@ struct CQTableViewCellModel {
     init() {
         array.append(CQDataModel(title: "0001", subTitle: "observable"))
         array.append(CQDataModel(title: "0002", subTitle: "UI_Observable"))
-        array.append(CQDataModel(title: "0003", subTitle: "小刘"))
+        array.append(CQDataModel(title: "0003", subTitle: "Driver"))
         array.append(CQDataModel(title: "0004", subTitle: "小黄"))
         array.append(CQDataModel(title: "0005", subTitle: "小张"))
     }

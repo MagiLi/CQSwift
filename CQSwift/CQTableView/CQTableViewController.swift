@@ -50,6 +50,11 @@ class CQTableViewController: UIViewController {
                 let vc = sb.instantiateViewController(withIdentifier: "CQRXSwiftUIObserverableVCID")
                 self.navigationController?.pushViewController(vc, animated: true)
                 break
+            case 2:
+                let driverVC = CQRXDriverVC()
+                self.navigationController?.pushViewController(driverVC, animated: true)
+                break
+                
             default:
                 break
             }

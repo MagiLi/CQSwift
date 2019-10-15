@@ -25,6 +25,7 @@
 		34744E1922EDEA9F007F52DC /* CQSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34744E1822EDEA9F007F52DC /* CQSwiftUITests.swift */; };
 		34C1A3B3231658250079A935 /* CQMainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C1A3B2231658250079A935 /* CQMainHeaderView.swift */; };
 		34C1A3B62316598F0079A935 /* CQWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C1A3B52316598F0079A935 /* CQWaveView.swift */; };
+		34C1F5F9233F9DD6004F3146 /* CQRXDriverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C1F5F8233F9DD6004F3146 /* CQRXDriverVC.swift */; };
 		34D6A5A6232B348500B740CA /* CQRXSwifObservableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D6A5A5232B348500B740CA /* CQRXSwifObservableVC.swift */; };
 		34ECF8C62335BDA800DDF8BD /* CQRXSwiftUIObserverableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ECF8C52335BDA800DDF8BD /* CQRXSwiftUIObserverableVC.swift */; };
 		34ECF8C82335BDCE00DDF8BD /* CQRXSwiftUIObserverableVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34ECF8C72335BDCE00DDF8BD /* CQRXSwiftUIObserverableVC.storyboard */; };
@@ -74,6 +75,7 @@
 		34744E1A22EDEA9F007F52DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34C1A3B2231658250079A935 /* CQMainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMainHeaderView.swift; sourceTree = "<group>"; };
 		34C1A3B52316598F0079A935 /* CQWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQWaveView.swift; sourceTree = "<group>"; };
+		34C1F5F8233F9DD6004F3146 /* CQRXDriverVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQRXDriverVC.swift; sourceTree = "<group>"; };
 		34D6A5A5232B348500B740CA /* CQRXSwifObservableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQRXSwifObservableVC.swift; sourceTree = "<group>"; };
 		34D6A5A7232B396300B740CA /* SwiftTheme.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftTheme.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34ECF8C52335BDA800DDF8BD /* CQRXSwiftUIObserverableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQRXSwiftUIObserverableVC.swift; sourceTree = "<group>"; };
@@ -111,11 +113,12 @@
 		3404E6CB2311136200014104 /* CQTableView */ = {
 			isa = PBXGroup;
 			children = (
+				34C1F5FA233F9E0F004F3146 /* Model */,
 				3404E6CC2311137C00014104 /* CQTableViewController.swift */,
-				3404E6CE231117CE00014104 /* CQTableViewModel.swift */,
 				34D6A5A5232B348500B740CA /* CQRXSwifObservableVC.swift */,
 				34ECF8C52335BDA800DDF8BD /* CQRXSwiftUIObserverableVC.swift */,
 				34ECF8C72335BDCE00DDF8BD /* CQRXSwiftUIObserverableVC.storyboard */,
+				34C1F5F8233F9DD6004F3146 /* CQRXDriverVC.swift */,
 			);
 			path = CQTableView;
 			sourceTree = "<group>";
@@ -205,6 +208,14 @@
 				34C1A3B52316598F0079A935 /* CQWaveView.swift */,
 			);
 			path = CQCustomView;
+			sourceTree = "<group>";
+		};
+		34C1F5FA233F9E0F004F3146 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3404E6CE231117CE00014104 /* CQTableViewModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		51FB9ACED9373FB80EAB99D4 /* Pods */ = {
@@ -399,6 +410,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34C1F5F9233F9DD6004F3146 /* CQRXDriverVC.swift in Sources */,
 				3404B883230C2663004CFA91 /* CQMainController.swift in Sources */,
 				3412C450230D2EDF0048A095 /* CQCollectionViewController.swift in Sources */,
 				34D6A5A6232B348500B740CA /* CQRXSwifObservableVC.swift in Sources */,
@@ -602,7 +614,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -623,7 +635,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.CQSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
