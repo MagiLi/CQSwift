@@ -12,7 +12,7 @@ private let reuseIdentifier = "Cell"
 
 class CQCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    var dataArray = NSMutableArray.init(array: ["Press me 0","Press me 1","Press me 2","Press me 3","Press me 4"])
+    var dataArray = NSMutableArray.init(array: ["The First metal demo ","Press me 1","Press me 2","Press me 3","Press me 4"])
     
     
     override func viewDidLoad() {
@@ -24,21 +24,11 @@ class CQCollectionViewController: UICollectionViewController, UICollectionViewDe
         // Register cell classes
         self.collectionView?.alwaysBounceVertical = true
 
-        self.collectionView?.backgroundColor = UIColor.randomColor()
+//        self.collectionView?.backgroundColor = UIColor.randomColor()
+        self.collectionView?.backgroundColor = UIColor.white
         self.collectionView!.register(CQCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
-        // Do any additional setup after loading the view.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: UICollectionViewDataSource
 
@@ -60,7 +50,21 @@ class CQCollectionViewController: UICollectionViewController, UICollectionViewDe
         cell.content = dataArray[indexPath.item] as? NSString
         return cell
     }
-    
+    // MARK: UICollectionViewDelegate
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        switch indexPath.item {
+        case 0:
+            let mtlFirstVC = CQMetalFirstController()
+            self.navigationController?.pushViewController(mtlFirstVC, animated: true)
+        case 1:
+             let mtlSecondVC = CQMetalSecondController()
+             self.navigationController?.pushViewController(mtlSecondVC, animated: true)
+            break
+        default:
+            break;
+        }
+    }
     // MARK: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.view.frame.width, height: 50.0)
@@ -76,33 +80,5 @@ class CQCollectionViewController: UICollectionViewController, UICollectionViewDe
         self.dataArray.insert(source, at: destinationIndexPath.item)
     }
 
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
 
 }

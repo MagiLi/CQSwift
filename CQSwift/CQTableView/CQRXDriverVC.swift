@@ -12,8 +12,8 @@ import RxCocoa
 
 
 class CQRXDriverVC: UIViewController {
-
-    let disposeBag = DisposeBag()
+    let lgError = NSError.init(domain: "com.lgError.cn", code: 10090, userInfo: nil)
+    var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,10 @@ class CQRXDriverVC: UIViewController {
 //        testCombinationOperation()
 //        testTransformingOperation()
 //        testFilteringConditionalOperators()
-        testMathematicalAggregateOperators()
+//        testMathematicalAggregateOperators()
+//        testErrorHandlingOperators()
+        testConnectableOperators()
+        
     }
     
     //MARK:testDriver
@@ -280,7 +283,173 @@ class CQRXDriverVC: UIViewController {
     
     //MARK: 集合控制操作符
     func testMathematicalAggregateOperators(){
+        //toArray: 将一个可观察序列转换为一个数组，将该数组作为一个新的单元素可观察序列发出，然后终止
+        Observable.range(start: 1, count: 10)
+        .toArray()
+        .subscribe(onNext: { print($0) })
+        .disposed(by: disposeBag)
         
+        // reduce: 从一个设置的初始化值开始，然后对一个可观察序列发出的所有元素应用累加器闭包，并以单个元素可观察序列的形式返回聚合结果 - 类似scan
+        Observable.of(10,100,1000)
+            .reduce(1, accumulator: +)// 1 + 10 + 100 + 1000 = 1111
+            .subscribe(onNext: { (num) in
+                print(num)
+            }).disposed(by: disposeBag)
+        // concat: 以顺序方式连接来自一个可观察序列的内部可观察序列的元素，在从下一个序列发出元素之前，等待每个序列成功终止
+        // 用来控制顺序
+        let subject1 = BehaviorSubject<String>(value: "MajiLi")
+        let subject2 = BehaviorSubject<String>(value: "King")
+        let subject = BehaviorSubject(value: subject1)
+        subject.asObserver()
+        .concat()
+        .subscribe({print($0)})
+        .disposed(by: disposeBag)
+        
+        subject1.onNext("jjjjjj")
+        subject.onNext(subject2)
+        subject2.onNext("能打印吗？")
+        subject1.onCompleted()// 必须要等subject1 完成了才能订阅到! 用来控制顺序 网络数据的异步
+        subject2.onNext("必须能打印！！！")
+    }
+    
+    //MARK: 从可观察对象的错误通知中恢复的操作符。
+    func testErrorHandlingOperators() {
+        /*
+        // catchErrorJustReturn
+        // 从错误事件中恢复，方法是返回一个可观察到的序列，该序列发出单个元素，然后终止
+        let sequence = PublishSubject<String>()
+        sequence.catchErrorJustReturn("fail")
+        .subscribe({print($0)})
+        .disposed(by: disposeBag)
+        
+        sequence.onNext("MagiLi")
+        sequence.onError(self.lgError)//发送失败的序列,一旦订阅到位 返回我们之前设定的错误的预案
+        
+        // **** catchError
+        // 通过切换到提供的恢复可观察序列，从错误事件中恢复
+        let recoverySequence = PublishSubject<String>()
+        recoverySequence.asObserver()
+            .catchError { (error) -> Observable<String> in
+                print("Error:", error)
+                return recoverySequence// 获取到了错误序列-我们在中间的闭包操作处理完毕,返回给用户需要的序列(showAlert)
+        }.subscribe({print($0)})
+        .disposed(by: disposeBag)
+        
+        recoverySequence.onNext("llllll")
+        recoverySequence.onError(self.lgError)
+        */
+        // retry: 通过无限地重新订阅可观察序列来恢复重复的错误事件
+        var count = 1
+        let retrySequence = Observable<Any>.create { (observer) -> Disposable in
+            observer.onNext("MagiLi_retry")
+            if count < 5 {
+                print("error come on!")
+                
+                observer.onError(self.lgError)
+                count += 1
+            }
+            observer.onNext("King_retry")
+            observer.onCompleted()
+            return Disposables.create()
+        }
+        
+        retrySequence.asObservable()
+        .retry(3)
+        .debug()
+        .subscribe({print($0)})
+        .disposed(by: disposeBag)
+    }
+    
+    /// 链接操作符
+    func testConnectableOperators(){
+        // 连接操作符的重要性
+         testWithoutConnect()
+//         testPushConnectOperators()
+//         testReplayConnectOperators()
+//         testMulticastConnectOperators()
+    }
+    //MARk: multicast
+    func testMulticastConnectOperators() {
+        // multicast : 将源可观察序列转换为可连接序列，并通过指定的主题广播其发射。
+//        let subject = PublishSubject<Any>()
+//        subject.mul
+    }
+    //MARk: replay
+    func testReplayConnectOperators(){
+        // replay: 将源可观察序列转换为可连接的序列，并将向每个新订阅服务器重放以前排放的缓冲大小
+        // 首先拥有和publish一样的能力，共享 Observable sequence， 其次使用replay还需要我们传入一个参数（buffer size）来缓存已发送的事件，当有新的订阅者订阅了，会把缓存的事件发送给新的订阅者
+        let interval = Observable<Int>.interval(1.0, scheduler: MainScheduler.instance).replay(5)
+        interval.subscribe({print(Date.time, "订阅1: 事件: \($0)")})
+        .disposed(by: disposeBag)
+        
+        delay(2) {
+            _ = interval.connect()
+        }
+        delay(4) {
+            interval.subscribe(onNext: {print(Date.time, "订阅2: 事件: \($0)")})
+                .disposed(by: self.disposeBag)
+        }
+        delay(8) {
+               interval.subscribe(onNext: { print(Date.time,"订阅: 3, 事件: \($0)") })
+                   .disposed(by: self.disposeBag)
+        }
+        
+        delay(20, closure:{
+            self.disposeBag = DisposeBag()
+        })
+    }
+    
+    /// push - connect 将源可观察序列转换为可连接序列
+    func testPushConnectOperators(){
+        // **** push:将源可观察序列转换为可连接序列
+        // 共享一个Observable的事件序列，避免创建多个Observable sequence。
+        // 注意:需要调用connect之后才会开始发送事件
+        
+        let interval = Observable<Int>.interval(1, scheduler: MainScheduler.instance).publish()
+        interval.subscribe({
+            print("订阅1: 事件: \($0)")
+        }).disposed(by: disposeBag)
+        
+        delay(2) {
+            _ = interval.connect()
+        }
+        
+        delay(4) {
+            interval.subscribe({
+                print("订阅2: 事件: \($0)")
+            }).disposed(by: self.disposeBag)
+        }
+        
+        delay(6) {
+            interval.subscribe({
+                print("订阅3: 事件: \($0)")
+            }).disposed(by: self.disposeBag)
+        }
+        delay(10, closure: {
+            self.disposeBag = DisposeBag()
+        })
+        
+    }
+    /// 没有共享序列
+    func testWithoutConnect() {
+        let interval = Observable<Int>.interval(1, scheduler: MainScheduler.instance)
+        interval.subscribe({print("订阅1: 事件: \($0)")})
+            .disposed(by: disposeBag)
+        delay(2) {
+            interval.subscribe({print("订阅2: 事件: \($0)")})
+                .disposed(by: self.disposeBag)
+        }
+        
+        delay(4) {
+                self.disposeBag = DisposeBag()
+            }
+        // 发现有一个问题:在延时3s之后订阅的Subscription: 2的计数并没有和Subscription: 1一致，而是又从0开始了，如果想共享，怎么办?
+    }
+    /// 延迟几秒执行
+    func delay(_ delay: Double, closure: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            closure()
+        }
     }
 }
 
@@ -289,5 +458,12 @@ struct CQPlayer {
     let score: BehaviorSubject<Int>
     init(score: Int) {
         self.score = BehaviorSubject(value: score)
+    }
+}
+extension Date {
+    static var time: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH-mm-ss"
+        return formatter.string(from: Date())
     }
 }
