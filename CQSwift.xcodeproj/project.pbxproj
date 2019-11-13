@@ -27,6 +27,7 @@
 		34744E0322EDEA9F007F52DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34744E0122EDEA9F007F52DC /* LaunchScreen.storyboard */; };
 		34744E0E22EDEA9F007F52DC /* CQSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34744E0D22EDEA9F007F52DC /* CQSwiftTests.swift */; };
 		34744E1922EDEA9F007F52DC /* CQSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34744E1822EDEA9F007F52DC /* CQSwiftUITests.swift */; };
+		34ACC121236A875000C676C0 /* CQDispatchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC120236A875000C676C0 /* CQDispatchVC.swift */; };
 		34C1A3B3231658250079A935 /* CQMainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C1A3B2231658250079A935 /* CQMainHeaderView.swift */; };
 		34C1A3B62316598F0079A935 /* CQWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C1A3B52316598F0079A935 /* CQWaveView.swift */; };
 		34C1F5F9233F9DD6004F3146 /* CQRXDriverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C1F5F8233F9DD6004F3146 /* CQRXDriverVC.swift */; };
@@ -81,6 +82,7 @@
 		34744E1422EDEA9F007F52DC /* CQSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CQSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34744E1822EDEA9F007F52DC /* CQSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSwiftUITests.swift; sourceTree = "<group>"; };
 		34744E1A22EDEA9F007F52DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34ACC120236A875000C676C0 /* CQDispatchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQDispatchVC.swift; sourceTree = "<group>"; };
 		34C1A3B2231658250079A935 /* CQMainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMainHeaderView.swift; sourceTree = "<group>"; };
 		34C1A3B52316598F0079A935 /* CQWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQWaveView.swift; sourceTree = "<group>"; };
 		34C1F5F8233F9DD6004F3146 /* CQRXDriverVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQRXDriverVC.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				34ECF8C52335BDA800DDF8BD /* CQRXSwiftUIObserverableVC.swift */,
 				34ECF8C72335BDCE00DDF8BD /* CQRXSwiftUIObserverableVC.storyboard */,
 				34C1F5F8233F9DD6004F3146 /* CQRXDriverVC.swift */,
+				34ACC120236A875000C676C0 /* CQDispatchVC.swift */,
 			);
 			path = CQTableView;
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 		342C1C13235949890058E583 /* Metal */ = {
 			isa = PBXGroup;
 			children = (
+				34FC7B03235EE44F00483813 /* ImageBlur */,
 				342C1C14235949AA0058E583 /* CQMetalFirstController.swift */,
 				342C1C16235949C20058E583 /* Shader.metal */,
 				342C1C1823594DA40058E583 /* CQMetalSecondController.swift */,
@@ -236,6 +240,13 @@
 				3404E6CE231117CE00014104 /* CQTableViewModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		34FC7B03235EE44F00483813 /* ImageBlur */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ImageBlur;
 			sourceTree = "<group>";
 		};
 		51FB9ACED9373FB80EAB99D4 /* Pods */ = {
@@ -449,6 +460,7 @@
 				34C1A3B62316598F0079A935 /* CQWaveView.swift in Sources */,
 				3404E6CF231117CE00014104 /* CQTableViewModel.swift in Sources */,
 				34C1A3B3231658250079A935 /* CQMainHeaderView.swift in Sources */,
+				34ACC121236A875000C676C0 /* CQDispatchVC.swift in Sources */,
 				3412C460230D3CC30048A095 /* UIColor+CQExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -24,6 +24,8 @@ class CQTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "tableView"
+        rxSwiftSubscribe()
+        /*
         tableView = UITableView(frame: self.view.bounds, style: .plain)
         self.tableView.register(CQTableViewCell.self, forCellReuseIdentifier: cellID)
         self.view.addSubview(tableView)
@@ -54,7 +56,10 @@ class CQTableViewController: UIViewController {
                 let driverVC = CQRXDriverVC()
                 self.navigationController?.pushViewController(driverVC, animated: true)
                 break
-                
+            case 3:
+                let dispatchVC = CQDispatchVC()
+                self.navigationController?.pushViewController(dispatchVC, animated: true)
+                break
             default:
                 break
             }
@@ -73,6 +78,8 @@ class CQTableViewController: UIViewController {
 //        timer.subscribe(onNext: { (num) in
 //            print(num)
 //        }).disposed(by: disposeBag)
+ 
+ */
         
     }
     
@@ -121,7 +128,9 @@ class CQTableViewController: UIViewController {
              ->onNext/onCompleted/onError:这些就是第四步相应信号的闭包函数
              ->进入响应
             */
-            return Disposables.create()
+            return Disposables.create {
+                print("销毁 1...")
+            }
         }
         /* 2. ob(Observable类型) 订阅序列
          ob.subscribe
@@ -139,15 +148,17 @@ class CQTableViewController: UIViewController {
          ->唤起第三步，发送信号
          */
         // 创建临时工作区asObservable()
-        _ = ob.subscribe(onNext: { (content) in
+        let dispose = ob.subscribe(onNext: { (content) in
             print("订阅的内容：\(content)")
         }, onError: { (Error) in
             print("error")
         }, onCompleted: {
             print("完成")
         }) {
-            print("销毁")
+            print("销毁 2...")
         }
+        
+        dispose.dispose()
     }
 
 }

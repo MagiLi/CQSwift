@@ -30,7 +30,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableView?.register(CQMainCell.self, forCellReuseIdentifier: "CQMainCellID")
         tableView?.register(CQMainHeaderView.self, forHeaderFooterViewReuseIdentifier: "CQMainHeaderID")
         self.view.addSubview(tableView!)
-      
+      /*
         
         let arr = [5,3,4]
         let arrR = arr.map { (a) -> Int in
@@ -55,7 +55,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         let sortArray = arr.sorted(by: {$0 < $1})
         print(sortArray) //[2, 3, 5, 6, 7]
-        
+        */
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {

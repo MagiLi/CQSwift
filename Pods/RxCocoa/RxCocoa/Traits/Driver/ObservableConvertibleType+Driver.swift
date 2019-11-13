@@ -16,6 +16,7 @@ extension ObservableConvertibleType {
     - returns: Driver trait.
     */
     public func asDriver(onErrorJustReturn: E) -> Driver<E> {
+        // source:Catch(也是继承之Producer)
         let source = self
             .asObservable()
             .observeOn(DriverSharingStrategy.scheduler)

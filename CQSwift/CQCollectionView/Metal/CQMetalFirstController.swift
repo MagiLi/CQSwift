@@ -36,7 +36,9 @@ class CQMetalFirstController: UIViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
             self.view.backgroundColor = UIColor.white
-            let mtlDevice: MTLDevice! = MTLCreateSystemDefaultDevice()
+            guard let mtlDevice = MTLCreateSystemDefaultDevice() else {
+                fatalError( "Failed to get the system's default Metal device." )
+            }
             let mtlLayer:CAMetalLayer! = CAMetalLayer()
             // 2.0 必须明确layer使用的MTLDevice，简单地设置早前获取的device
             mtlLayer.device = mtlDevice

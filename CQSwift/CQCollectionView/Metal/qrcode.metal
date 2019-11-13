@@ -56,10 +56,17 @@ fragment float4 passThroughFragment(VertexOut inFrag [[stage_in]],
     float colorEffectRange = 1.0 / (colorCount - 1.0);
     float3 gradientColor = float3(0.0);
     int colorZoneIndex = inFrag.uv.y / colorEffectRange;
+    
+    //计算当前像素的取色，首先计算出当前像素点在渐变色的哪一段
     colorZoneIndex = colorZoneIndex >= colorCount - 1 ? colorCount - 2 : colorZoneIndex;
+    
+    //根据像素在这一段的位置，使用两端的颜色计算最终的像素颜色
     float effectFactor = (inFrag.uv.y - colorZoneIndex * colorEffectRange) / colorEffectRange;
     gradientColor = colors[colorZoneIndex] * (1.0 - effectFactor) + colors[colorZoneIndex + 1] * effectFactor;
+    // 取出二维码的颜色，如果二维码是偏白色的就直接忽略这个像素，这样就会显示主程序里配置的清除色clearColor
     float4 qrcodeColor = diffuse.sample(s, inFrag.uv);
+    //反之，直接返回计算出来的渐变色。我使用r > 0.5来判断是不是白色像素。
+    //白色的部分被替换为clearColor，黑色部分变成对应的渐变色。
     if (qrcodeColor.r > 0.5) {
         discard_fragment();
     } else {

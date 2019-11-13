@@ -17,28 +17,35 @@ class CQRXDriverVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.setupUI()
-//        testDriver()
+        self.setupUI()
+        testDriver()
         
 //        testCombinationOperation()
 //        testTransformingOperation()
 //        testFilteringConditionalOperators()
 //        testMathematicalAggregateOperators()
 //        testErrorHandlingOperators()
-        testConnectableOperators()
+//        testConnectableOperators()
         
     }
     
     //MARK:testDriver
     func testDriver() -> Void {
+        // 1.序列初始化observableField：SharedSequence（Driver）<DriverSharingStrategy, Any>
+        // 
         let observableField = self.textField.rx.text.orEmpty
-            .asDriver()
+            .asDriver()// Driver序列
             .flatMap {
+                // 这时return了一个Driver序列：
+                // 该序列内部生成并持有了一个新的source（Observable）
                 return self.getSimulationData(inputText: $0)
                 .asDriver(onErrorJustReturn: "===== error =====")
-        }
+            }
+        
+        // 2.序列绑定，订阅
         observableField.map {
-            "length: \(($0 as! String).count)"
+            "\($0)"
+//            "length: \(($0 as! String).count)"
         }
         .drive(self.textLabel.rx.text)
         .disposed(by: disposeBag)
@@ -49,11 +56,13 @@ class CQRXDriverVC: UIViewController {
         let observable = Observable<Any>.create { (anyObservable) -> Disposable in
             if inputText == "123" {
                 anyObservable.onError(NSError.init(domain: "com.driver.cn", code: 10086, userInfo: nil))
-            }
-            DispatchQueue.global().async {
-                print("回调线程 \(Thread.current)")
-                anyObservable.onNext("已经输入:\(inputText)")
-                anyObservable.onCompleted()
+            } else {
+                DispatchQueue.global().async {
+                    print("回调线程 \(Thread.current)")
+                    // 3.发送信号
+                    anyObservable.onNext("已经输入:\(inputText)")
+                    anyObservable.onCompleted()
+                }
             }
             return Disposables.create()
         }
@@ -63,7 +72,7 @@ class CQRXDriverVC: UIViewController {
     //MARK: viewDidLayoutSubviews
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let textlabelFrame = CGRect(x: 20.0, y: 120.0, width: 80.0, height: 50.0)
+        let textlabelFrame = CGRect(x: 20.0, y: 120.0, width: 280.0, height: 50.0)
         self.textLabel.frame = textlabelFrame
         self.textField.frame = CGRect(x: 20.0, y: textlabelFrame.maxY + 15.0, width: 200.0, height: textlabelFrame.height)
     }

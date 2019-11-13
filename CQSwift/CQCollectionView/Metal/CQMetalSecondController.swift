@@ -9,23 +9,30 @@
 import UIKit
 
 class CQMetalSecondController: UIViewController {
-    //每一行的前四个分量为顶点坐标，后两个分量为纹理坐标（归一化）
-//    let vertexArrayData:[Float] = [
-//        -1.0, -1.0, 0.0, 1.0, 0, 1,
-//        -1.0, 1.0, 0.0, 1.0, 0, 0,
-//        1.0, -1.0, 0.0, 1.0, 1, 1,
-//        -1.0, 1.0, 0.0, 1.0, 0, 0,
-//        1.0, 1.0, 0.0, 1.0, 1, 0,
-//        1.0, -1.0, 0.0, 1.0, 1, 1
-//    ]
+    //每一行的前三个分量为顶点坐标，后两个分量为纹理坐标（归一化）UV（U:水平方向，V：垂直方向）
+    //需要注意的是：纹理坐标系是左下角为坐标系顶点，而顶点坐标系屏幕中心为顶点
+    
     let vertexArrayData: [Float] = [
-           -1,   1,    0.0, 0, 0,
-           -1,   -1,   0.0, 0, 1,
-           1,    -1,   0.0, 1, 1,
-           1,    -1,   0.0, 1, 1,
-           1,    1,    0.0, 1, 0,
-           -1,   1,    0.0, 0, 0
-       ]
+        //第一个三角形
+        -1,   1,    0.0, 0, 0,
+        -1,   -1,   0.0, 0, 1,
+        1,    -1,   0.0, 1, 1,
+        //第二个三角形
+        1,    -1,   0.0, 1, 1,
+        1,    1,    0.0, 1, 0,
+        -1,   1,    0.0, 0, 0
+    ]
+     /*
+               (0,1)
+(-1,1)----------------------(1,1)
+     |           |          |
+     |           |          |
+(-1,0)---------(0,0)--------|(1,0)
+     |           |          |
+     |           |          |
+(-1,-1)---------------------(1,-1)
+               (0,-1)
+     */
     var mtlDevice: MTLDevice?// 1.创建 MTLDevice
     var mtlLayer: CAMetalLayer!// 2.创建 CAMetalLayer
     var mtlCommandQueue: MTLCommandQueue!//3.创建 MTLCommandQueue
@@ -36,7 +43,7 @@ class CQMetalSecondController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.setupMetal()
         
         self.setupPipline()
@@ -46,11 +53,10 @@ class CQMetalSecondController: UIViewController {
     //MARK: setupMetal
     func setupMetal()  {
         self.view.backgroundColor = UIColor.white
-        mtlDevice = MTLCreateSystemDefaultDevice()
-        guard mtlDevice != nil else {
-            print("该设备不支持 Metal")
-            return
+        guard let device = MTLCreateSystemDefaultDevice() else {
+            fatalError( "Failed to get the system's default Metal device." )
         }
+        mtlDevice = device
         
         mtlLayer = CAMetalLayer()
         mtlLayer.device = mtlDevice
@@ -62,6 +68,7 @@ class CQMetalSecondController: UIViewController {
     //MARK: 初始化Pipline “流水线,管线”
     func setupPipline() {
         mtlCommandQueue = mtlDevice?.makeCommandQueue()
+        
         mtlCommandQueue.label = "main metal command queue"
         
         let mtlDefaultLibrary = mtlDevice?.makeDefaultLibrary()!
@@ -134,9 +141,10 @@ class CQMetalSecondController: UIViewController {
         mtlCommandEncoder.setFragmentTexture(mtlTexture, index: 0)
         
         let colors: [Float] = [
-               0x2a / 255.0, 0x9c / 255.0, 0x1f / 255.0,
-               0xe6 / 255.0, 0xcd / 255.0, 0x27 / 255.0,
-               0xe6 / 255.0, 0x27 / 255.0, 0x57 / 255.0
+            0x2a / 255.0, 0x9c / 255.0, 0x1f / 255.0,
+//            0.0 / 255.0, 0.0 / 255.0, 0.0 / 255.0,
+            0xe6 / 255.0, 0xcd / 255.0, 0x27 / 255.0,
+            0xe6 / 255.0, 0x27 / 255.0, 0x57 / 255.0
         ]
         
         let colorsBufferSize = MemoryLayout<Float>.size * colors.count

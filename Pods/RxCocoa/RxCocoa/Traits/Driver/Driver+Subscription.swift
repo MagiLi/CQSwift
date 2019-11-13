@@ -13,12 +13,15 @@ private let errorMessage = "`drive*` family of methods can be only called from `
 
 extension SharedSequenceConvertibleType where SharingStrategy == DriverSharingStrategy {
     /**
+     //创建新订阅并将元素发送给观察者。
     Creates new subscription and sends elements to observer.
+     //此方法只能从“mainthread”调用。
     This method can be only called from `MainThread`.
-
+    //在这种形式下，它相当于“subscribe”方法，但它可以更好地传达意图。
     In this form it's equivalent to `subscribe` method, but it communicates intent better.
-
+    //参数Observer：监听者接收事件
     - parameter observer: Observer that receives events.
+     // 返回：可用于从subject取消订阅观察者 的可弃对象。
     - returns: Disposable object that can be used to unsubscribe the observer from the subject.
     */
     public func drive<O: ObserverType>(_ observer: O) -> Disposable where O.E == E {
@@ -37,7 +40,10 @@ extension SharedSequenceConvertibleType where SharingStrategy == DriverSharingSt
      */
     public func drive<O: ObserverType>(_ observer: O) -> Disposable where O.E == E? {
         MainScheduler.ensureRunningOnMainThread(errorMessage: errorMessage)
-        return self.asSharedSequence().asObservable().map { $0 as E? }.subscribe(observer)
+        return self.asSharedSequence()
+            .asObservable()
+            .map { $0 as E? }
+            .subscribe(observer)
     }
 
     /**

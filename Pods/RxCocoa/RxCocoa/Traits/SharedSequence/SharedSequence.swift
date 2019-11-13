@@ -12,9 +12,9 @@ import RxSwift
     Trait that represents observable sequence that shares computation resources with following properties:
 
     - it never fails
-    - it delivers events on `SharingStrategy.scheduler`
+    - it delivers（传递） events on `SharingStrategy.scheduler`
     - sharing strategy is customizable using `SharingStrategy.share` behavior
-
+    //可以认为`SharedSequence<Element>`是可观察序列共享资源的一种构建方式
     `SharedSequence<Element>` can be considered a builder pattern for observable sequences that share computation resources.
 
     To find out more about units and how to use them, please visit `Documentation/Traits.md`.
@@ -102,7 +102,7 @@ extension SharedSequence {
 
     /**
     Returns an empty observable sequence, using the specified scheduler to send out the single `Completed` message.
-
+    返回一个没有元素的可观察序列
     - returns: An observable sequence with no elements.
     */
     public static func empty() -> SharedSequence<S, E> {
