@@ -12,7 +12,7 @@ private let reuseIdentifier = "Cell"
 
 class CQCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    var dataArray = NSMutableArray.init(array: ["The First metal demo ","Press me 1","Press me 2","Press me 3","Press me 4"])
+    var dataArray = NSMutableArray.init(array: ["The First metal demo ","The Second metal demo","CQApps","Press me 3","Press me 4"])
     
     
     override func viewDidLoad() {
@@ -60,25 +60,26 @@ class CQCollectionViewController: UICollectionViewController, UICollectionViewDe
         case 1:
              let mtlSecondVC = CQMetalSecondController()
              self.navigationController?.pushViewController(mtlSecondVC, animated: true)
-            break
-        default:
-            break;
+        case 2:
+            let appsVC = CQAppsController()
+            self.navigationController?.pushViewController(appsVC, animated: true)
+        default: break
         }
     }
+     override func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+         return true
+     }
+     override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+         let source = self.dataArray[sourceIndexPath.item]
+         self.dataArray.remove(source)
+         self.dataArray.insert(source, at: destinationIndexPath.item)
+     }
     // MARK: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.view.frame.width, height: 50.0)
     }
 
-    // MARK: UICollectionViewDelegate
-    override func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let source = self.dataArray[sourceIndexPath.item]
-        self.dataArray.remove(source)
-        self.dataArray.insert(source, at: destinationIndexPath.item)
-    }
+ 
 
 
 }
