@@ -10,7 +10,7 @@ import UIKit
 
 class CQAppsController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var modelArray: NSArray?
+    var modelArray: [CQAppSectionModel]?
     
     //MARK:dataArray
     func getPlistData() {
@@ -18,9 +18,12 @@ class CQAppsController: UIViewController, UICollectionViewDelegate, UICollection
             return
         }
         guard let array = NSArray(contentsOf: url) else { return }
-        self.modelArray = CQTransitionModelManager.toModelArray(array, to:CQAppSectionModel.self) as NSArray?
+        self.modelArray = CQTransitionModelManager.toModelArray(array, to:CQAppSectionModel.self) as [CQAppSectionModel]?
         self.appsView.reloadData()
         
+//        guard let sectionModel = self.modelArray?.first else { return }
+//        _ = CQModelManager.saveModel(sectionModel, CQAppSectionModel.kAppSectionModel)
+//        
     }
     
     //MARK:UICollectionViewDataSource
@@ -28,7 +31,7 @@ class CQAppsController: UIViewController, UICollectionViewDelegate, UICollection
         return self.modelArray?.count ?? 0
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let model = self.modelArray?[section] as? CQAppSectionModel else {
+        guard let model = self.modelArray?[section] else {
             return 0
         }
         
@@ -37,7 +40,11 @@ class CQAppsController: UIViewController, UICollectionViewDelegate, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: appCellID, for: indexPath) as! CQAppCell
-        cell
+        if let sectionModel = self.modelArray?[indexPath.section] {
+            if let model = sectionModel.list?[indexPath.item] {
+                cell.updateUI(model, indexPath)
+            }
+        }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

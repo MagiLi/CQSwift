@@ -9,7 +9,11 @@
 import UIKit
 
 class CQAppCell: UICollectionViewCell {
-    
+    //MARK:
+    func updateUI(_ model:CQAppModel, _ indexPath:IndexPath) {
+        self.titleLab.text = model.title
+        self.indexPathLab.text = "\(indexPath.item)"
+    }
     //MARK:init
     override init(frame: CGRect) {
         super.init(frame: frame)
