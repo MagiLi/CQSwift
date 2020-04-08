@@ -31,5 +31,6 @@ class CQAppModel: Codable {
     
     var title:String?
     var appId:String?
+    var selected:Bool?
     
 }
