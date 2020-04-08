@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CQAppsController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class CQAppsController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CQAppsViewDelegate {
     
     var modelArray: [CQAppSectionModel]?
     
@@ -25,8 +25,11 @@ class CQAppsController: UIViewController, UICollectionViewDelegate, UICollection
 //        _ = CQModelManager.saveModel(sectionModel, CQAppSectionModel.kAppSectionModel)
 //        
     }
-    
-    //MARK:UICollectionViewDataSource
+    // MARK: CQAppsViewDelegate
+    func appsView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        print("\(sourceIndexPath) + /n + \(destinationIndexPath)")
+    }
+    // MARK: UICollectionViewDataSource
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return self.modelArray?.count ?? 0
     }
@@ -58,9 +61,6 @@ class CQAppsController: UIViewController, UICollectionViewDelegate, UICollection
             return footerView
         }
     }
-    
-    //MARK:UICollectionViewDelegate
-    
     
     //MARK:UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -113,6 +113,7 @@ class CQAppsController: UIViewController, UICollectionViewDelegate, UICollection
         view.register(CQAppFooterView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: appFooterID)
         view.delegate = self
         view.dataSource = self
+        view.appsViewDelegate = self
         return view
     }()
     //MARK:get

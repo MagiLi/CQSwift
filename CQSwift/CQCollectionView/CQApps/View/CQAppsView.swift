@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol CQAppsViewDelegate {
+    func appsView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
+}
+
 class CQAppsView: UICollectionView {
     
+    var appsViewDelegate: CQAppsViewDelegate?
     var editing:Bool?
     
     fileprivate var lastPoint: CGPoint?
@@ -85,8 +90,9 @@ class CQAppsView: UICollectionView {
                 
                 self.moveItem(at: pressedIndexPath, to: indexPath)
                 
+                self.appsViewDelegate?.appsView(self, moveItemAt: pressedIndexPath, to: indexPath)
+                
                 self.pressedIndexPath = self.toIndexPath
-
             }
         }
         
