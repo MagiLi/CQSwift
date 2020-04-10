@@ -13,6 +13,9 @@ class CQAppHeaderView: UICollectionReusableView {
     func setHeaderTitleLab(_ section:NSInteger) {
         self.titleLab.text = "第 \(section) 组"
     }
+    func setHeaderModel(_ model:CQAppSectionModel?) {
+        self.titleLab.text = model?.title
+    }
 //    var section: NSInteger {
 //        didSet {
 //            self.titleLab.

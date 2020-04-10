@@ -14,6 +14,7 @@ class CQAppsController: UIViewController, UICollectionViewDelegate, UICollection
     
     //MARK:dataArray
     func getPlistData() {
+        
         guard let url = Bundle.main.url(forResource: "AppDataList", withExtension: "plist") else {
             return
         }
@@ -27,14 +28,24 @@ class CQAppsController: UIViewController, UICollectionViewDelegate, UICollection
     }
     // MARK: CQAppsViewDelegate
     func appsView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        print("\(sourceIndexPath) + /n + \(destinationIndexPath)")
+        debugPrint("\(sourceIndexPath) +++ \(destinationIndexPath)")
     }
+    func appsViewEndMove(_ collectionView: UICollectionView, from originIndexPath: IndexPath?, to destinationIndexPath: IndexPath?) {
+        guard let fromIndexPath = originIndexPath, let toIndexPath = destinationIndexPath else {
+            return
+        }
+        debugPrint("\(fromIndexPath) --- \(toIndexPath)")
+    }
+    
     // MARK: UICollectionViewDataSource
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return self.modelArray?.count ?? 0
+        return (self.modelArray?.count ?? 0) + 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let model = self.modelArray?[section] else {
+        if section == 0 {
+            return 0
+        }
+        guard let model = self.modelArray?[section - 1] else {
             return 0
         }
         
@@ -43,9 +54,13 @@ class CQAppsController: UIViewController, UICollectionViewDelegate, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: appCellID, for: indexPath) as! CQAppCell
-        if let sectionModel = self.modelArray?[indexPath.section] {
-            if let model = sectionModel.list?[indexPath.item] {
-                cell.updateUI(model, indexPath)
+        if indexPath.section == 0 {
+            
+        } else {
+            if let sectionModel = self.modelArray?[indexPath.section - 1] {
+                if let model = sectionModel.list?[indexPath.item] {
+                    cell.updateUI(model, indexPath)
+                }
             }
         }
         return cell
@@ -53,7 +68,15 @@ class CQAppsController: UIViewController, UICollectionViewDelegate, UICollection
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: appHeaderID, for: indexPath) as! CQAppHeaderView
-            headerView.setHeaderTitleLab(indexPath.section)
+            if indexPath.section == 0 {
+                headerView.setHeaderTitleLab(indexPath.section)
+            } else {
+                if let sectionModel = self.modelArray?[indexPath.section - 1] {
+                    headerView.setHeaderModel(sectionModel)
+                } else {
+                    headerView.setHeaderTitleLab(indexPath.section)
+                }
+            }
             return headerView
         } else {
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: appFooterID, for: indexPath) as! CQAppFooterView

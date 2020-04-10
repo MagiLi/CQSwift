@@ -24,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         self.mainNavVC = CQMainNavController.init(rootViewController: CQMainController())
         self.window?.rootViewController = self.mainNavVC;
+        
+        CQCoreDataTool.shared.setupCoreDataWithModelName("CQSwift", "CQSwift.db")
+        
         return true
     }
 

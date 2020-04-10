@@ -10,6 +10,7 @@ import UIKit
 
 protocol CQAppsViewDelegate {
     func appsView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
+    func appsViewEndMove(_ collectionView: UICollectionView,from originIndexPath:IndexPath?, to destinationIndexPath: IndexPath?)
 }
 
 class CQAppsView: UICollectionView {
@@ -18,8 +19,9 @@ class CQAppsView: UICollectionView {
     var editing:Bool?
     
     fileprivate var lastPoint: CGPoint?
-    fileprivate var pressedIndexPath: IndexPath?
-    fileprivate var toIndexPath: IndexPath?
+    fileprivate var originIndexPath: IndexPath?// 初始的indexPath
+    fileprivate var pressedIndexPath: IndexPath?// 按住的indexPath
+//    fileprivate var toIndexPath: IndexPath?
     fileprivate var pressedCell: UICollectionViewCell?
     fileprivate var snapshotCell: UIView?
     
@@ -45,12 +47,14 @@ class CQAppsView: UICollectionView {
         
         self.lastPoint = longPressGesture.location(in: self)
         self.pressedIndexPath = self.indexPathForItem(at: self.lastPoint!)
+        self.originIndexPath = self.pressedIndexPath
+        
         if let indexPath = self.pressedIndexPath, indexPath.section == 0 {
             
             guard let pressedCell = self.cellForItem(at: indexPath) else { return }
             self.pressedCell = pressedCell
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            DispatchQueue.main.async {
                 guard let snapshotCell = pressedCell.snapshotView(afterScreenUpdates: false) else { return }
                 snapshotCell.frame = pressedCell.frame
                 snapshotCell.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
@@ -66,7 +70,6 @@ class CQAppsView: UICollectionView {
     //MARK:longPressChanged
     fileprivate func longPressChanged(_ longPressGesture:UILongPressGestureRecognizer) {
         guard let lastPoint = self.lastPoint else { return }
-        guard let pressedCell = self.pressedCell else { return }
         guard let snapshotCell = self.snapshotCell else { return }
         guard let pressedIndexPath = self.pressedIndexPath else { return }
         
@@ -78,27 +81,29 @@ class CQAppsView: UICollectionView {
         self.lastPoint = longPressGesture.location(in: self)
 
         for cell in self.visibleCells {
-            guard let indexPath = self.indexPath(for: cell) else { return }
-            if indexPath == self.pressedIndexPath { continue }
+            guard let toIndexPath = self.indexPath(for: cell) else { continue }
+            if toIndexPath == self.pressedIndexPath { continue }
+            if toIndexPath.section != 0 { continue }
             
             //计算中心距离
             let spacingX = fabs(currentCenter.x - cell.center.x)
             let spacingY = fabs(currentCenter.y - cell.center.y)
-            if spacingX <= pressedCell.bounds.size.width / 2.0 && spacingY <= pressedCell.bounds.size.height / 2.0 {
-                self.toIndexPath = indexPath
-                if self.toIndexPath?.section != 0 { return }
+            if spacingX <= snapshotCell.bounds.size.width / 2.0 && spacingY <= snapshotCell.bounds.size.height / 2.0 {
                 
-                self.moveItem(at: pressedIndexPath, to: indexPath)
+                self.moveItem(at: pressedIndexPath, to: toIndexPath)
                 
-                self.appsViewDelegate?.appsView(self, moveItemAt: pressedIndexPath, to: indexPath)
+                self.appsViewDelegate?.appsView(self, moveItemAt: pressedIndexPath, to: toIndexPath)
                 
-                self.pressedIndexPath = self.toIndexPath
+                self.pressedIndexPath = toIndexPath
             }
         }
         
     }
     //MARK:longPressEnd
     fileprivate func longPressEnd(_ longPressGesture: UILongPressGestureRecognizer) {
+        
+        self.appsViewDelegate?.appsViewEndMove(self, from: self.originIndexPath, to: self.pressedIndexPath)
+        
         UIView.animate(withDuration: 0.25, animations: {
             self.snapshotCell?.transform = .identity
             self.snapshotCell?.center = self.pressedCell?.center ?? .zero
