@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 11.0, *)
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     //？作为命名类型Optional的简写.
@@ -25,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.mainNavVC = CQMainNavController.init(rootViewController: CQMainController())
         self.window?.rootViewController = self.mainNavVC;
         
-        CQCoreDataTool.shared.setupCoreDataWithModelName("CQSwift", "CQSwift.db")
+        CQCoreDataTool.shared.setupCoreDataWithModelName("CQSwiftData", "CQSwiftData.db")
         
         return true
     }

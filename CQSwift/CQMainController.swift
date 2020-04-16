@@ -9,6 +9,7 @@
 import UIKit
 
 
+@available(iOS 11.0, *)
 class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var tableView : UITableView?

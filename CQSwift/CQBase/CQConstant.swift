@@ -30,6 +30,7 @@ let CQ_FONT = "Bauhaus ITC"
 
 
 /// 主窗口代理
+@available(iOS 11.0, *)
 let KAppDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
 // iOS在当前屏幕获取第一响应

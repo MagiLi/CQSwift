@@ -10,6 +10,7 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
+@available(iOS 11.0, *)
 class CQCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var dataArray = NSMutableArray.init(array: ["The First metal demo ","The Second metal demo","CQApps","Press me 3","Press me 4"])

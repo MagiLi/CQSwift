@@ -89,7 +89,7 @@ class CQTableViewController: UIViewController {
     
     func timerTest() {
         timer = Timer.init(timeInterval: 1, target: self, selector: #selector(timefire), userInfo: nil, repeats: true)
-        RunLoop.current.add(timer, forMode: .commonModes)
+        RunLoop.current.add(timer, forMode: .common)
 
     }
     func gcdTimerTest()  {
@@ -168,7 +168,7 @@ class CQTableViewCell: UITableViewCell {
     var titlteLabel:UILabel?
     var nameLabel:UILabel?
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.titlteLabel = UILabel(frame: CGRect(x: 10, y: 0, width: 100, height: self.contentView.bounds.height))

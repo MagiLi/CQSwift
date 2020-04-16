@@ -11,18 +11,21 @@
 		242CE799243C27ED00DF059D /* CQModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242CE794243C27ED00DF059D /* CQModelManager.swift */; };
 		242CE79A243C27ED00DF059D /* CQConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242CE795243C27ED00DF059D /* CQConstant.swift */; };
 		242CE79C243C27ED00DF059D /* CQTransitionModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242CE797243C27ED00DF059D /* CQTransitionModelManager.swift */; };
-		2455CBBD243706A60017C6E5 /* AppDataList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2455CBBC243706A60017C6E5 /* AppDataList.plist */; };
-		2455CBBF2437072E0017C6E5 /* CQAppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2455CBBE2437072E0017C6E5 /* CQAppsController.swift */; };
-		2455CBC1243707BB0017C6E5 /* CQAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2455CBC0243707BB0017C6E5 /* CQAppCell.swift */; };
-		2455CBC324370B830017C6E5 /* CQAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2455CBC224370B830017C6E5 /* CQAppsView.swift */; };
-		2455CBC7243712F10017C6E5 /* CQAppLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2455CBC6243712F10017C6E5 /* CQAppLayout.swift */; };
-		2455CBC924371A160017C6E5 /* CQAppHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2455CBC824371A160017C6E5 /* CQAppHeaderView.swift */; };
-		2455CBCB24371C8B0017C6E5 /* CQAppFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2455CBCA24371C8B0017C6E5 /* CQAppFooterView.swift */; };
-		2455CBCD243723280017C6E5 /* CQAppSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2455CBCC243723280017C6E5 /* CQAppSectionModel.swift */; };
+		244DA61624470619008B3B57 /* CQMoreEditContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244DA60924470618008B3B57 /* CQMoreEditContentView.swift */; };
+		244DA61724470619008B3B57 /* CQMoreHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244DA60A24470618008B3B57 /* CQMoreHeader.swift */; };
+		244DA61824470619008B3B57 /* CQMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244DA60B24470618008B3B57 /* CQMoreCell.swift */; };
+		244DA61924470619008B3B57 /* CQMoreEditHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244DA60C24470618008B3B57 /* CQMoreEditHeader.swift */; };
+		244DA61A24470619008B3B57 /* CQMoreFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244DA60D24470618008B3B57 /* CQMoreFooter.swift */; };
+		244DA61B24470619008B3B57 /* CQTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244DA60E24470618008B3B57 /* CQTopView.swift */; };
+		244DA61C24470619008B3B57 /* CQAppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244DA61024470619008B3B57 /* CQAppsController.swift */; };
+		244DA61D24470619008B3B57 /* CQAppSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244DA61224470619008B3B57 /* CQAppSectionModel.swift */; };
+		244DA61E24470619008B3B57 /* CQFrequentlyAppModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244DA61324470619008B3B57 /* CQFrequentlyAppModel+CoreDataClass.swift */; };
+		244DA61F24470619008B3B57 /* CQMoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244DA61424470619008B3B57 /* CQMoreDataManager.swift */; };
+		244DA62024470619008B3B57 /* CQFrequentlyAppModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244DA61524470619008B3B57 /* CQFrequentlyAppModel+CoreDataProperties.swift */; };
+		247847DA2448476B00229463 /* CQTopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247847D92448476B00229463 /* CQTopViewModel.swift */; };
+		247847DC244850A500229463 /* CQMoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247847DB244850A500229463 /* CQMoreViewModel.swift */; };
 		24CD3AB5243EBEA100BB4D10 /* CQCoreDataTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CD3AB4243EBEA100BB4D10 /* CQCoreDataTool.swift */; };
 		24CD3AC0243EC8A900BB4D10 /* CQSwiftData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24CD3ABE243EC8A900BB4D10 /* CQSwiftData.xcdatamodeld */; };
-		24CD3AC3243EC97500BB4D10 /* CQAppsModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CD3AC1243EC97500BB4D10 /* CQAppsModel+CoreDataClass.swift */; };
-		24CD3AC4243EC97500BB4D10 /* CQAppsModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CD3AC2243EC97500BB4D10 /* CQAppsModel+CoreDataProperties.swift */; };
 		3404B881230C1ACB004CFA91 /* CQMainNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404B880230C1ACB004CFA91 /* CQMainNavController.swift */; };
 		3404B883230C2663004CFA91 /* CQMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404B882230C2663004CFA91 /* CQMainController.swift */; };
 		3404B885230C29A9004CFA91 /* CQMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404B884230C29A9004CFA91 /* CQMainCell.swift */; };
@@ -74,18 +77,21 @@
 		242CE794243C27ED00DF059D /* CQModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQModelManager.swift; sourceTree = "<group>"; };
 		242CE795243C27ED00DF059D /* CQConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQConstant.swift; sourceTree = "<group>"; };
 		242CE797243C27ED00DF059D /* CQTransitionModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQTransitionModelManager.swift; sourceTree = "<group>"; };
-		2455CBBC243706A60017C6E5 /* AppDataList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppDataList.plist; sourceTree = "<group>"; };
-		2455CBBE2437072E0017C6E5 /* CQAppsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQAppsController.swift; sourceTree = "<group>"; };
-		2455CBC0243707BB0017C6E5 /* CQAppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQAppCell.swift; sourceTree = "<group>"; };
-		2455CBC224370B830017C6E5 /* CQAppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQAppsView.swift; sourceTree = "<group>"; };
-		2455CBC6243712F10017C6E5 /* CQAppLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQAppLayout.swift; sourceTree = "<group>"; };
-		2455CBC824371A160017C6E5 /* CQAppHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQAppHeaderView.swift; sourceTree = "<group>"; };
-		2455CBCA24371C8B0017C6E5 /* CQAppFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQAppFooterView.swift; sourceTree = "<group>"; };
-		2455CBCC243723280017C6E5 /* CQAppSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQAppSectionModel.swift; sourceTree = "<group>"; };
+		244DA60924470618008B3B57 /* CQMoreEditContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQMoreEditContentView.swift; sourceTree = "<group>"; };
+		244DA60A24470618008B3B57 /* CQMoreHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQMoreHeader.swift; sourceTree = "<group>"; };
+		244DA60B24470618008B3B57 /* CQMoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQMoreCell.swift; sourceTree = "<group>"; };
+		244DA60C24470618008B3B57 /* CQMoreEditHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQMoreEditHeader.swift; sourceTree = "<group>"; };
+		244DA60D24470618008B3B57 /* CQMoreFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQMoreFooter.swift; sourceTree = "<group>"; };
+		244DA60E24470618008B3B57 /* CQTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQTopView.swift; sourceTree = "<group>"; };
+		244DA61024470619008B3B57 /* CQAppsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQAppsController.swift; sourceTree = "<group>"; };
+		244DA61224470619008B3B57 /* CQAppSectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQAppSectionModel.swift; sourceTree = "<group>"; };
+		244DA61324470619008B3B57 /* CQFrequentlyAppModel+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CQFrequentlyAppModel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		244DA61424470619008B3B57 /* CQMoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQMoreDataManager.swift; sourceTree = "<group>"; };
+		244DA61524470619008B3B57 /* CQFrequentlyAppModel+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CQFrequentlyAppModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		247847D92448476B00229463 /* CQTopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQTopViewModel.swift; sourceTree = "<group>"; };
+		247847DB244850A500229463 /* CQMoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMoreViewModel.swift; sourceTree = "<group>"; };
 		24CD3AB4243EBEA100BB4D10 /* CQCoreDataTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCoreDataTool.swift; sourceTree = "<group>"; };
 		24CD3ABF243EC8A900BB4D10 /* CQSwiftData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CQSwiftData.xcdatamodel; sourceTree = "<group>"; };
-		24CD3AC1243EC97500BB4D10 /* CQAppsModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CQAppsModel+CoreDataClass.swift"; sourceTree = "<group>"; };
-		24CD3AC2243EC97500BB4D10 /* CQAppsModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CQAppsModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2FEE63F04346C3CAF9CEA536 /* Pods_CQSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CQSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3404B880230C1ACB004CFA91 /* CQMainNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMainNavController.swift; sourceTree = "<group>"; };
 		3404B882230C2663004CFA91 /* CQMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMainController.swift; sourceTree = "<group>"; };
@@ -161,45 +167,48 @@
 			path = CQBase;
 			sourceTree = "<group>";
 		};
-		2455CBB8243706970017C6E5 /* CQApps */ = {
+		244DA60824470618008B3B57 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2455CBBC243706A60017C6E5 /* AppDataList.plist */,
-				2455CBB9243706970017C6E5 /* Controller */,
-				2455CBBA243706970017C6E5 /* Model */,
-				2455CBBB243706970017C6E5 /* View */,
+				244DA60924470618008B3B57 /* CQMoreEditContentView.swift */,
+				244DA60A24470618008B3B57 /* CQMoreHeader.swift */,
+				244DA60B24470618008B3B57 /* CQMoreCell.swift */,
+				244DA60C24470618008B3B57 /* CQMoreEditHeader.swift */,
+				244DA60D24470618008B3B57 /* CQMoreFooter.swift */,
+				244DA60E24470618008B3B57 /* CQTopView.swift */,
 			);
-			path = CQApps;
+			path = View;
 			sourceTree = "<group>";
 		};
-		2455CBB9243706970017C6E5 /* Controller */ = {
+		244DA60F24470619008B3B57 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				2455CBBE2437072E0017C6E5 /* CQAppsController.swift */,
+				244DA61024470619008B3B57 /* CQAppsController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		2455CBBA243706970017C6E5 /* Model */ = {
+		244DA61124470619008B3B57 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				24CD3AC1243EC97500BB4D10 /* CQAppsModel+CoreDataClass.swift */,
-				24CD3AC2243EC97500BB4D10 /* CQAppsModel+CoreDataProperties.swift */,
-				2455CBC6243712F10017C6E5 /* CQAppLayout.swift */,
-				2455CBCC243723280017C6E5 /* CQAppSectionModel.swift */,
+				244DA61224470619008B3B57 /* CQAppSectionModel.swift */,
+				244DA61324470619008B3B57 /* CQFrequentlyAppModel+CoreDataClass.swift */,
+				244DA61524470619008B3B57 /* CQFrequentlyAppModel+CoreDataProperties.swift */,
+				244DA61424470619008B3B57 /* CQMoreDataManager.swift */,
+				247847D92448476B00229463 /* CQTopViewModel.swift */,
+				247847DB244850A500229463 /* CQMoreViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		2455CBBB243706970017C6E5 /* View */ = {
+		2455CBB8243706970017C6E5 /* CQApps */ = {
 			isa = PBXGroup;
 			children = (
-				2455CBC0243707BB0017C6E5 /* CQAppCell.swift */,
-				2455CBC224370B830017C6E5 /* CQAppsView.swift */,
-				2455CBC824371A160017C6E5 /* CQAppHeaderView.swift */,
-				2455CBCA24371C8B0017C6E5 /* CQAppFooterView.swift */,
+				244DA60F24470619008B3B57 /* Controller */,
+				244DA61124470619008B3B57 /* Model */,
+				244DA60824470618008B3B57 /* View */,
 			);
-			path = View;
+			path = CQApps;
 			sourceTree = "<group>";
 		};
 		24CD3AB0243EBE8200BB4D10 /* CQCoreData */ = {
@@ -469,7 +478,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				34744E0322EDEA9F007F52DC /* LaunchScreen.storyboard in Resources */,
-				2455CBBD243706A60017C6E5 /* AppDataList.plist in Resources */,
 				34ECF8C82335BDCE00DDF8BD /* CQRXSwiftUIObserverableVC.storyboard in Resources */,
 				34744E0022EDEA9F007F52DC /* Assets.xcassets in Resources */,
 				34744DFE22EDEA9D007F52DC /* Main.storyboard in Resources */,
@@ -535,40 +543,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				244DA61C24470619008B3B57 /* CQAppsController.swift in Sources */,
+				244DA61E24470619008B3B57 /* CQFrequentlyAppModel+CoreDataClass.swift in Sources */,
 				342C1C17235949C20058E583 /* Shader.metal in Sources */,
-				24CD3AC3243EC97500BB4D10 /* CQAppsModel+CoreDataClass.swift in Sources */,
+				247847DC244850A500229463 /* CQMoreViewModel.swift in Sources */,
 				34C1F5F9233F9DD6004F3146 /* CQRXDriverVC.swift in Sources */,
 				3404B883230C2663004CFA91 /* CQMainController.swift in Sources */,
 				3412C450230D2EDF0048A095 /* CQCollectionViewController.swift in Sources */,
+				244DA61A24470619008B3B57 /* CQMoreFooter.swift in Sources */,
 				242CE79C243C27ED00DF059D /* CQTransitionModelManager.swift in Sources */,
+				244DA61D24470619008B3B57 /* CQAppSectionModel.swift in Sources */,
 				34D6A5A6232B348500B740CA /* CQRXSwifObservableVC.swift in Sources */,
 				342C1C15235949AA0058E583 /* CQMetalFirstController.swift in Sources */,
 				242CE798243C27ED00DF059D /* CQError.swift in Sources */,
-				2455CBC324370B830017C6E5 /* CQAppsView.swift in Sources */,
 				342C1C1923594DA40058E583 /* CQMetalSecondController.swift in Sources */,
+				244DA61624470619008B3B57 /* CQMoreEditContentView.swift in Sources */,
+				244DA61824470619008B3B57 /* CQMoreCell.swift in Sources */,
 				3412C462230D44380048A095 /* UIView+CQExtension.swift in Sources */,
 				3404B885230C29A9004CFA91 /* CQMainCell.swift in Sources */,
-				2455CBC7243712F10017C6E5 /* CQAppLayout.swift in Sources */,
 				24CD3AB5243EBEA100BB4D10 /* CQCoreDataTool.swift in Sources */,
 				34744DF922EDEA9D007F52DC /* AppDelegate.swift in Sources */,
-				2455CBBF2437072E0017C6E5 /* CQAppsController.swift in Sources */,
 				242CE799243C27ED00DF059D /* CQModelManager.swift in Sources */,
+				244DA61B24470619008B3B57 /* CQTopView.swift in Sources */,
 				242CE79A243C27ED00DF059D /* CQConstant.swift in Sources */,
 				24CD3AC0243EC8A900BB4D10 /* CQSwiftData.xcdatamodeld in Sources */,
-				2455CBC1243707BB0017C6E5 /* CQAppCell.swift in Sources */,
-				2455CBCB24371C8B0017C6E5 /* CQAppFooterView.swift in Sources */,
+				247847DA2448476B00229463 /* CQTopViewModel.swift in Sources */,
 				34ECF8C62335BDA800DDF8BD /* CQRXSwiftUIObserverableVC.swift in Sources */,
-				2455CBCD243723280017C6E5 /* CQAppSectionModel.swift in Sources */,
 				3412C452230D2F400048A095 /* CQCollectionViewCell.swift in Sources */,
 				3404E6CD2311137C00014104 /* CQTableViewController.swift in Sources */,
+				244DA61F24470619008B3B57 /* CQMoreDataManager.swift in Sources */,
 				3404B881230C1ACB004CFA91 /* CQMainNavController.swift in Sources */,
+				244DA62024470619008B3B57 /* CQFrequentlyAppModel+CoreDataProperties.swift in Sources */,
+				244DA61724470619008B3B57 /* CQMoreHeader.swift in Sources */,
+				244DA61924470619008B3B57 /* CQMoreEditHeader.swift in Sources */,
 				3419702B235D475200E154A2 /* qrcode.metal in Sources */,
 				34C1A3B62316598F0079A935 /* CQWaveView.swift in Sources */,
 				3404E6CF231117CE00014104 /* CQTableViewModel.swift in Sources */,
 				34C1A3B3231658250079A935 /* CQMainHeaderView.swift in Sources */,
 				34ACC121236A875000C676C0 /* CQDispatchVC.swift in Sources */,
-				2455CBC924371A160017C6E5 /* CQAppHeaderView.swift in Sources */,
-				24CD3AC4243EC97500BB4D10 /* CQAppsModel+CoreDataProperties.swift in Sources */,
 				3412C460230D3CC30048A095 /* UIColor+CQExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -757,7 +769,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ccb.leye.test1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -778,7 +790,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ccb.leye.test1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

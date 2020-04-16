@@ -93,7 +93,7 @@ class CQWaveView: UIView {
             _waveSpeed = 0.9
             
             timer = CADisplayLink(target: self, selector: #selector(wave))
-            timer?.add(to: RunLoop.current, forMode: RunLoop.Mode.commonModes)
+            timer?.add(to: RunLoop.current, forMode: .common)
         }
     }
     
