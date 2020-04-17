@@ -44,5 +44,6 @@ class CQAppModel:NSObject, Codable {
     var imageName:String?
     var status:appModelStatus?
     var editing:Bool?
-    
+    var item:Int!
+    var section:Int!
 }

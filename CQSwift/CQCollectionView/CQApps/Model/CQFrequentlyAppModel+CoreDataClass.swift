@@ -20,6 +20,8 @@ public class CQFrequentlyAppModel: NSManagedObject {
             frequentlyModel.title = model.title
             frequentlyModel.appId = model.appId
             frequentlyModel.imageName = model.imageName
+            frequentlyModel.item = Int16(model.item)
+            frequentlyModel.section = Int16(model.section)
             try? CQCoreDataTool.shared.managedObjectContext.save()
             return frequentlyModel
         }  else {// 不存在创建数据
@@ -27,6 +29,8 @@ public class CQFrequentlyAppModel: NSManagedObject {
             frequentlyModel.title = model.title
             frequentlyModel.appId = model.appId
             frequentlyModel.imageName = model.imageName
+            frequentlyModel.item = Int16(model.item)
+            frequentlyModel.section = Int16(model.section)
             try? CQCoreDataTool.shared.managedObjectContext.save()
             return frequentlyModel
         }
@@ -40,6 +44,8 @@ public class CQFrequentlyAppModel: NSManagedObject {
             frequentlyModel.appId = model.appId
             frequentlyModel.imageName = model.imageName
             frequentlyModel.index = Int16(index)
+            frequentlyModel.item = Int16(model.item)
+            frequentlyModel.section = Int16(model.section)
         }
         try? CQCoreDataTool.shared.managedObjectContext.save()
     }
@@ -58,6 +64,8 @@ public class CQFrequentlyAppModel: NSManagedObject {
             frequentlyModel.appId = model.appId
             frequentlyModel.imageName = model.imageName
             frequentlyModel.index = Int16(index)
+            frequentlyModel.item = Int16(model.item)
+            frequentlyModel.section = Int16(model.section)
         }
         try? CQCoreDataTool.shared.managedObjectContext.save()
     }

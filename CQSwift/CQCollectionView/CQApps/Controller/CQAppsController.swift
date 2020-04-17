@@ -25,32 +25,72 @@ class CQAppsController: UIViewController,CQTopViewModelDelegate,CQMoreViewModelD
         
         self.view.setNeedsLayout()
     }
-    func reduceAppEvent(_ model: CQAppModel?) {
+    func reduceAppEvent(_ cell: CQMoreCell) {
         if self.topViewModel.tempModelArray.count == 1 {
             //VKYHUD.showInfo("请至少保留1个菜单")
             return
         }
-        if let frequentlyModel = model {
-            // 1.
+        if let frequentlyModel = cell.model {
+            // 1.修改对应model的状态
+            if CQMoreDataManager.shared.sectionModelArray.count <= frequentlyModel.section { return }
+            let sectionModel = CQMoreDataManager.shared.sectionModelArray[frequentlyModel.section]
+            if sectionModel.list?.count ?? 0 <= frequentlyModel.item { return }
+            guard let model = sectionModel.list?[frequentlyModel.item] else {
+                return
+            }
+            model.status = .add
+            /*
             CQMoreDataManager.shared.sectionModelArray.forEach({ (sectionModel) in
-                let appModel = sectionModel.list?.filter({ (model) -> Bool in
+                let appModels = sectionModel.list?.filter({ (model) -> Bool in
                     if frequentlyModel.appId == model.appId {
                         model.status = .add
                         return true
                     }
                     return false
                 })
-                
-                if appModel != nil { return }
+                if let models = appModels, let model = models.first {
+                    toIndexPath = IndexPath(item: Int(model.item), section: Int(model.section))
+                    return
+                }
             })
-            // 2.
+             */
+            // 2.移除 常用model
             if let index = self.topViewModel.tempModelArray.firstIndex(of: frequentlyModel) {
                 self.topViewModel.tempModelArray.remove(at: index)
             }
             self.topViewModel.tempModelArray = self.topViewModel.tempModelArray
-            // 3.
-            self.topView.reloadData()
-            self.collectionView.reloadData()
+            
+            // 计算将要修改的cell的位置
+            let toIndexPath = IndexPath(item: model.item, section: model.section)
+            /*需要修改 有可能获取不到cell*/
+            guard let toCell = self.collectionView.cellForItem(at: toIndexPath) else { return }
+            
+            let convertToCenter = self.collectionView.convert(toCell.center, to: self.view)
+            
+            // 临时cell
+            guard let tempCell = cell.snapshotView(afterScreenUpdates: false) else { return }
+            let convertCenter = self.topView.convert(cell.center, to: self.view)
+            tempCell.center = convertCenter
+            self.view.addSubview(tempCell)
+    
+            UIView.animate(withDuration: 0.3, animations: {
+                tempCell.center = convertToCenter
+                //tempCell?.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
+                //tempCell?.alpha = 0
+            }, completion: { (success) in
+                // 3. 刷新
+                //guard let indexPath = self.topView.indexPath(for: cell) else { return }
+                //self.topView.deleteItems(at: [indexPath])
+                //self.topView.reloadItems(at: [indexPath])
+                //self.topView.insertItems(at: [indexPath])
+                self.topView.reloadData()
+                
+                self.collectionView.reloadData()
+                
+                tempCell.removeFromSuperview()
+            })
+            
+   
         }
     }
     func moreView(_ collectionView: CQTopView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
@@ -83,17 +123,40 @@ class CQAppsController: UIViewController,CQTopViewModelDelegate,CQMoreViewModelD
         if let model = cell.model {
             // 1.
             model.status = .added
+            cell.setAddedStatus()
+            
             // 2.
             self.topViewModel.tempModelArray.append(model)
             
-            // 获取最后一个cell的indexPath
-            //            let lastIndexPath = IndexPath(item: self.tempModelArray.count - 1, section: 0)
+            // 计算将要添加的cell的位置
+            let row = (self.topViewModel.tempModelArray.count - 1) % 4// 第几列
+            let width = CQScreenW/4.0
+            let centerX = CGFloat(row) * width + 0.5 * width
+            let line = (self.topViewModel.tempModelArray.count - 1) / 4//第几行
+            let height = CGFloat(85.0)
+            let centerY = CGFloat(line) * (height + 2.0) + height * 0.5 + 45.0
             
-            // 3.
-            self.topView.reloadData()
-            self.collectionView.reloadData()
+            let center = CGPoint(x: centerX, y: centerY)
+            let convertTopCellCenter = self.topView.convert(center, to: self.view)
             
+            // 临时cell
+            let tempCell = cell.snapshotView(afterScreenUpdates: false)
+            let convertCenter = self.collectionView.convert(cell.center, to: self.view)
+            tempCell?.center = convertCenter
+            self.view.addSubview(tempCell!)
             
+            let lastIndexPath = IndexPath(item: self.topViewModel.tempModelArray.count - 1, section: 0)
+            UIView.animate(withDuration: 0.3, animations: {
+                tempCell?.center = convertTopCellCenter
+                //tempCell?.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
+                //tempCell?.alpha = 0
+            }, completion: { (success) in
+                //self.topView.reloadData()
+                //self.topView.reloadItems(at: [lastIndexPath])
+                self.topView.insertItems(at: [lastIndexPath])
+                
+                tempCell?.removeFromSuperview()
+            })
         }
     }
     // MARK:saveItemCliked

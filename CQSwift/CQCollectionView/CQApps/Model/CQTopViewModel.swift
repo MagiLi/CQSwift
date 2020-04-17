@@ -9,7 +9,7 @@
 import UIKit
 @available(iOS 11.0, *)
 protocol CQTopViewModelDelegate {
-    func reduceAppEvent(_ model:CQAppModel?)
+    func reduceAppEvent(_ cell: CQMoreCell)
     func editAppEvent()
     
     func moreView(_ collectionView: CQTopView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
@@ -34,7 +34,7 @@ class CQTopViewModel:NSObject,UICollectionViewDelegate, UICollectionViewDataSour
      }
      // MARK: CQMoreCellDelegate
      func reduceOrAddAppEvent(_ cell: CQMoreCell) {
-         self.delegate?.reduceAppEvent(cell.model)
+         self.delegate?.reduceAppEvent(cell)
      }
     // MARK: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
