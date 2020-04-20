@@ -13,9 +13,6 @@ class CQAppsController: UIViewController,CQTopViewModelDelegate,CQMoreViewModelD
     
     var saveBlock:(()->())?
     
-    // 设置属性保存导航的interactivePopGestureRecognizer的代理，记得使用weak标记弱引用
-    weak var savedGestureRecognizerDelegate:UIGestureRecognizerDelegate?
-    
     // MARK: CQTopViewModelDelegate
     func editAppEvent() {
         self.topViewModel.editStatus = true
@@ -236,6 +233,12 @@ class CQAppsController: UIViewController,CQTopViewModelDelegate,CQMoreViewModelD
         super.viewDidLoad()
         //self.automaticallyAdjustsScrollViewInsets = true
         self.setupUI()
+    }
+    override func navigationShouldPop() -> Bool {
+        if self.topViewModel.editStatus == true {
+            return false
+        }
+        return true
     }
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(animated)

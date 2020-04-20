@@ -10,9 +10,12 @@ import UIKit
 import SwiftTheme
 
 class CQMainNavController: UINavigationController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 强制开启侧滑返回操作
+        interactivePopGestureRecognizer?.delegate = self
 //        self.title = "MAIN"
 //        self.navigationBar.items.
 //        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 10.0)]
