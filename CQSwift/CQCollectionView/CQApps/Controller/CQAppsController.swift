@@ -27,7 +27,7 @@ class CQAppsController: UIViewController,CQTopViewModelDelegate,CQMoreViewModelD
     }
     func reduceAppEvent(_ cell: CQMoreCell) {
         if self.topViewModel.tempModelArray.count == 1 {
-            //VKYHUD.showInfo("请至少保留1个菜单")
+            //请至少保留1个菜单
             return
         }
         if let frequentlyModel = cell.model {
@@ -60,21 +60,58 @@ class CQAppsController: UIViewController,CQTopViewModelDelegate,CQMoreViewModelD
             }
             self.topViewModel.tempModelArray = self.topViewModel.tempModelArray
             
+            
+            let totalLine = 4 // 共几列
+            let headerH = CGFloat(45.0)
+            let cellH = CGFloat(85.0)
+            let lineSpacing = CGFloat(2.0)
+            
             // 计算将要修改的cell的位置
-            let toIndexPath = IndexPath(item: model.item, section: model.section)
-            /*需要修改 有可能获取不到cell*/
-            guard let toCell = self.collectionView.cellForItem(at: toIndexPath) else { return }
             
-            let convertToCenter = self.collectionView.convert(toCell.center, to: self.view)
+            var toCellMaxY:CGFloat = 0.0
+            for i in 0...model.section {
+                debugPrint("toIndexPathsection: \(i)")
+                
+                let sectionModel = CQMoreDataManager.shared.sectionModelArray[i]
+                guard let list = sectionModel.list else { return }
+                var row:Int!
+                if model.section == i {// 所在的组
+                    row = model.item / totalLine //在第几行
+                } else {
+                    row = (list.count - 1) / totalLine //当前组共几行
+                }
+                let totalLineSpacingH = CGFloat(row) * lineSpacing
+                let totalCellH = CGFloat(row + 1) * cellH
+                toCellMaxY += totalCellH + totalLineSpacingH + headerH
+            }
             
+            let toCellCenterY = toCellMaxY - cellH * 0.5
+            debugPrint("toCellCenterY: \(toCellCenterY)")
+            let toLine = model.item % totalLine // 第几列
+            let cellW = CQScreenW/4.0
+            let toCellCenterX = CGFloat(toLine) * cellW + 0.5 * cellW
+            
+            let toCenter = CGPoint(x: toCellCenterX, y: toCellCenterY)
+            var convertViewCellCenter = self.collectionView.convert(toCenter, to: self.view)
+            if convertViewCellCenter.y < self.collectionView.frame.minY {
+                convertViewCellCenter.y = self.collectionView.frame.minY
+            }
             // 临时cell
             guard let tempCell = cell.snapshotView(afterScreenUpdates: false) else { return }
             let convertCenter = self.topView.convert(cell.center, to: self.view)
             tempCell.center = convertCenter
             self.view.addSubview(tempCell)
+            
+            // 移动cell
+            cell.setAddPlaceholderStatus()
+            if let indexPath = self.topView.indexPath(for: cell) {
+                let moveToIndexPath = IndexPath(item: self.topViewModel.tempModelArray.count, section: 0)
+                self.topView.moveItem(at: indexPath, to: moveToIndexPath)
+            }
+            
     
             UIView.animate(withDuration: 0.3, animations: {
-                tempCell.center = convertToCenter
+                tempCell.center = convertViewCellCenter
                 //tempCell?.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
                 //tempCell?.alpha = 0
             }, completion: { (success) in
@@ -83,7 +120,7 @@ class CQAppsController: UIViewController,CQTopViewModelDelegate,CQMoreViewModelD
                 //self.topView.deleteItems(at: [indexPath])
                 //self.topView.reloadItems(at: [indexPath])
                 //self.topView.insertItems(at: [indexPath])
-                self.topView.reloadData()
+                //self.topView.reloadData()
                 
                 self.collectionView.reloadData()
                 
@@ -116,7 +153,7 @@ class CQAppsController: UIViewController,CQTopViewModelDelegate,CQMoreViewModelD
             return
         }
         if self.topViewModel.tempModelArray.count >= 7 {
-            //VKYHUD.showInfo("首页展示最多添加7个菜单")
+            //展示最多添加7个菜单
             return
         }
         
@@ -129,15 +166,15 @@ class CQAppsController: UIViewController,CQTopViewModelDelegate,CQMoreViewModelD
             self.topViewModel.tempModelArray.append(model)
             
             // 计算将要添加的cell的位置
-            let row = (self.topViewModel.tempModelArray.count - 1) % 4// 第几列
+            let line = (self.topViewModel.tempModelArray.count - 1) % 4// 第几列
             let width = CQScreenW/4.0
-            let centerX = CGFloat(row) * width + 0.5 * width
-            let line = (self.topViewModel.tempModelArray.count - 1) / 4//第几行
+            let centerX = CGFloat(line) * width + 0.5 * width
+            let row = (self.topViewModel.tempModelArray.count - 1) / 4//第几行
             let height = CGFloat(85.0)
-            let centerY = CGFloat(line) * (height + 2.0) + height * 0.5 + 45.0
+            let centerY = CGFloat(row) * (height + 2.0) + height * 0.5 + 45.0
             
             let center = CGPoint(x: centerX, y: centerY)
-            let convertTopCellCenter = self.topView.convert(center, to: self.view)
+            let convertViewCellCenter = self.topView.convert(center, to: self.view)
             
             // 临时cell
             let tempCell = cell.snapshotView(afterScreenUpdates: false)
@@ -147,7 +184,7 @@ class CQAppsController: UIViewController,CQTopViewModelDelegate,CQMoreViewModelD
             
             let lastIndexPath = IndexPath(item: self.topViewModel.tempModelArray.count - 1, section: 0)
             UIView.animate(withDuration: 0.3, animations: {
-                tempCell?.center = convertTopCellCenter
+                tempCell?.center = convertViewCellCenter
                 //tempCell?.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
                 //tempCell?.alpha = 0
             }, completion: { (success) in
