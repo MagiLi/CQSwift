@@ -24,12 +24,8 @@ extension UINavigationController: UINavigationBarDelegate, UIGestureRecognizerDe
         if viewControllers.count < (navigationBar.items?.count)! {
             return true
         }
-        var shouldPop = false
         let vc: UIViewController = topViewController!
-        
-        if vc.responds(to: #selector(navigationShouldPop)) {
-            shouldPop = vc.navigationShouldPop()
-        }
+        let shouldPop  = vc.navigationShouldPop()
         if shouldPop {
             DispatchQueue.main.async {
                 self.popViewController(animated: true)
@@ -50,10 +46,7 @@ extension UINavigationController: UINavigationBarDelegate, UIGestureRecognizerDe
         if children.count == 1 {
             return false
         } else {
-            if topViewController?.responds(to: #selector(navigationShouldPop)) != nil {
-                return topViewController!.navigationShouldPop()
-            }
-            return true
+            return topViewController?.navigationShouldPop() ?? true
         }
     }
 }
