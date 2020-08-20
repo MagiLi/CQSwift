@@ -11,7 +11,7 @@ import Metal
 import QuartzCore
 
 class CQMetalFirstController: UIViewController {
-    // 1、MTLDevice, 你可以把一个MTLDevice想象成是你和CPU的直接连接。
+        // 1、MTLDevice, 你可以把一个MTLDevice想象成是你和CPU的直接连接。
         //你将通过使用MTLDevice创建所有其他你需要的Metal对象（像是command queues，buffers，textures）。
         //2 创建一个CAMetalLayer
         //3 创建一个Vertex Buffer

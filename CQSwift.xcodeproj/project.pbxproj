@@ -27,6 +27,8 @@
 		2492FD46244D6FAD00957345 /* CQMainNavController+CQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2492FD45244D6FAD00957345 /* CQMainNavController+CQExtension.swift */; };
 		24CD3AB5243EBEA100BB4D10 /* CQCoreDataTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CD3AB4243EBEA100BB4D10 /* CQCoreDataTool.swift */; };
 		24CD3AC0243EC8A900BB4D10 /* CQSwiftData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24CD3ABE243EC8A900BB4D10 /* CQSwiftData.xcdatamodeld */; };
+		24E5E4C424EE511600F60138 /* CQMTKVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5E4C324EE511600F60138 /* CQMTKVIewController.swift */; };
+		24E5E4C724EE516100F60138 /* CQBgColorRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5E4C624EE516100F60138 /* CQBgColorRender.swift */; };
 		3404B881230C1ACB004CFA91 /* CQMainNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404B880230C1ACB004CFA91 /* CQMainNavController.swift */; };
 		3404B883230C2663004CFA91 /* CQMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404B882230C2663004CFA91 /* CQMainController.swift */; };
 		3404B885230C29A9004CFA91 /* CQMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404B884230C29A9004CFA91 /* CQMainCell.swift */; };
@@ -94,6 +96,8 @@
 		2492FD45244D6FAD00957345 /* CQMainNavController+CQExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CQMainNavController+CQExtension.swift"; sourceTree = "<group>"; };
 		24CD3AB4243EBEA100BB4D10 /* CQCoreDataTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCoreDataTool.swift; sourceTree = "<group>"; };
 		24CD3ABF243EC8A900BB4D10 /* CQSwiftData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CQSwiftData.xcdatamodel; sourceTree = "<group>"; };
+		24E5E4C324EE511600F60138 /* CQMTKVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMTKVIewController.swift; sourceTree = "<group>"; };
+		24E5E4C624EE516100F60138 /* CQBgColorRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQBgColorRender.swift; sourceTree = "<group>"; };
 		2FEE63F04346C3CAF9CEA536 /* Pods_CQSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CQSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3404B880230C1ACB004CFA91 /* CQMainNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMainNavController.swift; sourceTree = "<group>"; };
 		3404B882230C2663004CFA91 /* CQMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMainController.swift; sourceTree = "<group>"; };
@@ -222,6 +226,23 @@
 			path = CQCoreData;
 			sourceTree = "<group>";
 		};
+		24E5E4C224EE502000F60138 /* MTKView背景颜色渐变 */ = {
+			isa = PBXGroup;
+			children = (
+				24E5E4C524EE512D00F60138 /* Render */,
+				24E5E4C324EE511600F60138 /* CQMTKVIewController.swift */,
+			);
+			path = "MTKView背景颜色渐变";
+			sourceTree = "<group>";
+		};
+		24E5E4C524EE512D00F60138 /* Render */ = {
+			isa = PBXGroup;
+			children = (
+				24E5E4C624EE516100F60138 /* CQBgColorRender.swift */,
+			);
+			path = Render;
+			sourceTree = "<group>";
+		};
 		3404E6CB2311136200014104 /* CQTableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,6 +281,7 @@
 		342C1C13235949890058E583 /* Metal */ = {
 			isa = PBXGroup;
 			children = (
+				24E5E4C224EE502000F60138 /* MTKView背景颜色渐变 */,
 				34FC7B03235EE44F00483813 /* ImageBlur */,
 				342C1C14235949AA0058E583 /* CQMetalFirstController.swift */,
 				342C1C16235949C20058E583 /* Shader.metal */,
@@ -568,6 +590,7 @@
 				34744DF922EDEA9D007F52DC /* AppDelegate.swift in Sources */,
 				242CE799243C27ED00DF059D /* CQModelManager.swift in Sources */,
 				244DA61B24470619008B3B57 /* CQTopView.swift in Sources */,
+				24E5E4C424EE511600F60138 /* CQMTKVIewController.swift in Sources */,
 				2492FD46244D6FAD00957345 /* CQMainNavController+CQExtension.swift in Sources */,
 				242CE79A243C27ED00DF059D /* CQConstant.swift in Sources */,
 				24CD3AC0243EC8A900BB4D10 /* CQSwiftData.xcdatamodeld in Sources */,
@@ -577,6 +600,7 @@
 				3404E6CD2311137C00014104 /* CQTableViewController.swift in Sources */,
 				244DA61F24470619008B3B57 /* CQMoreDataManager.swift in Sources */,
 				3404B881230C1ACB004CFA91 /* CQMainNavController.swift in Sources */,
+				24E5E4C724EE516100F60138 /* CQBgColorRender.swift in Sources */,
 				244DA62024470619008B3B57 /* CQFrequentlyAppModel+CoreDataProperties.swift in Sources */,
 				244DA61724470619008B3B57 /* CQMoreHeader.swift in Sources */,
 				244DA61924470619008B3B57 /* CQMoreEditHeader.swift in Sources */,
