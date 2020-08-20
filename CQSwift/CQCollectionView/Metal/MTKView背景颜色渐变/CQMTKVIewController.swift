@@ -24,8 +24,9 @@ class CQMTKVIewController: UIViewController {
             return
         }
         self.mtkView.preferredFramesPerSecond = 60
-        let render = CQBgColorRender(mtkView: self.mtkView)
-        self.mtkView.delegate = render
+        self.render = CQBgColorRender(mtkView: self.mtkView)
+        self.mtkView.delegate = self.render
+        self.view.addSubview(self.mtkView)
     }
     
     override func viewDidLayoutSubviews() {

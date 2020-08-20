@@ -10,7 +10,7 @@ import UIKit
 import MetalKit
 
 struct Color {
-    let red, green, blue, alpha : Float
+    let red, green, blue, alpha : Double
 }
 
 class CQBgColorRender: NSObject, MTKViewDelegate {
@@ -22,15 +22,42 @@ class CQBgColorRender: NSObject, MTKViewDelegate {
     
     var growing = true//1. 增加颜色/减小颜色的 标记
     var primaryChannel = 0//2.颜色通道值(0~3)
-    var colorChannels:[Float] = [1.0, 0.0, 0.0, 1.0]//3.颜色通道数组colorChannels(颜色值)
-    let DynamicColorRate:Float = 0.015;//4.颜色调整步长
+    var colorChannels:[Double] = [1.0, 0.0, 0.0, 1.0]//3.颜色通道数组colorChannels(颜色值)
+    let DynamicColorRate:Double = 0.015;//4.颜色调整步长
     //MARK: MTKViewDelegate
+    //当MTKView视图发生大小改变时调用
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-            
-    }
-    
-    func draw(in view: MTKView) {
         
+    }
+    //每当视图需要渲染时调用
+    func draw(in view: MTKView) {
+        let color = self.makeFancyColor()
+        view.clearColor = MTLClearColorMake(color.red, color.green, color.blue, color.alpha)
+        
+        guard let commandBuffer = self.commandQueue?.makeCommandBuffer() else {
+            debugPrint("Make CommandBuffe failed!")
+            return
+        }
+        
+        commandBuffer.label = "MyCommand"
+        guard let renderPassDescriptor = view.currentRenderPassDescriptor else {
+            debugPrint("Get current render pass descriptor failed!")
+            return
+        }
+        //通过渲染描述符renderPassDescriptor创建MTLRenderCommandEncoder 对象
+        guard let renderCommandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else {
+            debugPrint("Make render command encoder failed!")
+            return
+        }
+        renderCommandEncoder.label = "MyRenderCommandEncoder"
+        renderCommandEncoder.endEncoding()
+        
+        guard let drawable = view.currentDrawable else {
+            debugPrint("Get current drawable failed!")
+            return
+        }
+        commandBuffer.present(drawable)
+        commandBuffer.commit()
     }
     
     //MAKE:makeFancyColor
@@ -59,8 +86,8 @@ class CQBgColorRender: NSObject, MTKViewDelegate {
         return Color(red: colorChannels[0], green: colorChannels[1], blue: colorChannels[2], alpha: colorChannels[3])
     }
     
-    init(mtkView: MTKView) {
-        super.init()
+    convenience init(mtkView: MTKView) {
+        self.init()
         
         self.device = mtkView.device
         self.commandQueue = self.device?.makeCommandQueue()

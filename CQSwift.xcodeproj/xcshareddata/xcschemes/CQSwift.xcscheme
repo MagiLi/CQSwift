@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1100"
+   LastUpgradeVersion = "1150"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "401909D4FB2014BF539896BF0CCA48C2"
-               BuildableName = "RxDataSources.framework"
-               BlueprintName = "RxDataSources"
-               ReferencedContainer = "container:Pods.xcodeproj">
+               BlueprintIdentifier = "34744DF422EDEA9D007F52DC"
+               BuildableName = "CQSwift.app"
+               BlueprintName = "CQSwift"
+               ReferencedContainer = "container:CQSwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -39,7 +39,18 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
+      enableGPUFrameCaptureMode = "2"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "34744DF422EDEA9D007F52DC"
+            BuildableName = "CQSwift.app"
+            BlueprintName = "CQSwift"
+            ReferencedContainer = "container:CQSwift.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -47,6 +58,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "34744DF422EDEA9D007F52DC"
+            BuildableName = "CQSwift.app"
+            BlueprintName = "CQSwift"
+            ReferencedContainer = "container:CQSwift.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

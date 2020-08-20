@@ -94,12 +94,12 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let url = URL(string: "other:")
-        if UIApplication.shared.canOpenURL(url!) {
-            UIApplication.shared.openURL(url!)
-        } else {
-            print("kfdlskkkkkkk")
-        }
+//        let url = URL(string: "other:")
+//        if UIApplication.shared.canOpenURL(url!) {
+//            UIApplication.shared.openURL(url!)
+//        } else {
+//            print("kfdlskkkkkkk")
+//        }
         
         switch indexPath.section {
         case 0:
