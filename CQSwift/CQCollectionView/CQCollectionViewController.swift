@@ -13,7 +13,7 @@ private let reuseIdentifier = "Cell"
 @available(iOS 11.0, *)
 class CQCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    var dataArray = NSMutableArray.init(array: ["MTKView 颜色渐变", "Metal 三角形","Metal 彩色二维码","CQApps","Press me 3","Press me 4"])
+    var dataArray = NSMutableArray.init(array: ["MTKView 颜色渐变", "Metal 三角形","Metal 彩色三角形","Metal 彩色二维码","CQApps","Press me 4"])
     
     
     override func viewDidLoad() {
@@ -53,7 +53,7 @@ class CQCollectionViewController: UICollectionViewController, UICollectionViewDe
     }
     // MARK: UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        
         switch indexPath.item {
         case 0:
             let vc = CQMTKVIewController()
@@ -62,11 +62,15 @@ class CQCollectionViewController: UICollectionViewController, UICollectionViewDe
             let mtlFirstVC = CQMetalFirstController()
             self.navigationController?.pushViewController(mtlFirstVC, animated: true)
         case 2:
-             let mtlSecondVC = CQMetalSecondController()
-             self.navigationController?.pushViewController(mtlSecondVC, animated: true)
+            let triangleVC = CQMTTriangleVC()
+            self.navigationController?.pushViewController(triangleVC, animated: true)
         case 3:
+            let mtlSecondVC = CQMetalSecondController()
+            self.navigationController?.pushViewController(mtlSecondVC, animated: true)
+        case 4:
             let appsVC = CQAppsController()
             self.navigationController?.pushViewController(appsVC, animated: true)
+            
         default: break
         }
     }

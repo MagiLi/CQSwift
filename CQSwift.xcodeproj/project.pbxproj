@@ -42,6 +42,9 @@
 		342C1C15235949AA0058E583 /* CQMetalFirstController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C1C14235949AA0058E583 /* CQMetalFirstController.swift */; };
 		342C1C17235949C20058E583 /* Shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 342C1C16235949C20058E583 /* Shader.metal */; };
 		342C1C1923594DA40058E583 /* CQMetalSecondController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C1C1823594DA40058E583 /* CQMetalSecondController.swift */; };
+		343C22B424F2185900CFB6B6 /* CQMTTriangleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343C22B024F2185900CFB6B6 /* CQMTTriangleVC.swift */; };
+		343C22B524F2185900CFB6B6 /* CQTriangleRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343C22B124F2185900CFB6B6 /* CQTriangleRender.swift */; };
+		343C22B624F2185900CFB6B6 /* CQTriangle.metal in Sources */ = {isa = PBXBuildFile; fileRef = 343C22B224F2185900CFB6B6 /* CQTriangle.metal */; };
 		34744DF922EDEA9D007F52DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34744DF822EDEA9D007F52DC /* AppDelegate.swift */; };
 		34744DFE22EDEA9D007F52DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34744DFC22EDEA9D007F52DC /* Main.storyboard */; };
 		34744E0022EDEA9F007F52DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34744DFF22EDEA9F007F52DC /* Assets.xcassets */; };
@@ -112,6 +115,9 @@
 		342C1C14235949AA0058E583 /* CQMetalFirstController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMetalFirstController.swift; sourceTree = "<group>"; };
 		342C1C16235949C20058E583 /* Shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shader.metal; sourceTree = "<group>"; };
 		342C1C1823594DA40058E583 /* CQMetalSecondController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMetalSecondController.swift; sourceTree = "<group>"; };
+		343C22B024F2185900CFB6B6 /* CQMTTriangleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQMTTriangleVC.swift; sourceTree = "<group>"; };
+		343C22B124F2185900CFB6B6 /* CQTriangleRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQTriangleRender.swift; sourceTree = "<group>"; };
+		343C22B224F2185900CFB6B6 /* CQTriangle.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = CQTriangle.metal; sourceTree = "<group>"; };
 		34744DF522EDEA9D007F52DC /* CQSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CQSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34744DF822EDEA9D007F52DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34744DFD22EDEA9D007F52DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -281,6 +287,7 @@
 		342C1C13235949890058E583 /* Metal */ = {
 			isa = PBXGroup;
 			children = (
+				343C22AF24F2185900CFB6B6 /* MTKView三角形 */,
 				24E5E4C224EE502000F60138 /* MTKView背景颜色渐变 */,
 				34FC7B03235EE44F00483813 /* ImageBlur */,
 				342C1C14235949AA0058E583 /* CQMetalFirstController.swift */,
@@ -289,6 +296,16 @@
 				3419702A235D475200E154A2 /* qrcode.metal */,
 			);
 			path = Metal;
+			sourceTree = "<group>";
+		};
+		343C22AF24F2185900CFB6B6 /* MTKView三角形 */ = {
+			isa = PBXGroup;
+			children = (
+				343C22B024F2185900CFB6B6 /* CQMTTriangleVC.swift */,
+				343C22B124F2185900CFB6B6 /* CQTriangleRender.swift */,
+				343C22B224F2185900CFB6B6 /* CQTriangle.metal */,
+			);
+			path = "MTKView三角形";
 			sourceTree = "<group>";
 		};
 		34744DEC22EDEA9D007F52DC = {
@@ -465,7 +482,7 @@
 				TargetAttributes = {
 					34744DF422EDEA9D007F52DC = {
 						CreatedOnToolsVersion = 10.2.1;
-						LastSwiftMigration = 1020;
+						LastSwiftMigration = 1150;
 					};
 					34744E0822EDEA9F007F52DC = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -587,6 +604,7 @@
 				3412C462230D44380048A095 /* UIView+CQExtension.swift in Sources */,
 				3404B885230C29A9004CFA91 /* CQMainCell.swift in Sources */,
 				24CD3AB5243EBEA100BB4D10 /* CQCoreDataTool.swift in Sources */,
+				343C22B424F2185900CFB6B6 /* CQMTTriangleVC.swift in Sources */,
 				34744DF922EDEA9D007F52DC /* AppDelegate.swift in Sources */,
 				242CE799243C27ED00DF059D /* CQModelManager.swift in Sources */,
 				244DA61B24470619008B3B57 /* CQTopView.swift in Sources */,
@@ -600,8 +618,10 @@
 				3404E6CD2311137C00014104 /* CQTableViewController.swift in Sources */,
 				244DA61F24470619008B3B57 /* CQMoreDataManager.swift in Sources */,
 				3404B881230C1ACB004CFA91 /* CQMainNavController.swift in Sources */,
+				343C22B624F2185900CFB6B6 /* CQTriangle.metal in Sources */,
 				24E5E4C724EE516100F60138 /* CQBgColorRender.swift in Sources */,
 				244DA62024470619008B3B57 /* CQFrequentlyAppModel+CoreDataProperties.swift in Sources */,
+				343C22B524F2185900CFB6B6 /* CQTriangleRender.swift in Sources */,
 				244DA61724470619008B3B57 /* CQMoreHeader.swift in Sources */,
 				244DA61924470619008B3B57 /* CQMoreEditHeader.swift in Sources */,
 				3419702B235D475200E154A2 /* qrcode.metal in Sources */,
@@ -796,6 +816,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = CQ.demo.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -818,6 +839,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = CQ.demo.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
