@@ -29,6 +29,9 @@
 		24CD3AC0243EC8A900BB4D10 /* CQSwiftData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24CD3ABE243EC8A900BB4D10 /* CQSwiftData.xcdatamodeld */; };
 		24E5E4C424EE511600F60138 /* CQMTKVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5E4C324EE511600F60138 /* CQMTKVIewController.swift */; };
 		24E5E4C724EE516100F60138 /* CQBgColorRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5E4C624EE516100F60138 /* CQBgColorRender.swift */; };
+		24F949B024F4AEDD006CC572 /* CQMTBufferGridVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F949AF24F4AEDD006CC572 /* CQMTBufferGridVC.swift */; };
+		24F949B224F4AFBB006CC572 /* CQGridRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F949B124F4AFBB006CC572 /* CQGridRender.swift */; };
+		24F949B424F4B15E006CC572 /* CQGrid.metal in Sources */ = {isa = PBXBuildFile; fileRef = 24F949B324F4B15E006CC572 /* CQGrid.metal */; };
 		3404B881230C1ACB004CFA91 /* CQMainNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404B880230C1ACB004CFA91 /* CQMainNavController.swift */; };
 		3404B883230C2663004CFA91 /* CQMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404B882230C2663004CFA91 /* CQMainController.swift */; };
 		3404B885230C29A9004CFA91 /* CQMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404B884230C29A9004CFA91 /* CQMainCell.swift */; };
@@ -101,6 +104,9 @@
 		24CD3ABF243EC8A900BB4D10 /* CQSwiftData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CQSwiftData.xcdatamodel; sourceTree = "<group>"; };
 		24E5E4C324EE511600F60138 /* CQMTKVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMTKVIewController.swift; sourceTree = "<group>"; };
 		24E5E4C624EE516100F60138 /* CQBgColorRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQBgColorRender.swift; sourceTree = "<group>"; };
+		24F949AF24F4AEDD006CC572 /* CQMTBufferGridVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMTBufferGridVC.swift; sourceTree = "<group>"; };
+		24F949B124F4AFBB006CC572 /* CQGridRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGridRender.swift; sourceTree = "<group>"; };
+		24F949B324F4B15E006CC572 /* CQGrid.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = CQGrid.metal; sourceTree = "<group>"; };
 		2FEE63F04346C3CAF9CEA536 /* Pods_CQSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CQSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3404B880230C1ACB004CFA91 /* CQMainNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMainNavController.swift; sourceTree = "<group>"; };
 		3404B882230C2663004CFA91 /* CQMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMainController.swift; sourceTree = "<group>"; };
@@ -249,6 +255,16 @@
 			path = Render;
 			sourceTree = "<group>";
 		};
+		24F949AE24F4AD29006CC572 /* MTKView MTBuffer方格 */ = {
+			isa = PBXGroup;
+			children = (
+				24F949AF24F4AEDD006CC572 /* CQMTBufferGridVC.swift */,
+				24F949B124F4AFBB006CC572 /* CQGridRender.swift */,
+				24F949B324F4B15E006CC572 /* CQGrid.metal */,
+			);
+			path = "MTKView MTBuffer方格";
+			sourceTree = "<group>";
+		};
 		3404E6CB2311136200014104 /* CQTableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,9 +303,9 @@
 		342C1C13235949890058E583 /* Metal */ = {
 			isa = PBXGroup;
 			children = (
+				24F949AE24F4AD29006CC572 /* MTKView MTBuffer方格 */,
 				343C22AF24F2185900CFB6B6 /* MTKView三角形 */,
 				24E5E4C224EE502000F60138 /* MTKView背景颜色渐变 */,
-				34FC7B03235EE44F00483813 /* ImageBlur */,
 				342C1C14235949AA0058E583 /* CQMetalFirstController.swift */,
 				342C1C16235949C20058E583 /* Shader.metal */,
 				342C1C1823594DA40058E583 /* CQMetalSecondController.swift */,
@@ -384,13 +400,6 @@
 				3404E6CE231117CE00014104 /* CQTableViewModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		34FC7B03235EE44F00483813 /* ImageBlur */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ImageBlur;
 			sourceTree = "<group>";
 		};
 		51FB9ACED9373FB80EAB99D4 /* Pods */ = {
@@ -586,11 +595,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				244DA61C24470619008B3B57 /* CQAppsController.swift in Sources */,
+				24F949B224F4AFBB006CC572 /* CQGridRender.swift in Sources */,
 				244DA61E24470619008B3B57 /* CQFrequentlyAppModel+CoreDataClass.swift in Sources */,
 				342C1C17235949C20058E583 /* Shader.metal in Sources */,
 				247847DC244850A500229463 /* CQMoreViewModel.swift in Sources */,
 				34C1F5F9233F9DD6004F3146 /* CQRXDriverVC.swift in Sources */,
 				3404B883230C2663004CFA91 /* CQMainController.swift in Sources */,
+				24F949B424F4B15E006CC572 /* CQGrid.metal in Sources */,
 				3412C450230D2EDF0048A095 /* CQCollectionViewController.swift in Sources */,
 				244DA61A24470619008B3B57 /* CQMoreFooter.swift in Sources */,
 				242CE79C243C27ED00DF059D /* CQTransitionModelManager.swift in Sources */,
@@ -616,6 +627,7 @@
 				34ECF8C62335BDA800DDF8BD /* CQRXSwiftUIObserverableVC.swift in Sources */,
 				3412C452230D2F400048A095 /* CQCollectionViewCell.swift in Sources */,
 				3404E6CD2311137C00014104 /* CQTableViewController.swift in Sources */,
+				24F949B024F4AEDD006CC572 /* CQMTBufferGridVC.swift in Sources */,
 				244DA61F24470619008B3B57 /* CQMoreDataManager.swift in Sources */,
 				3404B881230C1ACB004CFA91 /* CQMainNavController.swift in Sources */,
 				343C22B624F2185900CFB6B6 /* CQTriangle.metal in Sources */,
@@ -807,14 +819,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U8A26JGV9K;
+				DEVELOPMENT_TEAM = LYQ65SW67D;
 				INFOPLIST_FILE = CQSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = CQ.demo.com;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ccb.leye.test3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -830,14 +842,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U8A26JGV9K;
+				DEVELOPMENT_TEAM = LYQ65SW67D;
 				INFOPLIST_FILE = CQSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = CQ.demo.com;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ccb.leye.test3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
