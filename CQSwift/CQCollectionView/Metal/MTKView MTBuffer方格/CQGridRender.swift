@@ -13,18 +13,6 @@ class CQGridRender: NSObject, MTKViewDelegate {
     var device: MTLDevice!
     var pipelineState: MTLRenderPipelineState!
     var mtlBuffer:MTLBuffer!
-    var vertexNumber:NSInteger!
-    
-    let vertexArrayData: [Float] = [
-        //Pixel 位置,   RGBA 颜色
-        -20.0, 20.0,   1.0, 0.0, 0.0, 1.0,
-        20.0,  20.0,   1.0, 0.0, 0.0, 1.0,
-        -20.0,-20.0,   1.0, 0.0, 0.0, 1.0,
-        
-        20.0, -20.0,   0.0, 0.0, 1.0, 1.0,
-        -20.0,-20.0,   0.0, 0.0, 1.0, 1.0,
-        20.0,  20.0,   0.0, 0.0, 1.0, 1.0,
-    ]
     
     //MARK: MTKViewDelegate
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
@@ -60,7 +48,7 @@ class CQGridRender: NSObject, MTKViewDelegate {
         }
         
         //5.生成顶点数据
-        let vertexData = NSData()
+        let vertexData = self.generateVertexData()
         
         //6.创建顶点缓存区
         guard let buffer = self.device.makeBuffer(length: vertexData.length, options: .storageModeShared) else {
@@ -83,7 +71,53 @@ class CQGridRender: NSObject, MTKViewDelegate {
     }
     fileprivate func generateVertexData() -> NSData {
         
-        return NSData()
+        let verticesArrayData: [Float] = [
+            //Pixel 位置,   RGBA 颜色
+            -20.0, 20.0,   1.0, 0.0, 0.0, 1.0,
+            20.0,  20.0,   1.0, 0.0, 0.0, 1.0,
+            -20.0,-20.0,   1.0, 0.0, 0.0, 1.0,
+            
+            20.0, -20.0,   0.0, 0.0, 1.0, 1.0,
+            -20.0,-20.0,   0.0, 0.0, 1.0, 1.0,
+            20.0,  20.0,   0.0, 0.0, 1.0, 1.0,
+        ]
+        let stride = 6//步长
+        let rowNumber = 25
+        let lineNumber = 15
+        let spaceGrid:Float = 50.0
+//        verticesBufferSize = MemoryLayout<Float>.size * verticesArrayData.count
+        //单个四边形顶点数量
+        let verticesNumber = verticesArrayData.count / stride
+        //整个绘制区域 数据大小 = 单个四边形大小 * 行 * 列
+        let floatSize = MemoryLayout<Float>.size
+        let singleGridDataSize = floatSize * verticesArrayData.count
+        let totalGridDataSize = singleGridDataSize * rowNumber * lineNumber
+        let vertexData = NSMutableData(length: totalGridDataSize)
+
+        var currentGrid = vertexData!.mutableBytes
+
+        for rowIndex in 0...rowNumber {
+            for lineIndex in 0...lineNumber {
+                //计算X,Y位置。注意坐标系基于2D笛卡尔坐标系，中心点(0,0)，所以会出现负数位置。
+                //左上角
+                var upperLeftPosition:vector_float2!
+                upperLeftPosition.x = (-Float(lineNumber) / 2.0 + Float(lineIndex)) * spaceGrid + spaceGrid/2.0
+                upperLeftPosition.y = (-Float(rowNumber) / 2.0 + Float(rowIndex)) * spaceGrid + spaceGrid/2.0
+                
+                
+//                memcmp(currentGrid, verticesArrayData, singleGridDataSize)
+                
+                for vertexIndex in 0...verticesNumber {
+                    currentGrid.storeBytes(of: upperLeftPosition.x, toByteOffset: vertexIndex * floatSize, as: Float.self)
+                    currentGrid.storeBytes(of: upperLeftPosition.y, toByteOffset: (vertexIndex + 1) * floatSize, as: Float.self)
+              //      currentGrid.storeBytes(of: upperLeftPosition.x, as: Float.self)
+              
+                }
+                currentGrid += stride
+            }
+        }
+        
+        return vertexData!
     }
     //MARK: init
     convenience init(mtkView: MTKView) {

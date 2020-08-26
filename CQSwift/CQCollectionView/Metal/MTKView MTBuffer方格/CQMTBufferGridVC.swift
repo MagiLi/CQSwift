@@ -20,7 +20,7 @@ class CQMTBufferGridVC: UIViewController {
 
         self.mtkView = MTKView()
         self.mtkView.device = MTLCreateSystemDefaultDevice()
-        self.mtkView.colorPixelFormat = .rgba8Unorm
+        self.mtkView.colorPixelFormat = .bgra8Unorm_srgb
         if self.mtkView.device == nil {
             debugPrint("Device is nil!")
             return
