@@ -16,7 +16,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     lazy var dataAray : [NSArray] = {
         () -> [NSArray] in
-        return [["collectionView", "tableView"]]
+        return [["collectionView", "tableView"],["九宫格手势解锁"]]
     }()
     
     override func viewDidLoad() {
@@ -73,12 +73,14 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
         return cell
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CQMainHeaderID")
-        return header
+        if section == 0 {
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CQMainHeaderID")
+            return header
+        }
+        return UITableViewHeaderFooterView()
     }
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CQMainHeaderID")
-        return footer
+        return UITableViewHeaderFooterView()
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50.0
@@ -103,7 +105,6 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         switch indexPath.section {
         case 0:
-            do {
             if indexPath.row == 0 {
                 let layout = UICollectionViewFlowLayout()
                 layout.scrollDirection = UICollectionView.ScrollDirection.vertical
@@ -113,7 +114,14 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let tableViewVC = CQTableViewController()
                 self.navigationController?.pushViewController(tableViewVC, animated: true)
             }
-        }
+            break
+        case 1:
+            if indexPath.row == 0 {
+                let gridLockVC = CQGridLockController()
+                self.navigationController?.pushViewController(gridLockVC, animated: true)
+            }
+            
+            break
         default:
             break
         }
