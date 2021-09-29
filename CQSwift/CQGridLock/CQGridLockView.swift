@@ -34,10 +34,20 @@ class CQGridLockView: UIView {
         }
         self.currentPoint = sender.location(in: self)
         for subView in self.subviews {
-            if let imgView = subView as? UIImageView, imgView.frame.contains(self.currentPoint!) {
-                imgView.image = UIImage(named: "橙色椭圆")
-                if !self.selectedItems.contains(imgView) {
-                    self.selectedItems.append(imgView)
+            if let imgView = subView as? UIImageView {
+//                if let lastImgView = self.selectedItems.last {
+//                    let distance = self.calculateDistance(lastImgView.center, self.currentPoint!)
+//                    let detalY = fabs(self.currentPoint!.y - lastImgView.center.y)
+//                    let dX = detalY/distance * 5.0
+//                    let rectX = lastImgView.center.x - dX
+//                } else {
+//                    
+//                }
+                if imgView.frame.contains(self.currentPoint!) {
+                    imgView.image = UIImage(named: "橙色椭圆")
+                    if !self.selectedItems.contains(imgView) {
+                        self.selectedItems.append(imgView)
+                    }
                 }
             }
         }
@@ -48,6 +58,11 @@ class CQGridLockView: UIView {
             self.delegate?.panFinished(self, pwdStr)
         }
     }
+    //计算两点间的距离
+    fileprivate func calculateDistance(_ point1:CGPoint, _ point2:CGPoint) -> CGFloat {
+        return sqrt(pow(point1.x-point2.x, 2) + pow(point1.y-point2.y, 2))
+    }
+    
     fileprivate func getGestureStr() -> String {
         var resultStr = ""
         self.selectedItems.forEach { (imgView) in
@@ -92,15 +107,22 @@ class CQGridLockView: UIView {
         if self.panFinished { // 拖拽完成
             if self.resultType == .unknow { 
                 UIColor.orange.set()
+//                self.selectedItems.forEach { (imgView) in
+//                    imgView.image = UIImage(named: "橙色椭圆")
+//                }
             } else if self.resultType == .failed {
                 UIColor.red.set()
                 self.selectedItems.forEach { (imgView) in
                     imgView.image = UIImage(named: "红色椭圆")
                 }
             } else if self.resultType == .success {
-                //UIColor(red: 94.0/255.0, green: 195.0/255.0, blue: 49.0/255.0, alpha: 0.8).set()
                 UIColor.orange.set()
+//                UIColor(red: 94.0/255.0, green: 195.0/255.0, blue: 49.0/255.0, alpha: 0.8).set()
+//                self.selectedItems.forEach { (imgView) in
+//                    imgView.image = UIImage(named: "gesture_selected")
+//                }
             }
+            self.resultType = .unknow // 绘制结束后设置为初始状态
         } else { // 拖拽中
             path.addLine(to: currentP)
             UIColor.orange.set()
