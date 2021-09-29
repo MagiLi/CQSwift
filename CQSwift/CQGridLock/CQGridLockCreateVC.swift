@@ -8,7 +8,93 @@
 
 import UIKit
 
-class CQGridLockCreateVC: UIViewController {
+enum GridLockType {
+    case create // 创建密码
+    case unlock // 解锁密码
+}
+
+class CQGridLockCreateVC: UIViewController, CQGridLockViewDelegate {
+    
+    var lockType:GridLockType = .create
+    fileprivate var lastPwdStr:String?
+    fileprivate var errorMaxCount = 5
+    
+    //MARK: CQGridLockViewDelegate
+    func panFinished(_ lockView: CQGridLockView, _ passwordStr: String) {
+        if self.lockType == .create {
+            self.panFinishedCreate(lockView, passwordStr)
+        } else {
+            self.panFinishedUnlock(lockView, passwordStr)
+        }
+    }
+    
+    fileprivate func panFinishedUnlock(_ lockView: CQGridLockView, _ passwordStr: String) {
+        self.indicatorView.setGesturePassword(passwordStr)
+        if passwordStr == CQGridLockManager.getGesturesPassword() {
+            let sureAction = UIAlertAction(title: "确定", style:.default) { (action) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            let  alertVC = UIAlertController(title: "温馨提示", message: "解锁成功", preferredStyle: .alert)
+            alertVC.addAction(sureAction)
+            self.present(alertVC, animated: true, completion: nil) 
+        } else {
+            self.errorMaxCount -= 1
+            self.tipLabel.text = String(format: "密码错误，还可以再输入%ld次", self.errorMaxCount)
+            self.tipLabel.shakeUnlockTips()
+            self.lockView.draw(.failed)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.tipLabel.text = "请重新绘制手势密码"
+                self.lockView.clearPanGesture()
+                self.indicatorView.setGesturePassword("")
+            }
+        }
+    }
+    fileprivate func panFinishedCreate(_ lockView: CQGridLockView, _ passwordStr: String) {
+        self.indicatorView.setGesturePassword(passwordStr)
+        if let lastPwd = self.lastPwdStr, lastPwd.count > 0 {
+            if self.lastPwdStr == passwordStr {// 两次绘制密码一样
+                CQGridLockManager.setGesturesPassword(passwordStr)
+                let sureAction = UIAlertAction(title: "确定", style:.default) { (action) in
+                    self.dismiss(animated: true, completion: nil)
+                }
+                let  alertVC = UIAlertController(title: "温馨提示", message: "创建密码成功", preferredStyle: .alert)
+                alertVC.addAction(sureAction)
+                self.present(alertVC, animated: true, completion: nil)
+            } else {// 与首次创建的密码不一样
+                self.tipLabel.text = "与上一次绘制不一致，请重新绘制"
+                self.tipLabel.shakeUnlockTips()
+                self.lockView.draw(.failed)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    self.tipLabel.text = "请绘制手势密码"
+                    self.lockView.clearPanGesture()
+                    self.indicatorView.setGesturePassword("")
+                }
+            }
+        } else { // 首次绘制密码
+            if passwordStr.count < 4 {
+                self.tipLabel.text = "至少连接四个点，请重新输入"
+                self.tipLabel.shakeUnlockTips()
+                self.lockView.draw(.failed)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    self.lastPwdStr = nil
+                    self.tipLabel.text = "请绘制手势密码"
+                    self.lockView.clearPanGesture()
+                    self.indicatorView.setGesturePassword("")
+                }
+            } else {
+                self.lastPwdStr = passwordStr
+                self.tipLabel.text = "请再次绘制手势密码"
+                self.tipLabel.shakeUnlockTips()
+                self.lockView.draw(.success)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    self.lockView.clearPanGesture()
+                    self.indicatorView.setGesturePassword("")
+                }
+            }
+        }
+        
+    }
+    
     @objc func dismissButtonClicked() {
         self.dismiss(animated: true, completion: nil)
     }
@@ -24,7 +110,7 @@ class CQGridLockCreateVC: UIViewController {
         self.view.addSubview(self.indicatorView)
         self.view.addSubview(self.lockView)
     }
-    //MARK:
+    //MARK: viewDidLayoutSubviews
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -76,7 +162,7 @@ class CQGridLockCreateVC: UIViewController {
     }()
     lazy var indicatorView: CQGridLockIndicatorView = {
         let view = CQGridLockIndicatorView()
-        view.backgroundColor = .orange
+//        view.backgroundColor = .orange
         return view
     }()
     lazy var tipLabel: UILabel = {
@@ -90,7 +176,7 @@ class CQGridLockCreateVC: UIViewController {
 
     lazy var lockView: CQGridLockView = {
         let view = CQGridLockView()
-        view.backgroundColor = .red
+        view.delegate = self
         return view
     }()
 

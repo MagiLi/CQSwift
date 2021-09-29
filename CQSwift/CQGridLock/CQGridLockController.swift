@@ -52,6 +52,12 @@ class CQGridLockController: UITableViewController {
         if indexPath.row == 0 {
             let createVC = CQGridLockCreateVC()
             createVC.modalPresentationStyle = .fullScreen
+            createVC.lockType = .create
+            self.present(createVC, animated: true, completion: nil)
+        } else if indexPath.row == 1 {
+            let createVC = CQGridLockCreateVC()
+            createVC.modalPresentationStyle = .fullScreen
+            createVC.lockType = .unlock
             self.present(createVC, animated: true, completion: nil)
         }
     }
