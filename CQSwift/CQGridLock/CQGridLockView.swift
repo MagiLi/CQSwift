@@ -39,27 +39,8 @@ class CQGridLockView: UIView {
                 if let lastImgView = self.selectedItems.last {
                     // 点到线的距离，垂足
                     let verticalPoint = self.distancePointToLine(p1: lastImgView.center, p2: self.currentPoint!, x0: currentImgView.center)
-                    
-                    let endX = self.currentPoint!.x
-                    let endY = self.currentPoint!.y
-                    let startX = lastImgView.center.x
-                    let startY = lastImgView.center.y
-                    let calculateX = currentImgView.center.x
-                    let calculateY = currentImgView.center.y
-                    var effectiveX = false
-                    if endX >= startX {
-                        effectiveX = (calculateX >= startX && calculateX <= endX)
-                    } else {
-                        effectiveX = (calculateX >= endX && calculateX <= startX)
-                    }
-                    var effectiveY = false
-                    if endY >= startY {
-                        effectiveY = (calculateY >= startY && calculateY <= endY)
-                    } else {
-                        effectiveY = (calculateY >= endY && calculateY <= startY)
-                    }
-                    
-                    if verticalPoint.distance < 5.0 && effectiveX && effectiveY  {
+                    let effective = self.effectivePoint(point1: lastImgView.center, point2: self.currentPoint!, calculatePoint:  currentImgView.center)
+                    if verticalPoint.distance < 5.0 && effective {
                         // 符合条件，选中当前计算的点
                         currentImgView.image = UIImage(named: "橙色椭圆")
                         if !self.selectedItems.contains(currentImgView) {
@@ -101,6 +82,28 @@ class CQGridLockView: UIView {
         
         let pt = CGPoint(x: x, y: y)
         return (Double(d), pt)
+    }
+    // 是否是有效的点（是否在拖拽的线段范围内）
+    fileprivate func effectivePoint(point1: CGPoint, point2:CGPoint, calculatePoint: CGPoint) -> Bool {
+        let endX = point2.x
+        let endY = point2.y
+        let startX = point1.x
+        let startY = point1.y
+        let calculateX = calculatePoint.x
+        let calculateY = calculatePoint.y
+        var effectiveX = false
+        if endX >= startX {
+            effectiveX = (calculateX >= startX && calculateX <= endX)
+        } else {
+            effectiveX = (calculateX >= endX && calculateX <= startX)
+        }
+        var effectiveY = false
+        if endY >= startY {
+            effectiveY = (calculateY >= startY && calculateY <= endY)
+        } else {
+            effectiveY = (calculateY >= endY && calculateY <= startY)
+        }
+        return effectiveX && effectiveY
     }
     
     fileprivate func getGestureStr() -> String {
