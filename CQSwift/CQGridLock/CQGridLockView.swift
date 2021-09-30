@@ -93,15 +93,15 @@ class CQGridLockView: UIView {
         let calculateY = calculatePoint.y
         var effectiveX = false
         if endX >= startX {
-            effectiveX = (calculateX >= startX && calculateX <= endX)
+            effectiveX = (calculateX >= startX - 5.0 && calculateX <= endX + 5.0)
         } else {
-            effectiveX = (calculateX >= endX && calculateX <= startX)
+            effectiveX = (calculateX >= endX - 5.0 && calculateX <= startX + 5.0)
         }
         var effectiveY = false
         if endY >= startY {
-            effectiveY = (calculateY >= startY && calculateY <= endY)
+            effectiveY = (calculateY >= startY - 5.0 && calculateY <= endY + 5.0)
         } else {
-            effectiveY = (calculateY >= endY && calculateY <= startY)
+            effectiveY = (calculateY >= endY - 5.0 && calculateY <= startY + 5.0)
         }
         return effectiveX && effectiveY
     }
