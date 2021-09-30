@@ -34,19 +34,44 @@ class CQGridLockView: UIView {
         }
         self.currentPoint = sender.location(in: self)
         for subView in self.subviews {
-            if let imgView = subView as? UIImageView {
-//                if let lastImgView = self.selectedItems.last {
-//                    let distance = self.calculateDistance(lastImgView.center, self.currentPoint!)
-//                    let detalY = fabs(self.currentPoint!.y - lastImgView.center.y)
-//                    let dX = detalY/distance * 5.0
-//                    let rectX = lastImgView.center.x - dX
-//                } else {
-//                    
-//                }
-                if imgView.frame.contains(self.currentPoint!) {
-                    imgView.image = UIImage(named: "橙色椭圆")
-                    if !self.selectedItems.contains(imgView) {
-                        self.selectedItems.append(imgView)
+            if let currentImgView = subView as? UIImageView {
+                //debugPrint("currentImgView.tag:\(currentImgView.tag)")
+                if let lastImgView = self.selectedItems.last {
+                    // 点到线的距离，垂足
+                    let verticalPoint = self.distancePointToLine(p1: lastImgView.center, p2: self.currentPoint!, x0: currentImgView.center)
+                    
+                    let endX = self.currentPoint!.x
+                    let endY = self.currentPoint!.y
+                    let startX = lastImgView.center.x
+                    let startY = lastImgView.center.y
+                    let calculateX = currentImgView.center.x
+                    let calculateY = currentImgView.center.y
+                    var effectiveX = false
+                    if endX >= startX {
+                        effectiveX = (calculateX >= startX && calculateX <= endX)
+                    } else {
+                        effectiveX = (calculateX >= endX && calculateX <= startX)
+                    }
+                    var effectiveY = false
+                    if endY >= startY {
+                        effectiveY = (calculateY >= startY && calculateY <= endY)
+                    } else {
+                        effectiveY = (calculateY >= endY && calculateY <= startY)
+                    }
+                    
+                    if verticalPoint.distance < 5.0 && effectiveX && effectiveY  {
+                        // 符合条件，选中当前计算的点
+                        currentImgView.image = UIImage(named: "橙色椭圆")
+                        if !self.selectedItems.contains(currentImgView) {
+                            self.selectedItems.append(currentImgView)
+                        }
+                    }
+                } else {
+                    if currentImgView.frame.contains(self.currentPoint!) {
+                        currentImgView.image = UIImage(named: "橙色椭圆")
+                        if !self.selectedItems.contains(currentImgView) {
+                            self.selectedItems.append(currentImgView)
+                        }
                     }
                 }
             }
@@ -60,7 +85,22 @@ class CQGridLockView: UIView {
     }
     //计算两点间的距离
     fileprivate func calculateDistance(_ point1:CGPoint, _ point2:CGPoint) -> CGFloat {
-        return sqrt(pow(point1.x-point2.x, 2) + pow(point1.y-point2.y, 2))
+        return sqrt(pow(point1.x-point2.x, 2.0) + pow(point1.y-point2.y, 2.0))
+    }
+    // 点到线的距离，以及垂足
+    fileprivate func distancePointToLine(p1: CGPoint, p2:CGPoint, x0: CGPoint) ->(distance:Double, point:CGPoint) {
+        
+        let a = p2.y - p1.y
+        let b = p1.x - p2.x
+        let c = p2.x * p1.y - p1.x * p2.y
+        
+        let x = (b * b * x0.x - a * b * x0.y - a * c) / (a * a + b * b)
+        let y = (-a * b * x0.x + a * a * x0.y - b * c) / (a * a + b * b)
+        
+        let d = abs((a * x0.x + b * x0.y + c)) / sqrt(pow(a, 2) + pow(b, 2))
+        
+        let pt = CGPoint(x: x, y: y)
+        return (Double(d), pt)
     }
     
     fileprivate func getGestureStr() -> String {
@@ -134,6 +174,7 @@ class CQGridLockView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         let pan = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizer(_:)))
+        pan.maximumNumberOfTouches = 1
         self.addGestureRecognizer(pan)
         
         self.setupUI()
