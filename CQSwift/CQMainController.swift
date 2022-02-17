@@ -8,6 +8,23 @@
 
 import UIKit
 
+struct PHError:Error {
+    var desc = ""
+    var code = ""
+    var localizedDescription: String{
+        return desc
+    }
+    init(_ desc:String) {
+        self.desc = desc
+    }
+}
+
+//extension PHError: LocalizedError {
+//    var errorDescription: String? {
+//        return self.desc
+//    }
+//}
+
 
 @available(iOS 11.0, *)
 class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -16,7 +33,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     lazy var dataAray : [NSArray] = {
         () -> [NSArray] in
-        return [["collectionView", "tableView"],["九宫格手势解锁"]]
+        return [["collectionView", "tableView"],["九宫格手势解锁"],["JS交互"]]
     }()
     
     override func viewDidLoad() {
@@ -31,8 +48,25 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableView?.register(CQMainCell.self, forCellReuseIdentifier: "CQMainCellID")
         tableView?.register(CQMainHeaderView.self, forHeaderFooterViewReuseIdentifier: "CQMainHeaderID")
         self.view.addSubview(tableView!)
-      /*
-        
+    
+        //self.testMap()
+//        DispatchQueue.main.async {
+//            self.testError()
+//        }
+    }
+
+    func testError() {
+        var error = PHError("你刷的")
+        error.code = "1001"
+        var message = error.desc + error.code + error.localizedDescription
+        let sureAction = UIAlertAction(title: "确定", style:.default) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        let  alertVC = UIAlertController(title: "温馨提示", message: message, preferredStyle: .alert)
+        alertVC.addAction(sureAction)
+        self.present(alertVC, animated: true, completion: nil)
+    }
+    func testMap() {
         let arr = [5,3,4]
         let arrR = arr.map { (a) -> Int in
             return a*2
@@ -56,9 +90,8 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         let sortArray = arr.sorted(by: {$0 < $1})
         print(sortArray) //[2, 3, 5, 6, 7]
-        */
-    }
 
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.dataAray.count
     }
@@ -121,6 +154,10 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 self.navigationController?.pushViewController(gridLockVC, animated: true)
             }
             
+            break
+        case 2:
+            let vc = CQWebViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
             break
         default:
             break

@@ -13,7 +13,7 @@ private let reuseIdentifier = "Cell"
 @available(iOS 11.0, *)
 class CQCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    var dataArray = NSMutableArray.init(array: ["MTKView 颜色渐变", "Metal 三角形","Metal 彩色三角形","Metal 栅格","Metal 彩色二维码","CQApps","Press me 4"])
+    var dataArray = NSMutableArray.init(array: ["MTKView 颜色渐变", "Metal 三角形","Metal 彩色三角形","Metal 栅格","Metal 彩色二维码","CQApps","轮播图","Press me 4"])
     
     
     override func viewDidLoad() {
@@ -73,7 +73,9 @@ class CQCollectionViewController: UICollectionViewController, UICollectionViewDe
         case 5:
             let appsVC = CQAppsController()
             self.navigationController?.pushViewController(appsVC, animated: true)
-            
+        case 6:
+            let cycleVC = CQCycleController()
+            self.navigationController?.pushViewController(cycleVC, animated: true)
         default: break
         }
     }

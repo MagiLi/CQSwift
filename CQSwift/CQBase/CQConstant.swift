@@ -36,8 +36,8 @@ let KAppDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 // iOS在当前屏幕获取第一响应
 let CQKeyWindow = UIApplication.shared.keyWindow
 let CQFirstResponder = CQKeyWindow?.perform(Selector(("firstResponder")))
-
-
+// 随机色
+let CQRandomColor = UIColor(red: CGFloat(arc4random_uniform(256))/255.0, green: CGFloat(arc4random_uniform(256))/255.0, blue: CGFloat(arc4random_uniform(256))/255.0, alpha: 1.0)
 // MARK:- 通知
 /// 通知中心
 let CQNotificationCenter = NotificationCenter.default
