@@ -9,17 +9,16 @@
 import UIKit
 
 enum DragDirection:Int { // 拖动方向
-    case none = 0 // 没有拖动
-    case right = 1 // 从右边往左边拖动 ←←←←
-    case left = 2 // 从左边往右边拖动 →→→→
+    case right = 0 // 从右边往左边拖动 ←←←←
+    case left = 1 // 从左边往右边拖动 →→→→
 }
 
 class CQCycleController: UIViewController, UIScrollViewDelegate {
 
     let screenW = UIScreen.main.bounds.width
-    let scrollViewH:CGFloat = 68.0
-    let smallH:CGFloat = 62.0
-    let totalDetalH:CGFloat！
+    let scrollViewH:CGFloat = 168.0// 68.0
+    let smallH:CGFloat = 62.0 // 62.0
+    var totalDetalH:CGFloat!
     let margin:CGFloat = 20.0
     var contentWidth:CGFloat!
     
@@ -30,7 +29,7 @@ class CQCycleController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    var dragDirection:DragDirection = .none // 拖动方向
+    var dragDirection:DragDirection? // 拖动方向
     var isDragging = false // 是否正在拖动
     
     var beginDraggingX:CGFloat = 0.0 // 开始拖动时的偏移量
@@ -41,33 +40,75 @@ class CQCycleController: UIViewController, UIScrollViewDelegate {
     // 执行顺序：0
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //        debugPrint("DidScroll-ontentOffset.x: %f", scrollView.contentOffset.x)
-        var value:CGFloat
-        if scrollView.contentOffset.x <= 0 { // 左边界
-            value = 0.0
-        } else if scrollView.contentOffset.x >= self.contentWidth { // 右边界
-            value = CGFloat(self.colors.count - 1)
-        } else {
-            value = scrollView.contentOffset.x / screenW
-        }
-//        if self.isDragging {
-//            let newX = scrollView.contentOffset.x
+//        var value:CGFloat
+//        if scrollView.contentOffset.x <= 0 { // 左边界
+//            value = 0.0
+//        } else if scrollView.contentOffset.x >= self.contentWidth { // 右边界
+//            value = CGFloat(self.colors.count - 1)
+//        } else {
+//            value = scrollView.contentOffset.x / screenW
 //        }
-//        self.pageControl.changeCurrentImageViewValue(value)
-//        print(scrollView.contentOffset.x)
+        if self.isDragging {
+            if self.beginDraggingX <= scrollView.contentOffset.x {
+                self.dragDirection = .right
+            } else if self.beginDraggingX > scrollView.contentOffset.x {
+                self.dragDirection = .left
+            }
+        }
         
         // 移动的距离
-        let moveD = fabsf(Float(self.beginDraggingX - scrollView.contentOffset.x))
+        // 从右边往左边拖动 ←←←←
+        // moveD > 0
+        // 从左边往右边拖动 →→→→
+        // moveD < 0
+        let moveD = fabsf(Float(scrollView.contentOffset.x - self.beginDraggingX))
+
         // 单位距离
         let d = screenW - 25.0
         let scaleH = CGFloat(moveD) / d
-        var detalH:CGFloat!
+        var detalH:CGFloat = 0.0
         if scaleH > 1.0 {
             detalH = self.totalDetalH
         } else {
-            detalH = self.totalDetalH * 6.0
+            detalH = self.totalDetalH * scaleH
         }
-        
+//        debugPrint("detalH: \(detalH)")
+        self.changeFrameForSubViews(detalH)
     }
+    
+    //MARK: changeFrameForSubViews
+    fileprivate func changeFrameForSubViews(_ detalH:CGFloat) {
+        let normalW = screenW - margin * 2.0
+        let smallW = normalW
+        self.scrollView.subviews.forEach { (view) in
+            if let lab = view as? UILabel {
+                if lab.tag == 0 {
+                    let smallX = margin*2 + 5.0
+                    var smallY = self.totalDetalH * 0.5
+                    var smallH = self.smallH
+                    if self.dragDirection == .left {
+                        smallH = smallH + detalH
+                        smallY = (scrollViewH - smallH) * 0.5
+                    }
+                    lab.frame = CGRect(x: smallX, y: smallY, width: smallW, height: smallH)
+                } else if lab.tag == 1 {
+                    let normalX = screenW + margin
+                    lab.frame = CGRect(x: normalX, y: 0.0, width: normalW, height: scrollViewH)
+                } else if lab.tag == 2 {
+                    let smallX = screenW*2.0 - 5.0
+                    var smallY = self.totalDetalH * 0.5
+                    var smallH = self.smallH
+                    if self.dragDirection == .right {
+                        smallH = smallH + detalH
+                        smallY = (scrollViewH - smallH) * 0.5
+                    }
+                    debugPrint("smallH: \(smallH)")
+                    lab.frame = CGRect(x: smallX, y: smallY, width: smallW, height: smallH)
+                }
+            }
+        }
+    }
+    
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         debugPrint("WillBeginDragging-ontentOffset.x: %f", scrollView.contentOffset.x)
         self.isDragging = true
@@ -78,13 +119,6 @@ class CQCycleController: UIViewController, UIScrollViewDelegate {
         debugPrint("DidEndDragging-ontentOffset.x: %f", scrollView.contentOffset.x)
         self.endDraggingX = scrollView.contentOffset.x
         self.isDragging = false
-        if self.beginDraggingX < self.endDraggingX {
-            self.dragDirection = .right
-        } else if self.beginDraggingX > self.endDraggingX {
-            self.dragDirection = .left
-        } else {
-            self.dragDirection = .none
-        }
     }
     // 执行顺序：2
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
