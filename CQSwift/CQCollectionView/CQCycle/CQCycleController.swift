@@ -63,42 +63,59 @@ class CQCycleController: UIViewController, UIScrollViewDelegate {
         // moveD < 0
         let moveD = fabsf(Float(scrollView.contentOffset.x - self.beginDraggingX))
 
-        // 单位距离
-        let d = screenW - 25.0
-        let scaleH = CGFloat(moveD) / d
+        // 高度变化参考的单位距离
+        let d_H = screenW - 25.0
+        let scaleH = CGFloat(moveD) / d_H
         var detalH:CGFloat = 0.0
         if scaleH > 1.0 {
             detalH = self.totalDetalH
         } else {
             detalH = self.totalDetalH * scaleH
         }
+        // x的位移差25.0, 参考的单位距离
+        let d_X = screenW
+        let scaleX = CGFloat(moveD) / d_X
+        var detalX:CGFloat = 0.0
+        if scaleX > 1.0 {
+            detalX = 25.0
+        } else {
+            detalX = 25.0 * scaleX
+        }
 //        debugPrint("detalH: \(detalH)")
-        self.changeFrameForSubViews(detalH)
+        self.changeFrameForSubViews(detalH, detalX)
     }
     
     //MARK: changeFrameForSubViews
-    fileprivate func changeFrameForSubViews(_ detalH:CGFloat) {
-        let normalW = screenW - margin * 2.0
-        let smallW = normalW
+    fileprivate func changeFrameForSubViews(_ detalH:CGFloat, _ detalX:CGFloat) {
+        let smallW = screenW - margin * 2.0
         self.scrollView.subviews.forEach { (view) in
             if let lab = view as? UILabel {
                 if lab.tag == 0 {
-                    let smallX = margin*2 + 5.0
+                    var smallX = margin*2 + 5.0
                     var smallY = self.totalDetalH * 0.5
                     var smallH = self.smallH
                     if self.dragDirection == .left {
+                        smallX = smallX - detalX
                         smallH = smallH + detalH
                         smallY = (scrollViewH - smallH) * 0.5
                     }
                     lab.frame = CGRect(x: smallX, y: smallY, width: smallW, height: smallH)
                 } else if lab.tag == 1 {
-                    let normalX = screenW + margin
-                    lab.frame = CGRect(x: normalX, y: 0.0, width: normalW, height: scrollViewH)
+                    var smallX = screenW + margin
+                    if self.dragDirection == .left {
+                        smallX = smallX - detalX
+                    } else if self.dragDirection == .right {
+                        smallX = smallX + detalX
+                    }
+                    let smallH = scrollViewH - detalH
+                    let smallY = (scrollViewH - smallH) * 0.5
+                    lab.frame = CGRect(x: smallX, y: smallY, width: smallW, height: smallH)
                 } else if lab.tag == 2 {
-                    let smallX = screenW*2.0 - 5.0
+                    var smallX = screenW*2.0 - 5.0
                     var smallY = self.totalDetalH * 0.5
                     var smallH = self.smallH
                     if self.dragDirection == .right {
+                        smallX = smallX + detalX
                         smallH = smallH + detalH
                         smallY = (scrollViewH - smallH) * 0.5
                     }
@@ -175,8 +192,7 @@ class CQCycleController: UIViewController, UIScrollViewDelegate {
     }
     //MARK: 重置view的frame
     fileprivate func resetFrameForSubViews() {
-        let normalW = screenW - margin * 2.0
-        let smallW = normalW
+        let smallW = screenW - margin * 2.0
         let smallY = self.totalDetalH * 0.5
         self.scrollView.subviews.forEach { (view) in
             if let lab = view as? UILabel {
@@ -185,7 +201,7 @@ class CQCycleController: UIViewController, UIScrollViewDelegate {
                     lab.frame = CGRect(x: smallX, y: smallY, width: smallW, height: self.smallH)
                 } else if lab.tag == 1 {
                     let normalX = screenW + margin
-                    lab.frame = CGRect(x: normalX, y: 0.0, width: normalW, height: scrollViewH)
+                    lab.frame = CGRect(x: normalX, y: 0.0, width: smallW, height: scrollViewH)
                 } else if lab.tag == 2 {
                     let smallX = screenW*2.0 - 5.0
                     lab.frame = CGRect(x: smallX, y: smallY, width: smallW, height: self.smallH)
@@ -199,8 +215,6 @@ class CQCycleController: UIViewController, UIScrollViewDelegate {
         self.contentWidth = screenW * 3.0
         self.totalDetalH = scrollViewH - self.smallH
         self.view.addSubview(self.scrollView)
-//        let viewW = screenW - margin * 2.0
-//        let viewH = scrollViewH
         for i in 0..<3 {
             let view = UILabel()
             view.backgroundColor = self.colors[i]
@@ -209,8 +223,10 @@ class CQCycleController: UIViewController, UIScrollViewDelegate {
             view.font = UIFont.boldSystemFont(ofSize: 20.0)
             self.scrollView.addSubview(view)
         }
-        self.resetFrameForSubViews()
+        
         scrollView.setContentOffset(CGPoint(x: screenW, y: 0.0), animated: false)
+        self.resetFrameForSubViews()
+//        self.changeFrameForSubViews(0.0, 0.0)
     }
    
     
