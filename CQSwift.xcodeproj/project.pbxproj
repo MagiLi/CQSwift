@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2422067F2704120600350DF0 /* CQView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422067E2704120600350DF0 /* CQView+Extension.swift */; };
 		2422068727043E1500350DF0 /* CQGridLockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422068627043E1500350DF0 /* CQGridLockManager.swift */; };
+		2426241627EABED500AEC968 /* CQCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426241527EABED500AEC968 /* CQCycleView.swift */; };
 		242CE798243C27ED00DF059D /* CQError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242CE793243C27ED00DF059D /* CQError.swift */; };
 		242CE799243C27ED00DF059D /* CQModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242CE794243C27ED00DF059D /* CQModelManager.swift */; };
 		242CE79A243C27ED00DF059D /* CQConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242CE795243C27ED00DF059D /* CQConstant.swift */; };
@@ -93,6 +94,7 @@
 /* Begin PBXFileReference section */
 		2422067E2704120600350DF0 /* CQView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CQView+Extension.swift"; sourceTree = "<group>"; };
 		2422068627043E1500350DF0 /* CQGridLockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGridLockManager.swift; sourceTree = "<group>"; };
+		2426241527EABED500AEC968 /* CQCycleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCycleView.swift; sourceTree = "<group>"; };
 		242CE793243C27ED00DF059D /* CQError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQError.swift; sourceTree = "<group>"; };
 		242CE794243C27ED00DF059D /* CQModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQModelManager.swift; sourceTree = "<group>"; };
 		242CE795243C27ED00DF059D /* CQConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQConstant.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				2477F22327BE1A3A00218542 /* CQCycleController.swift */,
+				2426241527EABED500AEC968 /* CQCycleView.swift */,
 			);
 			path = CQCycle;
 			sourceTree = "<group>";
@@ -654,6 +657,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2422068727043E1500350DF0 /* CQGridLockManager.swift in Sources */,
+				2426241627EABED500AEC968 /* CQCycleView.swift in Sources */,
 				244DA61C24470619008B3B57 /* CQAppsController.swift in Sources */,
 				24F949B224F4AFBB006CC572 /* CQGridRender.swift in Sources */,
 				244DA61E24470619008B3B57 /* CQFrequentlyAppModel+CoreDataClass.swift in Sources */,
@@ -896,7 +900,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ccb.leye.test3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = wildcard;
+				PROVISIONING_PROFILE_SPECIFIER = wild;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -920,7 +924,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ccb.leye.test3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = wildcard;
+				PROVISIONING_PROFILE_SPECIFIER = wild;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -29,17 +29,25 @@ class CQCycleController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    var isDragging:Bool = false // 是否正在拖动
+    var isDecelerating:Bool = false // 是否正在减速
     var dragDirection:DragDirection? // 拖动方向
-    var isDragging = false // 是否正在拖动
     
     var beginDraggingX:CGFloat = 0.0 // 开始拖动时的偏移量
     var endDraggingX:CGFloat = 0.0 // 拖动结束时的偏移量
     var endDeceleratingX:CGFloat = 0.0 // 滚动结束时的偏移量（拖动结束后获得的值）
-    
-    //MARK:UIScrollViewDelegate
-    // 执行顺序：0
+
+    //MARK: UIScrollViewDelegate
+    //MARK: 执行顺序：0 (拖动 将要开始)
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        debugPrint("WillBeginDragging-ontentOffset.x: %f", scrollView.contentOffset.x)
+        self.isDragging = true
+        self.beginDraggingX = scrollView.contentOffset.x
+    }
+    //MARK: 执行顺序：1 (滚动)
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        debugPrint("DidScroll-ontentOffset.x: %f", scrollView.contentOffset.x)
+        debugPrint("DidScroll-ontentOffset.x: %f", scrollView.contentOffset.x)
+        
 //        var value:CGFloat
 //        if scrollView.contentOffset.x <= 0 { // 左边界
 //            value = 0.0
@@ -126,26 +134,26 @@ class CQCycleController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        debugPrint("WillBeginDragging-ontentOffset.x: %f", scrollView.contentOffset.x)
-        self.isDragging = true
-        self.beginDraggingX = scrollView.contentOffset.x
-    }
-    // 执行顺序：1
+    //MARK: 执行顺序：2 (拖动 结束)
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         debugPrint("DidEndDragging-ontentOffset.x: %f", scrollView.contentOffset.x)
         self.endDraggingX = scrollView.contentOffset.x
+        // 减速结束前需要禁止拖动 （避免拖动过于频繁）
+        self.scrollView.panGestureRecognizer.isEnabled = false
         self.isDragging = false
     }
-    // 执行顺序：2
+    //MARK: 执行顺序：3 (减速 将要开始)
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        self.isDecelerating = true
+    }
+    //MARK: 执行顺序：4 (减速 结束)
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        let index = ceilf(Float(scrollView.contentOffset.x / ScreenWidth))
-//        self.pageControl.currentIndex = Int(index)
         debugPrint("DidEndDecelerating-ontentOffset.x: %f", scrollView.contentOffset.x)
         
         self.endDeceleratingX = scrollView.contentOffset.x
         
         if self.dragDirection == .right { // 从右边往左边拖动 ←←←←
+            // 拖动结束时的contentOffset.x 小于 当前contentOffset.x
             if self.endDraggingX < self.endDeceleratingX {
                 if self.currentIndex >= self.colors.count - 1 {
                     self.currentIndex = 0
@@ -162,6 +170,9 @@ class CQCycleController: UIViewController, UIScrollViewDelegate {
                 }
             }
         }
+        self.isDecelerating = false
+        // 减速结束时需要开启拖动
+        self.scrollView.panGestureRecognizer.isEnabled = true
     }
     //MARK: 重置view的数据
     fileprivate func resetDataForSubViews() {
@@ -232,14 +243,14 @@ class CQCycleController: UIViewController, UIScrollViewDelegate {
     
     lazy var colors: [UIColor] = [.red, .green, .blue, .cyan, .yellow, .orange]
     
-    lazy var scrollView: UIScrollView = {
-        let view = UIScrollView(frame: CGRect(x: 0.0, y: 100.0, width: screenW, height: scrollViewH))
+    lazy var scrollView: CQCycleView = {
+        let view = CQCycleView(frame: CGRect(x: 0.0, y: 100.0, width: screenW, height: scrollViewH))
         view.contentSize = CGSize(width: self.contentWidth, height: 0.0)
-        view.showsVerticalScrollIndicator = false;
-        view.showsHorizontalScrollIndicator = false;
+        view.showsVerticalScrollIndicator = false
+        view.showsHorizontalScrollIndicator = false
         view.isPagingEnabled = true
-        view.bounces = false;
-        view.delegate = self;
+        view.bounces = false
+        view.delegate = self
         view.backgroundColor = .lightGray
         return view
     }()
