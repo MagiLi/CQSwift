@@ -10,6 +10,14 @@ import UIKit
 
 class CQCycleView: UIScrollView {
     
+//    override func touchesShouldCancel(in view: UIView) -> Bool {
+//        if self.panGestureRecognizer.numberOfTouches == 0 {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
+    
     //MARK:init
     override init(frame: CGRect) {
         super.init(frame: frame)

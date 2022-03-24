@@ -17,15 +17,15 @@ class CQCycleController: UIViewController, UIScrollViewDelegate {
 
     let screenW = UIScreen.main.bounds.width
     let scrollViewH:CGFloat = 168.0//
-    let leftSmallH:CGFloat = 62.0 //
-    let rightSmallH:CGFloat = 102.0 //  
-    var leftTotalDetalH:CGFloat! // 大小视图最大的高度差
-    var rightTotalDetalH:CGFloat! // 大小视图最大的高度差
+    let leftSmallH:CGFloat = 102.0 //
+    let rightSmallH:CGFloat = 132.0 //
+    var leftTotalDetalH:CGFloat! // 左边大小视图最大的高度差
+    var rightTotalDetalH:CGFloat! // 右边大小视图最大的高度差
     let margin:CGFloat = 20.0 // 中间视图距离两边的距离
-    // 左边 缩小的view露出的尾部距离 5.0 （该值必须小于margin）
-    let leftViewFooter:CGFloat = 5.0
-    // 右边 缩小的view露出的头部距离 5.0 （该值必须小于margin）
-    let rightViewHeader:CGFloat = 15.0
+    // 左边 缩小的view露出的尾部距离 （该值必须小于margin）
+    let leftViewFooter:CGFloat = 10.0
+    // 右边 缩小的view露出的头部距离 （该值必须小于margin）
+    let rightViewHeader:CGFloat = 10.0
     var contentWidth:CGFloat!
     
     var currentIndex: Int = 1 {
@@ -46,13 +46,13 @@ class CQCycleController: UIViewController, UIScrollViewDelegate {
     //MARK: UIScrollViewDelegate
     //MARK: 执行顺序：0 (拖动 将要开始)
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        debugPrint("WillBeginDragging-ontentOffset.x: %f", scrollView.contentOffset.x)
+        //debugPrint("WillBeginDragging-ontentOffset.x: %f", scrollView.contentOffset.x)
         self.isDragging = true
         self.beginDraggingX = scrollView.contentOffset.x
     }
     //MARK: 执行顺序：1 (滚动)
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        debugPrint("DidScroll-ontentOffset.x: %f", scrollView.contentOffset.x)
+        //debugPrint("DidScroll-ontentOffset.x: %f", scrollView.contentOffset.x)
         
 //        var value:CGFloat
 //        if scrollView.contentOffset.x <= 0 { // 左边界
@@ -102,50 +102,35 @@ class CQCycleController: UIViewController, UIScrollViewDelegate {
             leftDetalX = leftViewMoveX * leftScale
         }
         self.changeFrameForSubViews(leftDetalH, leftDetalX, rightDetalH, rightDetalX)
-        
-        
-//        // 高度变化参考的单位距离
-//        let d_H = screenW - rightViewMoveX
-//        let scaleH = CGFloat(dragMoveD) / d_H
-//        var detalH:CGFloat = 0.0
-//        if scaleH > 1.0 {
-//            detalH = self.totalDetalH
-//        } else {
-//            detalH = self.totalDetalH * scaleH
-//        }
-//        // x的位移差25.0, 参考的单位距离
-//        let d_X = screenW
-//        let scaleX = CGFloat(dragMoveD) / d_X
-//        var detalX:CGFloat = 0.0
-//        if scaleX > 1.0 {
-//            detalX = rightViewMoveX
-//        } else {
-//            detalX = rightViewMoveX * scaleX
-//        }
-//        self.changeFrameForSubViews(detalH, detalX)
     }
     
     //MARK: 执行顺序：2 (拖动 结束)
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        debugPrint("DidEndDragging-ontentOffset.x: %f", scrollView.contentOffset.x)
+        //debugPrint("DidEndDragging-ontentOffset.x: %f", scrollView.contentOffset.x)
         self.endDraggingX = scrollView.contentOffset.x
         self.isDragging = false
+        let remainder = self.endDraggingX.truncatingRemainder(dividingBy: screenW)
+        if remainder == 0.0 {
+            // 处理拖动结束不会进入scrollViewWillBeginDecelerating方法的bug
+            debugPrint("DidEndDragging-remainder")
+            self.scrollViewDidEndDecelerating(scrollView)
+        }
     }
     //MARK: 执行顺序：3 (减速 将要开始)
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        //debugPrint("WillBeginDecelerating-ontentOffset.x: %f", scrollView.contentOffset.x)
         // 减速结束前需要禁止拖动 （避免拖动过于频繁）
         self.scrollView.panGestureRecognizer.isEnabled = false
         self.isDecelerating = true
     }
     //MARK: 执行顺序：4 (减速 结束)
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        debugPrint("DidEndDecelerating-ontentOffset.x: %f", scrollView.contentOffset.x)
+        //debugPrint("DidEndDecelerating-ontentOffset.x: %f", scrollView.contentOffset.x)
         
         self.endDeceleratingX = scrollView.contentOffset.x
         
         if self.dragDirection == .right { // 从右边往左边拖动 ←←←←
-            // 拖动结束时的contentOffset.x 小于 当前contentOffset.x
-            if self.endDraggingX < self.endDeceleratingX {
+            if self.endDraggingX <= self.endDeceleratingX {
                 if self.currentIndex >= self.colors.count - 1 {
                     self.currentIndex = 0
                 } else {
@@ -153,7 +138,7 @@ class CQCycleController: UIViewController, UIScrollViewDelegate {
                 }
             }
         } else if self.dragDirection == .left { // 从左边往右边拖动 →→→→
-            if self.endDraggingX > self.endDeceleratingX {
+            if self.endDraggingX >= self.endDeceleratingX {
                 if self.currentIndex <= 0 {
                     self.currentIndex = self.colors.count - 1
                 } else {
