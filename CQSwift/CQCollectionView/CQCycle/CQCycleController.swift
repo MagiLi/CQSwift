@@ -16,10 +16,16 @@ enum DragDirection:Int { // 拖动方向
 class CQCycleController: UIViewController, UIScrollViewDelegate {
 
     let screenW = UIScreen.main.bounds.width
-    let scrollViewH:CGFloat = 168.0// 68.0
-    let smallH:CGFloat = 62.0 // 62.0
-    var totalDetalH:CGFloat!
-    let margin:CGFloat = 20.0
+    let scrollViewH:CGFloat = 168.0//
+    let leftSmallH:CGFloat = 62.0 //
+    let rightSmallH:CGFloat = 102.0 //  
+    var leftTotalDetalH:CGFloat! // 大小视图最大的高度差
+    var rightTotalDetalH:CGFloat! // 大小视图最大的高度差
+    let margin:CGFloat = 20.0 // 中间视图距离两边的距离
+    // 左边 缩小的view露出的尾部距离 5.0 （该值必须小于margin）
+    let leftViewFooter:CGFloat = 5.0
+    // 右边 缩小的view露出的头部距离 5.0 （该值必须小于margin）
+    let rightViewHeader:CGFloat = 15.0
     var contentWidth:CGFloat!
     
     var currentIndex: Int = 1 {
@@ -65,85 +71,70 @@ class CQCycleController: UIViewController, UIScrollViewDelegate {
         }
         
         // 移动的距离
-        // 从右边往左边拖动 ←←←←
-        // moveD > 0
-        // 从左边往右边拖动 →→→→
-        // moveD < 0
-        let moveD = fabsf(Float(scrollView.contentOffset.x - self.beginDraggingX))
-
-        // 高度变化参考的单位距离
-        let d_H = screenW - 25.0
-        let scaleH = CGFloat(moveD) / d_H
-        var detalH:CGFloat = 0.0
-        if scaleH > 1.0 {
-            detalH = self.totalDetalH
+        // 从右边往左边拖动 ←←←← ，dragMoveD > 0
+        // 从左边往右边拖动 →→→→ ，dragMoveD < 0
+        let dragMoveD = fabsf(Float(scrollView.contentOffset.x - self.beginDraggingX))
+        // 子view需要移动的最大距离
+        // 注意⚠️：scrollView滚动时，子view相对于scrollView并没有移动。
+        // 所以，需要手动移动子View，保证可以露出rightViewHeader/leftViewFooter拘留
+        let leftViewMoveX = self.margin + self.leftViewFooter
+        let rightViewMoveX = self.margin + self.rightViewHeader
+        let leftD_H = screenW - leftViewMoveX // 变为左边视图时，高度变化的最大距离
+        let leftScale = CGFloat(dragMoveD) / leftD_H
+        let rightD_H = screenW - rightViewMoveX // 变为右边视图时，高度变化的最大距离
+        let rightScale = CGFloat(dragMoveD) / rightD_H
+        
+        var rightDetalH:CGFloat = 0.0 // 变为右边视图时，高度变化的距离
+        var leftDetalH:CGFloat = 0.0 // 变为左边视图时，高度变化的距离
+        var rightDetalX:CGFloat = 0.0
+        var leftDetalX:CGFloat = 0.0
+        if rightScale > 1.0 {
+            rightDetalH = self.rightTotalDetalH
+            leftDetalH = self.leftTotalDetalH
+            
+            rightDetalX = rightViewMoveX
+            leftDetalX = leftViewMoveX
         } else {
-            detalH = self.totalDetalH * scaleH
+            rightDetalH = self.rightTotalDetalH * rightScale
+            leftDetalH = self.leftTotalDetalH * leftScale
+            
+            rightDetalX = rightViewMoveX * rightScale
+            leftDetalX = leftViewMoveX * leftScale
         }
-        // x的位移差25.0, 参考的单位距离
-        let d_X = screenW
-        let scaleX = CGFloat(moveD) / d_X
-        var detalX:CGFloat = 0.0
-        if scaleX > 1.0 {
-            detalX = 25.0
-        } else {
-            detalX = 25.0 * scaleX
-        }
-//        debugPrint("detalH: \(detalH)")
-        self.changeFrameForSubViews(detalH, detalX)
-    }
-    
-    //MARK: changeFrameForSubViews
-    fileprivate func changeFrameForSubViews(_ detalH:CGFloat, _ detalX:CGFloat) {
-        let smallW = screenW - margin * 2.0
-        self.scrollView.subviews.forEach { (view) in
-            if let lab = view as? UILabel {
-                if lab.tag == 0 {
-                    var smallX = margin*2 + 5.0
-                    var smallY = self.totalDetalH * 0.5
-                    var smallH = self.smallH
-                    if self.dragDirection == .left {
-                        smallX = smallX - detalX
-                        smallH = smallH + detalH
-                        smallY = (scrollViewH - smallH) * 0.5
-                    }
-                    lab.frame = CGRect(x: smallX, y: smallY, width: smallW, height: smallH)
-                } else if lab.tag == 1 {
-                    var smallX = screenW + margin
-                    if self.dragDirection == .left {
-                        smallX = smallX - detalX
-                    } else if self.dragDirection == .right {
-                        smallX = smallX + detalX
-                    }
-                    let smallH = scrollViewH - detalH
-                    let smallY = (scrollViewH - smallH) * 0.5
-                    lab.frame = CGRect(x: smallX, y: smallY, width: smallW, height: smallH)
-                } else if lab.tag == 2 {
-                    var smallX = screenW*2.0 - 5.0
-                    var smallY = self.totalDetalH * 0.5
-                    var smallH = self.smallH
-                    if self.dragDirection == .right {
-                        smallX = smallX + detalX
-                        smallH = smallH + detalH
-                        smallY = (scrollViewH - smallH) * 0.5
-                    }
-                    debugPrint("smallH: \(smallH)")
-                    lab.frame = CGRect(x: smallX, y: smallY, width: smallW, height: smallH)
-                }
-            }
-        }
+        self.changeFrameForSubViews(leftDetalH, leftDetalX, rightDetalH, rightDetalX)
+        
+        
+//        // 高度变化参考的单位距离
+//        let d_H = screenW - rightViewMoveX
+//        let scaleH = CGFloat(dragMoveD) / d_H
+//        var detalH:CGFloat = 0.0
+//        if scaleH > 1.0 {
+//            detalH = self.totalDetalH
+//        } else {
+//            detalH = self.totalDetalH * scaleH
+//        }
+//        // x的位移差25.0, 参考的单位距离
+//        let d_X = screenW
+//        let scaleX = CGFloat(dragMoveD) / d_X
+//        var detalX:CGFloat = 0.0
+//        if scaleX > 1.0 {
+//            detalX = rightViewMoveX
+//        } else {
+//            detalX = rightViewMoveX * scaleX
+//        }
+//        self.changeFrameForSubViews(detalH, detalX)
     }
     
     //MARK: 执行顺序：2 (拖动 结束)
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         debugPrint("DidEndDragging-ontentOffset.x: %f", scrollView.contentOffset.x)
         self.endDraggingX = scrollView.contentOffset.x
-        // 减速结束前需要禁止拖动 （避免拖动过于频繁）
-        self.scrollView.panGestureRecognizer.isEnabled = false
         self.isDragging = false
     }
     //MARK: 执行顺序：3 (减速 将要开始)
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        // 减速结束前需要禁止拖动 （避免拖动过于频繁）
+        self.scrollView.panGestureRecognizer.isEnabled = false
         self.isDecelerating = true
     }
     //MARK: 执行顺序：4 (减速 结束)
@@ -201,21 +192,68 @@ class CQCycleController: UIViewController, UIScrollViewDelegate {
             }
         }
     }
+    //MARK: changeFrameForSubViews
+    fileprivate func changeFrameForSubViews( _ leftDetalH:CGFloat,_ leftDetalX:CGFloat, _ rightDetalH:CGFloat, _ rightDetalX:CGFloat) {
+        self.scrollView.subviews.forEach { (view) in
+            if let lab = view as? UILabel {
+                if lab.tag == 0 { // 左边视图
+                    let leftSmallW = screenW - margin * 2.0
+                    var leftSmallH = self.leftSmallH
+                    var leftSmallX = margin*2 + self.leftViewFooter
+                    var leftSmallY = self.leftTotalDetalH * 0.5
+                    if self.dragDirection == .left {
+                        leftSmallX = leftSmallX - leftDetalX
+                        leftSmallH = leftSmallH + leftDetalH
+                        leftSmallY = (scrollViewH - leftSmallH) * 0.5
+                    }
+                    lab.frame = CGRect(x: leftSmallX, y: leftSmallY, width: leftSmallW, height: leftSmallH)
+                } else if lab.tag == 1 { // 中间视图
+                    let centerW = screenW - margin * 2.0
+                    var centerH = scrollViewH
+                    var centerX = screenW + margin
+                    if self.dragDirection == .left {
+                        centerX = centerX - rightDetalX
+                        centerH = centerH - rightDetalH
+                    } else if self.dragDirection == .right {
+                        centerX = centerX + leftDetalX
+                        centerH = centerH - leftDetalH
+                    }
+                    let centerY = (scrollViewH - centerH) * 0.5
+                    lab.frame = CGRect(x: centerX, y: centerY, width: centerW, height: centerH)
+                } else if lab.tag == 2 { // 右边视图
+                    let rightSmallW = screenW - margin * 2.0
+                    var rightSmallH = self.rightSmallH
+                    var rightSmallX = screenW*2.0 - self.rightViewHeader
+                    var rightSmallY = self.rightTotalDetalH * 0.5
+                    if self.dragDirection == .right {
+                        rightSmallX = rightSmallX + rightDetalX
+                        rightSmallH = rightSmallH + rightDetalH
+                        rightSmallY = (scrollViewH - rightSmallH) * 0.5
+                    }
+                    lab.frame = CGRect(x: rightSmallX, y: rightSmallY, width: rightSmallW, height: rightSmallH)
+                }
+            }
+        }
+    }
     //MARK: 重置view的frame
     fileprivate func resetFrameForSubViews() {
-        let smallW = screenW - margin * 2.0
-        let smallY = self.totalDetalH * 0.5
+        
         self.scrollView.subviews.forEach { (view) in
             if let lab = view as? UILabel {
                 if lab.tag == 0 {
-                    let smallX = margin*2 + 5.0
-                    lab.frame = CGRect(x: smallX, y: smallY, width: smallW, height: self.smallH)
+                    let leftSmallW = screenW - margin * 2.0
+                    let leftSmallX = margin*2 + self.leftViewFooter
+                    let leftSmallY = self.leftTotalDetalH * 0.5
+                    lab.frame = CGRect(x: leftSmallX, y: leftSmallY, width: leftSmallW, height: self.leftSmallH)
                 } else if lab.tag == 1 {
-                    let normalX = screenW + margin
-                    lab.frame = CGRect(x: normalX, y: 0.0, width: smallW, height: scrollViewH)
+                    let centerX = screenW + margin
+                    let centerW = screenW - margin * 2.0
+                    lab.frame = CGRect(x: centerX, y: 0.0, width: centerW, height: scrollViewH)
                 } else if lab.tag == 2 {
-                    let smallX = screenW*2.0 - 5.0
-                    lab.frame = CGRect(x: smallX, y: smallY, width: smallW, height: self.smallH)
+                    let rightSmallW = screenW - margin * 2.0
+                    let rightSmallX = screenW*2.0 - self.rightViewHeader
+                    let rightSmallY = self.rightTotalDetalH * 0.5
+                    lab.frame = CGRect(x: rightSmallX, y: rightSmallY, width: rightSmallW, height: self.rightSmallH)
                 }
             }
         }
@@ -224,7 +262,8 @@ class CQCycleController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.contentWidth = screenW * 3.0
-        self.totalDetalH = scrollViewH - self.smallH
+        self.leftTotalDetalH = scrollViewH - self.leftSmallH
+        self.rightTotalDetalH = scrollViewH - self.rightSmallH
         self.view.addSubview(self.scrollView)
         for i in 0..<3 {
             let view = UILabel()
@@ -237,7 +276,6 @@ class CQCycleController: UIViewController, UIScrollViewDelegate {
         
         scrollView.setContentOffset(CGPoint(x: screenW, y: 0.0), animated: false)
         self.resetFrameForSubViews()
-//        self.changeFrameForSubViews(0.0, 0.0)
     }
    
     
