@@ -11,6 +11,8 @@
 		2422068727043E1500350DF0 /* CQGridLockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422068627043E1500350DF0 /* CQGridLockManager.swift */; };
 		2426241627EABED500AEC968 /* CQCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2426241527EABED500AEC968 /* CQCycleView.swift */; };
 		2426242C27EAFD0100AEC968 /* UIImage+CQExtern.m in Sources */ = {isa = PBXBuildFile; fileRef = 2426242B27EAFD0100AEC968 /* UIImage+CQExtern.m */; };
+		2427846B28290B83003F4354 /* CQLoadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2427846A28290B83003F4354 /* CQLoadingController.swift */; };
+		2427846D28290C9D003F4354 /* CQLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2427846C28290C9D003F4354 /* CQLoadingView.swift */; };
 		242CE798243C27ED00DF059D /* CQError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242CE793243C27ED00DF059D /* CQError.swift */; };
 		242CE799243C27ED00DF059D /* CQModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242CE794243C27ED00DF059D /* CQModelManager.swift */; };
 		242CE79A243C27ED00DF059D /* CQConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242CE795243C27ED00DF059D /* CQConstant.swift */; };
@@ -99,6 +101,8 @@
 		2426242027EAFC3900AEC968 /* header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = header.h; sourceTree = "<group>"; };
 		2426242A27EAFD0100AEC968 /* UIImage+CQExtern.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+CQExtern.h"; sourceTree = "<group>"; };
 		2426242B27EAFD0100AEC968 /* UIImage+CQExtern.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CQExtern.m"; sourceTree = "<group>"; };
+		2427846A28290B83003F4354 /* CQLoadingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQLoadingController.swift; sourceTree = "<group>"; };
+		2427846C28290C9D003F4354 /* CQLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQLoadingView.swift; sourceTree = "<group>"; };
 		242CE793243C27ED00DF059D /* CQError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQError.swift; sourceTree = "<group>"; };
 		242CE794243C27ED00DF059D /* CQModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQModelManager.swift; sourceTree = "<group>"; };
 		242CE795243C27ED00DF059D /* CQConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQConstant.swift; sourceTree = "<group>"; };
@@ -204,6 +208,28 @@
 				2422067E2704120600350DF0 /* CQView+Extension.swift */,
 			);
 			path = CQExtension;
+			sourceTree = "<group>";
+		};
+		2427846828290AA5003F4354 /* CQMain */ = {
+			isa = PBXGroup;
+			children = (
+				2426242027EAFC3900AEC968 /* header.h */,
+				34744DF822EDEA9D007F52DC /* AppDelegate.swift */,
+				3404B880230C1ACB004CFA91 /* CQMainNavController.swift */,
+				3404B882230C2663004CFA91 /* CQMainController.swift */,
+				34C1A3B2231658250079A935 /* CQMainHeaderView.swift */,
+				3404B884230C29A9004CFA91 /* CQMainCell.swift */,
+			);
+			path = CQMain;
+			sourceTree = "<group>";
+		};
+		2427846928290B68003F4354 /* CQLoading */ = {
+			isa = PBXGroup;
+			children = (
+				2427846A28290B83003F4354 /* CQLoadingController.swift */,
+				2427846C28290C9D003F4354 /* CQLoadingView.swift */,
+			);
+			path = CQLoading;
 			sourceTree = "<group>";
 		};
 		242CE792243C27ED00DF059D /* CQBase */ = {
@@ -414,18 +440,14 @@
 		34744DF722EDEA9D007F52DC /* CQSwift */ = {
 			isa = PBXGroup;
 			children = (
+				2427846928290B68003F4354 /* CQLoading */,
 				242F364F27166CC7006562BF /* CQJSHandle */,
 				2422067D2704117600350DF0 /* CQExtension */,
 				24356954270307F50015C447 /* CQGridLock */,
 				34C1A3B4231659780079A935 /* CQCustomView */,
 				3412C44E230D2EAD0048A095 /* CQCollectionView */,
 				3404E6CB2311136200014104 /* CQTableView */,
-				34744DF822EDEA9D007F52DC /* AppDelegate.swift */,
-				2426242027EAFC3900AEC968 /* header.h */,
-				3404B880230C1ACB004CFA91 /* CQMainNavController.swift */,
-				3404B882230C2663004CFA91 /* CQMainController.swift */,
-				34C1A3B2231658250079A935 /* CQMainHeaderView.swift */,
-				3404B884230C29A9004CFA91 /* CQMainCell.swift */,
+				2427846828290AA5003F4354 /* CQMain */,
 				34744DFC22EDEA9D007F52DC /* Main.storyboard */,
 				34744DFF22EDEA9F007F52DC /* Assets.xcassets */,
 				34744E0122EDEA9F007F52DC /* LaunchScreen.storyboard */,
@@ -685,9 +707,11 @@
 				342C1C15235949AA0058E583 /* CQMetalFirstController.swift in Sources */,
 				242CE798243C27ED00DF059D /* CQError.swift in Sources */,
 				342C1C1923594DA40058E583 /* CQMetalSecondController.swift in Sources */,
+				2427846B28290B83003F4354 /* CQLoadingController.swift in Sources */,
 				244DA61624470619008B3B57 /* CQMoreEditContentView.swift in Sources */,
 				244DA61824470619008B3B57 /* CQMoreCell.swift in Sources */,
 				3412C462230D44380048A095 /* UIView+CQExtension.swift in Sources */,
+				2427846D28290C9D003F4354 /* CQLoadingView.swift in Sources */,
 				2435696327030CAA0015C447 /* CQGridLockView.swift in Sources */,
 				3404B885230C29A9004CFA91 /* CQMainCell.swift in Sources */,
 				24CD3AB5243EBEA100BB4D10 /* CQCoreDataTool.swift in Sources */,
@@ -909,7 +933,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ccb.leye.test3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = wild;
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/CQSwift/header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/CQSwift/CQMain/header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -933,7 +957,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ccb.leye.test3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = wild;
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/CQSwift/header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/CQSwift/CQMain/header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

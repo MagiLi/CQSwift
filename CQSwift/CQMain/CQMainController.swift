@@ -33,14 +33,12 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     lazy var dataAray : [NSArray] = {
         () -> [NSArray] in
-        return [["collectionView", "tableView"],["九宫格手势解锁"],["JS交互"]]
+        return [["collectionView", "tableView"],["九宫格手势解锁"],["JS交互"],["Loading"]]
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        self.view.backgroundColor = UIColor.cyan
         tableView = UITableView.init(frame: self.view.bounds, style: UITableView.Style.plain)
         tableView?.delegate = self
         tableView?.dataSource = self
@@ -92,6 +90,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
         print(sortArray) //[2, 3, 5, 6, 7]
 
     }
+    //MARK: UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.dataAray.count
     }
@@ -120,13 +119,13 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50.0
+        return 15.0
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.0
+        return 0.0001
     }
 
-    
+    //MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 //        let url = URL(string: "other:")
@@ -147,26 +146,23 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let tableViewVC = CQTableViewController()
                 self.navigationController?.pushViewController(tableViewVC, animated: true)
             }
-            break
         case 1:
             if indexPath.row == 0 {
                 let gridLockVC = CQGridLockController()
                 self.navigationController?.pushViewController(gridLockVC, animated: true)
             }
-            
-            break
         case 2:
             let vc = CQWebViewController()
             self.navigationController?.pushViewController(vc, animated: true)
-            break
+        case 3:
+            let vc = CQLoadingController()
+            self.navigationController?.pushViewController(vc, animated: true)
         default:
             break
         }
-        
-        
-        
     }
     
+    //MARK: viewDidLayoutSubviews
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView?.frame = self.view.bounds
