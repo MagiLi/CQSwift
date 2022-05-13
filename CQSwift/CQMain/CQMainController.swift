@@ -38,7 +38,9 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //self.floatHanler()
+        
+        
         tableView = UITableView.init(frame: self.view.bounds, style: UITableView.Style.plain)
         tableView?.delegate = self
         tableView?.dataSource = self
@@ -52,7 +54,39 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
 //            self.testError()
 //        }
     }
+    //MARK: 精度计算不准确处理
+    func floatHanler() {
+        let value1 = "12300.02"
+        let value2 = "20230"
+        let faloat1 = Float(value1) ?? 0.0
+        let faloat2 = Float(value2) ?? 0.0
+        print("faloat1: \(faloat1) \n \(value2)")
+        let faloat1String = String(format: "%.2f", faloat1)
+        let faloat2String = String(format: "%.2f", faloat2)
+        print("faloat1String: \(faloat1String) \n \(faloat2String)")
+        
+        let detal1 = faloat2 - faloat1
+        let detal2 = CGFloat(faloat2) - CGFloat(faloat1)
+        print("detal1: \(detal1) \n detal2: \(detal2)")
+        /**
+         初始化方法
+         @param roundingMode 舍入方式
+         @param scale 小数点后舍入值的位数
+         @param exact 精度错误处理
+         @param overflow 溢出错误处理
+         @param underflow 下溢错误处理
+         @param divideByZero 除以0的错误处理
+         @return NSDecimalNumberHandler对象
+   
+         */
 
+        let smallQuotaDecimal = NSDecimalNumber.init(string: value1)
+        let bigQuotaDecimal = NSDecimalNumber.init(string: value2)
+//        let handle = NSDecimalNumberHandler.init(roundingMode: .plain, scale: 2, raiseOnExactness: false, raiseOnOverflow: true, raiseOnUnderflow: true, raiseOnDivideByZero: true)
+//        let loanBalanceQuota = bigQuotaDecimal.subtracting(smallQuotaDecimal, withBehavior: handle)
+        let loanBalanceQuota = bigQuotaDecimal.subtracting(smallQuotaDecimal)
+        print("\(loanBalanceQuota.doubleValue)")
+    }
     func testError() {
         var error = PHError("你刷的")
         error.code = "1001"
