@@ -11,9 +11,6 @@ import UIKit
 @available(iOS 11.0, *)
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    //？作为命名类型Optional的简写.
-    //强制解析可选值，使用感叹号（!）：
-    //使用感叹号（!）替换问号（?）。这样可选变量在使用时就不需要再加一个感叹号（!）来获取值，它会自动解析。
     var window: UIWindow?
     var mainNavVC : CQMainNavController!
     

@@ -33,7 +33,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     lazy var dataAray : [NSArray] = {
         () -> [NSArray] in
-        return [["collectionView", "tableView"],["九宫格手势解锁"],["JS交互"],["Loading"]]
+        return [["collectionView", "tableView", "tableView嵌套"],["九宫格手势解锁"],["JS交互"],["Loading"]]
     }()
     
     override func viewDidLoad() {
@@ -145,6 +145,10 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
             } else if indexPath.row == 1 {
                 let tableViewVC = CQTableViewController()
                 self.navigationController?.pushViewController(tableViewVC, animated: true)
+            } else if indexPath.row == 2 {
+                let nestedVC = CQNestedTableVC()
+                self.navigationController?.pushViewController(nestedVC, animated: true)
+
             }
         case 1:
             if indexPath.row == 0 {
