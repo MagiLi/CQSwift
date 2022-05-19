@@ -10,30 +10,119 @@ import UIKit
 
 class CQNestedMainTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, CQNestedCellDelegate {
     
-    var canScroll = true
+    let navH:CGFloat = 64.0
+    let headerH:CGFloat = 30.0
+    
+    var subPosition:CQNSubTableViewPosition = .top
     var nestedCell:CQNestedCell?
     
+    var lastContentOffsetY:CGFloat = 0.0
+    
     //MARK: CQNestedCellDelegate
-    func mainTableViewCanScroll() {
-        self.canScroll = true
+    func subTableViewPosition(_ position: CQNSubTableViewPosition) {
+        self.subPosition = position
+    }
+    func reloadNestedCell() {
+        self.reloadData()
+        //self.reloadSections([1], animationStyle: .none)
     }
     
     //MARK: UIScrollViewDelegate
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.lastContentOffsetY = scrollView.contentOffset.y
+    }
+    // 主tableView的滚动
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let rect = self.rectForHeader(inSection: 1)
-        if scrollView.contentOffset.y >= rect.origin.y - 64.0 {
-            scrollView.contentOffset = CGPoint(x: 0.0, y: rect.origin.y)
-            self.canScroll = false
-            self.nestedCell?.cellCanScroll = true
-        } else {
-            if !self.canScroll {
-                scrollView.contentOffset = CGPoint(x: 0.0, y: rect.origin.y)
+        let rect1 = self.rectForHeader(inSection: 1)
+        let rect2 = self.rectForHeader(inSection: 2)
+        // section1 是否到了顶部 true:越过了顶部 false:还未到顶部
+        let overTop = scrollView.contentOffset.y >= rect1.origin.y - navH
+        // section2 是否到了底部 true:越过了底部 false:还未到底部
+        let height = scrollView.bounds.height
+        let overBottom = scrollView.contentOffset.y > rect2.origin.y - height
+        if scrollView.contentOffset.y < self.lastContentOffsetY { // 向上滑动↑↑↑
+            print("向上")
+            if overBottom { // section2 越过了底部
+                print("section2 越过了底部")
+                self.nestedCell?.canScoll = false
+            } else { // section2 还未到底部
+                print("section2 还未到底部")
+                if overTop { // section1 越过了顶部
+                    print("section1 越过了顶部")
+                    if self.subPosition == .top {
+                        print("top")
+                        self.nestedCell?.canScoll = false
+                    } else if self.subPosition == .bottom {
+                        print("bottom")
+                        self.nestedCell?.canScoll = true
+                        scrollView.contentOffset = CGPoint(x: 0.0, y: rect1.origin.y - navH)
+                    } else if self.subPosition == .between {
+                        print("between")
+                        self.nestedCell?.canScoll = true
+                        scrollView.contentOffset = CGPoint(x: 0.0, y: rect1.origin.y - navH)
+                    }
+                } else {  // section1 还未到顶部
+                    print("section1 还未到顶部")
+                    if self.subPosition == .top {
+                        print("top")
+                        self.nestedCell?.canScoll = false
+                    } else if self.subPosition == .bottom {
+                        print("bottom")
+                        self.nestedCell?.canScoll = true
+                        scrollView.contentOffset = CGPoint(x: 0.0, y: rect1.origin.y - navH)
+                    } else if self.subPosition == .between {
+                        print("between")
+                        self.nestedCell?.canScoll = true
+                        scrollView.contentOffset = CGPoint(x: 0.0, y: rect1.origin.y - navH)
+                    }
+                }
+            }
+        } else if (scrollView.contentOffset.y > self.lastContentOffsetY ) { // 向下滑动 ↓↓↓
+            print("向下")
+            if overTop { // section1 越过了顶部
+                print("section1 越过了顶部")
+                if overBottom { // section2 越过了底部
+                    print("section2 越过了底部")
+                    if self.subPosition == .top {
+                        print("top")
+                        self.nestedCell?.canScoll = true
+                        scrollView.contentOffset = CGPoint(x: 0.0, y: rect1.origin.y - navH)
+                    } else if self.subPosition == .bottom {
+                        print("bottom")
+                        self.nestedCell?.canScoll = false
+                    } else if self.subPosition == .between {
+                        print("between")
+                        self.nestedCell?.canScoll = true
+                        scrollView.contentOffset = CGPoint(x: 0.0, y: rect1.origin.y - navH)
+                    }
+                } else { // section2 还未到底部
+                    print("section2 还未到底部")
+                    if self.subPosition == .top {
+                        print("top")
+                        self.nestedCell?.canScoll = true
+                        scrollView.contentOffset = CGPoint(x: 0.0, y: rect1.origin.y - navH)
+                    } else if self.subPosition == .bottom {
+                        print("bottom")
+                        self.nestedCell?.canScoll = false
+                    } else if self.subPosition == .between {
+                        print("between")
+                        self.nestedCell?.canScoll = true
+                        scrollView.contentOffset = CGPoint(x: 0.0, y: rect1.origin.y - navH)
+                    }
+                }
+            } else { // section1 还未到顶部
+                print("section1 还未到顶部")
+                self.nestedCell?.canScoll = false
             }
         }
+        self.lastContentOffsetY = scrollView.contentOffset.y
     }
+    
+//    scrollview
+    
     //MARK: UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,8 +140,14 @@ class CQNestedMainTableView: UITableView, UITableViewDelegate, UITableViewDataSo
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CQNestedCellID", for: indexPath) as! CQNestedCell
+            cell.indexPath = indexPath
             cell.delegate = self
             self.nestedCell = cell
+            return cell
+        } else if indexPath.section == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCellID", for: indexPath)
+            cell.contentView.backgroundColor = .white
+            cell.textLabel?.text = "第\(indexPath.section)组：第\(indexPath.row)行"
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCellID", for: indexPath)
@@ -64,7 +159,11 @@ class CQNestedMainTableView: UITableView, UITableViewDelegate, UITableViewDataSo
         if indexPath.section == 0 {
             return 50.0
         } else if indexPath.section == 1 {
-            return tableView.frame.height
+            let maxHeight = tableView.frame.height - navH - headerH
+            return CQNestedManager.shared.calculateSubTableViewHeight(maxHeight)
+            //return tableView.frame.height - navH - headerH
+        } else if indexPath.section == 2 {
+            return 50.0
         }
         return 50.0
     }
@@ -76,7 +175,7 @@ class CQNestedMainTableView: UITableView, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30.0
+        return headerH
     }
     
     //MARK: UITableViewDelegate
@@ -86,7 +185,7 @@ class CQNestedMainTableView: UITableView, UITableViewDelegate, UITableViewDataSo
     
     //MARK: UIGestureRecognizerDelegate
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        
+      
         if let view = otherGestureRecognizer.view, view.isKind(of: CQNestedScrollView.self) {
             return false
         }

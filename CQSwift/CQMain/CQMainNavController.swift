@@ -26,7 +26,8 @@ class CQMainNavController: UINavigationController {
             let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground()
             appearance.titleTextAttributes  = [.font:UIFont.systemFont(ofSize: 18.0), .foregroundColor:UIColor.white]
-            appearance.backgroundColor = navBarTintColor
+            //appearance.backgroundColor = navBarTintColor
+            appearance.backgroundColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.3)
             //appearance.shadowColor = .clear
             appearance.backgroundImageContentMode = .scaleToFill
             self.navigationBar.standardAppearance = appearance

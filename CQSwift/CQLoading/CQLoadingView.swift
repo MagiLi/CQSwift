@@ -25,8 +25,8 @@ class CQLoadingView: UIView {
     fileprivate var duration_suspend_2:CGFloat = 0.14 // 暂停的时间
     fileprivate var duration_suspend_5:CGFloat = 0.28 // 暂停的时间
     // 每种状态旋转的角度
-    fileprivate var angle_onlyRoate_0:CGFloat = .pi * 2.0 * 0.27
-    fileprivate var angle_narrow_1:CGFloat = .pi * 2.0 * 0.32
+    fileprivate var angle_onlyRoate_0:CGFloat = .pi * 2.0 * 0.32
+    fileprivate var angle_narrow_1:CGFloat = .pi * 2.0 * 0.27
     fileprivate var angle_enlarge_3:CGFloat = .pi * 2.0 * 0.27
     fileprivate var angle_onlyRoate_4:CGFloat = .pi * 2.0 * 0.14
     

@@ -37,6 +37,7 @@
 		2477F22427BE1A3A00218542 /* CQCycleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2477F22327BE1A3A00218542 /* CQCycleController.swift */; };
 		247847DA2448476B00229463 /* CQTopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247847D92448476B00229463 /* CQTopViewModel.swift */; };
 		247847DC244850A500229463 /* CQMoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247847DB244850A500229463 /* CQMoreViewModel.swift */; };
+		24903A3728362E8200F5EC98 /* CQNestedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24903A3628362E8200F5EC98 /* CQNestedManager.swift */; };
 		2492FD46244D6FAD00957345 /* CQMainNavController+CQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2492FD45244D6FAD00957345 /* CQMainNavController+CQExtension.swift */; };
 		24CD3AB5243EBEA100BB4D10 /* CQCoreDataTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CD3AB4243EBEA100BB4D10 /* CQCoreDataTool.swift */; };
 		24CD3AC0243EC8A900BB4D10 /* CQSwiftData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24CD3ABE243EC8A900BB4D10 /* CQSwiftData.xcdatamodeld */; };
@@ -133,6 +134,7 @@
 		2477F22327BE1A3A00218542 /* CQCycleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCycleController.swift; sourceTree = "<group>"; };
 		247847D92448476B00229463 /* CQTopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQTopViewModel.swift; sourceTree = "<group>"; };
 		247847DB244850A500229463 /* CQMoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMoreViewModel.swift; sourceTree = "<group>"; };
+		24903A3628362E8200F5EC98 /* CQNestedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQNestedManager.swift; sourceTree = "<group>"; };
 		2492FD45244D6FAD00957345 /* CQMainNavController+CQExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CQMainNavController+CQExtension.swift"; sourceTree = "<group>"; };
 		24CD3AB4243EBEA100BB4D10 /* CQCoreDataTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCoreDataTool.swift; sourceTree = "<group>"; };
 		24CD3ABF243EC8A900BB4D10 /* CQSwiftData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CQSwiftData.xcdatamodel; sourceTree = "<group>"; };
@@ -515,6 +517,7 @@
 				34DD4541283532C1001D6177 /* CQNestedCell.swift */,
 				34DD454328353522001D6177 /* CQNestedScrollView.swift */,
 				34DD454528353789001D6177 /* CQNestedSubTableView.swift */,
+				24903A3628362E8200F5EC98 /* CQNestedManager.swift */,
 			);
 			path = CQNestedTableView;
 			sourceTree = "<group>";
@@ -713,6 +716,7 @@
 			files = (
 				2422068727043E1500350DF0 /* CQGridLockManager.swift in Sources */,
 				2426241627EABED500AEC968 /* CQCycleView.swift in Sources */,
+				24903A3728362E8200F5EC98 /* CQNestedManager.swift in Sources */,
 				244DA61C24470619008B3B57 /* CQAppsController.swift in Sources */,
 				24F949B224F4AFBB006CC572 /* CQGridRender.swift in Sources */,
 				34DD454628353789001D6177 /* CQNestedSubTableView.swift in Sources */,
