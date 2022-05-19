@@ -33,6 +33,8 @@ class CQNestedMainTableView: UITableView, UITableViewDelegate, UITableViewDataSo
     }
     // 主tableView的滚动
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if CQNestedManager.shared.hiddenSubTableViewScroll { return }
+        
         let rect1 = self.rectForHeader(inSection: 1)
         let rect2 = self.rectForHeader(inSection: 2)
         // section1 是否到了顶部 true:越过了顶部 false:还未到顶部
@@ -114,11 +116,12 @@ class CQNestedMainTableView: UITableView, UITableViewDelegate, UITableViewDataSo
                 print("section1 还未到顶部")
                 self.nestedCell?.canScoll = false
             }
+        } else {
+            print("----no-----")
         }
         self.lastContentOffsetY = scrollView.contentOffset.y
     }
-    
-//    scrollview
+//    scr
     
     //MARK: UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {

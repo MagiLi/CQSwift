@@ -20,14 +20,16 @@ class CQNestedManager: NSObject {
     let tag4Count = 30
     let subTableViewRowHeight:CGFloat = 30.0 // 子TableView的行高
     var currentTableViewIndex = 0 // 当前展示的子TableView
-    
+    var hiddenSubTableViewScroll = false
     //MARK: 计算子TableView的高度
     func calculateSubTableViewHeight(_ maxHeight:CGFloat) -> CGFloat {
         let count = self.numberOfRows(self.currentTableViewIndex)
         let height = CGFloat(count) * subTableViewRowHeight
-        if height > maxHeight {
+        if height >= maxHeight {
+            self.hiddenSubTableViewScroll = false
             return maxHeight
         } else {
+            self.hiddenSubTableViewScroll = true
             return height
         }
     }

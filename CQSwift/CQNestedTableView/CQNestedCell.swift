@@ -41,10 +41,16 @@ class CQNestedCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource 
     }
     
     fileprivate func nestedTableViewScroll(_ tableView:CQNestedSubTableView) {
+        if CQNestedManager.shared.hiddenSubTableViewScroll {
+            tableView.contentOffset = .zero
+            return
+        }
         if !self.canScoll { // 不能滚动
             if self.position == .top {
+                print("nested: top")
                 tableView.contentOffset = .zero
             } else if self.position == .bottom {
+                print("nested: bottom")
                 let height = tableView.frame.size.height
                 let contentSizeH = tableView.contentSize.height
                 let offsetY = contentSizeH - height
@@ -54,11 +60,12 @@ class CQNestedCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource 
                     // 此时不能给contentOffset赋值
                 }
             } else {
-                
+                print("nested: between")
             }
         }
         let offsetY = tableView.contentOffset.y
         if offsetY <= 0 { // 滚动到顶部
+            print("position: top")
             tableView.contentOffset = .zero
             self.position = .top
             self.delegate?.subTableViewPosition(.top)
@@ -66,7 +73,7 @@ class CQNestedCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource 
             let contentSizeH = tableView.contentSize.height
             let height = tableView.frame.size.height
             if contentSizeH <= height + offsetY { // 滚动到底部
-
+                print("position: bottom")
                 let offsetY = contentSizeH - height
                 if offsetY > 0.0 {
                     tableView.contentOffset = CGPoint(x: 0.0, y: offsetY)
@@ -77,6 +84,7 @@ class CQNestedCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource 
                 self.position = .bottom
                 self.delegate?.subTableViewPosition(.bottom)
             } else {
+                print("position: between")
                 self.position = .between
                 self.delegate?.subTableViewPosition(.between)
             }
