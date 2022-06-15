@@ -78,6 +78,21 @@ class CQContactManager: NSObject, CNContactPickerDelegate {
         }
         
     }
+    func queryContact(name:String) -> [CNContact]? {
+        let store = CNContactStore()
+        //检索条件
+        let predicate = CNContact.predicateForContacts(matchingName: name)
+        let formatter = CNContactFormatter.descriptorForRequiredKeys(for: .fullName)
+        let des:[CNKeyDescriptor] = [formatter]
+        do {
+            let contacts = try store.unifiedContacts(matching: predicate, keysToFetch: des)
+            
+            return contacts
+        } catch {
+           return nil
+        }
+    }
+    
     //MARK: 展示联系统系人页面
     func showContacts(vc:UIViewController) {
         let store = CNContactStore()
