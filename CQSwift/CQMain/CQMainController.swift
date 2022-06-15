@@ -40,11 +40,10 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
         super.viewDidLoad()
         //self.floatHanler()
         
-        
-        tableView = UITableView.init(frame: self.view.bounds, style: UITableView.Style.plain)
+        tableView = UITableView.init(frame: self.view.bounds, style: .grouped)
         tableView?.delegate = self
         tableView?.dataSource = self
-        tableView?.separatorStyle = UITableViewCell.SeparatorStyle.none
+        tableView?.separatorStyle =  .none
         tableView?.register(CQMainCell.self, forCellReuseIdentifier: "CQMainCellID")
         tableView?.register(CQMainHeaderView.self, forHeaderFooterViewReuseIdentifier: "CQMainHeaderID")
         self.view.addSubview(tableView!)
@@ -53,6 +52,15 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
 //        DispatchQueue.main.async {
 //            self.testError()
 //        }
+        self.testArray()
+    }
+    
+    func testArray() {
+        let obj = 5
+        var array = [10, 30]
+        array.insert(obj, at: 2)
+        print("--------")
+        print(array)
     }
     //MARK: 精度计算不准确处理
     func floatHanler() {
@@ -140,23 +148,27 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CQMainHeaderID")
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CQMainHeaderID") as? CQMainHeaderView
             return header
         }
-        return UITableViewHeaderFooterView()
+        return nil
     }
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UITableViewHeaderFooterView()
+        return nil
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50.0
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 15.0
+        if section == 0 {
+            return 50.0
+        } else {
+            return 0.0
+        }
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.0001
+        return 10.0
     }
 
     //MARK: UITableViewDelegate

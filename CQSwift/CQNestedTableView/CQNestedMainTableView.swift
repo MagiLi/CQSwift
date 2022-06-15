@@ -35,6 +35,17 @@ class CQNestedMainTableView: UITableView, UITableViewDelegate, UITableViewDataSo
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if CQNestedManager.shared.hiddenSubTableViewScroll { return }
         
+//        // 滑动方向
+//                let translatedPoint = scrollView.panGestureRecognizer.translation(in: scrollView)
+//                if (translatedPoint.y < 0) {
+//                    self.isDown = false
+//                    NSLog("上滑")
+//                }
+//                if (translatedPoint.y > 0) {
+//                    self.isDown = true
+//                    NSLog("下滑")
+//                }
+        
         let rect1 = self.rectForHeader(inSection: 1)
         let rect2 = self.rectForHeader(inSection: 2)
         // section1 是否到了顶部 true:越过了顶部 false:还未到顶部
@@ -89,6 +100,7 @@ class CQNestedMainTableView: UITableView, UITableViewDelegate, UITableViewDataSo
                         print("top")
                         self.nestedCell?.canScoll = true
                         scrollView.contentOffset = CGPoint(x: 0.0, y: rect1.origin.y - navH)
+//                        self.nestedCell.current
                     } else if self.subPosition == .bottom {
                         print("bottom")
                         self.nestedCell?.canScoll = false
@@ -117,6 +129,7 @@ class CQNestedMainTableView: UITableView, UITableViewDelegate, UITableViewDataSo
                 self.nestedCell?.canScoll = false
             }
         } else {
+            //self.nestedCell?.canScoll = true
             print("----no-----")
         }
         self.lastContentOffsetY = scrollView.contentOffset.y
@@ -194,6 +207,18 @@ class CQNestedMainTableView: UITableView, UITableViewDelegate, UITableViewDataSo
         }
         return true //同时响应多个手势
     }
+//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+//        return false
+//    }
+//    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+//
+//        if let view = super.hitTest(point, with: event) {
+//            print("\(view.self)")
+//            return view
+//        }
+//
+//        return nil
+//    }
     
     //MARK: init
     override init(frame: CGRect, style: UITableView.Style) {

@@ -19,7 +19,16 @@ class CQNestedSubTableView: UITableView {
 //        self.dataSource = self
 //        self.backgroundColor = CQRandomColor
 //        self.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCellID")
+        
     }
+    
+//    override class func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+//        if keyPath == "contentOffset" {
+//            if let scrollV = object as? UIScrollView {
+////                print("observeValue: contentOffset \(scrollV.contentOffset)")
+//            }
+//        }
+//    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

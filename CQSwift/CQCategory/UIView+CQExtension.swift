@@ -7,248 +7,66 @@
 //
 
 import UIKit
-// MARK: - 尺寸frame
+
 extension UIView {
-    
-    /// 上下左右  ///
-    /** 控件底部 */
-    var bottom: CGFloat {
-        get {
-            return self.frame.origin.y + self.frame.size.height
-        }set {
-            var newframe = self.frame;
-            newframe.origin.y = newValue - self.frame.size.height;
-            self.frame = newframe;
+    //MARK:截屏
+    func snapshotFullScreenView() -> UIView {
+        return self.snapshotView(afterScreenUpdates: true) ?? UIView()
+    }
+    func snapshotScreenView() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, 0.0)
+        guard let ctx = UIGraphicsGetCurrentContext() else { return nil }
+        self.layer.render(in: ctx)
+        self.drawHierarchy(in: self.frame, afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext()
+        return image
+    }
+    func snapshotLongView() -> UIImage? {
+        if self.isKind(of: UIScrollView.self) == true {
+            let shadowView = self as! UIScrollView
+            UIGraphicsBeginImageContextWithOptions(shadowView.contentSize, false, 0.0);
+            let saveContentOffset = shadowView.contentOffset// 保存现在视图的位置偏移信息
+            let saveFrame = shadowView.frame// 保存现在视图的frame信息
+            shadowView.contentOffset = CGPoint.zero// 把要截图的视图偏移量设置为0
+            shadowView.frame = CGRect(x: 0.0, y: 0.0, width: shadowView.contentSize.width, height: shadowView.contentSize.height)
+            
+            guard let ctx = UIGraphicsGetCurrentContext() else {return nil}
+            shadowView.layer.render(in: ctx)
+            shadowView.drawHierarchy(in: shadowView.frame, afterScreenUpdates: true)
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            shadowView.contentOffset = saveContentOffset;
+            shadowView.frame = saveFrame;
+            // 保存相册
+//            UIImageWriteToSavedPhotosAlbum(image, NULL, NULL, NULL);
+            return image
+        } else {
+            return self.snapshotScreenView()
         }
     }
-    
-     /** 控件顶部 */
-    var top: CGFloat {
-        get {
-            return self.frame.origin.y
-        }set {
-            var newframe = self.frame;
-            newframe.origin.y = newValue
-            self.frame = newframe;
-        }
+    // 把某个未显示到屏幕上的view绘成图片
+    func drawToImage() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        context.saveGState()
+        layer.render(in: context)
+        context.restoreGState()
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
+        UIGraphicsEndImageContext()
+        return image
     }
     
-    /** 控件左边 */
-    var left: CGFloat {
-        get {
-            return self.frame.origin.x
-        }set {
-            var newframe = self.frame;
-            newframe.origin.x = newValue
-            self.frame = newframe;
-        }
-    }
-    
-    
-    /**  控件右边 */
-    var right: CGFloat! {
-        get {
-            return self.frame.origin.x + self.frame.size.width
-        }set {
-            var newframe = self.frame;
-            newframe.origin.x = newValue - self.frame.size.width
-            self.frame = newframe;
-        }
-    }
-    
-    // ——————————————————————————————————————————————————————————————————
-    
-    
-    /** origin的X */
-    var cq_x: CGFloat! {
-        get {
-            return self.frame.origin.x
-        }
-        set {
-            var tmpFrame : CGRect = frame
-            tmpFrame.origin.x     = newValue
-            frame                 = tmpFrame
-        }
-    }
-    
-    /** origin的Y */
-    var cq_y: CGFloat! {
-        get {
-            return self.frame.origin.y
-        }
-        set {
-            var tmpFrame : CGRect = frame
-            tmpFrame.origin.y     = newValue
-            frame                 = tmpFrame
-        }
-    }
-    
-    /** 中心点的X */
-    var cq_center: CGPoint {
-        get {
-            return center
-        }
-        set {
-            var tmpCenter : CGPoint = center
-            tmpCenter               = newValue
-            center                  = tmpCenter
-        }
-    }
-
-    
-    /** 中心点的X */
-    var cq_centerX: CGFloat! {
-        get {
-            return self.center.x
-        }
-        set {
-            var tmpCenter : CGPoint = center
-            tmpCenter.x             = newValue
-            center                  = tmpCenter
-        }
-    }
-    
-    /** 中心点的Y */
-    var cq_centerY: CGFloat! {
-        get {
-            return self.center.y
-        }
-        set {
-            var tmpCenter : CGPoint = center
-            tmpCenter.y             = newValue
-            center                  = tmpCenter
-        }
-    }
-    
-    /** 控件的宽度 */
-    var cq_width: CGFloat! {
-        get {
-            return self.frame.size.width
-        }
-        set {
-            var tmpFrame : CGRect = frame
-            tmpFrame.size.width   = newValue
-            frame                 = tmpFrame
-        }
-    }
-
-    /** 控件的高度 */
-    var cq_height: CGFloat! {
-        get {
-            return self.frame.size.height
-        }
-        set {
-            var tmpFrame : CGRect = frame
-            tmpFrame.size.height  = newValue
-            frame                 = tmpFrame
-        }
-    }
-    
-    /** 控件的尺寸 */
-    var cq_size: CGSize! {
-        get {
-            return self.frame.size
-        }
-        set {
-            var tmpFrame : CGRect = frame
-            tmpFrame.size         = newValue
-            frame                 = tmpFrame
-        }
-    }
-    
-    /** 控件的origin */
-    var cq_origin: CGPoint! {
-        get {
-        return self.frame.origin
-        }
-        set {
-            var tmpFrame : CGRect = frame
-            tmpFrame.origin       = newValue
-            frame                 = tmpFrame
-        }
-    }
-    
-    var cq_rect: CGRect! {
-        return self.frame
-    }
-    
-    /// MARK: - Layer相关属性方法圆角方法
-    @IBInspectable var cornerRadius: CGFloat {
-        get {
-            return self.layer.cornerRadius
-        } set {
-            layer.cornerRadius = newValue
-            layer.masksToBounds = newValue > 0
-        }
-    }
-    
-    @IBInspectable var borderWidth: CGFloat {
-        get{
-            return self.layer.borderWidth
-        } set {
-            self.layer.borderWidth = newValue
-        }
-    }
-    
-    @IBInspectable var borderColor: UIColor {
-        get{
-            return UIColor(cgColor: self.layer.borderColor!)
-        }set {
-            self.layer.borderColor = newValue.cgColor
-        }
-    }
-    
-    @IBInspectable var shadowOffset: CGSize {
-        get{
-            return self.layer.shadowOffset
-        } set {
-            self.layer.shadowOffset = newValue
-        }
-    }
-    
-    @IBInspectable var shadowColor: UIColor {
-        get{
-            return UIColor(cgColor: self.layer.shadowColor!)
-        } set {
-            self.layer.shadowColor = newValue.cgColor
-        }
-    }
-    
-    @IBInspectable var shadowRadius: CGFloat {
-        get{
-            return self.layer.shadowRadius
-        }set {
-            self.layer.shadowRadius = newValue
-        }
-    }
-    @IBInspectable var shadowOpacity: Float {
-        get{
-            return self.layer.shadowOpacity
-        }set {
-            self.layer.shadowOpacity = newValue
-        }
-    }
-}
-
-// MARK: - 方法
-extension UIView {
-    /**
-     - parameter cornerRadius: 半径
-     */
-    /// 给控件设置添加圆角
+    // 给控件设置添加圆角
     func radiousLayer(cornerRadius: CGFloat)  -> CAShapeLayer{
         let maskPath = UIBezierPath(roundedRect: self.frame, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
-//        let maskPath = UIBezierPath(roundedRect: self.frame, cornerRadius: cornerRadius)
         let maskLayer = CAShapeLayer()
         maskLayer.frame = self.frame;
         maskLayer.path = maskPath.cgPath
         return maskLayer
     }
-    
-    
-    /**
-     *  获取最后一个Window
-     */
+     
+    // 获取最后一个Window
     func lastWindow() -> UIWindow {
         let windows = UIApplication.shared.windows as [UIWindow]
         for window in windows.reversed() {
@@ -291,22 +109,6 @@ extension UIView {
     }
 }
 
-// MARK: - 查找一个视图的所有子视图
-extension UIView {
-    func allSubViewsForView(view: UIView) -> [UIView] {
-        var array = [UIView]()
-        for subView in view.subviews {
-            array.append(subView)
-            if (subView.subviews.count > 0) {
-                // 递归
-                let childView = self.allSubViewsForView(view: subView)
-                array += childView
-            }
-        }
-        return array
-    }
-}
-
 // MARK: - 快速从XIB创建一个View (仅限于XIB中只有一个View的时候)
 extension UIView {
     class func loadViewFromXib1<T>() -> T {
@@ -315,31 +117,3 @@ extension UIView {
         return Bundle.main.loadNibNamed(viewName, owner: nil, options: nil)?.last! as! T
     }
 }
-
-// MARK: - 版本判断
-// _url	NSURL	"app-settings:"	0x7bafc010
-//        if #available(iOS 10.0, *) { // UIApplicationOpenURLOptionsKey
-//            guard let url = URL(string: UIApplicationOpenSettingsURLString)  else {  return  }
-//            if  UIApplication.shared.canOpenURL(url) {
-//                let options = [UIApplicationOpenURLOptionUniversalLinksOnly : true]
-//                UIApplication.shared.open(url, options: options, completionHandler: nil)
-//            }
-//        }
-
-//        if NSFoundationVersionNumber >= NSFoundationVersionNumber10_0 {
-//            guard let url = URL(string: UIApplicationOpenSettingsURLString)  else {  return  }
-//            if  UIApplication.shared.canOpenURL(url) {
-//                UIApplication.shared.openURL(url)
-//                UserDefaults.standard.set("isPushToSystem", forKey: "isPushToSystem")
-//                UserDefaults.standard.synchronize()
-//            }
-//        }else {
-//            guard let url = URL(string: "prefs:root=WIFI") else {  return  }
-//            if UIApplication.shared.canOpenURL(url) {
-//                UIApplication.shared.openURL(url)
-//            }
-//        }
-//
-//if ProcessInfo().isOperatingSystemAtLeast(OperatingSystemVersion(majorVersion: 10, minorVersion: 0, patchVersion: 0)) {
-//    // 代码块
-//}

@@ -18,7 +18,7 @@ class CQNestedManager: NSObject {
     let tag2Count = 50
     let tag3Count = 15
     let tag4Count = 30
-    let subTableViewRowHeight:CGFloat = 30.0 // 子TableView的行高
+    let subTableViewRowHeight:CGFloat = 60.0 // 子TableView的行高
     var currentTableViewIndex = 0 // 当前展示的子TableView
     var hiddenSubTableViewScroll = false
     //MARK: 计算子TableView的高度
