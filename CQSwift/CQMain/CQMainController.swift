@@ -31,10 +31,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var tableView : UITableView?
 
-    lazy var dataAray : [NSArray] = {
-        () -> [NSArray] in
-        return [["collectionView", "tableView", "tableView嵌套"],["九宫格手势解锁"],["JS交互"],["Loading"]]
-    }()
+    fileprivate let dataAray: [[String]] = [["collectionView", "tableView", "tableView嵌套"],["九宫格手势解锁"],["JS交互"],["Loading", "手机通讯录"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -143,7 +140,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CQMainCellID", for: indexPath) as! CQMainCell
-        cell.title = self.dataAray[indexPath.section][indexPath.row] as? NSString
+        cell.title = self.dataAray[indexPath.section][indexPath.row]
         return cell
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -205,8 +202,13 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
             let vc = CQWebViewController()
             self.navigationController?.pushViewController(vc, animated: true)
         case 3:
-            let vc = CQLoadingController()
-            self.navigationController?.pushViewController(vc, animated: true)
+            if indexPath.row == 0 {
+                let vc = CQLoadingController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else if indexPath.row == 1 {
+                let vc = CQContactVC()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         default:
             break
         }

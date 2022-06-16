@@ -10,9 +10,9 @@ import UIKit
 
 class CQMainCell: UITableViewCell {
 
-    public var title: NSString! {
+    public var title: String? {
         didSet{
-            titleLab?.text = title as String?
+            titleLab?.text = title
         }
     }
     
