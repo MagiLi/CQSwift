@@ -31,7 +31,13 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var tableView : UITableView?
 
-    fileprivate let dataAray: [[String]] = [["collectionView", "tableView", "tableView嵌套"],["九宫格手势解锁"],["JS交互"],["Loading", "手机通讯录"]]
+    fileprivate let dataAray: [[String]] = [
+        ["collectionView", "tableView", "tableView嵌套"],
+        ["九宫格手势解锁"],
+        ["JS交互"],
+        ["Loading", "手机通讯录"],
+        ["渐变"]
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -209,6 +215,9 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let vc = CQContactVC()
                 self.navigationController?.pushViewController(vc, animated: true)
             }
+        case 4:
+            let vc = CQGradientController()
+            self.navigationController?.pushViewController(vc, animated: true)
         default:
             break
         }

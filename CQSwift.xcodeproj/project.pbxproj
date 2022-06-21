@@ -41,6 +41,9 @@
 		2477F22427BE1A3A00218542 /* CQCycleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2477F22327BE1A3A00218542 /* CQCycleController.swift */; };
 		247847DA2448476B00229463 /* CQTopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247847D92448476B00229463 /* CQTopViewModel.swift */; };
 		247847DC244850A500229463 /* CQMoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247847DB244850A500229463 /* CQMoreViewModel.swift */; };
+		2489F70F2861AC600085C076 /* CQGradientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489F70E2861AC600085C076 /* CQGradientController.swift */; };
+		2489F7112861AC780085C076 /* CQGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489F7102861AC780085C076 /* CQGradientView.swift */; };
+		2489F7132861AF040085C076 /* CQGradientView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489F7122861AF040085C076 /* CQGradientView1.swift */; };
 		24903A3728362E8200F5EC98 /* CQNestedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24903A3628362E8200F5EC98 /* CQNestedManager.swift */; };
 		2492FD46244D6FAD00957345 /* CQMainNavController+CQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2492FD45244D6FAD00957345 /* CQMainNavController+CQExtension.swift */; };
 		24CD3AB5243EBEA100BB4D10 /* CQCoreDataTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CD3AB4243EBEA100BB4D10 /* CQCoreDataTool.swift */; };
@@ -145,6 +148,9 @@
 		2477F22327BE1A3A00218542 /* CQCycleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCycleController.swift; sourceTree = "<group>"; };
 		247847D92448476B00229463 /* CQTopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQTopViewModel.swift; sourceTree = "<group>"; };
 		247847DB244850A500229463 /* CQMoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMoreViewModel.swift; sourceTree = "<group>"; };
+		2489F70E2861AC600085C076 /* CQGradientController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGradientController.swift; sourceTree = "<group>"; };
+		2489F7102861AC780085C076 /* CQGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGradientView.swift; sourceTree = "<group>"; };
+		2489F7122861AF040085C076 /* CQGradientView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGradientView1.swift; sourceTree = "<group>"; };
 		24903A3628362E8200F5EC98 /* CQNestedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQNestedManager.swift; sourceTree = "<group>"; };
 		2492FD45244D6FAD00957345 /* CQMainNavController+CQExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CQMainNavController+CQExtension.swift"; sourceTree = "<group>"; };
 		24CD3AB4243EBEA100BB4D10 /* CQCoreDataTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCoreDataTool.swift; sourceTree = "<group>"; };
@@ -345,6 +351,16 @@
 			path = CQCycle;
 			sourceTree = "<group>";
 		};
+		2489F70D2861AC440085C076 /* CQGradient */ = {
+			isa = PBXGroup;
+			children = (
+				2489F70E2861AC600085C076 /* CQGradientController.swift */,
+				2489F7102861AC780085C076 /* CQGradientView.swift */,
+				2489F7122861AF040085C076 /* CQGradientView1.swift */,
+			);
+			path = CQGradient;
+			sourceTree = "<group>";
+		};
 		24CD3AB0243EBE8200BB4D10 /* CQCoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -482,6 +498,7 @@
 		34744DF722EDEA9D007F52DC /* CQSwift */ = {
 			isa = PBXGroup;
 			children = (
+				2489F70D2861AC440085C076 /* CQGradient */,
 				24EC108E2859DAB0002EE703 /* CQContact */,
 				34DD453A283528AE001D6177 /* CQNestedTableView */,
 				2427846928290B68003F4354 /* CQLoading */,
@@ -770,6 +787,7 @@
 				342C1C15235949AA0058E583 /* CQMetalFirstController.swift in Sources */,
 				242CE798243C27ED00DF059D /* CQError.swift in Sources */,
 				342C1C1923594DA40058E583 /* CQMetalSecondController.swift in Sources */,
+				2489F70F2861AC600085C076 /* CQGradientController.swift in Sources */,
 				2427846B28290B83003F4354 /* CQLoadingController.swift in Sources */,
 				244DA61624470619008B3B57 /* CQMoreEditContentView.swift in Sources */,
 				244DA61824470619008B3B57 /* CQMoreCell.swift in Sources */,
@@ -792,6 +810,7 @@
 				24EC10902859DAD3002EE703 /* CQContactListViewModel.swift in Sources */,
 				2422067F2704120600350DF0 /* CQView+Extension.swift in Sources */,
 				2458AB78285B215B0078A53F /* CQContactNewViewModel.swift in Sources */,
+				2489F7132861AF040085C076 /* CQGradientView1.swift in Sources */,
 				247847DA2448476B00229463 /* CQTopViewModel.swift in Sources */,
 				34ECF8C62335BDA800DDF8BD /* CQRXSwiftUIObserverableVC.swift in Sources */,
 				3412C452230D2F400048A095 /* CQCollectionViewCell.swift in Sources */,
@@ -813,6 +832,7 @@
 				34C1A3B62316598F0079A935 /* CQWaveView.swift in Sources */,
 				3404E6CF231117CE00014104 /* CQTableViewModel.swift in Sources */,
 				34DD454428353522001D6177 /* CQNestedScrollView.swift in Sources */,
+				2489F7112861AC780085C076 /* CQGradientView.swift in Sources */,
 				24DE5C9528582D68009512F5 /* UIImage+Extern.swift in Sources */,
 				34C1A3B3231658250079A935 /* CQMainHeaderView.swift in Sources */,
 				2458AB72285AC3FA0078A53F /* CQContactVC.swift in Sources */,
