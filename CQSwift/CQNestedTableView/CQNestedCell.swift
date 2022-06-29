@@ -26,7 +26,17 @@ class CQNestedCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource 
     var tableViewArray = [CQNestedSubTableView]()
     let tableViewCount = 4
     
-    var canScoll = false
+    var canScoll:Bool = false  {
+        didSet {
+            if self.canScoll { return }
+            if self.canScoll == oldValue { return }
+            self.tableViewArray.enumerated().forEach { offset, tableView in
+                if offset != CQNestedManager.shared.currentTableViewIndex {
+                    tableView.contentOffset = .zero
+                }
+            }
+        }
+    }
     var position:CQNSubTableViewPosition = .top
     
     //MARK:
@@ -42,32 +52,13 @@ class CQNestedCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource 
       
     }
     
-    fileprivate func nestedTableViewScroll(_ tableView:CQNestedSubTableView) {
-        if CQNestedManager.shared.hiddenSubTableViewScroll {
-            tableView.contentOffset = .zero
-            return
-        }
+    fileprivate func nestedTableViewScroll(_ tableView:CQNestedSubTableView) { 
         if !self.canScoll { // 不能滚动
-            if self.position == .top {
-                print("nested: top")
-                tableView.contentOffset = .zero
-            } else if self.position == .bottom {
-                print("nested: bottom")
-                let height = tableView.frame.size.height
-                let contentSizeH = tableView.contentSize.height
-                let offsetY = contentSizeH - height
-                if offsetY > 0.0 {
-                    tableView.contentOffset = CGPoint(x: 0.0, y: offsetY)
-                } else {
-                    // 此时不能给contentOffset赋值
-                }
-            } else {
-                print("nested: between")
-            }
+            tableView.contentOffset = .zero
         }
         let offsetY = tableView.contentOffset.y
         if offsetY <= 0 { // 滚动到顶部
-            print("position: top")
+            //print("position: top")
             tableView.contentOffset = .zero
             self.position = .top
             self.delegate?.subTableViewPosition(.top)
@@ -75,24 +66,14 @@ class CQNestedCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource 
             let contentSizeH = tableView.contentSize.height
             let height = tableView.frame.size.height
             if contentSizeH <= height + offsetY { // 滚动到底部
-                print("position: bottom")
-                let offsetY = contentSizeH - height
-                if offsetY > 0.0 {
-                    tableView.contentOffset = CGPoint(x: 0.0, y: offsetY)
-                } else {
-                    // 此时需要给contentOffset赋值为0.0
-                    tableView.contentOffset = CGPoint(x: 0.0, y: 0.0)
-                }
                 self.position = .bottom
                 self.delegate?.subTableViewPosition(.bottom)
             } else {
-                print("position: between")
                 self.position = .between
                 self.delegate?.subTableViewPosition(.between)
             }
         }
     }
-    
     fileprivate func nestedScrollViewScroll(_ scrollView:CQNestedScrollView) {
         
     }
@@ -100,7 +81,13 @@ class CQNestedCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if let scrollV = scrollView as? CQNestedScrollView {
             let index = ceilf(Float(scrollV.contentOffset.x / scrollV.frame.width))
-            CQNestedManager.shared.currentTableViewIndex = Int(index)
+            var currentIndex = Int(index)
+            if CQNestedManager.shared.currentTableViewIndex == currentIndex { return }
+            if currentIndex >= self.tableViewArray.count {
+                currentIndex = self.tableViewArray.count - 1
+            }
+            CQNestedManager.shared.currentTableViewIndex = currentIndex
+            CQNestedManager.shared.currentTableView = self.tableViewArray[currentIndex]
             self.delegate?.reloadNestedCell()
         }
     }
@@ -128,7 +115,7 @@ class CQNestedCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource 
     
     //MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     //MARK: init
@@ -146,6 +133,9 @@ class CQNestedCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource 
             tableV.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCellID")
             self.scrollContentView.addSubview(tableV)
             self.tableViewArray.append(tableV)
+            if i == 0 {
+                CQNestedManager.shared.currentTableView = tableV
+            }
         }
         
     }

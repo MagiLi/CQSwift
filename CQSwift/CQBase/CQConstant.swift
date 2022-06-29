@@ -13,10 +13,10 @@ let CQScreenBounds = UIScreen.main.bounds
 let CQScreenW = UIScreen.main.bounds.size.width
 let CQScreenH = UIScreen.main.bounds.size.height
 
-/// 状态栏高度20
-let CQStatusHeight: CGFloat = 20
-/// 导航栏高度64
-let CQNavHeight: CGFloat = 64
+///// 状态栏高度20
+//let CQStatusHeight: CGFloat = 20
+///// 导航栏高度64
+//let CQNavHeight: CGFloat = 64
 /// tabBar的高度 50
 let CQTabBarHeight: CGFloat = 50
 /// 全局的间距 10
@@ -34,7 +34,12 @@ let CQ_FONT = "Bauhaus ITC"
 let KAppDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
 // iOS在当前屏幕获取第一响应
-let CQKeyWindow = UIApplication.shared.keyWindow
+//let CQKeyWindow = UIApplication.shared.keyWindow
+let CQKeyWindow = UIApplication.shared.windows.first { window in
+   window.isKeyWindow
+}
+let CQStatusBarFrame =  CQKeyWindow?.windowScene?.statusBarManager?.statusBarFrame
+
 let CQFirstResponder = CQKeyWindow?.perform(Selector(("firstResponder")))
 // 随机色
 let CQRandomColor = UIColor(red: CGFloat(arc4random_uniform(256))/255.0, green: CGFloat(arc4random_uniform(256))/255.0, blue: CGFloat(arc4random_uniform(256))/255.0, alpha: 1.0)

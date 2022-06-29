@@ -19,6 +19,7 @@ class CQNestedTableVC: UIViewController {
     //MARK: viewDidLayoutSubviews
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        print("viewDidLayoutSubviews")
         self.tableView.frame = self.view.bounds
     }
     lazy var tableView: CQNestedMainTableView = {
