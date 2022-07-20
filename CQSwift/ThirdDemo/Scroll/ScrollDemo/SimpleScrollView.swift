@@ -1,5 +1,7 @@
 import UIKit
 
+//参考文章https://blog.csdn.net/Px01Ih8/article/details/113749837
+
 class SimpleScrollView: UIView {
     
     var contentView: UIView? {
