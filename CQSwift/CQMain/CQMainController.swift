@@ -32,11 +32,12 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var tableView : UITableView?
 
     fileprivate let dataAray: [[String]] = [
-        ["collectionView", "tableView", "tableView嵌套"],
+        ["collectionView", "tableView", "tableView嵌套", "自定义ScrollView"],
         ["九宫格手势解锁"],
         ["JS交互"],
         ["Loading", "手机通讯录"],
-        ["渐变"]
+        ["渐变"],
+        ["Third demo"]
     ]
     
     override func viewDidLoad() {
@@ -197,7 +198,9 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
             } else if indexPath.row == 2 {
                 let nestedVC = CQNestedTableVC()
                 self.navigationController?.pushViewController(nestedVC, animated: true)
-
+            } else if indexPath.row == 3 {
+                let scrollVC = CQCustomScrollVC()
+                self.navigationController?.pushViewController(scrollVC, animated: true)
             }
         case 1:
             if indexPath.row == 0 {
@@ -217,6 +220,9 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
             }
         case 4:
             let vc = CQGradientController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        case 5:
+            let vc = THMainController()
             self.navigationController?.pushViewController(vc, animated: true)
         default:
             break

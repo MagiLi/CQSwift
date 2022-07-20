@@ -35,29 +35,48 @@ class CQNestedMainTableView: UITableView, UITableViewDelegate, UITableViewDataSo
     }
     // 主tableView的滚动
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print("self.bounds: \(self.bounds)")
+        guard let nestedCell = self.nestedCell else { return }
         let rect1 = self.rectForHeader(inSection: 1)
+        print("rect1: \(rect1)")
         // section1 是否到了顶部 true:到了顶部 false:还未到顶部
         let overTop = scrollView.contentOffset.y >= rect1.origin.y - navH - starBarH
         if scrollView.contentOffset.y < self.lastContentOffsetY { // 向上滑动↑↑↑
             print("向上↑↑↑")
-            if nestedCell?.position == .top {
-                nestedCell?.canScoll = false
+            if nestedCell.position == .top {
+                nestedCell.canScoll = false
             } else {
-                nestedCell?.canScoll = true
+                nestedCell.canScoll = true
                 scrollView.contentOffset = CGPoint(x: 0.0, y: rect1.origin.y - navH - starBarH)
             }
         } else if (scrollView.contentOffset.y > self.lastContentOffsetY ) { // 向下滑动 ↓↓↓
             print("向下滑动 ↓↓↓")
             if overTop { // section1 达到了顶部
                 
-                nestedCell?.canScoll = true
+                nestedCell.canScoll = true
                 scrollView.contentOffset = CGPoint(x: 0.0, y: rect1.origin.y - navH - starBarH)
             } else { // section1 还未到顶部
-                nestedCell?.canScoll = false
+                nestedCell.canScoll = false
             }
         } else {
         }
         self.lastContentOffsetY = scrollView.contentOffset.y
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        // velocity.y 减速的初始速度单位 points/millisecond (一毫秒移动的距离)
+        // 乘1000后单位是 points/second (一秒移动的距离)
+        // velocity.y * 1000 大概是 distance的2倍
+        print("DecelerateVelocity.y: \(velocity.y * 1000)")
+        let targetConOffsetY = targetContentOffset.pointee.y
+        let conOffsetY = scrollView.contentOffset.y
+        print("targetContentOffset.y: \(targetConOffsetY) \n contentOffset.y: \(conOffsetY)")
+        let distance = targetConOffsetY - conOffsetY
+        print("DecelerateDistance: \(distance)")
+//           NSLog(@"DecelerateDistance:%lf", targetContentOffset->y - scrollView.contentOffset.y);
+//        guard let nestedCell = self.nestedCell else { return }
+//        guard let currentTableView = CQNestedManager.shared.currentTableView else { return }
+//        currentTableView.decelerationRate =
     }
     
     //MARK: UITableViewDataSource
