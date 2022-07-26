@@ -27,7 +27,7 @@ public func getIntersection(segment1: (CGPoint, CGPoint), segment2: (CGPoint, CG
     return CGPoint(x: p1.x + u * (p2.x - p1.x), y: p1.y + u * (p2.y - p1.y))
 }
 
-
+// 获取交点
 public func getIntersection(rect: CGRect, segment: (CGPoint, CGPoint)) -> CGPoint? {
     let rMinMin = CGPoint(x: rect.minX, y: rect.minY)
     let rMinMax = CGPoint(x: rect.minX, y: rect.maxY)

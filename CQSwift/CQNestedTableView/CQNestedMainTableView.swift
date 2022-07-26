@@ -10,6 +10,9 @@ import UIKit
 
 class CQNestedMainTableView: UITableView, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, CQNestedCellDelegate {
     
+    private var contentOffsetAnimation: TimerAnimation?
+    
+    
     let navH:CGFloat = 44.0
 
     let starBarH = CQStatusBarFrame?.size.height ?? 20.0
@@ -58,25 +61,68 @@ class CQNestedMainTableView: UITableView, UITableViewDelegate, UITableViewDataSo
             } else { // section1 还未到顶部
                 nestedCell.canScoll = false
             }
-        } else {
+        } else { // 停止
+            print("停止")
+            let duration = 1.0
+            if let velocity = self.convertVelocity {
+                contentOffsetAnimation = TimerAnimation(
+                    duration: duration,
+                    animations: { [weak self] _, time in
+                        let contentOffsetY = parameters.value(at: time).y
+                        CQNestedManager.shared.currentTableView?.contentOffset = CGPoint(x: 0.0, y: contentOffsetY)
+                        print("contentOffsetY: \(contentOffsetY)")
+                    },
+                    completion: { [weak self] finished in
+                        guard finished else { return }
+             
+        //                self?.bounce(withVelocity: velocity)
+                    })
+            }
         }
         self.lastContentOffsetY = scrollView.contentOffset.y
     }
+    var convertVelocity:CGPoint?
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         // velocity.y 减速的初始速度单位 points/millisecond (一毫秒移动的距离)
         // 乘1000后单位是 points/second (一秒移动的距离)
         // velocity.y * 1000 大概是 distance的2倍
-        print("DecelerateVelocity.y: \(velocity.y * 1000)")
-        let targetConOffsetY = targetContentOffset.pointee.y
-        let conOffsetY = scrollView.contentOffset.y
-        print("targetContentOffset.y: \(targetConOffsetY) \n contentOffset.y: \(conOffsetY)")
-        let distance = targetConOffsetY - conOffsetY
-        print("DecelerateDistance: \(distance)")
-//           NSLog(@"DecelerateDistance:%lf", targetContentOffset->y - scrollView.contentOffset.y);
-//        guard let nestedCell = self.nestedCell else { return }
-//        guard let currentTableView = CQNestedManager.shared.currentTableView else { return }
-//        currentTableView.decelerationRate =
+//        print("DecelerateVelocity.y: \(velocity.y * 1000)")
+//        let targetConOffsetY = targetContentOffset.pointee.y
+//        let conOffsetY = scrollView.contentOffset.y
+//        print("targetContentOffset.y: \(targetConOffsetY) \n contentOffset.y: \(conOffsetY)")
+//        let distance = targetConOffsetY - conOffsetY
+//        print("DecelerateDistance: \(distance)")
+        let rect1 = self.rectForHeader(inSection: 1)
+        // section1 是否到了顶部 true:到了顶部 false:还未到顶部
+        
+        if (scrollView.contentOffset.y >= self.lastContentOffsetY ) { // 向下滑动 ↓↓↓
+            let distanceTopY = rect1.origin.y - navH - starBarH - scrollView.contentOffset.y
+            // 衰减率
+            let d = UIScrollView.DecelerationRate.normal.rawValue // 0.998
+            //let d = UIScrollView.DecelerationRate.fast.rawValue // 0.99
+
+            let parameters = DecelerationTimingParameters(initialValue: scrollView.contentOffset, initialVelocity: velocity,
+                                                          decelerationRate: d, threshold: 0.5)
+            // 衰减滚动停止的点
+            let destination = parameters.destination
+            // 边界点
+            let distanceTop = CGRect(x: 0.0, y: 0.0, width: 0.0, height: distanceTopY)
+            let intersection = getIntersection(rect: distanceTop, segment: (scrollView.contentOffset, destination))
+            let duration: TimeInterval
+            if let intersection = intersection, let intersectionDuration = parameters.duration(to: intersection) {// 1.会越界
+                // 越界之前的动画时间
+                duration = intersectionDuration
+            } else { // 2.不会越界
+                // 衰减动画时间
+                duration = parameters.duration
+            }
+            self.convertVelocity = parameters.velocity(at: duration)
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        print("scrollViewDidEndDecelerating: \(scrollView.contentOffset.y)")
     }
     
     //MARK: UITableViewDataSource
@@ -88,7 +134,7 @@ class CQNestedMainTableView: UITableView, UITableViewDelegate, UITableViewDataSo
         if section == 1 {
             return 1
         }
-        return 30
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

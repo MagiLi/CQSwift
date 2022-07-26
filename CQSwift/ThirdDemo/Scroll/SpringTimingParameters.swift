@@ -1,3 +1,7 @@
+/*
+ * 弹性动画参数
+ */
+
 import Foundation
 import CoreGraphics
 

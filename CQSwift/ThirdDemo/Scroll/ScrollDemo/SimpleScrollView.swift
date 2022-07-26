@@ -1,6 +1,6 @@
-import UIKit
+//参考文章 https://blog.csdn.net/Px01Ih8/article/details/113749837
 
-//参考文章https://blog.csdn.net/Px01Ih8/article/details/113749837
+import UIKit
 
 class SimpleScrollView: UIView {
     
@@ -122,28 +122,35 @@ class SimpleScrollView: UIView {
         // 衰减率
         let d = UIScrollView.DecelerationRate.normal.rawValue // 0.998
         //let d = UIScrollView.DecelerationRate.fast.rawValue // 0.99
-        
+        // 衰减动画的参数
+        // contentOffset：当前偏移量
+        // velocity：减速时的初速度
         let parameters = DecelerationTimingParameters(initialValue: contentOffset, initialVelocity: velocity,
                                                       decelerationRate: d, threshold: 0.5)
-                                                      
+        // 衰减滚动停止的点
         let destination = parameters.destination
+        //  越界时的交点
         let intersection = getIntersection(rect: contentOffsetBounds, segment: (contentOffset, destination))
         
         let duration: TimeInterval
         
-        if let intersection = intersection, let intersectionDuration = parameters.duration(to: intersection) {
+        if let intersection = intersection, let intersectionDuration = parameters.duration(to: intersection) {// 1.会越界
+            // 越界之前的动画时间
             duration = intersectionDuration
-        } else {
+        } else { // 2.不会越界
+            // 衰减动画时间
             duration = parameters.duration
         }
         
         contentOffsetAnimation = TimerAnimation(
             duration: duration,
             animations: { [weak self] _, time in
+                // 执行减速动画
                 self?.contentOffset = parameters.value(at: time)
             },
             completion: { [weak self] finished in
                 guard finished && intersection != nil else { return }
+                // 减速动画执行到边界，执行弹性动画效果
                 let velocity = parameters.velocity(at: duration)
                 self?.bounce(withVelocity: velocity)
             })

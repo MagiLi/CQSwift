@@ -1,3 +1,7 @@
+/*
+ * 减速动画参数
+ */
+
 import Foundation
 import CoreGraphics
 
@@ -35,14 +39,14 @@ public extension DecelerationTimingParameters {
         let dCoeff = 1000 * log(decelerationRate)
         return initialValue + (pow(decelerationRate, CGFloat(1000 * time)) - 1) / dCoeff * initialVelocity
     }
-    
+    // 越界之前的动画时间
     func duration(to value: CGPoint) -> TimeInterval? {
         guard value.distance(toSegment: (initialValue, destination)) < threshold else { return nil }
         
         let dCoeff = 1000 * log(decelerationRate)
         return TimeInterval(log(1.0 + dCoeff * (value - initialValue).length / initialVelocity.length) / dCoeff)
     }
-    
+    // 越界瞬间的动画速度
     func velocity(at time: TimeInterval) -> CGPoint {
         return initialVelocity * pow(decelerationRate, CGFloat(1000 * time))
     }
