@@ -91,6 +91,7 @@ class SimpleScrollView: UIView {
             let userHadStoppedDragging = newPan.timeIntervalSince(lastPan ?? newPan) >= 0.1
             // 初速度
             let velocity: CGPoint = userHadStoppedDragging ? .zero : sender.velocity(in: self)
+            print("velocity: \(velocity)")
             completeGesture(withVelocity: -velocity)
             
         case .cancelled, .failed:
@@ -152,6 +153,7 @@ class SimpleScrollView: UIView {
                 guard finished && intersection != nil else { return }
                 // 减速动画执行到边界，执行弹性动画效果
                 let velocity = parameters.velocity(at: duration)
+                print("convertVelocity: \(velocity)")
                 self?.bounce(withVelocity: velocity)
             })
     }

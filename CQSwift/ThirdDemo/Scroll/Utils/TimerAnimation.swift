@@ -40,6 +40,7 @@ public final class TimerAnimation {
     @objc private func handleFrame(_ displayLink: CADisplayLink) {
         guard running else { return }
         let elapsed = CACurrentMediaTime() - firstFrameTimestamp
+        //print("elapsed: \(elapsed) duration: \(duration)")
         if elapsed >= duration {
             animations(1, duration)
             running = false

@@ -41,7 +41,8 @@ public extension DecelerationTimingParameters {
     }
     // 越界之前的动画时间
     func duration(to value: CGPoint) -> TimeInterval? {
-        guard value.distance(toSegment: (initialValue, destination)) < threshold else { return nil }
+        // 为什么要这个判断，加上后计算不准确，不加有可能闪退
+        //guard value.distance(toSegment: (initialValue, destination)) < threshold else { return nil }
         
         let dCoeff = 1000 * log(decelerationRate)
         return TimeInterval(log(1.0 + dCoeff * (value - initialValue).length / initialVelocity.length) / dCoeff)
