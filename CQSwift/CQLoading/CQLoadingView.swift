@@ -174,5 +174,6 @@ class CQLoadingView: UIView {
 
     deinit {
         print("CQLoadingView deinit")
+        self.timer?.invalidate()
     }
 }

@@ -35,7 +35,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
         ["collectionView", "tableView", "tableView嵌套", "自定义ScrollView"],
         ["九宫格手势解锁"],
         ["JS交互"],
-        ["Loading", "手机通讯录"],
+        ["Loading", "指针", "手机通讯录"],
         ["渐变"],
         ["Third demo"]
     ]
@@ -215,6 +215,9 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let vc = CQLoadingController()
                 self.navigationController?.pushViewController(vc, animated: true)
             } else if indexPath.row == 1 {
+                let vc = CQIndicatorVC()
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else if indexPath.row == 2 {
                 let vc = CQContactVC()
                 self.navigationController?.pushViewController(vc, animated: true)
             }
