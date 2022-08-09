@@ -24,6 +24,10 @@ class CQIndicatorGradientView: UIView {
     var maxRadians:CGFloat! // 当前用户最大的弧度值
     var totalRadians:CGFloat! // 大圆盘的总弧度值
     
+    let untilRadians:CGFloat = 0.05 // 每走一次计时器新增的弧度值
+    var maxCount:CGFloat = 0.0 // 计时器需要执行的次数
+    var ringScale:CGFloat = 0.0 // 渐变圆环渲染的比例（最大值为1.0）
+    
     //MARK: invalidate
     func invalidate() {
         self.timer?.invalidate()
@@ -36,8 +40,9 @@ class CQIndicatorGradientView: UIView {
             // 超出最大值，销毁计时器
             self.invalidate()
         } else {
+            self.ringView.animateReset(self.maxCount, scale: self.ringScale)
             self.rotateArrow(self.currentRadians)
-            self.currentRadians += 0.1
+            self.currentRadians += self.untilRadians
         }
     }
     
@@ -84,13 +89,21 @@ class CQIndicatorGradientView: UIView {
         
         let radians360 = self.degreesToRadians(360)
         self.totalRadians = radians360 - acos(0.5976) * 2.0 // 大圆盘的总弧度值
-        // 当前用户最大的弧度值
-        self.maxRadians = self.currentValue / self.maxValue * self.totalRadians + self.initRadians
         
+        // 当前用户最大的弧度值
+        let tempMaxRadians = self.currentValue / self.maxValue * self.totalRadians
+        self.maxRadians = tempMaxRadians + self.initRadians
         self.currentRadians = self.initRadians
         
+        self.ringScale = tempMaxRadians / self.totalRadians
+        self.maxCount = tempMaxRadians / self.untilRadians // 计算出计时器需要执行的最大次数
+        
         self.setupUI()
-//        self.roateView(.pi)
+        
+        
+        self.ringView.startAngle = self.initRadians
+        self.ringView.endAngle = self.totalRadians + self.initRadians
+
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -109,7 +122,7 @@ class CQIndicatorGradientView: UIView {
         let centerY = bgViewY + bgViewH * 0.607
         self.circleCenter = CGPoint(x: centerX, y: centerY)
 
-        let ringViewW = self.radius1 * 2.0
+        let ringViewW = self.radius2 * 2.0
         let ringViewH = ringViewW
         self.ringView.bounds = CGRect(x: 0.0, y: 0.0, width: ringViewW, height: ringViewH)
         self.ringView.center = self.circleCenter
@@ -148,6 +161,10 @@ class CQIndicatorGradientView: UIView {
     fileprivate func degreesToRadians(_ angle:CGFloat) -> CGFloat {
         return (.pi * angle) / 180.0
     }
+    // 将角度转换为弧度
+    fileprivate func radiansToDegrees(_ radians:CGFloat) -> CGFloat {
+        return (180.0 * radians) / .pi
+    }
     
     //MARK: lazy
     lazy var bgView: UIImageView = {
@@ -167,10 +184,8 @@ class CQIndicatorGradientView: UIView {
     }()
     lazy var ringView: CQGradientRingView = {
         let view = CQGradientRingView()
+        view.margin = self.radius2 - self.radius1
         return view
     }()
-//    lazy var totalQuotaView: <#type name#> = {
-//        <#statements#>
-//        return <#value#>
-//    }()
+    
 }

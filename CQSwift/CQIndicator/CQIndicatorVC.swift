@@ -14,7 +14,7 @@ class CQIndicatorVC: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.view.addSubview(self.indicatoreView)
-        self.view.addSubview(self.circleView)
+//        self.view.addSubview(self.circleView)
     }
 
     override func viewDidLayoutSubviews() {
