@@ -80,33 +80,21 @@ class CQIndicatorView: UIView {
     }
     
     fileprivate func roateView(_ angle:CGFloat) {
-        var rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         rotationAnimation.toValue = NSNumber(value:angle)
         rotationAnimation.duration = 1
-        rotationAnimation.repeatCount = 10
+        rotationAnimation.repeatCount = 3
+        rotationAnimation.fillMode = .forwards
+        rotationAnimation.isRemovedOnCompletion = false
+        //self.indicatorView.layer.fillMode = .forwards
         self.indicatorView.layer.add(rotationAnimation, forKey: nil)
     }
-//    - (void)rotateView:(UIImageView *)view{
-//
-//        CABasicAnimation *rotationAnimation;
-//
-//        rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-//
-//        rotationAnimation.toValue = [NSNumber numberWithFloat:M_PI*2.0];
-//
-//        rotationAnimation.duration = 1;
-//
-//        rotationAnimation.repeatCount = HUGE_VALF;
-//
-//        [view.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
-//
-//    }
     
     //MARK:init
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupUI()
-        self.roateView(-.pi * 0.5)
+        self.roateView(.pi)
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -115,23 +103,53 @@ class CQIndicatorView: UIView {
     //MARK:layoutSubviews
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.circleCenter = CGPoint(x: self.frame.width * 0.5, y:  self.frame.height * 0.5)
-        self.indicatorSize = CGSize(width: 10.0, height: self.radius)
-        let indicateX = self.circleCenter.x - self.indicatorSize.width * 0.5
-        let indicateY = self.circleCenter.y - self.radius
+        let bgViewW:CGFloat = self.frame.width
+        let bgViewH:CGFloat = bgViewW * 0.77
+        let bgViewX = (self.frame.width - bgViewW) * 0.5
+        let bgViewY = (self.frame.height - bgViewH) * 0.5
+        self.bgView.frame = CGRect(x: bgViewX, y: bgViewY, width: bgViewW, height: bgViewH)
+        
+        let centerX = bgViewX + bgViewW * 0.5
+        let centerY = bgViewY + bgViewH * 0.6541
+        self.circleCenter = CGPoint(x: centerX, y: centerY)
+        self.indicatorSize = CGSize(width: self.radius, height: 10.0)
+        let indicateX = self.circleCenter.x -  self.indicatorSize.width
+        let indicateY = self.circleCenter.y - self.indicatorSize.height * 0.5
         self.indicatorView.frame = CGRect(x: indicateX, y: indicateY, width: self.indicatorSize.width, height: self.indicatorSize.height)
     }
     //MARK:setupUI
     func setupUI() {
         self.backgroundColor = .lightGray
 //        self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(rotate), userInfo: nil, repeats: true)
-        
+        self.addSubview(self.bgView)
         self.addSubview(self.indicatorView)
     }
-    //MARK:lazy
-    lazy var indicatorView: UIImageView = {
+    
+    // 将角度转换为弧度
+    fileprivate func degreesToRadians(_ angle:CGFloat) -> CGFloat {
+        return (.pi * angle) / 180.0
+    }
+    
+    //MARK: lazy
+    lazy var bgView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "indicator")
+        view.image = UIImage(named: "indicator_bg")
         return view
     }()
+    lazy var indicatorView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "indicator_h")
+        view.layer.anchorPoint = CGPoint(x: 1.0, y: 0.5)
+        let radians = self.degreesToRadians(-40)
+        var transform = CATransform3DIdentity
+        transform.m34 = 1.0 / -1000.0
+        transform = CATransform3DRotate(transform, radians, 0.0, 0.0, 1.0)
+        view.layer.transform = transform
+        return view
+    }()
+    
+//    lazy var totalQuotaView: <#type name#> = {
+//        <#statements#>
+//        return <#value#>
+//    }()
 }

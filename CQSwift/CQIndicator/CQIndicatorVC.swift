@@ -12,17 +12,27 @@ class CQIndicatorVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.backgroundColor = .white
         self.view.addSubview(self.indicatoreView)
+        self.view.addSubview(self.circleView)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.indicatoreView.frame = self.view.bounds
+    
+        let indicatoreViewW:CGFloat = 216.0
+        let indicatoreViewH:CGFloat = 177.0
+        self.indicatoreView.frame = CGRect(x: 50.0, y: 150.0, width: indicatoreViewW, height: indicatoreViewH)
+        self.circleView.frame = CGRect(x: 50.0, y: self.indicatoreView.frame.maxY, width: indicatoreViewW, height: indicatoreViewH)
     }
     
-    lazy var indicatoreView: CQIndicatorView = {
-        let view = CQIndicatorView()
+    lazy var indicatoreView: CQIndicatorGradientView = {
+        let view = CQIndicatorGradientView()
+        return view
+    }()
+    
+    lazy var circleView: CQGradientRingView = {
+        let view = CQGradientRingView()
         return view
     }()
 }
