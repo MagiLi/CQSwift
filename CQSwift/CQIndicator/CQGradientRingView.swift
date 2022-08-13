@@ -23,12 +23,9 @@ class CQGradientRingView: UIView {
         
         let centerPoint = CGPoint(x: centerX, y: centerY) // 圆心
         
-        //贝塞尔曲线画圆弧
-//        let startAngle = .pi * 3.0 / 4.0
-//        let endAngle = .pi / 4.0
-        
-        let startAngle = self.startAngle
-        let endAngle = self.endAngle
+        //贝塞尔曲线画圆弧  
+        let startAngle = 149.0 / 180.0 * .pi // 度数转角度
+        let endAngle = 31.0 / 180.0 * .pi
         // 内侧圆环的path
         let circlePath = UIBezierPath(arcCenter: centerPoint, radius: smallR, startAngle: startAngle, endAngle: endAngle, clockwise: true)
          
@@ -42,19 +39,32 @@ class CQGradientRingView: UIView {
         self.lineGradientLayer.mask = self.lineShapeLayer
     }
     
-    func animateReset(_ count:CGFloat, scale:CGFloat) {
-        var tempScale = scale
-        if scale > 1.0 {
-            tempScale = 1.0
-        } else if scale < 0.0 {
-            tempScale = 0.0
-        }
-        
-        if(self.shapeLayer.strokeEnd <= tempScale){
-            let untilValue = tempScale / count
-            self.shapeLayer.strokeEnd += untilValue
-            self.lineShapeLayer.strokeEnd += untilValue
-        }else{ }
+//    func animateReset(_ count:CGFloat, scale:CGFloat) {
+//        var tempScale = scale
+//        if scale > 1.0 {
+//            tempScale = 1.0
+//        } else if scale < 0.0 {
+//            tempScale = 0.0
+//        }
+//
+//        if(self.shapeLayer.strokeEnd <= tempScale){
+//            let untilValue = tempScale / count
+//            self.shapeLayer.strokeEnd += untilValue
+//            self.lineShapeLayer.strokeEnd += untilValue
+//        }else{ }
+//    }
+    
+    func drawRing(fromValue:CGFloat, toValue:CGFloat) {
+        let rotationAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        rotationAnimation.fromValue = NSNumber(value: fromValue)
+        rotationAnimation.toValue = NSNumber(value:toValue)
+        rotationAnimation.duration = 1
+        rotationAnimation.repeatCount = 1
+        rotationAnimation.fillMode = .forwards
+        rotationAnimation.isRemovedOnCompletion = false
+        //self.arrowView.layer.fillMode = .forwards
+        self.shapeLayer.add(rotationAnimation, forKey: nil)
+        self.lineShapeLayer.add(rotationAnimation, forKey: nil)
     }
     
     //MARK:init

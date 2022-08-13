@@ -17,35 +17,20 @@ class CQIndicatorGradientView: UIView {
     fileprivate var circleCenter:CGPoint = .zero
     
     fileprivate let maxValue:CGFloat = 1000.0 // 额度最大值1000万
-    var currentValue:CGFloat = 1000 // 当前用户额度
+    var currentUserValue:CGFloat = 500 // 当前用户额度
     
     fileprivate var initRadians:CGFloat!
-    var currentRadians:CGFloat! // 旋转时的当前弧度值
     var maxRadians:CGFloat! // 当前用户最大的弧度值
     var totalRadians:CGFloat! // 大圆盘的总弧度值
     
-    let untilRadians:CGFloat = 0.05 // 每走一次计时器新增的弧度值
-    var maxCount:CGFloat = 0.0 // 计时器需要执行的次数
-    var ringScale:CGFloat = 0.0 // 渐变圆环渲染的比例（最大值为1.0）
+    let untilRadians:CGFloat = 0.01 // 每走一次计时器新增的弧度值
     
     //MARK: invalidate
     func invalidate() {
         self.timer?.invalidate()
         self.timer = nil
     }
-    
-    //MARK: rotateArrow
-    @objc func rotateTimer() {
-        if self.currentRadians > self.maxRadians {
-            // 超出最大值，销毁计时器
-            self.invalidate()
-        } else {
-            self.ringView.animateReset(self.maxCount, scale: self.ringScale)
-            self.rotateArrow(self.currentRadians)
-            self.currentRadians += self.untilRadians
-        }
-    }
-    
+     
     func rotateArrow(_ radians:CGFloat) {
         var transform = CATransform3DIdentity
         transform.m34 = 1.0 / -1000.0
@@ -53,56 +38,49 @@ class CQIndicatorGradientView: UIView {
         self.arrowView.layer.transform = transform
     }
     
-    //MARK: draw
-    override func draw(_ rect: CGRect) {
-//        guard let indicatorImg = self.indicatorImg else { return }
-//        guard let context = UIGraphicsGetCurrentContext() else { return }
-////        var transform = CGAffineTransform(translationX: 0, y: self.bounds.size.height)
-////        transform = transform.scaledBy(x: 1.0, y: -1.0)
-////        let indicateFrame = tempRect.applying(transform)
-//        // 翻转坐标系
-//        context.translateBy(x: 0, y: self.bounds.size.height)
-//        context.scaleBy(x: 1.0, y: -1.0)
-//
-//        let indicateFrame = self.getIndicatorFrame()
-//        context.draw(indicatorImg.cgImage!, in: indicateFrame)
-//        UIGraphicsEndImageContext()
+    //MARK:
+    fileprivate func roateView(fromValue:CGFloat, toValue:CGFloat) {
+        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotationAnimation.fromValue = NSNumber(value: fromValue)
+        rotationAnimation.toValue = NSNumber(value:toValue)
+        rotationAnimation.duration = 1
+        rotationAnimation.repeatCount = 1
+        rotationAnimation.fillMode = .forwards
+        rotationAnimation.isRemovedOnCompletion = false
+        //self.arrowView.layer.fillMode = .forwards
+        self.arrowView.layer.add(rotationAnimation, forKey: nil)
     }
-    
-//
-//    fileprivate func roateView(_ angle:CGFloat) {
-//        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-//        rotationAnimation.toValue = NSNumber(value:angle)
-//        rotationAnimation.duration = 1
-//        rotationAnimation.repeatCount = 1
-//        rotationAnimation.fillMode = .forwards
-//        rotationAnimation.isRemovedOnCompletion = false
-//        //self.arrowView.layer.fillMode = .forwards
-//        self.arrowView.layer.add(rotationAnimation, forKey: nil)
-//    }
+    //MARK: 旋转到初始位置
+    fileprivate func roateToInitPosition() {
+        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotationAnimation.fromValue = NSNumber(value: 0.0)
+        rotationAnimation.toValue = NSNumber(value:self.initRadians)
+        rotationAnimation.duration = 0.0
+        rotationAnimation.repeatCount = 1
+        rotationAnimation.fillMode = .forwards
+        rotationAnimation.isRemovedOnCompletion = false
+        //self.arrowView.layer.fillMode = .forwards
+        self.arrowView.layer.add(rotationAnimation, forKey: nil)
+    }
     
     //MARK:init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        let radians90 = self.degreesToRadians(90) // 90度的弧度值
-        self.initRadians = acos(0.5976) + radians90 // 反三角函数求角度（结果是弧度值）
         
-        let radians360 = self.degreesToRadians(360)
-        self.totalRadians = radians360 - acos(0.5976) * 2.0 // 大圆盘的总弧度值
-        
+        self.initRadians = self.degreesToRadians(149.0)
+        self.totalRadians = self.degreesToRadians(242.0)
+        let angleScale = self.currentUserValue / self.maxValue // 需要旋转的角度比例
         // 当前用户最大的弧度值
-        let tempMaxRadians = self.currentValue / self.maxValue * self.totalRadians
+        let tempMaxRadians = angleScale * self.totalRadians
         self.maxRadians = tempMaxRadians + self.initRadians
-        self.currentRadians = self.initRadians
-        
-        self.ringScale = tempMaxRadians / self.totalRadians
-        self.maxCount = tempMaxRadians / self.untilRadians // 计算出计时器需要执行的最大次数
         
         self.setupUI()
         
-        
-        self.ringView.startAngle = self.initRadians
-        self.ringView.endAngle = self.totalRadians + self.initRadians
+        self.roateToInitPosition()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+            self.roateView(fromValue: self.initRadians, toValue: self.maxRadians)
+            self.ringView.drawRing(fromValue: 0.0, toValue: angleScale)
+        })
 
     }
     required init?(coder: NSCoder) {
@@ -149,12 +127,7 @@ class CQIndicatorGradientView: UIView {
         self.addSubview(self.arrowView) // 箭头
         
         self.addSubview(self.smallCircle) // 中心的小圆
-        
-        self.rotateArrow(self.initRadians)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-            self.timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.rotateTimer), userInfo: nil, repeats: true)
-        })
+         
     }
     
     // 将角度转换为弧度
@@ -169,7 +142,7 @@ class CQIndicatorGradientView: UIView {
     //MARK: lazy
     lazy var bgView: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "indicator_bg")
+        view.image = UIImage(named: "indicator_bg1000")
         return view
     }()
     lazy var arrowView: CQIGArrowView = {
