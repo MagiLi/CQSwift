@@ -19,11 +19,10 @@ class CQIndicatorGradientView: UIView {
     fileprivate let maxValue:CGFloat = 1000.0 // 额度最大值1000万
     var currentUserValue:CGFloat = 500 // 当前用户额度
     
+    let blankAngle:CGFloat = 110.0 //大圆盘空白的度数
     fileprivate var initRadians:CGFloat!
     var maxRadians:CGFloat! // 当前用户最大的弧度值
     var totalRadians:CGFloat! // 大圆盘的总弧度值
-    
-    let untilRadians:CGFloat = 0.01 // 每走一次计时器新增的弧度值
     
     //MARK: invalidate
     func invalidate() {
@@ -47,7 +46,6 @@ class CQIndicatorGradientView: UIView {
         rotationAnimation.repeatCount = 1
         rotationAnimation.fillMode = .forwards
         rotationAnimation.isRemovedOnCompletion = false
-        //self.arrowView.layer.fillMode = .forwards
         self.arrowView.layer.add(rotationAnimation, forKey: nil)
     }
     //MARK: 旋转到初始位置
@@ -59,7 +57,6 @@ class CQIndicatorGradientView: UIView {
         rotationAnimation.repeatCount = 1
         rotationAnimation.fillMode = .forwards
         rotationAnimation.isRemovedOnCompletion = false
-        //self.arrowView.layer.fillMode = .forwards
         self.arrowView.layer.add(rotationAnimation, forKey: nil)
     }
     
@@ -67,14 +64,21 @@ class CQIndicatorGradientView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.initRadians = self.degreesToRadians(149.0)
-        self.totalRadians = self.degreesToRadians(242.0)
+        let initAngle = (180.0 - self.blankAngle) * 0.5 + blankAngle // 初始的度数
+        self.initRadians = self.degreesToRadians(initAngle)
+        let totalAngle = 360.0 - blankAngle // 大圆盘的总度数
+        self.totalRadians = self.degreesToRadians(totalAngle)
         let angleScale = self.currentUserValue / self.maxValue // 需要旋转的角度比例
         // 当前用户最大的弧度值
         let tempMaxRadians = angleScale * self.totalRadians
         self.maxRadians = tempMaxRadians + self.initRadians
         
+        self.ringView.startAngle = initAngle
+        self.ringView.endAngle = (180.0 - self.blankAngle) * 0.5
+        
         self.setupUI()
+        
+
         
         self.roateToInitPosition()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {

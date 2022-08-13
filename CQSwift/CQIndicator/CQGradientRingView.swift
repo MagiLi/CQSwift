@@ -12,9 +12,8 @@ class CQGradientRingView: UIView {
     fileprivate let lineWidth1:CGFloat = 30.0
     fileprivate let lineWidth2:CGFloat = 3.0
     var margin:CGFloat = 0.0 // 两个圆之间的距离
-    var startAngle:CGFloat = 0.0
-    var endAngle:CGFloat = 0.0
-    
+    var startAngle:CGFloat = 0.0 //开始的度数
+    var endAngle:CGFloat = 360.0 //结束的度数
     override func draw(_ rect: CGRect) {
         let centerX = rect.width * 0.5
         let centerY =  rect.height * 0.5
@@ -24,35 +23,20 @@ class CQGradientRingView: UIView {
         let centerPoint = CGPoint(x: centerX, y: centerY) // 圆心
         
         //贝塞尔曲线画圆弧  
-        let startAngle = 149.0 / 180.0 * .pi // 度数转角度
-        let endAngle = 31.0 / 180.0 * .pi
+        let start = self.startAngle / 180.0 * .pi // 度数转角度
+        let end = self.endAngle / 180.0 * .pi
         // 内侧圆环的path
-        let circlePath = UIBezierPath(arcCenter: centerPoint, radius: smallR, startAngle: startAngle, endAngle: endAngle, clockwise: true)
+        let circlePath = UIBezierPath(arcCenter: centerPoint, radius: smallR, startAngle: start, endAngle: end, clockwise: true)
          
 //        self.bgLayer.path = circlePath.cgPath
         self.shapeLayer.path = circlePath.cgPath
         self.gradientLayer.mask = self.shapeLayer
         
         // 外侧圆环的path
-        let linePath = UIBezierPath(arcCenter: centerPoint, radius: lineR, startAngle: startAngle, endAngle: endAngle, clockwise: true)
+        let linePath = UIBezierPath(arcCenter: centerPoint, radius: lineR, startAngle: start, endAngle: end, clockwise: true)
         self.lineShapeLayer.path = linePath.cgPath
         self.lineGradientLayer.mask = self.lineShapeLayer
     }
-    
-//    func animateReset(_ count:CGFloat, scale:CGFloat) {
-//        var tempScale = scale
-//        if scale > 1.0 {
-//            tempScale = 1.0
-//        } else if scale < 0.0 {
-//            tempScale = 0.0
-//        }
-//
-//        if(self.shapeLayer.strokeEnd <= tempScale){
-//            let untilValue = tempScale / count
-//            self.shapeLayer.strokeEnd += untilValue
-//            self.lineShapeLayer.strokeEnd += untilValue
-//        }else{ }
-//    }
     
     func drawRing(fromValue:CGFloat, toValue:CGFloat) {
         let rotationAnimation = CABasicAnimation(keyPath: "strokeEnd")
@@ -130,7 +114,7 @@ class CQGradientRingView: UIView {
     lazy var lineShapeLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
         layer.lineWidth = self.lineWidth2
-        layer.lineCap = .round
+//        layer.lineCap = .round
         layer.strokeStart = 0
         layer.strokeEnd = 0.0
         layer.fillColor = UIColor.clear.cgColor
