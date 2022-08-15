@@ -38,19 +38,37 @@ class CQGradientRingView: UIView {
         self.lineGradientLayer.mask = self.lineShapeLayer
     }
     
+    func rotateRing(_ currentAngle:CGFloat) {
+        self.endAngle = currentAngle
+        self.setNeedsDisplay()
+//        self.shapeLayer.transform = transform
+    }
+    
     func drawRing(fromValue:CGFloat, toValue:CGFloat) {
         let rotationAnimation = CABasicAnimation(keyPath: "strokeEnd")
         rotationAnimation.fromValue = NSNumber(value: fromValue)
         rotationAnimation.toValue = NSNumber(value:toValue)
         rotationAnimation.duration = 1
-        rotationAnimation.repeatCount = 1
+        rotationAnimation.repeatCount = 1.0
         rotationAnimation.fillMode = .forwards
         rotationAnimation.isRemovedOnCompletion = false
         //self.arrowView.layer.fillMode = .forwards
         self.shapeLayer.add(rotationAnimation, forKey: nil)
         self.lineShapeLayer.add(rotationAnimation, forKey: nil)
     }
-    
+    func drawRingRepeat(fromValue:CGFloat, toValue:CGFloat) {
+        let rotationAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        rotationAnimation.fromValue = NSNumber(value: fromValue)
+        rotationAnimation.toValue = NSNumber(value:toValue)
+        rotationAnimation.duration = 2.5
+        //rotationAnimation.repeatCount = 1.0
+        rotationAnimation.repeatCount = Float(CGFloat.greatestFiniteMagnitude)
+        rotationAnimation.fillMode = .forwards
+        rotationAnimation.isRemovedOnCompletion = false
+        //self.arrowView.layer.fillMode = .forwards
+        self.shapeLayer.add(rotationAnimation, forKey: nil)
+        self.lineShapeLayer.add(rotationAnimation, forKey: nil)
+    }
     //MARK:init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -136,12 +154,22 @@ class CQGradientRingView: UIView {
         return layer
     }()
     
+//    lazy var shapeLayer: CAShapeLayer = {
+//        let layer = CAShapeLayer()
+//        layer.lineWidth = self.lineWidth1
+//        //layer.lineCap = .round
+//        layer.strokeStart = 0
+//        layer.strokeEnd = 0.0
+//        layer.fillColor = UIColor.clear.cgColor
+//        layer.strokeColor = UIColor.blue.cgColor
+//        return layer
+//    }()
     lazy var shapeLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
         layer.lineWidth = self.lineWidth1
         //layer.lineCap = .round
         layer.strokeStart = 0
-        layer.strokeEnd = 0.0
+        layer.strokeEnd = 1.0
         layer.fillColor = UIColor.clear.cgColor
         layer.strokeColor = UIColor.blue.cgColor
         return layer

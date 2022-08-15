@@ -17,12 +17,53 @@ class CQIndicatorGradientView: UIView {
     fileprivate var circleCenter:CGPoint = .zero
     
     fileprivate let maxValue:CGFloat = 1000.0 // 额度最大值1000万
-    var currentUserValue:CGFloat = 500 // 当前用户额度
+    var currentUserValue:CGFloat = 1000.0 // 当前用户额度
     
     let blankAngle:CGFloat = 110.0 //大圆盘空白的度数
     fileprivate var initRadians:CGFloat!
+    fileprivate var initAngle:CGFloat!
+    
     var maxRadians:CGFloat! // 当前用户最大的弧度值
+    var maxAngle:CGFloat! // 当前用户最大的角度值
+    
     var totalRadians:CGFloat! // 大圆盘的总弧度值
+    var totalAngle:CGFloat! // 大圆盘的总角度值
+    
+    var currentRadians:CGFloat! // 当前绘制的弧度值
+    var currentAngle:CGFloat! // 当前绘制的角度值
+    var count:Int = 0
+    
+    @objc func update() {
+        if self.currentAngle > maxAngle {
+            if self.count > 50 {
+                self.count = 0
+                self.currentAngle = self.initAngle
+            } else {
+                self.count += 1
+                self.currentAngle = self.maxAngle
+            }
+                
+            
+            
+            // 超出最大值，销毁计时器
+            //self.invalidate()
+            
+
+        } else {
+            let currentRad = self.degreesToRadians(self.currentAngle)
+            self.rotateArrow(currentRad)
+            self.ringView.rotateRing(self.currentAngle)
+            self.currentAngle += 1.0
+        }
+//        if self.currentRadians > self.maxRadians {
+//            // 超出最大值，销毁计时器
+//            self.invalidate()
+//        } else {
+//            self.rotateArrow(self.currentRadians)
+//            self.ringView.rotateRing(self.currentRadians)
+//            self.currentRadians += 0.01
+//        }
+    }
     
     //MARK: invalidate
     func invalidate() {
@@ -42,14 +83,31 @@ class CQIndicatorGradientView: UIView {
         let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         rotationAnimation.fromValue = NSNumber(value: fromValue)
         rotationAnimation.toValue = NSNumber(value:toValue)
-        rotationAnimation.duration = 1
-        rotationAnimation.repeatCount = 1
+        rotationAnimation.duration = 2.5
+        rotationAnimation.repeatCount = 5.0
+//        rotationAnimation.timingFunction = CAMediaTimingFunction.init(name: .easeInEaseOut)
+        //rotationAnimation.autoreverses = true // 动画完成时原路返回
         rotationAnimation.fillMode = .forwards
         rotationAnimation.isRemovedOnCompletion = false
         self.arrowView.layer.add(rotationAnimation, forKey: nil)
     }
+    
+    // 此方法设置重复动画，无法在每一次动画完成后设置时间间隔
+    fileprivate func roateRepeatView(fromValue:CGFloat, toValue:CGFloat) {
+        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotationAnimation.fromValue = NSNumber(value: fromValue)
+        rotationAnimation.toValue = NSNumber(value:toValue)
+        rotationAnimation.duration = 2.5
+        rotationAnimation.repeatCount = Float(CGFloat.greatestFiniteMagnitude)
+//        rotationAnimation.timingFunction = CAMediaTimingFunction.init(name: .easeInEaseOut)
+        //rotationAnimation.autoreverses = true // 动画完成时原路返回
+        rotationAnimation.fillMode = .forwards
+        rotationAnimation.isRemovedOnCompletion = false
+        self.arrowView.layer.add(rotationAnimation, forKey: nil)
+    }
+    
     //MARK: 旋转到初始位置
-    fileprivate func roateToInitPosition() {
+    fileprivate func roateToInitPosition1() { // 方式一
         let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         rotationAnimation.fromValue = NSNumber(value: 0.0)
         rotationAnimation.toValue = NSNumber(value:self.initRadians)
@@ -60,30 +118,47 @@ class CQIndicatorGradientView: UIView {
         self.arrowView.layer.add(rotationAnimation, forKey: nil)
     }
     
+    func roateToInitPosition2() { // 方式二
+        var transform = CATransform3DIdentity
+        transform.m34 = 1.0 / -1000.0
+        transform = CATransform3DRotate(transform, self.initRadians, 0.0, 0.0, 1.0)
+        self.arrowView.layer.transform = transform
+    }
+    
     //MARK:init
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        let initAngle = (180.0 - self.blankAngle) * 0.5 + blankAngle // 初始的度数
+        self.initAngle = (180.0 - self.blankAngle) * 0.5 + blankAngle // 初始的度数
         self.initRadians = self.degreesToRadians(initAngle)
-        let totalAngle = 360.0 - blankAngle // 大圆盘的总度数
-        self.totalRadians = self.degreesToRadians(totalAngle)
+        
+        self.totalAngle = 360.0 - blankAngle // 大圆盘的总度数
+        self.totalRadians = self.degreesToRadians(self.totalAngle)
+        
         let angleScale = self.currentUserValue / self.maxValue // 需要旋转的角度比例
         // 当前用户最大的弧度值
         let tempMaxRadians = angleScale * self.totalRadians
         self.maxRadians = tempMaxRadians + self.initRadians
+        self.maxAngle = angleScale * self.totalAngle + initAngle
+        
+        self.currentRadians = self.initRadians
+        self.currentAngle = initAngle
         
         self.ringView.startAngle = initAngle
-        self.ringView.endAngle = (180.0 - self.blankAngle) * 0.5
+        self.ringView.endAngle = initAngle
+        //self.ringView.endAngle = (180.0 - self.blankAngle) * 0.5
         
         self.setupUI()
         
-
         
-        self.roateToInitPosition()
+       self.timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+        
+        self.roateToInitPosition2()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-            self.roateView(fromValue: self.initRadians, toValue: self.maxRadians)
-            self.ringView.drawRing(fromValue: 0.0, toValue: angleScale)
+            //self.roateView(fromValue: self.initRadians, toValue: self.maxRadians)
+            //self.ringView.drawRing(fromValue: 0.0, toValue: angleScale)
+//            self.roateView(fromValue: self.initRadians, toValue: self.totalRadians + self.initRadians)
+//            self.ringView.drawRing(fromValue: 0.0, toValue: 1.0)
         })
 
     }
@@ -131,7 +206,7 @@ class CQIndicatorGradientView: UIView {
         self.addSubview(self.arrowView) // 箭头
         
         self.addSubview(self.smallCircle) // 中心的小圆
-         
+
     }
     
     // 将角度转换为弧度

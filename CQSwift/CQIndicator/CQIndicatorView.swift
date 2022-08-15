@@ -22,9 +22,10 @@ class CQIndicatorView: UIView {
     }
     //MARK: rotate
     @objc func rotate() {
-        
+
     }
     
+
     
     //MARK: draw
     override func draw(_ rect: CGRect) {
@@ -120,7 +121,7 @@ class CQIndicatorView: UIView {
     //MARK:setupUI
     func setupUI() {
         self.backgroundColor = .lightGray
-//        self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(rotate), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(rotate), userInfo: nil, repeats: true)
         self.addSubview(self.bgView)
         self.addSubview(self.indicatorView)
     }
