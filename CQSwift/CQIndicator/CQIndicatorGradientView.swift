@@ -213,7 +213,7 @@ class CQIndicatorGradientView: UIView {
     fileprivate func degreesToRadians(_ angle:CGFloat) -> CGFloat {
         return (.pi * angle) / 180.0
     }
-    // 将角度转换为弧度
+    // 将弧度 转换为 角度
     fileprivate func radiansToDegrees(_ radians:CGFloat) -> CGFloat {
         return (180.0 * radians) / .pi
     }

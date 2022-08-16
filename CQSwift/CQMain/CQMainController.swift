@@ -51,14 +51,69 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableView?.register(CQMainCell.self, forCellReuseIdentifier: "CQMainCellID")
         tableView?.register(CQMainHeaderView.self, forHeaderFooterViewReuseIdentifier: "CQMainHeaderID")
         self.view.addSubview(tableView!)
-    
+//        _ = self.getNowTimeTimestamp()
+        
+        // 这样写时间跟北京时间相同
+//        let date = Date()
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
+//        formatter.locale = Locale.init(identifier: "zh_Hans_CN")
+//        formatter.calendar = Calendar.init(identifier: .iso8601)
+//        formatter.timeZone = TimeZone.current
+//        let dateStr = formatter.string(from: date)
+//        guard let newDate = formatter.date(from: dateStr) else { return }
+
+        // 错误写法
+        let newDate = Date(timeInterval: 60*60*8, since: Date())
+        let stamp = newDate.timeIntervalSince1970
+        print("stamp: \(stamp)")
+        let stampString = "\(u_long(stamp))"
+        print("stampString: \(stampString)")
+        // 这样写时间跟北京时间相差差8小时（需要用DateFormatter设置时区）
+//        let newDate = Date()
+//        print("date: \(newDate)")
+//        let stamp = newDate.timeIntervalSince1970
+        
+//        print("dateTime: \(stamp)")
+        
+        _ = self.date(stampTime: stampString)
+        
         //self.testMap()
 //        DispatchQueue.main.async {
 //            self.testError()
 //        }
-        self.testArray()
+//        self.testArray()
     }
-    
+    func date(stampTime:String) -> Date? {
+        //转换为时间
+        guard let timeInterval:TimeInterval = TimeInterval(stampTime) else { return nil }
+        print("timeInterval:\(timeInterval)")
+        let date = Date(timeIntervalSince1970: timeInterval)
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone.current
+        formatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+        formatter.locale = Locale.init(identifier: "zh_Hans_CN")
+        formatter.calendar = Calendar.init(identifier: .iso8601)
+        let dateStr = formatter.string(from: date)
+        print("dateStr: \(dateStr)")
+        return date as Date
+    }
+    func getNowTimeTimestamp() -> String {
+//        let formatter = DateFormatter()
+//        formatter.dateStyle = .medium
+//        formatter.timeStyle = .short
+//        formatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
+//        let timezone = TimeZone.init(identifier: "Asia/Beijing")
+//        formatter.timeZone = timezone
+//        guard let dateTime = formatter.date(from: NSDate()) else { return }
+        let dateTime = NSDate.init()
+        //这里是秒，如果想要毫秒timeIntervalSince1970 * 1000
+        let timeSp = String(format: "%d", dateTime.timeIntervalSince1970)
+        print("dateTime: \(dateTime.timeIntervalSince1970)")
+        print(timeSp)
+        return timeSp
+    }
+ 
     func testArray() {
         let obj = 5
         var array = [10, 30]
