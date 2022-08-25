@@ -33,7 +33,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     fileprivate let dataAray: [[String]] = [
         ["collectionView", "tableView", "tableView嵌套", "自定义ScrollView"],
-        ["九宫格手势解锁"],
+        ["九宫格手势解锁", "字幕滚动"],
         ["JS交互"],
         ["Loading", "指针", "手机通讯录"],
         ["渐变"],
@@ -261,6 +261,9 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
             if indexPath.row == 0 {
                 let gridLockVC = CQGridLockController()
                 self.navigationController?.pushViewController(gridLockVC, animated: true)
+            } else if indexPath.row == 1 {
+                let vc = CQTextScrollVC()
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         case 2:
             let vc = CQWebViewController()
