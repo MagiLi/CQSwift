@@ -10,5 +10,6 @@
 #define header_h
 
 #import "UIImage+CQExtern.h"
+#import "NSAttributedString+Extension.h"
 
 #endif /* header_h */

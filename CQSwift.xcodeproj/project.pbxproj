@@ -37,6 +37,7 @@
 		242CE79C243C27ED00DF059D /* CQTransitionModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242CE797243C27ED00DF059D /* CQTransitionModelManager.swift */; };
 		242F365127166D77006562BF /* CQWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F365027166D77006562BF /* CQWebViewController.swift */; };
 		242F365627166DC1006562BF /* CQJSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F365527166DC1006562BF /* CQJSClient.swift */; };
+		242F64D028B86CBD0008F911 /* NSAttributedString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 242F64CF28B86CBD0008F911 /* NSAttributedString+Extension.m */; };
 		24356956270308650015C447 /* CQGridLockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24356955270308650015C447 /* CQGridLockController.swift */; };
 		2435695E27030C8C0015C447 /* CQGridLockCreateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435695D27030C8C0015C447 /* CQGridLockCreateVC.swift */; };
 		2435696327030CAA0015C447 /* CQGridLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435696227030CAA0015C447 /* CQGridLockView.swift */; };
@@ -172,6 +173,8 @@
 		242CE797243C27ED00DF059D /* CQTransitionModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQTransitionModelManager.swift; sourceTree = "<group>"; };
 		242F365027166D77006562BF /* CQWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQWebViewController.swift; sourceTree = "<group>"; };
 		242F365527166DC1006562BF /* CQJSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQJSClient.swift; sourceTree = "<group>"; };
+		242F64CE28B86CBD0008F911 /* NSAttributedString+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Extension.h"; sourceTree = "<group>"; };
+		242F64CF28B86CBD0008F911 /* NSAttributedString+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Extension.m"; sourceTree = "<group>"; };
 		24356955270308650015C447 /* CQGridLockController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGridLockController.swift; sourceTree = "<group>"; };
 		2435695D27030C8C0015C447 /* CQGridLockCreateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGridLockCreateVC.swift; sourceTree = "<group>"; };
 		2435696227030CAA0015C447 /* CQGridLockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGridLockView.swift; sourceTree = "<group>"; };
@@ -582,6 +585,8 @@
 		3412C456230D38230048A095 /* CQCategory */ = {
 			isa = PBXGroup;
 			children = (
+				242F64CE28B86CBD0008F911 /* NSAttributedString+Extension.h */,
+				242F64CF28B86CBD0008F911 /* NSAttributedString+Extension.m */,
 				3412C45F230D3CC30048A095 /* UIColor+CQExtension.swift */,
 				3412C461230D44370048A095 /* UIView+CQExtension.swift */,
 				24EC108028597803002EE703 /* UIView+CQFrame.swift */,
@@ -976,6 +981,7 @@
 				24EC10902859DAD3002EE703 /* CQContactListViewModel.swift in Sources */,
 				2422067F2704120600350DF0 /* CQView+Extension.swift in Sources */,
 				2458AB78285B215B0078A53F /* CQContactNewViewModel.swift in Sources */,
+				242F64D028B86CBD0008F911 /* NSAttributedString+Extension.m in Sources */,
 				2489F7132861AF040085C076 /* CQGradientView1.swift in Sources */,
 				247847DA2448476B00229463 /* CQTopViewModel.swift in Sources */,
 				241D5DA62887A6140076725B /* Comparable+Utils.swift in Sources */,
