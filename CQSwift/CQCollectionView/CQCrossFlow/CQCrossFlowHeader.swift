@@ -10,6 +10,11 @@ import UIKit
 
 class CQCrossFlowHeader: UICollectionReusableView {
     
+//    override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
+//        super.apply(layoutAttributes)
+//
+//    }
+    
     //MARK:init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,10 +31,11 @@ class CQCrossFlowHeader: UICollectionReusableView {
         let titleLbW = self.frame.width - titleLbX * 2.0
         let titleLbH = self.frame.height
         self.titleLb.frame = CGRect(x: titleLbX, y: titleLbY, width: titleLbW, height: titleLbH)
-
+//        self.titleLb.frame = self.bounds
     }
     //MARK:setupUI
     func setupUI() {
+        self.backgroundColor = .clear
         self.addSubview(self.titleLb)
     }
     //MARK:lazy
@@ -37,6 +43,7 @@ class CQCrossFlowHeader: UICollectionReusableView {
         let lb = UILabel()
         lb.font = UIFont(name: "PingFang-SC-Medium", size: 13.0)
         lb.textColor = UIColor(named: "#888888")
+        lb.backgroundColor = .clear
         return lb
     }()
 

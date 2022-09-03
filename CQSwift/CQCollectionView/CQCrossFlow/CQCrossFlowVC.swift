@@ -42,9 +42,14 @@ class CQCrossFlowVC: UIViewController, UICollectionViewDelegate, UICollectionVie
             let sectionModel = self.sectionModelArray[indexPath.section]
             headerView.titleLb.text = sectionModel.title
             return headerView
+        } else if kind == UICollectionView.elementKindSectionFooter {
+            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CQCrossFlowFooterID", for: indexPath) as! CQCrossFlowFooter
+            return footerView
         }
+
         return UICollectionReusableView()
     }
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CQCrossFlowCellID", for: indexPath) as! CQCrossFlowCell
         if self.sectionModelArray.count <= indexPath.section { return cell }
@@ -83,7 +88,7 @@ class CQCrossFlowVC: UIViewController, UICollectionViewDelegate, UICollectionVie
         return CGSize(width: self.view.frame.width, height: 30.0)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return .zero
+        return CGSize(width: self.view.frame.width, height: 10.0)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 15.0
@@ -120,11 +125,12 @@ class CQCrossFlowVC: UIViewController, UICollectionViewDelegate, UICollectionVie
         let collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: self.layout)
         collectionView.alwaysBounceVertical = true
         collectionView.showsVerticalScrollIndicator = false
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .orange
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(CQCrossFlowCell.self, forCellWithReuseIdentifier: "CQCrossFlowCellID")
         collectionView.register(CQCrossFlowHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CQCrossFlowHeaderID")
+        collectionView.register(CQCrossFlowFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "CQCrossFlowFooterID")
         return collectionView
     }()
     

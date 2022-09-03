@@ -35,6 +35,8 @@
 		242CE799243C27ED00DF059D /* CQModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242CE794243C27ED00DF059D /* CQModelManager.swift */; };
 		242CE79A243C27ED00DF059D /* CQConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242CE795243C27ED00DF059D /* CQConstant.swift */; };
 		242CE79C243C27ED00DF059D /* CQTransitionModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242CE797243C27ED00DF059D /* CQTransitionModelManager.swift */; };
+		242DEF1B28C2FCAC00F7167E /* CQCrossDecorationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242DEF1A28C2FCAC00F7167E /* CQCrossDecorationView.swift */; };
+		242DEF1D28C3282F00F7167E /* CQCrossFlowFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242DEF1C28C3282F00F7167E /* CQCrossFlowFooter.swift */; };
 		242F365127166D77006562BF /* CQWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F365027166D77006562BF /* CQWebViewController.swift */; };
 		242F365627166DC1006562BF /* CQJSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F365527166DC1006562BF /* CQJSClient.swift */; };
 		242F64D028B86CBD0008F911 /* NSAttributedString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 242F64CF28B86CBD0008F911 /* NSAttributedString+Extension.m */; };
@@ -176,6 +178,8 @@
 		242CE794243C27ED00DF059D /* CQModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQModelManager.swift; sourceTree = "<group>"; };
 		242CE795243C27ED00DF059D /* CQConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQConstant.swift; sourceTree = "<group>"; };
 		242CE797243C27ED00DF059D /* CQTransitionModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQTransitionModelManager.swift; sourceTree = "<group>"; };
+		242DEF1A28C2FCAC00F7167E /* CQCrossDecorationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCrossDecorationView.swift; sourceTree = "<group>"; };
+		242DEF1C28C3282F00F7167E /* CQCrossFlowFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCrossFlowFooter.swift; sourceTree = "<group>"; };
 		242F365027166D77006562BF /* CQWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQWebViewController.swift; sourceTree = "<group>"; };
 		242F365527166DC1006562BF /* CQJSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQJSClient.swift; sourceTree = "<group>"; };
 		242F64CE28B86CBD0008F911 /* NSAttributedString+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Extension.h"; sourceTree = "<group>"; };
@@ -511,8 +515,10 @@
 			children = (
 				24D063BB28C21B5E008147BF /* CQCrossFlowVC.swift */,
 				24D063C328C22BAB008147BF /* CQCrossFlowHeader.swift */,
+				242DEF1C28C3282F00F7167E /* CQCrossFlowFooter.swift */,
 				24D063C128C221BD008147BF /* CQCrossFlowCell.swift */,
 				24D063BD28C21BF0008147BF /* CQCrossFlowLayout.swift */,
+				242DEF1A28C2FCAC00F7167E /* CQCrossDecorationView.swift */,
 				24D063BF28C21FD8008147BF /* CQCFlowSectionModel.swift */,
 			);
 			path = CQCrossFlow;
@@ -977,6 +983,7 @@
 				24A43BDD28A2079B00FD360B /* CQGradientRingView.swift in Sources */,
 				342C1C15235949AA0058E583 /* CQMetalFirstController.swift in Sources */,
 				242CE798243C27ED00DF059D /* CQError.swift in Sources */,
+				242DEF1D28C3282F00F7167E /* CQCrossFlowFooter.swift in Sources */,
 				342C1C1923594DA40058E583 /* CQMetalSecondController.swift in Sources */,
 				241D5DA52887A6140076725B /* GeometryUtils.swift in Sources */,
 				2489F70F2861AC600085C076 /* CQGradientController.swift in Sources */,
@@ -1046,6 +1053,7 @@
 				24DE5C9528582D68009512F5 /* UIImage+Extern.swift in Sources */,
 				34C1A3B3231658250079A935 /* CQMainHeaderView.swift in Sources */,
 				2458AB72285AC3FA0078A53F /* CQContactVC.swift in Sources */,
+				242DEF1B28C2FCAC00F7167E /* CQCrossDecorationView.swift in Sources */,
 				34ACC121236A875000C676C0 /* CQDispatchVC.swift in Sources */,
 				3412C460230D3CC30048A095 /* UIColor+CQExtension.swift in Sources */,
 			);
