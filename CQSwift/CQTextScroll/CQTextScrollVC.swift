@@ -17,7 +17,13 @@ class CQTextScrollVC: UIViewController {
         
         self.view.addSubview(self.textScrollView)
         
+        self.textPage()
         
+        self.view.addSubview(self.typeView)
+    }
+    
+    // 计算一行放多少文字
+    func textPage() {
         /*根据lab的size计算每行需要展示的文字索引*/
         let msg = "口角是非款酸辣粉挥洒舒服了科技发达是匡扶汉室卡夫卡数据恢复数据开发哈佛回家撒反馈"
         let att:[NSAttributedString.Key : Any] = [
@@ -50,6 +56,8 @@ class CQTextScrollVC: UIViewController {
         let x:CGFloat = 20.0
         let width = self.view.frame.width - x * 2.0
         self.textScrollView.frame = CGRect(x: x, y: 100.0, width:width, height: 30.0)
+        
+        self.typeView.frame = CGRect(x: 0.0, y: 250.0, width: self.view.frame.width, height: 50.0)
     }
     
     lazy var textScrollView: CQTextScrollView = {
@@ -61,4 +69,15 @@ class CQTextScrollVC: UIViewController {
 //        let lab = UILabel()
 //        return lab
 //    }()
+    
+    lazy var typeView: CQTypeView = {
+        let view = CQTypeView(titleArray: self.titleArray)
+        return view
+    }()
+    var titleArray:[[String:Any]] = [
+        ["title":"全部"],
+        ["title":"功能"],
+        ["title":"产品"],
+        ["title":"资讯"]
+    ]
 }

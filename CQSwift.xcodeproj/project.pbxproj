@@ -81,6 +81,9 @@
 		24D063C228C221BD008147BF /* CQCrossFlowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D063C128C221BD008147BF /* CQCrossFlowCell.swift */; };
 		24D063C428C22BAB008147BF /* CQCrossFlowHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D063C328C22BAB008147BF /* CQCrossFlowHeader.swift */; };
 		24DE5C9528582D68009512F5 /* UIImage+Extern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DE5C9428582D68009512F5 /* UIImage+Extern.swift */; };
+		24E30C0728D1C2BC0015FC75 /* CQWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 24E30C0628D1C2BC0015FC75 /* CQWeakProxy.m */; };
+		24E30C0C28D1D3B90015FC75 /* CQTypeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E30C0B28D1D3B90015FC75 /* CQTypeTitleView.swift */; };
+		24E30C0E28D1D3E20015FC75 /* CQTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E30C0D28D1D3E20015FC75 /* CQTypeView.swift */; };
 		24E59B3428B77237004E99EE /* CQTextScrollVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E59B3328B77237004E99EE /* CQTextScrollVC.swift */; };
 		24E59B3628B772AA004E99EE /* CQTextScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E59B3528B772AA004E99EE /* CQTextScrollView.swift */; };
 		24E5E4C424EE511600F60138 /* CQMTKVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5E4C324EE511600F60138 /* CQMTKVIewController.swift */; };
@@ -225,6 +228,10 @@
 		24D063C128C221BD008147BF /* CQCrossFlowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCrossFlowCell.swift; sourceTree = "<group>"; };
 		24D063C328C22BAB008147BF /* CQCrossFlowHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCrossFlowHeader.swift; sourceTree = "<group>"; };
 		24DE5C9428582D68009512F5 /* UIImage+Extern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extern.swift"; sourceTree = "<group>"; };
+		24E30C0528D1C2BC0015FC75 /* CQWeakProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQWeakProxy.h; sourceTree = "<group>"; };
+		24E30C0628D1C2BC0015FC75 /* CQWeakProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQWeakProxy.m; sourceTree = "<group>"; };
+		24E30C0B28D1D3B90015FC75 /* CQTypeTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQTypeTitleView.swift; sourceTree = "<group>"; };
+		24E30C0D28D1D3E20015FC75 /* CQTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQTypeView.swift; sourceTree = "<group>"; };
 		24E59B3328B77237004E99EE /* CQTextScrollVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQTextScrollVC.swift; sourceTree = "<group>"; };
 		24E59B3528B772AA004E99EE /* CQTextScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQTextScrollView.swift; sourceTree = "<group>"; };
 		24E5E4C324EE511600F60138 /* CQMTKVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMTKVIewController.swift; sourceTree = "<group>"; };
@@ -529,6 +536,8 @@
 			children = (
 				24E59B3328B77237004E99EE /* CQTextScrollVC.swift */,
 				24E59B3528B772AA004E99EE /* CQTextScrollView.swift */,
+				24E30C0D28D1D3E20015FC75 /* CQTypeView.swift */,
+				24E30C0B28D1D3B90015FC75 /* CQTypeTitleView.swift */,
 			);
 			path = CQTextScroll;
 			sourceTree = "<group>";
@@ -623,6 +632,8 @@
 				2426242A27EAFD0100AEC968 /* UIImage+CQExtern.h */,
 				2426242B27EAFD0100AEC968 /* UIImage+CQExtern.m */,
 				24DE5C9428582D68009512F5 /* UIImage+Extern.swift */,
+				24E30C0528D1C2BC0015FC75 /* CQWeakProxy.h */,
+				24E30C0628D1C2BC0015FC75 /* CQWeakProxy.m */,
 			);
 			path = CQCategory;
 			sourceTree = "<group>";
@@ -969,6 +980,7 @@
 				3404B883230C2663004CFA91 /* CQMainController.swift in Sources */,
 				24F949B424F4B15E006CC572 /* CQGrid.metal in Sources */,
 				3412C450230D2EDF0048A095 /* CQCollectionViewController.swift in Sources */,
+				24E30C0C28D1D3B90015FC75 /* CQTypeTitleView.swift in Sources */,
 				24A43BDB28A1FE0300FD360B /* CQIndicatorGradientView.swift in Sources */,
 				244DA61A24470619008B3B57 /* CQMoreFooter.swift in Sources */,
 				242CE79C243C27ED00DF059D /* CQTransitionModelManager.swift in Sources */,
@@ -990,6 +1002,7 @@
 				2427846B28290B83003F4354 /* CQLoadingController.swift in Sources */,
 				244DA61624470619008B3B57 /* CQMoreEditContentView.swift in Sources */,
 				24FBF24E28A1037D001E2370 /* CQIndicatorView.swift in Sources */,
+				24E30C0E28D1D3E20015FC75 /* CQTypeView.swift in Sources */,
 				24D063BC28C21B5E008147BF /* CQCrossFlowVC.swift in Sources */,
 				244DA61824470619008B3B57 /* CQMoreCell.swift in Sources */,
 				24EC108128597803002EE703 /* UIView+CQFrame.swift in Sources */,
@@ -1007,6 +1020,7 @@
 				24E5E4C424EE511600F60138 /* CQMTKVIewController.swift in Sources */,
 				2492FD46244D6FAD00957345 /* CQMainNavController+CQExtension.swift in Sources */,
 				242CE79A243C27ED00DF059D /* CQConstant.swift in Sources */,
+				24E30C0728D1C2BC0015FC75 /* CQWeakProxy.m in Sources */,
 				24B25CDD28752A2B0046DDA8 /* CQCustomScrollView.swift in Sources */,
 				2477F22427BE1A3A00218542 /* CQCycleController.swift in Sources */,
 				2435696827030EC30015C447 /* CQGridLockIndicatorView.swift in Sources */,

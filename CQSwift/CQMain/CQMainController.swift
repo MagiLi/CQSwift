@@ -78,12 +78,8 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         _ = self.date(stampTime: stampString)
         
-        //self.testMap()
-//        DispatchQueue.main.async {
-//            self.testError()
-//        }
-//        self.testArray()
     }
+    
     func date(stampTime:String) -> Date? {
         //转换为时间
         guard let timeInterval:TimeInterval = TimeInterval(stampTime) else { return nil }
@@ -120,6 +116,30 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
         array.insert(obj, at: 2)
         print("--------")
         print(array)
+    }
+    func testFont() {
+        UIFont.familyNames.forEach {
+            print("## Font Family Name: \($0)")
+            //let familyName = "## Font Family Name: \($0) \n"
+            UIFont.fontNames(forFamilyName: $0).forEach {
+                print("* **Font Name:** \($0)")
+                //let name = "* **Font Name:** \($0) \n"
+            }
+            //let boundry = "\n ============================"
+            print("\n ============================")
+        }
+    }
+    func testRangeToNSRange() {
+        let fullString = "大开发高科技啊刷卡时"
+        let subString = "科技"
+        
+        let range = fullString.range(of: subString)!
+        let length = fullString.distance(from: range.lowerBound, to: range.upperBound)
+        let location = fullString.distance(from: fullString.startIndex, to: range.lowerBound)
+        print("location: \(location) length: \(length)")
+        let nsRange = NSMakeRange(location, length)
+         
+
     }
     //MARK: 精度计算不准确处理
     func floatHanler() {
