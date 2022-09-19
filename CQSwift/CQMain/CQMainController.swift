@@ -33,7 +33,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     fileprivate let dataAray: [[String]] = [
         ["collectionView", "tableView", "tableView嵌套", "自定义ScrollView"],
-        ["九宫格手势解锁", "字幕滚动"],
+        ["九宫格手势解锁", "日历", "字幕滚动"],
         ["JS交互"],
         ["Loading", "指针", "手机通讯录"],
         ["渐变"],
@@ -63,12 +63,13 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
 //        let dateStr = formatter.string(from: date)
 //        guard let newDate = formatter.date(from: dateStr) else { return }
 
-        // 错误写法
-        let newDate = Date(timeInterval: 60*60*8, since: Date())
-        let stamp = newDate.timeIntervalSince1970
-        print("stamp: \(stamp)")
-        let stampString = "\(u_long(stamp))"
-        print("stampString: \(stampString)")
+//        // 错误写法
+//        let newDate = Date(timeInterval: 60*60*8, since: Date())
+//        let stamp = newDate.timeIntervalSince1970
+//        print("stamp: \(stamp)")
+//        let stampString = "\(u_long(stamp))"
+//        print("stampString: \(stampString)")
+  
         // 这样写时间跟北京时间相差差8小时（需要用DateFormatter设置时区）
 //        let newDate = Date()
 //        print("date: \(newDate)")
@@ -76,7 +77,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
 //        print("dateTime: \(stamp)")
         
-        _ = self.date(stampTime: stampString)
+//        _ = self.date(stampTime: stampString)
         
     }
     
@@ -282,6 +283,9 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let gridLockVC = CQGridLockController()
                 self.navigationController?.pushViewController(gridLockVC, animated: true)
             } else if indexPath.row == 1 {
+                let calendarVC = CQCalendarController()
+                self.navigationController?.pushViewController(calendarVC, animated: true)
+            } else if indexPath.row == 2 {
                 let vc = CQTextScrollVC()
                 self.navigationController?.pushViewController(vc, animated: true)
             }

@@ -12,6 +12,8 @@ import UIKit
 let CQScreenBounds = UIScreen.main.bounds
 let CQScreenW = UIScreen.main.bounds.size.width
 let CQScreenH = UIScreen.main.bounds.size.height
+let CQScaleW = CQScreenW / 375.0
+let CQScaleH = CQScreenH / 667.0
 
 ///// 状态栏高度20
 //let CQStatusHeight: CGFloat = 20
