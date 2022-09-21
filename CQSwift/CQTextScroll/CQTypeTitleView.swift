@@ -19,13 +19,22 @@ class CQTypeTitleView: UIControl {
     var selectedStatus: Bool = false {
         didSet {
             if self.selectedStatus {
-                self.titleLab.textColor = UIColor(named: "#4A7AE0")
-                self.titleLab.font = UIFont.boldSystemFont(ofSize: 16.0)
-                self.lineView.isHidden = false
+                UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut, animations: {
+                    self.titleLab.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+                }, completion: { success in
+                    self.titleLab.textColor = .systemBrown
+                    self.titleLab.font = UIFont.boldSystemFont(ofSize: 16.0)
+                    self.lineView.isHidden = false
+                })
+                
             } else {
-                self.titleLab.textColor = UIColor(named: "#999999")
-                self.titleLab.font = UIFont.systemFont(ofSize: 16.0)
-                self.lineView.isHidden = true
+                UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut, animations: {
+                    self.titleLab.transform = CGAffineTransform.identity
+                }, completion: { success in
+                    self.titleLab.textColor = .systemRed
+                    self.titleLab.font = UIFont.systemFont(ofSize: 16.0)
+                    self.lineView.isHidden = true
+                }) 
             }
         }
     }
@@ -69,14 +78,14 @@ class CQTypeTitleView: UIControl {
     //MARK:lazy
     lazy var titleLab : UILabel = {
         let lab = UILabel()
-        lab.textColor = UIColor(named: "#999999")
+        lab.textColor = .systemRed
         lab.font = UIFont.systemFont(ofSize: 16.0)
         lab.textAlignment = .center
         return lab
     }()
     lazy var lineView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(named: "#3974F4")
+        view.backgroundColor = .systemRed
         view.isHidden = true
         return view
     }()
