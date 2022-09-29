@@ -12,9 +12,20 @@ class CQCalendarFooter: UICollectionReusableView {
     
     var stowBlock:((_ stow:Bool)->())?
     
+    var previousBlock:(()->())?
+    var nextBlock:(()->())?
+    
     @objc func stowButtonClicked(_  sender:UIButton) {
         sender.isSelected = !sender.isSelected
         self.stowBlock?(sender.isSelected)
+    }
+    
+    @objc func previousButtonClicked() {
+        previousBlock?()
+    }
+
+    @objc func nextButtonClicked() {
+        nextBlock?()
     }
     
     //MARK: init
@@ -34,11 +45,26 @@ class CQCalendarFooter: UICollectionReusableView {
         let  stowBtnX:CGFloat = (self.frame.width - stowBtnW) * 0.5
         let  stowBtnY:CGFloat =  (self.frame.height - stowBtnH) * 0.5
         self.stowBtn.frame = CGRect(x: stowBtnX, y: stowBtnY, width: stowBtnW, height: stowBtnH)
+        
+        
+        let  previousButtonW:CGFloat = 100.0
+        let  previousButtonH:CGFloat = self.frame.height
+        let  previousButtonX:CGFloat = 0.0
+        let  previousButtonY:CGFloat =  (self.frame.height - previousButtonH) * 0.5
+        self.previousButton.frame = CGRect(x: previousButtonX, y: previousButtonY, width: previousButtonW, height: previousButtonH)
+        
+        let  nextButtonW:CGFloat = previousButtonW
+        let  nextButtonH:CGFloat = self.frame.height
+        let  nextButtonX:CGFloat = self.frame.width - nextButtonW
+        let  nextButtonY:CGFloat =  (self.frame.height - nextButtonH) * 0.5
+        self.nextButton.frame = CGRect(x: nextButtonX, y: nextButtonY, width: nextButtonW, height: nextButtonH)
     }
     
     //MARK: setupUI
     func setupUI() {
         self.addSubview(self.stowBtn)
+        self.addSubview(self.previousButton)
+        self.addSubview(self.nextButton)
     }
     
     //MARK: lazy
@@ -95,5 +121,60 @@ class CQCalendarFooter: UICollectionReusableView {
         }
         
         return btn
+    }()
+    
+    
+    lazy var previousButton: UIButton = {
+      let button = UIButton()
+      button.translatesAutoresizingMaskIntoConstraints = false
+      button.titleLabel?.font = .systemFont(ofSize: 17, weight: .medium)
+      button.titleLabel?.textAlignment = .left
+
+      if let chevronImage = UIImage(systemName: "chevron.left.circle.fill") {
+        let imageAttachment = NSTextAttachment(image: chevronImage)
+        let attributedString = NSMutableAttributedString()
+
+        attributedString.append(
+          NSAttributedString(attachment: imageAttachment)
+        )
+
+        attributedString.append(
+          NSAttributedString(string: " Previous")
+        )
+
+        button.setAttributedTitle(attributedString, for: .normal)
+      } else {
+        button.setTitle("Previous", for: .normal)
+      }
+
+      button.titleLabel?.textColor = .label
+
+      button.addTarget(self, action: #selector(previousButtonClicked), for: .touchUpInside)
+      return button
+    }()
+
+    lazy var nextButton: UIButton = {
+      let button = UIButton()
+      button.translatesAutoresizingMaskIntoConstraints = false
+      button.titleLabel?.font = .systemFont(ofSize: 17, weight: .medium)
+      button.titleLabel?.textAlignment = .right
+
+      if let chevronImage = UIImage(systemName: "chevron.right.circle.fill") {
+        let imageAttachment = NSTextAttachment(image: chevronImage)
+        let attributedString = NSMutableAttributedString(string: "Next ")
+
+        attributedString.append(
+          NSAttributedString(attachment: imageAttachment)
+        )
+
+        button.setAttributedTitle(attributedString, for: .normal)
+      } else {
+        button.setTitle("Next", for: .normal)
+      }
+
+      button.titleLabel?.textColor = .label
+
+      button.addTarget(self, action: #selector(nextButtonClicked), for: .touchUpInside)
+      return button
     }()
 }

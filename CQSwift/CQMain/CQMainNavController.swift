@@ -17,36 +17,56 @@ class CQMainNavController: UINavigationController {
         // 强制开启侧滑返回操作
         interactivePopGestureRecognizer?.delegate = self
 //        self.title = "MAIN"
-//        self.navigationBar.items.
-//        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white, NSAttributedString.Key.font:UIFont.systemFont(ofSize: 10.0)]
 //        self.navigationBar.backgroundColor = UIColor(red: 66.0, green: 176.0, blue: 216.0, alpha: 1.0)
-//        let backView : UIView = self.navigationBar.value(forKeyPath: "backgroundView") as! UIView
-//        backView.backgroundColor = UIColor.orange;
-        if #available(iOS 13.0, *){
-            let appearance = UINavigationBarAppearance()
-            appearance.configureWithOpaqueBackground()
-            appearance.titleTextAttributes  = [.font:UIFont.systemFont(ofSize: 18.0), .foregroundColor:UIColor.white]
-            //appearance.backgroundColor = navBarTintColor
-            appearance.backgroundColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.3)
-            //appearance.shadowColor = .clear
-            appearance.backgroundImageContentMode = .scaleToFill
-            self.navigationBar.standardAppearance = appearance
-            self.navigationBar.scrollEdgeAppearance = appearance
-        }else{
-            // 1、设置导航栏标题属性：设置标题颜色
-            // 2、设置导航栏前景色：设置item指示色
-            navigationController?.navigationBar.titleTextAttributes = [.font:UIFont.systemFont(ofSize: 18.0), .foregroundColor:UIColor.white]
-            // 4、设置导航栏背景图片
-            //self.navigationBar.setBackgroundImage(UIImage(), for: .default)
-            // 5、设置导航栏阴影图片
-            //self.navigationBar.shadowImage = UIImage()
-        }
-        self.navigationBar.tintColor = .white
+
+        //self.navigationBar.tintColor = .yellow
 
 //        self.navigationBar.isTranslucent = true
     }
     
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        if self.viewControllers.count > 0 {
+            viewController.hidesBottomBarWhenPushed = true
+        }
+        super.pushViewController(viewController, animated: true)
+    }
 
+    func setNavigationBar(_ bgColor:UIColor?) {
+        if #available(iOS 13.0, *){
+            //var appearance = self.navigationBar.standardAppearance
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.titleTextAttributes  = [.font:UIFont.systemFont(ofSize: 18.0), .foregroundColor:UIColor.black]
+            //appearance.backgroundColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.3)
+            if let bgColor = bgColor {
+                appearance.backgroundColor = bgColor
+                appearance.shadowColor = nil
+            } else {
+                //appearance.backgroundColor = navBarTintColor
+                appearance.backgroundColor = nil
+                appearance.backgroundEffect = UIBlurEffect(style: .systemMaterial)
+                appearance.shadowColor = UIColor.colorHex(hex: "#0000004D")
+                
+            }
+            
+            //appearance.shadowColor = .clear
+            appearance.backgroundImageContentMode = .scaleToFill
+            self.navigationBar.standardAppearance = appearance
+            //self.navigationBar.scrollEdgeAppearance = appearance
+        }else{
+            self.navigationBar.titleTextAttributes = [.font:UIFont.systemFont(ofSize: 18.0), .foregroundColor:UIColor.black]
+            if let bgColor = bgColor {
+                let img = UIImage.createImage(color: bgColor)
+                self.navigationBar.setBackgroundImage(img, for: .default)
+            } else {
+                self.navigationBar.setBackgroundImage(nil, for: .default)
+                self.navigationBar.backgroundColor = navBarTintColor
+            }
+            // 设置导航栏阴影图片
+            //self.navigationBar.shadowImage = UIImage()
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

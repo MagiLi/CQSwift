@@ -51,6 +51,8 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableView?.register(CQMainCell.self, forCellReuseIdentifier: "CQMainCellID")
         tableView?.register(CQMainHeaderView.self, forHeaderFooterViewReuseIdentifier: "CQMainHeaderID")
         self.view.addSubview(tableView!)
+        
+        
 //        _ = self.getNowTimeTimestamp()
         
         // 这样写时间跟北京时间相同

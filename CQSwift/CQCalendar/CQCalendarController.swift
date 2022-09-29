@@ -23,6 +23,8 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
             self.days = self.generateDaysInMonth(for: baseDate)
             self.collectionView.reloadData()
             //headerView.baseDate = baseDate
+
+            self.title = monthFormatter.string(from: self.baseDate)
         }
     }
     private lazy var dateFormatter: DateFormatter = {
@@ -30,7 +32,14 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
         dateFormatter.dateFormat = "d"
         return dateFormatter
     }()
-    
+    private lazy var monthFormatter: DateFormatter = {
+      let dateFormatter = DateFormatter()
+      dateFormatter.calendar = Calendar(identifier: .gregorian)
+      dateFormatter.locale = Locale.autoupdatingCurrent
+      //dateFormatter.setLocalizedDateFormatFromTemplate("MMMM y")
+        dateFormatter.dateFormat = "yyyy年MM月"
+      return dateFormatter
+    }()
     private var days:[CQCDay] = []
     
     private var numberOfWeeksInBaseDate: Int {
@@ -56,7 +65,7 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
             firstDayWeekday: firstDayWeekday)
     }
     
-    // 日 的数据
+    //MARK: 日 的数据
     func generateDaysInMonth(for baseDate: Date) -> [CQCDay] {
         guard let metadata = try? self.monthMetadata(for: baseDate) else {
             preconditionFailure("An error occurred when generating the metadata for \(baseDate)")
@@ -83,7 +92,7 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
         return days
     }
     
-    // 生成 日
+    //MARK: 生成 日
     func generateDay(offsetBy dayOffset: Int, for baseDate: Date, isWithinDisplayedMonth: Bool) -> CQCDay {
         let date = calendar.date(byAdding: .day, value: dayOffset, to: baseDate) ?? baseDate
         return CQCDay(
@@ -94,7 +103,7 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
         )
     }
     
-    // 下个月的开始几天
+    //MARK: 下个月的开始几天
     func generateStartOfNextMonth(using firstDayOfDisplayedMonth: Date) -> [CQCDay] {
         guard
             let lastDayInMonth = self.calendar.date(byAdding: DateComponents(month: 1, day: -1), to: firstDayOfDisplayedMonth)
@@ -149,6 +158,14 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
                 let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CQCalendarFooterID", for: indexPath) as! CQCalendarFooter
                 footer.stowBlock = { stow in
                     
+                }
+                footer.previousBlock = {
+                    guard let baseDate = self.calendar.date(byAdding: .month, value: -1, to: self.baseDate)  else { return }
+                    self.baseDate = baseDate
+                }
+                footer.nextBlock = {
+                    guard let baseDate = self.calendar.date(byAdding: .month, value: 1, to: self.baseDate)  else { return }
+                    self.baseDate = baseDate
                 }
                 return footer
             }
@@ -208,10 +225,29 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.days = self.generateDaysInMonth(for: self.baseDate)
+        self.title = self.monthFormatter.string(from: self.baseDate)
         self.view.addSubview(self.collectionView)
         if #available(iOS 11.0, *) {
             self.collectionView.contentInsetAdjustmentBehavior = .never
         } else { }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let nav = self.navigationController as? CQMainNavController {
+            
+            let color = UIColor.colorHex(hex: "#EBF3FE")
+            //let color = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.3)
+            nav.setNavigationBar(color)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let nav = self.navigationController as? CQMainNavController {
+            
+            nav.setNavigationBar(nil)
+        }
     }
     
     //MARK: viewDidLayoutSubviews
@@ -246,4 +282,5 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
     let weekData: [String] = {
         return ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]
     }()
+    
 }

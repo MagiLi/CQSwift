@@ -34,6 +34,8 @@
 		2426242C27EAFD0100AEC968 /* UIImage+CQExtern.m in Sources */ = {isa = PBXBuildFile; fileRef = 2426242B27EAFD0100AEC968 /* UIImage+CQExtern.m */; };
 		2427846B28290B83003F4354 /* CQLoadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2427846A28290B83003F4354 /* CQLoadingController.swift */; };
 		2427846D28290C9D003F4354 /* CQLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2427846C28290C9D003F4354 /* CQLoadingView.swift */; };
+		2427A4F428E5961D002B5C8E /* CQCalenderEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2427A4F328E5961D002B5C8E /* CQCalenderEventManager.swift */; };
+		2427A4F728E59854002B5C8E /* CQTestCalendarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2427A4F628E59854002B5C8E /* CQTestCalendarManager.m */; };
 		242CE798243C27ED00DF059D /* CQError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242CE793243C27ED00DF059D /* CQError.swift */; };
 		242CE799243C27ED00DF059D /* CQModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242CE794243C27ED00DF059D /* CQModelManager.swift */; };
 		242CE79A243C27ED00DF059D /* CQConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242CE795243C27ED00DF059D /* CQConstant.swift */; };
@@ -186,6 +188,9 @@
 		2426242B27EAFD0100AEC968 /* UIImage+CQExtern.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CQExtern.m"; sourceTree = "<group>"; };
 		2427846A28290B83003F4354 /* CQLoadingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQLoadingController.swift; sourceTree = "<group>"; };
 		2427846C28290C9D003F4354 /* CQLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQLoadingView.swift; sourceTree = "<group>"; };
+		2427A4F328E5961D002B5C8E /* CQCalenderEventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCalenderEventManager.swift; sourceTree = "<group>"; };
+		2427A4F528E59854002B5C8E /* CQTestCalendarManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQTestCalendarManager.h; sourceTree = "<group>"; };
+		2427A4F628E59854002B5C8E /* CQTestCalendarManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQTestCalendarManager.m; sourceTree = "<group>"; };
 		242CE793243C27ED00DF059D /* CQError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQError.swift; sourceTree = "<group>"; };
 		242CE794243C27ED00DF059D /* CQModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQModelManager.swift; sourceTree = "<group>"; };
 		242CE795243C27ED00DF059D /* CQConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQConstant.swift; sourceTree = "<group>"; };
@@ -500,6 +505,9 @@
 				24D16FEC28D85DB400794C9F /* CQCalendarFooter.swift */,
 				241E5AFD28D83B16009B63E6 /* CQCMonth.swift */,
 				241E5AFF28D83D8C009B63E6 /* CQCDay.swift */,
+				2427A4F328E5961D002B5C8E /* CQCalenderEventManager.swift */,
+				2427A4F528E59854002B5C8E /* CQTestCalendarManager.h */,
+				2427A4F628E59854002B5C8E /* CQTestCalendarManager.m */,
 			);
 			path = CQCalendar;
 			sourceTree = "<group>";
@@ -991,8 +999,10 @@
 				244DA61C24470619008B3B57 /* CQAppsController.swift in Sources */,
 				24F949B224F4AFBB006CC572 /* CQGridRender.swift in Sources */,
 				34DD454628353789001D6177 /* CQNestedSubTableView.swift in Sources */,
+				2427A4F728E59854002B5C8E /* CQTestCalendarManager.m in Sources */,
 				34DD453C28352937001D6177 /* CQNestedTableVC.swift in Sources */,
 				244DA61E24470619008B3B57 /* CQFrequentlyAppModel+CoreDataClass.swift in Sources */,
+				2427A4F428E5961D002B5C8E /* CQCalenderEventManager.swift in Sources */,
 				241D5DBD2887A7A10076725B /* PipView.swift in Sources */,
 				241D5DBC2887A7A10076725B /* PipPlaceholder.swift in Sources */,
 				342C1C17235949C20058E583 /* Shader.metal in Sources */,
