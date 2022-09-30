@@ -13,23 +13,35 @@ class CQCalenderEventManager: NSObject {
  
     class func query(startDate:Date, endDate:Date, calendars:[EKCalendar]?) -> [EKEvent]? {
         let eventStore = EKEventStore()
-        var array = Array<EKEvent>()
+        var array:[EKEvent] = []
         let predicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: calendars)
-
         eventStore.enumerateEvents(matching: predicate, using:  { (event, pointer) in
             do {
-                print( "104104" + event.title)
+                array.append(event)
+                print("================ /n \(event.occurrenceDate)")
+                print("\(event.title) : startDate \(event.startDate) endDate \(event.endDate)")
             } catch let error {
                 print(error)
             }
             
         })
         
-        return array
-        
+        return array 
     }
     
-    class func authLogic() {
-//        EKEventStore()
+    class func requestEventAuthorization(grantBlock:@escaping()->(), ungrantBlock:@escaping()->()) {
+        let eventStore = EKEventStore()
+        eventStore.requestAccess(to: .event, completion: { (success, error)  in
+            print(Thread.current)
+            DispatchQueue.main.async {
+                if !success {
+                    print("没有访问日历的权限：\(error?.localizedDescription ?? "")")
+                    ungrantBlock()
+                    return
+                }
+                
+                grantBlock()
+            }
+        })
     }
 }

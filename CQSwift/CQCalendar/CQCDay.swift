@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import EventKit
 
 struct CQCDay {
     let date: Date
     let number: String
     let isSelected: Bool
     let isWithinDisplayedMonth: Bool
+    
+    var event:EKEvent? = nil
 }

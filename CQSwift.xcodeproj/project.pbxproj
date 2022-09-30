@@ -79,6 +79,12 @@
 		24A43BE328A2768B00FD360B /* CQGradientView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A43BE228A2768B00FD360B /* CQGradientView2.swift */; };
 		24B25CDB28752A040046DDA8 /* CQCustomScrollVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B25CDA28752A040046DDA8 /* CQCustomScrollVC.swift */; };
 		24B25CDD28752A2B0046DDA8 /* CQCustomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B25CDC28752A2B0046DDA8 /* CQCustomScrollView.swift */; };
+		24BB0AF528E67EF800FA208A /* CQLoadingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BB0AF428E67EF800FA208A /* CQLoadingManager.swift */; };
+		24BB0AF728E680CE00FA208A /* CQLoadingAnimateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BB0AF628E680CE00FA208A /* CQLoadingAnimateView.swift */; };
+		24BB0AF928E6D7E500FA208A /* CQCFlowLayoutShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BB0AF828E6D7E500FA208A /* CQCFlowLayoutShow.swift */; };
+		24BB0AFB28E6D99900FA208A /* CQCFlowLayoutStow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BB0AFA28E6D99900FA208A /* CQCFlowLayoutStow.swift */; };
+		24BB0AFD28E6E64D00FA208A /* CQCStowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BB0AFC28E6E64D00FA208A /* CQCStowView.swift */; };
+		24BB0AFF28E6ED0100FA208A /* CQCalendarDecorationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BB0AFE28E6ED0100FA208A /* CQCalendarDecorationView.swift */; };
 		24CD3AB5243EBEA100BB4D10 /* CQCoreDataTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CD3AB4243EBEA100BB4D10 /* CQCoreDataTool.swift */; };
 		24CD3AC0243EC8A900BB4D10 /* CQSwiftData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24CD3ABE243EC8A900BB4D10 /* CQSwiftData.xcdatamodeld */; };
 		24D063BC28C21B5E008147BF /* CQCrossFlowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D063BB28C21B5E008147BF /* CQCrossFlowVC.swift */; };
@@ -235,6 +241,12 @@
 		24A43BE228A2768B00FD360B /* CQGradientView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGradientView2.swift; sourceTree = "<group>"; };
 		24B25CDA28752A040046DDA8 /* CQCustomScrollVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCustomScrollVC.swift; sourceTree = "<group>"; };
 		24B25CDC28752A2B0046DDA8 /* CQCustomScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCustomScrollView.swift; sourceTree = "<group>"; };
+		24BB0AF428E67EF800FA208A /* CQLoadingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQLoadingManager.swift; sourceTree = "<group>"; };
+		24BB0AF628E680CE00FA208A /* CQLoadingAnimateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQLoadingAnimateView.swift; sourceTree = "<group>"; };
+		24BB0AF828E6D7E500FA208A /* CQCFlowLayoutShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCFlowLayoutShow.swift; sourceTree = "<group>"; };
+		24BB0AFA28E6D99900FA208A /* CQCFlowLayoutStow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCFlowLayoutStow.swift; sourceTree = "<group>"; };
+		24BB0AFC28E6E64D00FA208A /* CQCStowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCStowView.swift; sourceTree = "<group>"; };
+		24BB0AFE28E6ED0100FA208A /* CQCalendarDecorationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCalendarDecorationView.swift; sourceTree = "<group>"; };
 		24CD3AB4243EBEA100BB4D10 /* CQCoreDataTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCoreDataTool.swift; sourceTree = "<group>"; };
 		24CD3ABF243EC8A900BB4D10 /* CQSwiftData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CQSwiftData.xcdatamodel; sourceTree = "<group>"; };
 		24D063BB28C21B5E008147BF /* CQCrossFlowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCrossFlowVC.swift; sourceTree = "<group>"; };
@@ -416,6 +428,8 @@
 			children = (
 				2427846A28290B83003F4354 /* CQLoadingController.swift */,
 				2427846C28290C9D003F4354 /* CQLoadingView.swift */,
+				24BB0AF628E680CE00FA208A /* CQLoadingAnimateView.swift */,
+				24BB0AF428E67EF800FA208A /* CQLoadingManager.swift */,
 			);
 			path = CQLoading;
 			sourceTree = "<group>";
@@ -503,11 +517,15 @@
 				24D16FEE28D85E7B00794C9F /* CQCalendarWeekCell.swift */,
 				241E5B0128D84A3E009B63E6 /* CQCalendarDayCell.swift */,
 				24D16FEC28D85DB400794C9F /* CQCalendarFooter.swift */,
+				24BB0AFC28E6E64D00FA208A /* CQCStowView.swift */,
 				241E5AFD28D83B16009B63E6 /* CQCMonth.swift */,
 				241E5AFF28D83D8C009B63E6 /* CQCDay.swift */,
 				2427A4F328E5961D002B5C8E /* CQCalenderEventManager.swift */,
 				2427A4F528E59854002B5C8E /* CQTestCalendarManager.h */,
 				2427A4F628E59854002B5C8E /* CQTestCalendarManager.m */,
+				24BB0AF828E6D7E500FA208A /* CQCFlowLayoutShow.swift */,
+				24BB0AFA28E6D99900FA208A /* CQCFlowLayoutStow.swift */,
+				24BB0AFE28E6ED0100FA208A /* CQCalendarDecorationView.swift */,
 			);
 			path = CQCalendar;
 			sourceTree = "<group>";
@@ -987,6 +1005,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24BB0AF928E6D7E500FA208A /* CQCFlowLayoutShow.swift in Sources */,
 				2422068727043E1500350DF0 /* CQGridLockManager.swift in Sources */,
 				24666C4028D4704400DD818A /* CQCalendarController.swift in Sources */,
 				241D5DC02887A98E0076725B /* THScrollController.swift in Sources */,
@@ -1004,6 +1023,7 @@
 				244DA61E24470619008B3B57 /* CQFrequentlyAppModel+CoreDataClass.swift in Sources */,
 				2427A4F428E5961D002B5C8E /* CQCalenderEventManager.swift in Sources */,
 				241D5DBD2887A7A10076725B /* PipView.swift in Sources */,
+				24BB0AFB28E6D99900FA208A /* CQCFlowLayoutStow.swift in Sources */,
 				241D5DBC2887A7A10076725B /* PipPlaceholder.swift in Sources */,
 				342C1C17235949C20058E583 /* Shader.metal in Sources */,
 				241D5DA72887A6140076725B /* CASpringAnimation+Utils.swift in Sources */,
@@ -1018,7 +1038,9 @@
 				24E59B3428B77237004E99EE /* CQTextScrollVC.swift in Sources */,
 				3404B883230C2663004CFA91 /* CQMainController.swift in Sources */,
 				24F949B424F4B15E006CC572 /* CQGrid.metal in Sources */,
+				24BB0AF728E680CE00FA208A /* CQLoadingAnimateView.swift in Sources */,
 				3412C450230D2EDF0048A095 /* CQCollectionViewController.swift in Sources */,
+				24BB0AFF28E6ED0100FA208A /* CQCalendarDecorationView.swift in Sources */,
 				24E30C0C28D1D3B90015FC75 /* CQTypeTitleView.swift in Sources */,
 				24A43BDB28A1FE0300FD360B /* CQIndicatorGradientView.swift in Sources */,
 				244DA61A24470619008B3B57 /* CQMoreFooter.swift in Sources */,
@@ -1029,6 +1051,7 @@
 				241E5B0028D83D8C009B63E6 /* CQCDay.swift in Sources */,
 				241D5DC62887A9E70076725B /* THMainController.swift in Sources */,
 				34D6A5A6232B348500B740CA /* CQRXSwifObservableVC.swift in Sources */,
+				24BB0AFD28E6E64D00FA208A /* CQCStowView.swift in Sources */,
 				242F365127166D77006562BF /* CQWebViewController.swift in Sources */,
 				241D5DC42887A9A90076725B /* CGRect+Utils.swift in Sources */,
 				2426242C27EAFD0100AEC968 /* UIImage+CQExtern.m in Sources */,
@@ -1071,6 +1094,7 @@
 				24D063BE28C21BF0008147BF /* CQCrossFlowLayout.swift in Sources */,
 				2458AB78285B215B0078A53F /* CQContactNewViewModel.swift in Sources */,
 				242F64D028B86CBD0008F911 /* NSAttributedString+Extension.m in Sources */,
+				24BB0AF528E67EF800FA208A /* CQLoadingManager.swift in Sources */,
 				2489F7132861AF040085C076 /* CQGradientView1.swift in Sources */,
 				247847DA2448476B00229463 /* CQTopViewModel.swift in Sources */,
 				241D5DA62887A6140076725B /* Comparable+Utils.swift in Sources */,

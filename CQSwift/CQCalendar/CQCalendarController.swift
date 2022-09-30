@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import EventKit
+import RxDataSources
 
 enum CalendarDataError: Error {
     case metadataGeneration
@@ -14,13 +16,34 @@ enum CalendarDataError: Error {
 
 class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
+    private var show:Bool = true
     private let weekHeight:CGFloat = 30.0
     private let stowHeight:CGFloat = 35.0
     private var selectedDate:Date
+    /*
+       NSCalendarIdentifierGregorian         公历
+       NSCalendarIdentifierBuddhist          佛教日历
+       NSCalendarIdentifierChinese           中国农历
+       NSCalendarIdentifierHebrew            希伯来日历
+       NSCalendarIdentifierIslamic           伊斯兰日历
+       NSCalendarIdentifierIslamicCivil      伊斯兰教日历
+       NSCalendarIdentifierJapanese          日本日历
+       NSCalendarIdentifierRepublicOfChina   中华民国日历（台湾）
+       NSCalendarIdentifierPersian           波斯历
+       NSCalendarIdentifierIndian            印度日历
+       NSCalendarIdentifierISO8601           ISO8601
+     */
+    //private let calendar = Calendar.current
     private let calendar = Calendar(identifier: .gregorian)
+//    lazy var calendar: Calendar = {
+//        var calendar = Calendar(identifier: .gregorian)
+//        calendar.locale = Locale.init(identifier: "zh_Hans_CN")
+//        return calendar
+//    }()
     private var baseDate: Date {
         didSet {
             self.days = self.generateDaysInMonth(for: baseDate)
+            
             self.collectionView.reloadData()
             //headerView.baseDate = baseDate
 
@@ -30,6 +53,10 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
     private lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d"
+        dateFormatter.locale = Locale.init(identifier: "zh_Hans_CN")
+        dateFormatter.timeZone = .current
+        //dateFormatter.locale = .autoupdatingCurrent
+        //dateFormatter.timeZone = .autoupdatingCurrent
         return dateFormatter
     }()
     private lazy var monthFormatter: DateFormatter = {
@@ -41,6 +68,8 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
       return dateFormatter
     }()
     private var days:[CQCDay] = []
+    private var  currentEvents:[EKEvent]? // 当前展示日期范围内的事件
+    
     
     private var numberOfWeeksInBaseDate: Int {
         self.calendar.range(of: .weekOfMonth, in: .month, for: baseDate)?.count ?? 0
@@ -49,20 +78,21 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
     //MARK: data
     // 月 的数据
     func monthMetadata(for baseDate: Date) throws -> CQCMonth {
-        
+        let dateComponents = self.calendar.dateComponents([.year, .month], from: baseDate)
         guard
             let numberOfDaysInMonth = self.calendar.range(of: .day, in: .month, for: baseDate)?.count,
-            let firstDayOfMonth = self.calendar.date(from: calendar.dateComponents([.year, .month], from: baseDate))
+            let firstDayOfMonth = self.calendar.date(from: dateComponents)
         else {
             throw CalendarDataError.metadataGeneration
         }
-        
+        //print("firstDayOfMonth:\(firstDayOfMonth)")
         let firstDayWeekday = self.calendar.component(.weekday, from: firstDayOfMonth)
-        
+        //print("firstDayWeekday:\(firstDayWeekday)")
         return CQCMonth(
             numberOfDays: numberOfDaysInMonth,
             firstDay: firstDayOfMonth,
-            firstDayWeekday: firstDayWeekday)
+            firstDayWeekday: firstDayWeekday
+        )
     }
     
     //MARK: 日 的数据
@@ -78,17 +108,17 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
         var days:[CQCDay] = (1..<(numberOfDaysInMonth + offsetInInitialRow))
             .map { day in
                 
-                print("day: \(day)  offsetInInitialRow:\(offsetInInitialRow)")
+                ////print("day: \(day)  offsetInInitialRow:\(offsetInInitialRow)")
                 // 是否 在显示的月份内
                 let isWithinDisplayedMonth = day >= offsetInInitialRow
                 
                 let dayOffset = isWithinDisplayedMonth ? day - offsetInInitialRow : -(offsetInInitialRow - day)
-                print("datyOffset: \(dayOffset)")
+                ////print("datyOffset: \(dayOffset)")
                 return self.generateDay(offsetBy: dayOffset, for: firstDayOfMonth, isWithinDisplayedMonth: isWithinDisplayedMonth)
             }
         
-        days += generateStartOfNextMonth(using: firstDayOfMonth)
-        
+        days += self.generateStartOfNextMonth(using: firstDayOfMonth)
+        days = self.matchEvent(days: days)
         return days
     }
     
@@ -123,6 +153,34 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
         return days
     }
     
+    //MARK: 匹配事件
+    func matchEvent(days:[CQCDay]) -> [CQCDay] {
+        if let firstDay = days.first, let lastDay = days.last {
+            self.currentEvents = CQCalenderEventManager.query(startDate: firstDay.date, endDate: lastDay.date, calendars: nil)
+            guard let currentEvents = currentEvents, currentEvents.count > 0 else {
+                return days
+            }
+            var newDays:[CQCDay] = []
+            days.forEach { day in
+                var newDay = day
+                currentEvents.forEach { event in
+                     //event.startDate.compare(day.date)
+                    let compare1 = event.startDate <= day.date
+                    let compare2 = day.date <= event.endDate
+                    if compare1 && compare2 {
+                        newDay.event = event
+                    }
+                }
+                newDays.append(newDay)
+            }
+            return newDays
+        } else {
+            self.currentEvents = nil
+            return days
+        }
+        
+    }
+    
     //MARK: UICollectionViewDataSource
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
@@ -131,7 +189,12 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
         if section == 0 {
             return self.weekData.count
         } else if section == 1 {
-            return self.days.count
+            if self.show {
+            //if self.collectionView.collectionViewLayout.isKind(of: CQCFlowLayoutShow.self) {
+                return self.days.count
+            } else  {
+                return 7
+            }
         } else {
             return 0
         }
@@ -156,8 +219,10 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
         if indexPath.section == 1 {
             if kind == UICollectionView.elementKindSectionFooter {
                 let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CQCalendarFooterID", for: indexPath) as! CQCalendarFooter
-                footer.stowBlock = { stow in
-                    
+                footer.stowBlock = { [weak self] stow in
+                    guard let self = self else { return }
+                    self.show = !stow
+                    self.showCollectionView(animate: true)
                 }
                 footer.previousBlock = {
                     guard let baseDate = self.calendar.date(byAdding: .month, value: -1, to: self.baseDate)  else { return }
@@ -173,6 +238,33 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
         return UICollectionReusableView()
     }
     
+    //MARK: 展开/收起 
+    fileprivate func showCollectionView(animate:Bool) {
+//        if stow {
+//            self.collectionView.setCollectionViewLayout(CQCFlowLayoutStow(), animated: true)
+//        } else {
+//            self.collectionView.setCollectionViewLayout(CQCFlowLayoutShow(), animated: true)
+//        }
+
+        if animate {
+            var indexPaths:[IndexPath] = []
+            self.days.enumerated().forEach { (i, day) in
+                if i < 7 { return }
+                let indexPath = IndexPath(item: i, section: 1)
+                indexPaths.append(indexPath)
+            }
+            self.collectionView.performBatchUpdates {
+                if self.show {
+                    self.collectionView.insertItems(at: indexPaths)
+                } else {
+                    self.collectionView.deleteItems(at: indexPaths)
+                }
+            }
+        } else {
+            self.collectionView.reloadData()
+        }
+    }
+    
     //MARK: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width / CGFloat(self.weekData.count)
@@ -180,7 +272,12 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
             return CGSize(width: width, height: weekHeight)
         } else if indexPath.section == 1 {
             let conH = collectionView.frame.height - stowHeight - weekHeight
-            let height = conH / CGFloat(numberOfWeeksInBaseDate)
+            var height:CGFloat = conH / CGFloat(numberOfWeeksInBaseDate)
+//            if self.show {
+//                height = conH / CGFloat(numberOfWeeksInBaseDate)
+//            } else {
+//                height = conH / 5.0
+//            }
             return CGSize(width: width, height: height)
         } else {
             return .zero
@@ -201,7 +298,21 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
     
     //MARK: UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        if indexPath.section != 1 { return }
+        if self.days.count <= indexPath.item { return }
+        //let day = self.days[indexPath.item]
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+        return (indexPath.section == 1)
+    }
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CQCalendarDayCell else { return }
+        cell.setHighlightStatus()
+    }
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CQCalendarDayCell else { return }
+        cell.setUnhighlightStatus()
     }
     
     //MARK: init
@@ -230,6 +341,7 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
         if #available(iOS 11.0, *) {
             self.collectionView.contentInsetAdjustmentBehavior = .never
         } else { }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -263,10 +375,7 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
     
     //MARK: lazy
     private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-        
+        let layout = CQCFlowLayoutShow()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         //collectionView.isScrollEnabled = false
         //collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -276,6 +385,7 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
         collectionView.register(CQCalendarFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "CQCalendarFooterID")
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.alwaysBounceVertical = true
         return collectionView
     }()
     

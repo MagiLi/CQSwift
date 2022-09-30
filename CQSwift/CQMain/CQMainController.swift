@@ -285,8 +285,15 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let gridLockVC = CQGridLockController()
                 self.navigationController?.pushViewController(gridLockVC, animated: true)
             } else if indexPath.row == 1 {
-                let calendarVC = CQCalendarController()
-                self.navigationController?.pushViewController(calendarVC, animated: true)
+                CQLoadingManager.shared.show()
+                CQCalenderEventManager.requestEventAuthorization(grantBlock: {
+                    CQLoadingManager.shared.dismiss()
+                    let calendarVC = CQCalendarController()
+                    self.navigationController?.pushViewController(calendarVC, animated: true)
+                }, ungrantBlock: {
+                    CQLoadingManager.shared.dismiss()
+                })
+            
             } else if indexPath.row == 2 {
                 let vc = CQTextScrollVC()
                 self.navigationController?.pushViewController(vc, animated: true)
