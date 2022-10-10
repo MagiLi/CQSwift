@@ -26,8 +26,8 @@ class CQGradientView1: UIView {
                //定义渐变颜色数组
             let colors:[CGFloat] = [
                 0.0, 0.0, 0.0, 0.0,
-                0.0, 0.0, 0.0, 0.67,
-                0.0, 0.0, 0.0, 0.67
+                0.0, 0.0, 0.0, 0.3,
+                0.0, 0.0, 0.0, 0.6
             ]
             
             let locations:[CGFloat] = [0.0, 0.5, 1.0]

@@ -12,8 +12,10 @@ import EventKit
 struct CQCDay {
     let date: Date
     let number: String
-    let isSelected: Bool
-    let isWithinDisplayedMonth: Bool
+    let isToday: Bool // 是否是当天
+    let isWithinDisplayedMonth: Bool // 是否在该月份内
     
+    var isSelected: Bool = false // 是否是选中状态
     var event:EKEvent? = nil
+    var index:Int = 0 // 集合中的索引
 }

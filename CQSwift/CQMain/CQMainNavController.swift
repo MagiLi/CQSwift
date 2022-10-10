@@ -52,7 +52,7 @@ class CQMainNavController: UINavigationController {
             //appearance.shadowColor = .clear
             appearance.backgroundImageContentMode = .scaleToFill
             self.navigationBar.standardAppearance = appearance
-            //self.navigationBar.scrollEdgeAppearance = appearance
+            self.navigationBar.scrollEdgeAppearance = appearance
         }else{
             self.navigationBar.titleTextAttributes = [.font:UIFont.systemFont(ofSize: 18.0), .foregroundColor:UIColor.black]
             if let bgColor = bgColor {

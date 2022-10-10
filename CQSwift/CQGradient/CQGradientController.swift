@@ -16,7 +16,6 @@ class CQGradientController: UIViewController {
         self.view.addSubview(self.imgView)
         self.view.addSubview(self.gradientView)
         self.view.addSubview(self.gradientView1)
-        self.view.addSubview(self.lineView)
     }
     
     override func viewDidLayoutSubviews() {
@@ -24,8 +23,7 @@ class CQGradientController: UIViewController {
         self.gradientView.frame = CGRect(x: 0.0, y: 100.0, width: 100.0, height: 100.0)
         self.gradientView1.frame = CGRect(x: 0.0, y: 210.0, width: 100.0, height: 100.0)
         self.imgView.frame = self.gradientView1.frame
-        
-        self.lineView.frame = CGRect(x: 0.0, y: self.gradientView1.frame.maxY, width: 100.0, height: 100.0)
+         
     }
     
     lazy var gradientView:CQGradientView = {
@@ -39,10 +37,6 @@ class CQGradientController: UIViewController {
     lazy var imgView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "heart")
-        return view
-    }()
-    lazy var lineView: CQGradientView2 = {
-        let view = CQGradientView2()
         return view
     }()
 }

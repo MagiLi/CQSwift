@@ -12,32 +12,50 @@ class CQCalendarDayCell: UICollectionViewCell {
     
     
     //static let reuseIdentifier = String(describing: CQCalendarDayCell.self)
-    
+    let selectionColor = UIColor.colorHex(hex: "#4A7AE0")
     var day:CQCDay? {
         didSet {
             guard let day = day else { return }
             
             //print("date: \(day.date)  number: \(day.number)")
-            numberLabel.text = day.number
-            
-            if day.isSelected {
-                numberLabel.textColor = .white
-                selectionBackgroundView.backgroundColor = .systemRed
-            } else {
-                if day.isWithinDisplayedMonth {
-                    numberLabel.textColor = UIColor(red: 51.0/255.0, green: 51.0/255.0, blue: 51.0/255.0, alpha: 1.0)
-                } else {
-                    numberLabel.textColor = UIColor(red: 153.0/255.0, green: 153.0/255.0, blue: 153.0/255.0, alpha: 1.0)
-                }
-                selectionBackgroundView.backgroundColor = .clear
-            }
-            if let event = day.event {
-                self.dotView.isHidden = false
-                let normalColor = UIColor.colorHex(hex: "#4A7AE0")
-                let grayColor = UIColor.colorHex(hex: "#999999")
-                self.dotView.backgroundColor = day.isWithinDisplayedMonth ? normalColor : grayColor
-            } else {
+            if day.isSelected { // 1.选中状态
+                print("day.isSelected: \(day.index)")
+                self.selectionView.isHidden = false
                 self.dotView.isHidden = true
+                if let event = day.event {
+                    self.selectionView.image = UIImage(named: "calendar_sel_bg_dot")
+                } else {
+                    self.selectionView.image = UIImage(named: "calendar_sel_bg")
+                }
+                
+                numberLabel.text =  day.number
+                numberLabel.textColor = .white
+                self.numberLabel.layer.borderColor = UIColor.clear.cgColor
+            } else { // 2.非选中状态
+                self.selectionView.isHidden = true
+                if day.isToday { // 2.1 今天
+                    self.numberLabel.text = "今"
+                    self.numberLabel.textColor = UIColor.colorHex(hex: "#FF9501")
+                    self.numberLabel.layer.borderColor = UIColor.colorHex(hex: "#FF9501").cgColor
+                    self.dotView.isHidden = true // 今天非选中状态隐藏“点”
+                    //highlightView.backgroundColor = .systemRed
+                } else { // 2.2 非今天
+                    self.numberLabel.text = day.number
+                    if day.isWithinDisplayedMonth { // 当月内
+                        self.numberLabel.textColor = UIColor(red: 51.0/255.0, green: 51.0/255.0, blue: 51.0/255.0, alpha: 1.0)
+                    } else {
+                        self.numberLabel.textColor = UIColor(red: 153.0/255.0, green: 153.0/255.0, blue: 153.0/255.0, alpha: 1.0)
+                    }
+                    self.numberLabel.layer.borderColor = UIColor.clear.cgColor
+                    
+                    if let event = day.event {
+                        self.dotView.isHidden = false
+                        let grayColor = UIColor.colorHex(hex: "#999999")
+                        self.dotView.backgroundColor = day.isWithinDisplayedMonth ? selectionColor : grayColor
+                    } else {
+                        self.dotView.isHidden = true // 无节日隐藏“点”
+                    }
+                }
             }
             
             self.setNeedsLayout()
@@ -48,21 +66,19 @@ class CQCalendarDayCell: UICollectionViewCell {
         guard let day = day else { return }
 
         let highlighColor = UIColor(red: 237.0 / 255.0, green: 237.0 / 255.0, blue: 237.0 / 255.0, alpha: 1.0)
-        if day.isSelected {
-            numberLabel.textColor = .systemRed
-            selectionBackgroundView.backgroundColor = highlighColor
-        } else {
-            selectionBackgroundView.backgroundColor = highlighColor
+        highlightView.backgroundColor = highlighColor
+        if day.isSelected { // 选中状态
+            self.selectionView.isHidden = true
+            numberLabel.textColor = selectionColor
         }
     }
     
     func setUnhighlightStatus() {
-        guard let day = day else { return } 
-        if day.isSelected {
+        guard let day = day else { return }
+        highlightView.backgroundColor = .clear
+        if day.isSelected {  // 选中状态
+            self.selectionView.isHidden = false
             numberLabel.textColor = .white
-            selectionBackgroundView.backgroundColor = .systemRed
-        } else {
-            selectionBackgroundView.backgroundColor = .clear
         }
     }
     
@@ -78,17 +94,22 @@ class CQCalendarDayCell: UICollectionViewCell {
     //MARK: layoutSubviews
     override func layoutSubviews() {
         super.layoutSubviews()
-        let selectionBackgroundViewW = traitCollection.horizontalSizeClass == .compact ?
-        min(min(frame.width, frame.height) - 10, 60) : 30.0
-        //let  selectionBackgroundViewW:CGFloat = 30.0
-        let selectionBackgroundViewH:CGFloat = selectionBackgroundViewW
-        let selectionBackgroundViewX:CGFloat = (self.frame.width - selectionBackgroundViewW) * 0.5
-        let selectionBackgroundViewY:CGFloat =  (self.frame.height - selectionBackgroundViewH) * 0.5
-        //let selectionBackgroundViewY:CGFloat = 0.0
-        self.selectionBackgroundView.frame = CGRect(x: selectionBackgroundViewX, y: selectionBackgroundViewY, width: selectionBackgroundViewW, height: selectionBackgroundViewH)
-        self.selectionBackgroundView.layer.cornerRadius = selectionBackgroundViewW * 0.5
-        
-        self.numberLabel.frame = self.selectionBackgroundView.frame
+        let min = min(min(frame.width, frame.height) - 10.0, 60)
+        let highlightViewW = traitCollection.horizontalSizeClass == .compact ? min : 30.0
+        //let  highlightViewW:CGFloat = 30.0
+        let highlightViewH:CGFloat = highlightViewW
+        let highlightViewX:CGFloat = (self.frame.width - highlightViewW) * 0.5
+        let highlightViewY:CGFloat =  (self.frame.height - highlightViewH) * 0.5
+        //let highlightViewY:CGFloat = 0.0
+        self.highlightView.frame = CGRect(x: highlightViewX, y: highlightViewY, width: highlightViewW, height: highlightViewH)
+        self.highlightView.layer.cornerRadius = highlightViewW * 0.5
+        self.selectionView.frame = self.highlightView.frame
+        self.numberLabel.frame = self.highlightView.frame
+        if let day = self.day, day.isToday {
+            self.numberLabel.layer.cornerRadius = highlightViewW * 0.5
+        } else {
+            self.numberLabel.layer.cornerRadius = 0.0
+        }
  
         if !self.dotView.isHidden {
             let  dotViewW:CGFloat = 8.0
@@ -102,15 +123,21 @@ class CQCalendarDayCell: UICollectionViewCell {
     
     //MARK: setupUI
     func setupUI() {
-        self.contentView.addSubview(self.selectionBackgroundView)
+        self.contentView.addSubview(self.highlightView)
+        self.contentView.addSubview(self.selectionView)
         self.contentView.addSubview(self.numberLabel)
         self.contentView.addSubview(self.dotView)
     }
     
     //MARK: lazy
-    lazy var selectionBackgroundView: UIView = {
+    lazy var highlightView: UIView = {
         let view = UIView()
         view.clipsToBounds = true
+        return view
+    }()
+    lazy var selectionView: UIImageView = {
+        let view = UIImageView()
+        view.isHidden = true
         return view
     }()
     
@@ -120,6 +147,8 @@ class CQCalendarDayCell: UICollectionViewCell {
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 15.0)
         label.textColor = UIColor(red: 51.0/255.0, green: 51.0/255.0, blue: 51.0/255.0, alpha: 1.0)
+        label.layer.borderWidth = 0.5
+        label.layer.borderColor = UIColor.clear.cgColor
         return label
     }()
     

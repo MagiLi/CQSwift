@@ -8,7 +8,6 @@
 
 import UIKit
 import EventKit
-import RxDataSources
 
 enum CalendarDataError: Error {
     case metadataGeneration
@@ -69,7 +68,7 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
     }()
     private var days:[CQCDay] = []
     private var  currentEvents:[EKEvent]? // 当前展示日期范围内的事件
-    
+    private var selectionDay:CQCDay? // 选中的天
     
     private var numberOfWeeksInBaseDate: Int {
         self.calendar.range(of: .weekOfMonth, in: .month, for: baseDate)?.count ?? 0
@@ -128,7 +127,7 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
         return CQCDay(
             date: date,
             number: dateFormatter.string(from: date),
-            isSelected: calendar.isDate(date, inSameDayAs: selectedDate),
+            isToday: calendar.isDate(date, inSameDayAs: selectedDate),
             isWithinDisplayedMonth: isWithinDisplayedMonth
         )
     }
@@ -158,27 +157,47 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
         if let firstDay = days.first, let lastDay = days.last {
             self.currentEvents = CQCalenderEventManager.query(startDate: firstDay.date, endDate: lastDay.date, calendars: nil)
             guard let currentEvents = currentEvents, currentEvents.count > 0 else {
-                return days
+                return self.matchSelectionDay(days: days)
             }
             var newDays:[CQCDay] = []
-            days.forEach { day in
+            days.enumerated().forEach { i, day in
+                // 匹配节日事件
                 var newDay = day
                 currentEvents.forEach { event in
-                     //event.startDate.compare(day.date)
+                    //event.startDate.compare(day.date)
                     let compare1 = event.startDate <= day.date
                     let compare2 = day.date <= event.endDate
                     if compare1 && compare2 {
                         newDay.event = event
                     }
                 }
+                if let selectionDay = selectionDay, selectionDay.date == day.date {
+                    newDay.isSelected = true
+                }
+                newDay.index = i
                 newDays.append(newDay)
             }
             return newDays
+            //return self.matchSelectionDay(days: newDays)
         } else {
+            // 清空节日事件
             self.currentEvents = nil
-            return days
+            return self.matchSelectionDay(days: days)
         }
-        
+    }
+    
+    // 1.匹配选中的 day。2.设置在集合中的索引。
+    fileprivate func matchSelectionDay(days:[CQCDay]) -> [CQCDay] {
+        var newDays:[CQCDay] = []
+        days.enumerated().forEach { i, day in
+            var newDay = day
+            if let selectionDay = selectionDay, selectionDay.date == day.date {
+                newDay.isSelected = true
+            }
+            newDay.index = i
+            newDays.append(newDay)
+        }
+        return days
     }
     
     //MARK: UICollectionViewDataSource
@@ -300,7 +319,21 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section != 1 { return }
         if self.days.count <= indexPath.item { return }
-        //let day = self.days[indexPath.item]
+        var day = self.days[indexPath.item]
+        if day.isSelected { return }
+        if var selectionDay = selectionDay { // 将上次选中的day 设置为非选中状态
+            selectionDay.isSelected = false
+            let index = selectionDay.index
+            if self.days.count > index {
+                self.days.remove(at: selectionDay.index)
+                self.days.insert(selectionDay, at: selectionDay.index)
+            }
+        }
+        day.isSelected = true  // 将当前点击的day 设置为选中状态
+        self.selectionDay = day
+        self.days.remove(at: indexPath.item)
+        self.days.insert(day, at: indexPath.item)
+        collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {

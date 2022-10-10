@@ -15,6 +15,10 @@ class CQCFlowLayoutShow: UICollectionViewFlowLayout  {
         self.register(CQCalendarDecorationView.self, forDecorationViewOfKind: decorationKind)
 
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     override func prepare() {
         super.prepare()
         
@@ -22,21 +26,35 @@ class CQCFlowLayoutShow: UICollectionViewFlowLayout  {
         self.minimumInteritemSpacing = 0
     }
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        guard let collectionView = self.collectionView else { return nil }
         guard let layoutAttributesArray = super.layoutAttributesForElements(in: rect) else { return nil }
+        guard let collectionView = self.collectionView else { return nil }
         //guard let flowLayoutDelegate = collectionView.delegate as? UICollectionViewDelegateFlowLayout else { return nil }
+        
+        
+         var attributesArray = layoutAttributesArray
         // 添加 装饰（DecorationView）的LayoutAttributes
-//        if let decorationAttributes = self.layoutAttributesForDecorationView(ofKind: decorationKind, at: layoutAttributes.indexPath) {
-//            let decorationX:CGFloat = 0.0
-//            let decorationY:CGFloat = headerAttributes.frame.minY
-//            let decorationWidth = headerAttributes.frame.width
-//            let decorationHeight = layoutAttributes.frame.maxY + minimumLineSpace - decorationY
-//            decorationAttributes.frame = CGRect(x: decorationX, y: decorationY, width: decorationWidth, height: decorationHeight)
-//            //print("deco: \(decorationAttributes.frame)")
-//            attributesArray.append(decorationAttributes)
-//        }
+        let indexPath = IndexPath(item: 0, section: 0)
+        
+        if let decorationAttributes = self.layoutAttributesForDecorationView(ofKind: decorationKind, at: indexPath) {
+            let decorationX:CGFloat = 0.0
+            let decorationY:CGFloat = 0.0
+            let decorationWidth = collectionView.frame.width
+            var decorationHeight:CGFloat!
+            if let lastAtt = layoutAttributesArray.last {
+                decorationHeight = lastAtt.frame.maxY
+            } else {
+                decorationHeight = collectionView.frame.height
+            }
+            decorationAttributes.frame = CGRect(x: decorationX, y: decorationY, width: decorationWidth, height: decorationHeight)
+            //print("deco: \(decorationAttributes.frame)")
+            attributesArray.append(decorationAttributes)
+        }
+        return attributesArray
     }
     override func layoutAttributesForDecorationView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        super.layoutAttributesForDecorationView(ofKind: elementKind, at: indexPath)
+        //super.layoutAttributesForDecorationView(ofKind: elementKind, at: indexPath)
+        let layoutAttributes = UICollectionViewLayoutAttributes(forDecorationViewOfKind: elementKind, with: indexPath)
+        layoutAttributes.zIndex = -1
+        return layoutAttributes
     }
 }
