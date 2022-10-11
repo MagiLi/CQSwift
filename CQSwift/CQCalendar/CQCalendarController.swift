@@ -8,6 +8,7 @@
 
 import UIKit
 import EventKit
+import EventKitUI
 
 enum CalendarDataError: Error {
     case metadataGeneration
@@ -348,6 +349,11 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
         cell.setUnhighlightStatus()
     }
     
+    //MARK: rightItemClicked
+    @objc func rightItemClicked() {
+        let vc = CQEventListController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     //MARK: init
     init(baseDate: Date = Date()) {
         self.selectedDate = baseDate
@@ -370,6 +376,7 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
         self.view.backgroundColor = .white
         self.days = self.generateDaysInMonth(for: self.baseDate)
         self.title = self.monthFormatter.string(from: self.baseDate)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "EventEdit", style: .plain, target: self, action: #selector(rightItemClicked))
         self.view.addSubview(self.collectionView)
         if #available(iOS 11.0, *) {
             self.collectionView.contentInsetAdjustmentBehavior = .never
