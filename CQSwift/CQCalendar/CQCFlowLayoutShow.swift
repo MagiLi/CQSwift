@@ -51,6 +51,11 @@ class CQCFlowLayoutShow: UICollectionViewFlowLayout  {
         }
         return attributesArray
     }
+    // 此外，所有布局子类都应该实现-layoutAttributesForItemAtIndexPath
+    // 以便根据需要返回特定索引下的布局属性实例（LayoutAttributes）。
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        return super.layoutAttributesForItem(at: indexPath)
+    }
     override func layoutAttributesForDecorationView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         //super.layoutAttributesForDecorationView(ofKind: elementKind, at: indexPath)
         let layoutAttributes = UICollectionViewLayoutAttributes(forDecorationViewOfKind: elementKind, with: indexPath)
