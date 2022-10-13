@@ -36,57 +36,50 @@ class CQCrossFlowLayout: UICollectionViewFlowLayout {
         guard let collectionView = self.collectionView else { return nil }
         guard let layoutAttributesArray = super.layoutAttributesForElements(in: rect) else { return nil }
         guard let flowLayoutDelegate = collectionView.delegate as? UICollectionViewDelegateFlowLayout else { return nil }
-//        var attributesArray = layoutAttributesArray
-//        layoutAttributesArray.forEach { layoutAttributes in
-//            // 如果我们的页面没有header这里的判断条件就需要调整，用cell判断
-//            if layoutAttributes.representedElementKind == UICollectionView.elementKindSectionHeader {
-//                guard let decorationView = self.layoutAttributesForDecorationView(ofKind: decorationKind, at: layoutAttributes.indexPath) else { return }
-//                attributesArray.append(decorationView)
-//            }
-//        }
-        var attributesArray = [UICollectionViewLayoutAttributes]()
-        layoutAttributesArray.enumerated().forEach { (index, layoutAttributes) in
-            attributesArray.append(layoutAttributes)
-            if layoutAttributes.representedElementCategory != .cell { return }
+        
+        var newAttributesArray = [UICollectionViewLayoutAttributes]()
+        layoutAttributesArray.enumerated().forEach { (index, item) in
+            newAttributesArray.append(item)
+            if item.representedElementCategory != .cell { return }
             // cell的行间距
-            let minimumLineSpace = flowLayoutDelegate.collectionView?(collectionView, layout: self, minimumLineSpacingForSectionAt: layoutAttributes.indexPath.section) ?? 0.0
+            let minimumLineSpace = flowLayoutDelegate.collectionView?(collectionView, layout: self, minimumLineSpacingForSectionAt: item.indexPath.section) ?? 0.0
             // cell的列间距
-            let minimumInterSpace = flowLayoutDelegate.collectionView?(collectionView, layout: self, minimumInteritemSpacingForSectionAt: layoutAttributes.indexPath.section) ?? 0.0
+            let minimumInterSpace = flowLayoutDelegate.collectionView?(collectionView, layout: self, minimumInteritemSpacingForSectionAt: item.indexPath.section) ?? 0.0
             // section的边距
-            let sectionInsets = flowLayoutDelegate.collectionView?(collectionView, layout: self, insetForSectionAt: layoutAttributes.indexPath.section) ?? UIEdgeInsets.zero
-            let cellSize = flowLayoutDelegate.collectionView?(collectionView, layout: self, sizeForItemAt: layoutAttributes.indexPath) ?? CGSize.zero
+            let sectionInsets = flowLayoutDelegate.collectionView?(collectionView, layout: self, insetForSectionAt: item.indexPath.section) ?? UIEdgeInsets.zero
+            let cellSize = flowLayoutDelegate.collectionView?(collectionView, layout: self, sizeForItemAt: item.indexPath) ?? CGSize.zero
             
             var cellX:CGFloat
             var cellY:CGFloat
             
-            if layoutAttributes.indexPath.item == 0 {
+            if item.indexPath.item == 0 {
                 // 当前cell是第0个cell时， 就依据header设置当前cell的frame
                 // 注意⚠️：如果当前section没有header需要依据上一个section的footer，
                 //                如果上一个section没有footer就依据cell 设置当前cell的frame
-                guard let headerAttributes = self.layoutAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, at: layoutAttributes.indexPath) else {
+                guard let headerAttributes = self.layoutAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, at: item.indexPath) else {
                     return
                 }
                 //print("header: \(headerAttributes.frame)")
                 cellX = sectionInsets.left
                 cellY = headerAttributes.frame.maxY
-                layoutAttributes.frame = CGRect(x: cellX, y: cellY, width: cellSize.width, height: cellSize.height)
+                item.frame = CGRect(x: cellX, y: cellY, width: cellSize.width, height: cellSize.height)
                 
-                // 添加 装饰（DecorationView）的LayoutAttributes
-                if let decorationAttributes = self.layoutAttributesForDecorationView(ofKind: decorationKind, at: layoutAttributes.indexPath) {
+                // 创建并添加 装饰（DecorationView）的LayoutAttributes
+                if let decorationAttributes = self.layoutAttributesForDecorationView(ofKind: decorationKind, at: item.indexPath) {
                     let decorationX:CGFloat = 0.0
                     let decorationY:CGFloat = headerAttributes.frame.minY
                     let decorationWidth = headerAttributes.frame.width
-                    let decorationHeight = layoutAttributes.frame.maxY + minimumLineSpace - decorationY
+                    let decorationHeight = item.frame.maxY + minimumLineSpace - decorationY
                     decorationAttributes.frame = CGRect(x: decorationX, y: decorationY, width: decorationWidth, height: decorationHeight)
                     //print("deco: \(decorationAttributes.frame)")
-                    attributesArray.append(decorationAttributes)
+                    newAttributesArray.append(decorationAttributes)
                 }
             } else {
                 var attributesLast:UICollectionViewLayoutAttributes!
                 if index == 0 {
                     // 如果 index == 0 说明是当前区域(rect)内的第一个,
                     // 需要用 layoutAttributesForItemAtIndexPath: 方法获取上一个Attributes
-                    let indexPath = IndexPath(item: layoutAttributes.indexPath.item - 1, section: layoutAttributes.indexPath.section)
+                    let indexPath = IndexPath(item: item.indexPath.item - 1, section: item.indexPath.section)
                     attributesLast = self.layoutAttributesForItem(at: indexPath)
                 } else {
                     attributesLast = layoutAttributesArray[index - 1]
@@ -101,31 +94,23 @@ class CQCrossFlowLayout: UICollectionViewFlowLayout {
                     cellX = sectionInsets.left;
                     cellY = attributesLast.frame.maxY + minimumLineSpace;
                 }
-                layoutAttributes.frame = CGRect(x: cellX, y: cellY, width: cellSize.width, height: cellSize.height)
-                
-//                guard let decorationAttributes = self.layoutAttributesForDecorationView(ofKind: decorationKind, at: layoutAttributes.indexPath) else { return }
-//                let x = decorationAttributes.frame.minX
-//                let y = decorationAttributes.frame.minY
-//                let width = decorationAttributes.frame.width
-//                let height = layoutAttributes.frame.maxY + minimumLineSpace - y
-//                decorationAttributes.frame = CGRect(x: x, y: y, width: width, height: height)
-                
-               
-               let decorationAttributes = attributesArray.first { attributes in
+                item.frame = CGRect(x: cellX, y: cellY, width: cellSize.width, height: cellSize.height)
+                // 重新计算DecorationView的frame
+               let decorationAttributes = newAttributesArray.first { attributes in
                    if attributes.representedElementKind == decorationKind {
-                        return attributes.indexPath.section == layoutAttributes.indexPath.section
+                        return attributes.indexPath.section == item.indexPath.section
                    }
                    return false
                 }
-                if decorationAttributes == nil { return }
+                if decorationAttributes == nil { return } // 直接返回
                 let x = decorationAttributes!.frame.minX
                 let y = decorationAttributes!.frame.minY
                 let width = decorationAttributes!.frame.width
-                let height = layoutAttributes.frame.maxY + minimumLineSpace - y
+                let height = item.frame.maxY + minimumLineSpace - y
                 decorationAttributes!.frame = CGRect(x: x, y: y, width: width, height: height)
             }
         }
-        return attributesArray
+        return newAttributesArray
     }
     
 //    override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {

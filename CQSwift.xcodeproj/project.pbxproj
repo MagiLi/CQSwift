@@ -45,6 +45,8 @@
 		242F365127166D77006562BF /* CQWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F365027166D77006562BF /* CQWebViewController.swift */; };
 		242F365627166DC1006562BF /* CQJSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F365527166DC1006562BF /* CQJSClient.swift */; };
 		242F64D028B86CBD0008F911 /* NSAttributedString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 242F64CF28B86CBD0008F911 /* NSAttributedString+Extension.m */; };
+		242F6AFB28F66A3C00B967CA /* CQCalendarEventHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F6AFA28F66A3C00B967CA /* CQCalendarEventHeader.swift */; };
+		242F6AFD28F675E800B967CA /* CQCalendarEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F6AFC28F675E800B967CA /* CQCalendarEventCell.swift */; };
 		24356956270308650015C447 /* CQGridLockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24356955270308650015C447 /* CQGridLockController.swift */; };
 		2435695E27030C8C0015C447 /* CQGridLockCreateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435695D27030C8C0015C447 /* CQGridLockCreateVC.swift */; };
 		2435696327030CAA0015C447 /* CQGridLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435696227030CAA0015C447 /* CQGridLockView.swift */; };
@@ -68,6 +70,10 @@
 		2477F22427BE1A3A00218542 /* CQCycleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2477F22327BE1A3A00218542 /* CQCycleController.swift */; };
 		247847DA2448476B00229463 /* CQTopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247847D92448476B00229463 /* CQTopViewModel.swift */; };
 		247847DC244850A500229463 /* CQMoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247847DB244850A500229463 /* CQMoreViewModel.swift */; };
+		247AA34E28F7AF2D00492449 /* CQCalendarDateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247AA34D28F7AF2D00492449 /* CQCalendarDateHeader.swift */; };
+		247AA35028F7B32300492449 /* CQCDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247AA34F28F7B32300492449 /* CQCDateView.swift */; };
+		247AA35228F7E15900492449 /* CQCalendarTipsFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247AA35128F7E15900492449 /* CQCalendarTipsFooter.swift */; };
+		247AA35428F7F1F000492449 /* CQCalendarGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247AA35328F7F1F000492449 /* CQCalendarGradientView.swift */; };
 		2489F70F2861AC600085C076 /* CQGradientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489F70E2861AC600085C076 /* CQGradientController.swift */; };
 		2489F7112861AC780085C076 /* CQGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489F7102861AC780085C076 /* CQGradientView.swift */; };
 		2489F7132861AF040085C076 /* CQGradientView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489F7122861AF040085C076 /* CQGradientView1.swift */; };
@@ -207,6 +213,8 @@
 		242F365527166DC1006562BF /* CQJSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQJSClient.swift; sourceTree = "<group>"; };
 		242F64CE28B86CBD0008F911 /* NSAttributedString+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Extension.h"; sourceTree = "<group>"; };
 		242F64CF28B86CBD0008F911 /* NSAttributedString+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Extension.m"; sourceTree = "<group>"; };
+		242F6AFA28F66A3C00B967CA /* CQCalendarEventHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCalendarEventHeader.swift; sourceTree = "<group>"; };
+		242F6AFC28F675E800B967CA /* CQCalendarEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCalendarEventCell.swift; sourceTree = "<group>"; };
 		24356955270308650015C447 /* CQGridLockController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGridLockController.swift; sourceTree = "<group>"; };
 		2435695D27030C8C0015C447 /* CQGridLockCreateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGridLockCreateVC.swift; sourceTree = "<group>"; };
 		2435696227030CAA0015C447 /* CQGridLockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGridLockView.swift; sourceTree = "<group>"; };
@@ -230,6 +238,10 @@
 		2477F22327BE1A3A00218542 /* CQCycleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCycleController.swift; sourceTree = "<group>"; };
 		247847D92448476B00229463 /* CQTopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQTopViewModel.swift; sourceTree = "<group>"; };
 		247847DB244850A500229463 /* CQMoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMoreViewModel.swift; sourceTree = "<group>"; };
+		247AA34D28F7AF2D00492449 /* CQCalendarDateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCalendarDateHeader.swift; sourceTree = "<group>"; };
+		247AA34F28F7B32300492449 /* CQCDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCDateView.swift; sourceTree = "<group>"; };
+		247AA35128F7E15900492449 /* CQCalendarTipsFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCalendarTipsFooter.swift; sourceTree = "<group>"; };
+		247AA35328F7F1F000492449 /* CQCalendarGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCalendarGradientView.swift; sourceTree = "<group>"; };
 		2489F70E2861AC600085C076 /* CQGradientController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGradientController.swift; sourceTree = "<group>"; };
 		2489F7102861AC780085C076 /* CQGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGradientView.swift; sourceTree = "<group>"; };
 		2489F7122861AF040085C076 /* CQGradientView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGradientView1.swift; sourceTree = "<group>"; };
@@ -515,9 +527,14 @@
 			isa = PBXGroup;
 			children = (
 				24666C3F28D4704400DD818A /* CQCalendarController.swift */,
+				247AA34D28F7AF2D00492449 /* CQCalendarDateHeader.swift */,
 				24D16FEE28D85E7B00794C9F /* CQCalendarWeekCell.swift */,
 				241E5B0128D84A3E009B63E6 /* CQCalendarDayCell.swift */,
 				24D16FEC28D85DB400794C9F /* CQCalendarFooter.swift */,
+				242F6AFA28F66A3C00B967CA /* CQCalendarEventHeader.swift */,
+				242F6AFC28F675E800B967CA /* CQCalendarEventCell.swift */,
+				247AA35128F7E15900492449 /* CQCalendarTipsFooter.swift */,
+				247AA34F28F7B32300492449 /* CQCDateView.swift */,
 				24BB0AFC28E6E64D00FA208A /* CQCStowView.swift */,
 				241E5AFD28D83B16009B63E6 /* CQCMonth.swift */,
 				241E5AFF28D83D8C009B63E6 /* CQCDay.swift */,
@@ -527,6 +544,7 @@
 				24BB0AF828E6D7E500FA208A /* CQCFlowLayoutShow.swift */,
 				24BB0AFA28E6D99900FA208A /* CQCFlowLayoutStow.swift */,
 				24BB0AFE28E6ED0100FA208A /* CQCalendarDecorationView.swift */,
+				247AA35328F7F1F000492449 /* CQCalendarGradientView.swift */,
 				346FEA7328F5AD310040B03A /* CQEventListController.h */,
 				346FEA7428F5AD310040B03A /* CQEventListController.m */,
 			);
@@ -1017,6 +1035,8 @@
 				241D5DC32887A9A90076725B /* SimpleScrollView.swift in Sources */,
 				241D5DB02887A6DA0076725B /* SpringTimingParameters.swift in Sources */,
 				24D16FEF28D85E7B00794C9F /* CQCalendarWeekCell.swift in Sources */,
+				242F6AFB28F66A3C00B967CA /* CQCalendarEventHeader.swift in Sources */,
+				247AA35428F7F1F000492449 /* CQCalendarGradientView.swift in Sources */,
 				244DA61C24470619008B3B57 /* CQAppsController.swift in Sources */,
 				24F949B224F4AFBB006CC572 /* CQGridRender.swift in Sources */,
 				34DD454628353789001D6177 /* CQNestedSubTableView.swift in Sources */,
@@ -1051,6 +1071,7 @@
 				24D063C028C21FD8008147BF /* CQCFlowSectionModel.swift in Sources */,
 				244DA61D24470619008B3B57 /* CQAppSectionModel.swift in Sources */,
 				241E5B0028D83D8C009B63E6 /* CQCDay.swift in Sources */,
+				242F6AFD28F675E800B967CA /* CQCalendarEventCell.swift in Sources */,
 				241D5DC62887A9E70076725B /* THMainController.swift in Sources */,
 				346FEA7528F5AD310040B03A /* CQEventListController.m in Sources */,
 				34D6A5A6232B348500B740CA /* CQRXSwifObservableVC.swift in Sources */,
@@ -1071,6 +1092,7 @@
 				24E30C0E28D1D3E20015FC75 /* CQTypeView.swift in Sources */,
 				24D063BC28C21B5E008147BF /* CQCrossFlowVC.swift in Sources */,
 				244DA61824470619008B3B57 /* CQMoreCell.swift in Sources */,
+				247AA34E28F7AF2D00492449 /* CQCalendarDateHeader.swift in Sources */,
 				24EC108128597803002EE703 /* UIView+CQFrame.swift in Sources */,
 				24FBF24C28A1035F001E2370 /* CQIndicatorVC.swift in Sources */,
 				241D5DA42887A6140076725B /* UISpringTimingParameters+Utils.swift in Sources */,
@@ -1110,6 +1132,7 @@
 				2458AB7A285B24D90078A53F /* CQContactManager.swift in Sources */,
 				3404E6CD2311137C00014104 /* CQTableViewController.swift in Sources */,
 				241D5DA82887A6140076725B /* TimerAnimation.swift in Sources */,
+				247AA35228F7E15900492449 /* CQCalendarTipsFooter.swift in Sources */,
 				24F949B024F4AEDD006CC572 /* CQMTBufferGridVC.swift in Sources */,
 				244DA61F24470619008B3B57 /* CQMoreDataManager.swift in Sources */,
 				3404B881230C1ACB004CFA91 /* CQMainNavController.swift in Sources */,
@@ -1127,6 +1150,7 @@
 				244DA61724470619008B3B57 /* CQMoreHeader.swift in Sources */,
 				244DA61924470619008B3B57 /* CQMoreEditHeader.swift in Sources */,
 				3419702B235D475200E154A2 /* qrcode.metal in Sources */,
+				247AA35028F7B32300492449 /* CQCDateView.swift in Sources */,
 				34C1A3B62316598F0079A935 /* CQWaveView.swift in Sources */,
 				3404E6CF231117CE00014104 /* CQTableViewModel.swift in Sources */,
 				241D5DAE2887A6DA0076725B /* RubberBand.swift in Sources */,

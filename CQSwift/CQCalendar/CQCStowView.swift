@@ -73,6 +73,7 @@ class CQCStowView: UIControl {
         let view = UIImageView()
         view.image =  UIImage.init(named: "arrow_top")
         view.contentMode = .center
+        view.tintColor = UIColor(red: 51.0/255.0, green: 51.0/255.0, blue: 51.0/255.0, alpha: 1.0)
         return view
     }()
 }

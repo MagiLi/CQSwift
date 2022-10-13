@@ -17,8 +17,16 @@ enum CalendarDataError: Error {
 class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     private var show:Bool = true
-    private let weekHeight:CGFloat = 30.0
-    private let stowHeight:CGFloat = 35.0
+    private let weekCellHeight:CGFloat = 30.0 // 周的高度
+    private let stowHeight:CGFloat = 35.0 // 收缩footer的高度
+    //private let calendarHeight:CGFloat = 268.0 * CQScaleH
+    private let dayCellHeight:CGFloat = 55.0
+    
+    private let section2MarginLeft:CGFloat = 15.0
+    private let section2MarginBottom:CGFloat = 15.0
+    
+    private var tipsFooterHeight:CGFloat = 80.0
+    private var tipsFooterText:NSAttributedString?
     private var selectedDate:Date
     /*
        NSCalendarIdentifierGregorian         公历
@@ -46,8 +54,9 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
             
             self.collectionView.reloadData()
             //headerView.baseDate = baseDate
-
-            self.title = monthFormatter.string(from: self.baseDate)
+            let indexPath = IndexPath(item: 0, section: 0)
+            guard let header = self.collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: indexPath) as? CQCalendarDateHeader else { return}
+            header.date = monthFormatter.string(from: self.baseDate)
         }
     }
     private lazy var dateFormatter: DateFormatter = {
@@ -203,7 +212,7 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
     
     //MARK: UICollectionViewDataSource
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return 3
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
@@ -216,7 +225,7 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
                 return 7
             }
         } else {
-            return 0
+            return 5
         }
     }
     
@@ -231,12 +240,21 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
             if self.days.count <= indexPath.item { return cell }
             cell.day = self.days[indexPath.item]
             return cell
+        } else if indexPath.section == 2 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CQCalendarEventCellID", for: indexPath) as!  CQCalendarEventCell
+            return cell
         } else {
             return UICollectionViewCell()
         }
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if indexPath.section == 1 {
+        if indexPath.section == 0 {
+            if kind == UICollectionView.elementKindSectionHeader {
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CQCalendarDateHeaderID", for: indexPath) as! CQCalendarDateHeader
+                header.date = self.monthFormatter.string(from: self.baseDate)
+                return header
+            }
+        } else if indexPath.section == 1 {
             if kind == UICollectionView.elementKindSectionFooter {
                 let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CQCalendarFooterID", for: indexPath) as! CQCalendarFooter
                 footer.stowBlock = { [weak self] stow in
@@ -254,7 +272,17 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
                 }
                 return footer
             }
+        } else if indexPath.section == 2 {
+            if kind == UICollectionView.elementKindSectionHeader {
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CQCalendarEventHeaderID", for: indexPath) as! CQCalendarEventHeader
+                return header
+            } else if kind == UICollectionView.elementKindSectionFooter {
+                let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CQCalendarTipsFooterID", for: indexPath) as! CQCalendarTipsFooter
+                footer.descLabel.attributedText = self.tipsFooterText
+                return footer
+            }
         }
+        
         return UICollectionReusableView()
     }
     
@@ -287,30 +315,60 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
     
     //MARK: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width / CGFloat(self.weekData.count)
+        
         if indexPath.section == 0 {
-            return CGSize(width: width, height: weekHeight)
+            let width = collectionView.frame.width / CGFloat(self.weekData.count)
+            return CGSize(width: width, height: weekCellHeight)
         } else if indexPath.section == 1 {
-            let conH = collectionView.frame.height - stowHeight - weekHeight
-            var height:CGFloat = conH / CGFloat(numberOfWeeksInBaseDate)
-//            if self.show {
-//                height = conH / CGFloat(numberOfWeeksInBaseDate)
-//            } else {
-//                height = conH / 5.0
-//            }
-            return CGSize(width: width, height: height)
+//            let conH = collectionView.frame.height - stowHeight - weekCellHeight
+//            var height:CGFloat = conH / CGFloat(numberOfWeeksInBaseDate)
+////            if self.show {
+////                height = conH / CGFloat(numberOfWeeksInBaseDate)
+////            } else {
+////                height = conH / 5.0
+////            }
+//            return CGSize(width: width, height: height)
+            let width = collectionView.frame.width / CGFloat(self.weekData.count)
+            return CGSize(width: width, height: dayCellHeight)
+        } else if indexPath.section == 2 {
+            let width = collectionView.frame.width - section2MarginLeft * 2.0
+            return CGSize(width: width, height: 112.0)
         } else {
             return .zero
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return .zero
+        
+        if section == 0 {
+            return CGSize(width: collectionView.frame.width, height: 55.0)
+        } else if section == 2 {
+            return CGSize(width: collectionView.frame.width, height: 55.0)
+        } else {
+            return .zero
+        }
         //return CGSize(width: collectionView.frame.width, height: 30.0 * CQScaleH)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         if section == 1 {
             return CGSize(width: collectionView.frame.width, height: stowHeight)
+        } else if section == 2 {
+            return CGSize(width: collectionView.frame.width, height: self.tipsFooterHeight)
+        } else {
+            return .zero
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if section == 2 {
+            return 15.0
+        } else {
+            return 0.0
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if section == 2 {
+            return UIEdgeInsets(top: 0.0, left: section2MarginLeft, bottom: section2MarginBottom, right: section2MarginLeft)
         } else {
             return .zero
         }
@@ -373,14 +431,29 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
     //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = UIColor.colorHex(hex: "#F7F7F7")
         self.days = self.generateDaysInMonth(for: self.baseDate)
-        self.title = self.monthFormatter.string(from: self.baseDate)
+        self.title = "智能日历"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "EventEdit", style: .plain, target: self, action: #selector(rightItemClicked))
         self.view.addSubview(self.collectionView)
-        if #available(iOS 11.0, *) {
-            self.collectionView.contentInsetAdjustmentBehavior = .never
-        } else { }
+        
+        let msg = "1.您可查询年度账单生成日、归还本金和利息日期等提醒信息。\n2.您可根据需要设置缴费、工资发放、纪念日等提醒信息。"
+        var paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .justified
+        paragraphStyle.paragraphSpacing = 5.0
+        let attributes:[NSAttributedString.Key : Any] = [
+            .foregroundColor: UIColor.colorHex(hex: "#666666"),
+            .font: UIFont.systemFont(ofSize: 16.0),
+            .paragraphStyle: paragraphStyle
+        ]
+        let attText = NSAttributedString(string: msg, attributes: attributes)
+        let size = CGSize(width: CQScreenW - 30.0, height: CGFloat.greatestFiniteMagnitude)
+        let rect = attText.boundingRect(with: size, options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil)
+        self.tipsFooterHeight = rect.size.height + 45.0
+        self.tipsFooterText = attText
+//        if #available(iOS 11.0, *) {
+//            self.collectionView.contentInsetAdjustmentBehavior = .never
+//        } else { }
         
     }
     
@@ -406,11 +479,13 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        let collectionViewX:CGFloat = 0.0
-        let collectionViewY:CGFloat = self.navigationController?.navigationBar.frame.maxY ?? 64.0
-        let collectionViewW:CGFloat = self.view.frame.width
-        let collectionViewH:CGFloat = 268.0 * CQScaleH
-        self.collectionView.frame = CGRect(x: collectionViewX, y: collectionViewY, width: collectionViewW, height: collectionViewH)
+//        let collectionViewX:CGFloat = 0.0
+//        let collectionViewY:CGFloat = self.navigationController?.navigationBar.frame.maxY ?? 64.0
+//        let collectionViewW:CGFloat = self.view.frame.width
+//        let collectionViewH:CGFloat = 268.0 * CQScaleH
+//        self.collectionView.frame = CGRect(x: collectionViewX, y: collectionViewY, width: collectionViewW, height: collectionViewH)
+        
+        self.collectionView.frame = self.view.bounds
     }
     
     //MARK: lazy
@@ -420,12 +495,19 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
         //collectionView.isScrollEnabled = false
         //collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
+        collectionView.register(CQCalendarDateHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CQCalendarDateHeaderID")
         collectionView.register(CQCalendarDayCell.self, forCellWithReuseIdentifier: "CQCalendarDayCellID")
         collectionView.register(CQCalendarWeekCell.self, forCellWithReuseIdentifier: "CQCalendarWeekCellID")
         collectionView.register(CQCalendarFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "CQCalendarFooterID")
+        collectionView.register(CQCalendarEventHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CQCalendarEventHeaderID")
+        collectionView.register(CQCalendarEventCell.self, forCellWithReuseIdentifier: "CQCalendarEventCellID")
+        collectionView.register(CQCalendarTipsFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "CQCalendarTipsFooterID")
+        
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.alwaysBounceVertical = true
+        collectionView.bounces = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
     
