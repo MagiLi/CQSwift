@@ -40,6 +40,10 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
         ["Third demo"]
     ]
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.floatHanler()

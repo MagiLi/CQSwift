@@ -13,7 +13,7 @@ class CQMainNavController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //self.navigationBar.barStyle = .default
         // 强制开启侧滑返回操作
         interactivePopGestureRecognizer?.delegate = self
 //        self.title = "MAIN"
@@ -65,6 +65,27 @@ class CQMainNavController: UINavigationController {
             // 设置导航栏阴影图片
             //self.navigationBar.shadowImage = UIImage()
         }
+    }
+    
+    /* info.plist:
+        View controller-based status bar appearance
+        状态栏外观是否基于当前视图控制器的首选样式。true:是 false:否
+        设置为false时，preferredStatusBarStyle、childForStatusBarStyle方法不执行
+    */
+    // 实现 childForStatusBarStyle 方法后 preferredStatusBarStyle方法无效
+    //（会调用子控制器的preferredStatusBarStyle方法）
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+//        if let style = self.topViewController?.preferredStatusBarStyle {
+//            // 如果子控制器不重写 preferredStatusBarStyle 方法，默认返回default
+//            return style
+//        } else {
+//            return .default
+//        }
+    }
+    
+    override var childForStatusBarStyle: UIViewController? {
+        return self.topViewController
     }
     
     /*

@@ -16,14 +16,10 @@ class CQCalenderEventManager: NSObject {
         var array:[EKEvent] = []
         let predicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: calendars)
         eventStore.enumerateEvents(matching: predicate, using:  { (event, pointer) in
-            do {
-                array.append(event)
-                print("================ /n \(event.occurrenceDate)")
-                print("\(event.title) : startDate \(event.startDate) endDate \(event.endDate)")
-            } catch let error {
-                print(error)
-            }
-            
+            array.append(event)
+            print("================ /n \(event.occurrenceDate ?? Date())")
+            print("\(event.title ?? "") : startDate \(event.startDate ?? Date()) endDate \(event.endDate ?? Date())")
+
         })
         
         return array 

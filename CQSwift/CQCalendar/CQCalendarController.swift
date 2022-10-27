@@ -84,8 +84,35 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
         self.calendar.range(of: .weekOfMonth, in: .month, for: baseDate)?.count ?? 0
     }
     
-    //MARK: data
-    // 月 的数据
+    func getYearData() {
+        let formatter = DateFormatter()
+        formatter.timeZone = .autoupdatingCurrent
+        formatter.locale = .current
+        formatter.dateFormat = "yyyyMMdd"
+        guard let startDay = formatter.date(from: "20220101") else { return }
+        guard let endDay = formatter.date(from: "20411231") else { return }
+        let dateComponents = self.calendar.dateComponents([.year], from: startDay, to: endDay)
+        var currentMonth = self.calendar.component(.month, from: startDay)
+        print("currentMonth: \(currentMonth)")
+        
+        let yearCount = dateComponents.year ?? 0
+        let minYear:Int = 2022
+//        var currentYear = minYear
+//        for i in 0..<yearCount {
+//            currentYear += 1
+//            print("currentYear: \(currentYear)")
+//        }
+        let count = self.calendar.range(of: .month, in: .year, for: startDay)?.count
+        //print("count: \(count)")
+        //print("dateComponents: \(dateComponents.year!)-- \(dateComponents.month)")
+
+        //self.calendar.component(.year, from: <#T##Date#>)
+//        let firstM = self.calendar.component(<#T##component: Calendar.Component##Calendar.Component#>, from: <#T##Date#>)
+//        print("firstM: \(firstM)")
+        
+    }
+    
+    //MARK: 月 的数据
     func monthMetadata(for baseDate: Date) throws -> CQCMonth {
         let dateComponents = self.calendar.dateComponents([.year, .month], from: baseDate)
         guard
@@ -207,7 +234,7 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
             newDay.index = i
             newDays.append(newDay)
         }
-        return days
+        return newDays
     }
     
     //MARK: UICollectionViewDataSource
@@ -428,6 +455,11 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
         fatalError("init(coder:) has not been implemented")
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
+    }
+
+    
     //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -454,6 +486,8 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
 //        if #available(iOS 11.0, *) {
 //            self.collectionView.contentInsetAdjustmentBehavior = .never
 //        } else { }
+        
+        self.getYearData()
         
     }
     
