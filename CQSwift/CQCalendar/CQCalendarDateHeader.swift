@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol CQCalendarDateHeaderDelegate:NSObjectProtocol {
+    func dateViewClickedEvent()
+    func addButtonClickedEvent(_ sender:UIButton)
+}
+
 class CQCalendarDateHeader: UICollectionReusableView {
     
     var date: String? {
@@ -16,13 +21,15 @@ class CQCalendarDateHeader: UICollectionReusableView {
         }
     }
     
+    weak var delegate:CQCalendarDateHeaderDelegate?
+    
     //MARK: clicked
-    @objc func dateViewClicked() {
-        
+    @objc func dateViewClicked(_ sender:CQCDateView) {
+        self.delegate?.dateViewClickedEvent()
     }
     
     @objc func addButtonClicked(_ sender:UIButton) {
-        
+        self.delegate?.addButtonClickedEvent(sender)
     }
     
     //MARK: init
@@ -60,6 +67,7 @@ class CQCalendarDateHeader: UICollectionReusableView {
     //MARK: lazy
     lazy var dateView: CQCDateView = {
         let label = CQCDateView()
+        label.addTarget(self, action: #selector(dateViewClicked(_ :)), for: .touchUpInside)
         return label
     }()
     lazy var addBtn: UIButton = {

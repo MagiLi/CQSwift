@@ -10,6 +10,6 @@ import Foundation
 
 struct CQCMonth {
     let numberOfDays: Int // 这个月有几天
-    let firstDay: Date
+    let firstDay: Date // 当前月的第一天
     let firstDayWeekday: Int
 }

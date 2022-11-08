@@ -14,7 +14,7 @@ enum CalendarDataError: Error {
     case metadataGeneration
 }
 
-class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, CQCalendarDateHeaderDelegate {
     
     private var show:Bool = true
     private let weekCellHeight:CGFloat = 30.0 // 周的高度
@@ -122,6 +122,8 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
             throw CalendarDataError.metadataGeneration
         }
         //print("firstDayOfMonth:\(firstDayOfMonth)")
+        // firstDayOfMonth在这周是第几天（默认星期天是第一天）
+        // firstDayOfMonth如果是周一计算出的firstDayWeekday就是2
         let firstDayWeekday = self.calendar.component(.weekday, from: firstDayOfMonth)
         //print("firstDayWeekday:\(firstDayWeekday)")
         return CQCMonth(
@@ -139,7 +141,7 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
         
         let numberOfDaysInMonth = metadata.numberOfDays
         let offsetInInitialRow = metadata.firstDayWeekday
-        let firstDayOfMonth = metadata.firstDay
+        let firstDayOfMonth = metadata.firstDay // 当前月的第一天
         
         var days:[CQCDay] = (1..<(numberOfDaysInMonth + offsetInInitialRow))
             .map { day in
@@ -171,8 +173,11 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
     
     //MARK: 下个月的开始几天
     func generateStartOfNextMonth(using firstDayOfDisplayedMonth: Date) -> [CQCDay] {
+        // 下个月 前一天（也就是下个月第一天的前一天，即这个月的最后一天）
+        let dateComp = DateComponents(month: 1, day: -1)
+        // firstDayOfDisplayedMonth所在月份的最后一天
         guard
-            let lastDayInMonth = self.calendar.date(byAdding: DateComponents(month: 1, day: -1), to: firstDayOfDisplayedMonth)
+            let lastDayInMonth = self.calendar.date(byAdding: dateComp, to: firstDayOfDisplayedMonth)
         else {
             return []
         }
@@ -237,6 +242,18 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
         return newDays
     }
     
+    //MARK: CQCalendarDateHeaderDelegate
+    func dateViewClickedEvent() {
+        let frame = UIScreen.main.bounds
+        let pickerView = PHCalendarDatePickerView(frame: frame, currentDate: self.baseDate)
+        pickerView.selectedBlock = { [weak self] date in
+            self?.baseDate = date
+        }
+        UIApplication.shared.keyWindow?.addSubview(pickerView)
+    }
+    func addButtonClickedEvent(_ sender: UIButton) {
+        
+    }
     //MARK: UICollectionViewDataSource
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
@@ -279,6 +296,7 @@ class CQCalendarController: UIViewController, UICollectionViewDelegate, UICollec
             if kind == UICollectionView.elementKindSectionHeader {
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CQCalendarDateHeaderID", for: indexPath) as! CQCalendarDateHeader
                 header.date = self.monthFormatter.string(from: self.baseDate)
+                header.delegate = self
                 return header
             }
         } else if indexPath.section == 1 {
