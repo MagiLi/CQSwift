@@ -84,9 +84,16 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
 //        print("dateTime: \(stamp)")
         
 //        _ = self.date(stampTime: stampString)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(receivewalletNoti(noti:)), name: NSNotification.Name(rawValue: "noti_test"), object: nil)
     }
-    
+    @objc fileprivate func receivewalletNoti(noti:Notification){
+        if let info = noti.object as? [String:Any] {
+            print(info)
+            if let tt = info["notiType"] as? Int {
+                print(tt)
+            }
+        }
+    }
     func date(stampTime:String) -> Date? {
         //转换为时间
         guard let timeInterval:TimeInterval = TimeInterval(stampTime) else { return nil }
@@ -260,6 +267,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
     //MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "noti_test"), object: ["notiType":4005410002])
 //        let url = URL(string: "other:")
 //        if UIApplication.shared.canOpenURL(url!) {
 //            UIApplication.shared.openURL(url!)
