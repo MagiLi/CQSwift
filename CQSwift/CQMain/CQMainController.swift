@@ -48,6 +48,9 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
         super.viewDidLoad()
         //self.floatHanler()
         
+        let view = CQGrayView(frame: UIScreen.main.bounds) 
+        CQKeyWindow?.addSubview(view)
+        
         tableView = UITableView.init(frame: self.view.bounds, style: .grouped)
         tableView?.delegate = self
         tableView?.dataSource = self
