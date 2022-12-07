@@ -21,7 +21,8 @@ class CQGridRender: NSObject, MTKViewDelegate {
     func draw(in view: MTKView) {
         
     }
-    //MARLLK:
+    
+    //MARK:
     fileprivate func loadMetal(_ mtkView: MTKView) {
         //1.加载所有的.metal文件
         guard let library = self.device.makeDefaultLibrary() else {
@@ -100,9 +101,12 @@ class CQGridRender: NSObject, MTKViewDelegate {
             for lineIndex in 0...lineNumber {
                 //计算X,Y位置。注意坐标系基于2D笛卡尔坐标系，中心点(0,0)，所以会出现负数位置。
                 //左上角
-                var upperLeftPosition:vector_float2!
-                upperLeftPosition.x = (-Float(lineNumber) / 2.0 + Float(lineIndex)) * spaceGrid + spaceGrid/2.0
-                upperLeftPosition.y = (-Float(rowNumber) / 2.0 + Float(rowIndex)) * spaceGrid + spaceGrid/2.0
+                //var upperLeftPosition:vector_float2!
+                var upperLeftPosition = vector_float2()
+                let lineX = -Float(lineNumber) / 2.0 + Float(lineIndex)
+                upperLeftPosition.x = lineX * spaceGrid + spaceGrid/2.0
+                let lineY = -Float(rowNumber) / 2.0 + Float(rowIndex)
+                upperLeftPosition.y = lineY * spaceGrid + spaceGrid/2.0
                 
                 
 //                memcmp(currentGrid, verticesArrayData, singleGridDataSize)

@@ -1,18 +1,18 @@
 //
-//  CQTriangleRender.swift
+//  CQGrayMetalView.swift
 //  CQSwift
 //
-//  Created by 李超群 on 2020/8/22.
-//  Copyright © 2020 李超群. All rights reserved.
+//  Created by llbt2019 on 2022/12/5.
+//  Copyright © 2022 李超群. All rights reserved.
 //
 
 import UIKit
 import MetalKit
 
-class CQTriangleRender: NSObject, MTKViewDelegate {
-    var device: MTLDevice?
-    var commandQueue: MTLCommandQueue?
-    var pipelineState: MTLRenderPipelineState?
+class CQGrayMetalView: MTKView, MTKViewDelegate {
+    
+    var commandQueue: MTLCommandQueue? // 
+    var pipelineState: MTLRenderPipelineState? // 渲染管道
 //    var viewportSize:vector_uint2?
     
     //MARK: MTKViewDelegate
@@ -20,10 +20,11 @@ class CQTriangleRender: NSObject, MTKViewDelegate {
 //        self.viewportSize?.x = UInt32(size.width)
 //        self.viewportSize?.y = UInt32(size.height)
     }
+
     let vertexArrayData: [Float] = [
-        0.5, -0.25, 0.0, 1.0,   1.0, 0.0, 0.0, 1.0,
-        -0.5, -0.25, 0.0, 1.0,   0.0, 1.0, 0.0, 1.0,
-        -0.0, 0.25, 0.0, 1.0,   0.0, 0.0, 1.0, 1.0
+        0.5, -0.25, 0.0, 1.0,   0.3, 0.59, 0.11, 1.0,
+        -0.5, -0.25, 0.0, 1.0,   0.3, 0.59, 0.11, 1.0,
+        -0.0, 0.25, 0.0, 1.0,   0.3, 0.59, 0.11, 1.0
     ]
     func draw(in view: MTKView) {
         //1.创建命令缓冲区
@@ -83,29 +84,51 @@ class CQTriangleRender: NSObject, MTKViewDelegate {
         //11.完成渲染并将命令缓冲区推送到GPU
         commandBuffer.commit()
     }
+    //MARK: init
+    override init(frame frameRect: CGRect, device: MTLDevice?) {
+        super.init(frame: frameRect, device: device)
+        self.device = device //1.获取device
+        if self.device == nil {
+            debugPrint("Device is nil!")
+            return
+        }
+        self.delegate = self
+        //vec3(0.3, 0.59, 0.11)
+        //dot(<#T##lhs: simd_quatd##simd_quatd#>, <#T##rhs: simd_quatd##simd_quatd#>)
+        self.setupMetal()
+    }
     
-    convenience init(mtkView: MTKView) {
-        self.init() 
-        self.device = mtkView.device//1.
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: 设置metal
+    fileprivate func setupMetal() {
         //2.加载着色器文件
         let library = self.device?.makeDefaultLibrary()
-        let vertexFunction = library?.makeFunction(name: "vertexShader")
-        let fragmentFunction = library?.makeFunction(name: "fragmentShader")
+        let vertexFunction = library?.makeFunction(name: "vertexShader_gray")
+        let fragmentFunction = library?.makeFunction(name: "fragmentShader_gray")
         
         //3.创建渲染管线描述符（渲染管道解释器）
         let renderPipelineDescriptor = MTLRenderPipelineDescriptor()
-        renderPipelineDescriptor.label = "Simple Pipeline"
+        //renderPipelineDescriptor.label = "Simple Pipeline"
         renderPipelineDescriptor.vertexFunction = vertexFunction
         renderPipelineDescriptor.fragmentFunction = fragmentFunction
         //一组存储颜色数据的组件
-        renderPipelineDescriptor.colorAttachments[0].pixelFormat = mtkView.colorPixelFormat
+        renderPipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
+        //renderPipelineDescriptor.colorAttachments[0].pixelFormat = MTLPixelFormat.bgra8Unorm
         //4.创建渲染管线状态对象（渲染管道）
         do {
             self.pipelineState = try self.device?.makeRenderPipelineState(descriptor: renderPipelineDescriptor)
         } catch {
-            debugPrint("pipelineState error")
+            debugPrint("渲染管道：pipelineState error")
         }
         
         self.commandQueue = self.device?.makeCommandQueue()
+    }
+    
+    //MARK: hit
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        return nil
     }
 }

@@ -60,7 +60,7 @@ class CQBgColorRender: NSObject, MTKViewDelegate {
         commandBuffer.commit()
     }
     
-    //MAKE:makeFancyColor
+    //MAKE: makeFancyColor
     fileprivate func makeFancyColor() -> Color {
         
         if growing {

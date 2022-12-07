@@ -32,7 +32,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var tableView : UITableView?
 
     fileprivate let dataAray: [[String]] = [
-        ["collectionView", "tableView", "tableView嵌套", "自定义ScrollView"],
+        ["collectionView", "tableView", "tableView嵌套", "自定义ScrollView", "饱和度混合模式"],
         ["九宫格手势解锁", "日历", "字幕滚动"],
         ["JS交互"],
         ["Loading", "指针", "手机通讯录"],
@@ -47,9 +47,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.floatHanler()
-        
-        let view = CQGrayView(frame: UIScreen.main.bounds) 
-        CQKeyWindow?.addSubview(view)
+        //CQGrayManager.shared.addGrayView()
         
         tableView = UITableView.init(frame: self.view.bounds, style: .grouped)
         tableView?.delegate = self
@@ -270,14 +268,14 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
     //MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "noti_test"), object: ["notiType":4005410002])
+        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "noti_test"), object: ["notiType":4005410002])
 //        let url = URL(string: "other:")
 //        if UIApplication.shared.canOpenURL(url!) {
 //            UIApplication.shared.openURL(url!)
 //        } else {
 //            print("kfdlskkkkkkk")
 //        }
-        
+        //CQGrayManager.shared.switchFilter(index: indexPath.row)
         switch indexPath.section {
         case 0:
             if indexPath.row == 0 {
@@ -294,6 +292,9 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
             } else if indexPath.row == 3 {
                 let scrollVC = CQCustomScrollVC()
                 self.navigationController?.pushViewController(scrollVC, animated: true)
+            } else if indexPath.row == 4 { //"饱和度混合模式"
+                let vc = CQSaturationController()
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         case 1:
             if indexPath.row == 0 {
