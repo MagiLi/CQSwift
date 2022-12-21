@@ -10,9 +10,9 @@ import UIKit
 
 class CQGrayManager: NSObject {
     
-    //fileprivate var grayView:CQGrayView?
+    fileprivate var grayView:CQGrayView?
     //fileprivate var grayView:CQGrayMetalView?
-    fileprivate var grayView:CQGrayOpenGLView?
+//    fileprivate var grayView:CQGrayOpenGLView?
     
     
     static let shared : CQGrayManager = {
@@ -25,10 +25,10 @@ class CQGrayManager: NSObject {
     }
     
     func addGrayView() {
-//        let grayV = CQGrayView(frame: UIScreen.main.bounds)
-//        CQKeyWindow?.addSubview(grayV)
-//        CQKeyWindow?.bringSubviewToFront(grayV)
-//        self.grayView = grayV
+        let grayV = CQGrayView(frame: UIScreen.main.bounds)
+        CQKeyWindow?.addSubview(grayV)
+        CQKeyWindow?.bringSubviewToFront(grayV)
+        self.grayView = grayV
 
 //        let grayV = CQGrayMetalView(frame: UIScreen.main.bounds, device: MTLCreateSystemDefaultDevice())
 //        CQKeyWindow?.addSubview(grayV)
@@ -36,11 +36,11 @@ class CQGrayManager: NSObject {
 //        grayV.frame = UIScreen.main.bounds
 //        self.grayView = grayV
         
-        let grayV = CQGrayOpenGLView(frame: UIScreen.main.bounds)
-        CQKeyWindow?.addSubview(grayV)
-        CQKeyWindow?.bringSubviewToFront(grayV)
-        grayV.frame = UIScreen.main.bounds
-        self.grayView = grayV
+//        let grayV = CQGrayOpenGLView(frame: UIScreen.main.bounds)
+//        CQKeyWindow?.addSubview(grayV)
+//        CQKeyWindow?.bringSubviewToFront(grayV)
+//        grayV.frame = UIScreen.main.bounds
+//        self.grayView = grayV
         
     }
     func removeGrayView() {

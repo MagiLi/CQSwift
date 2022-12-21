@@ -47,6 +47,7 @@
 		242F64D028B86CBD0008F911 /* NSAttributedString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 242F64CF28B86CBD0008F911 /* NSAttributedString+Extension.m */; };
 		242F6AFB28F66A3C00B967CA /* CQCalendarEventHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F6AFA28F66A3C00B967CA /* CQCalendarEventHeader.swift */; };
 		242F6AFD28F675E800B967CA /* CQCalendarEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F6AFC28F675E800B967CA /* CQCalendarEventCell.swift */; };
+		2431F1F8295300030007B24D /* AAPLImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2431F1F7295300030007B24D /* AAPLImage.m */; };
 		24356956270308650015C447 /* CQGridLockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24356955270308650015C447 /* CQGridLockController.swift */; };
 		2435695E27030C8C0015C447 /* CQGridLockCreateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435695D27030C8C0015C447 /* CQGridLockCreateVC.swift */; };
 		2435696327030CAA0015C447 /* CQGridLockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435696227030CAA0015C447 /* CQGridLockView.swift */; };
@@ -227,6 +228,8 @@
 		242F64CF28B86CBD0008F911 /* NSAttributedString+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Extension.m"; sourceTree = "<group>"; };
 		242F6AFA28F66A3C00B967CA /* CQCalendarEventHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCalendarEventHeader.swift; sourceTree = "<group>"; };
 		242F6AFC28F675E800B967CA /* CQCalendarEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCalendarEventCell.swift; sourceTree = "<group>"; };
+		2431F1F6295300020007B24D /* AAPLImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLImage.h; sourceTree = "<group>"; };
+		2431F1F7295300030007B24D /* AAPLImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLImage.m; sourceTree = "<group>"; };
 		24356955270308650015C447 /* CQGridLockController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGridLockController.swift; sourceTree = "<group>"; };
 		2435695D27030C8C0015C447 /* CQGridLockCreateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGridLockCreateVC.swift; sourceTree = "<group>"; };
 		2435696227030CAA0015C447 /* CQGridLockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGridLockView.swift; sourceTree = "<group>"; };
@@ -489,6 +492,15 @@
 				242F365527166DC1006562BF /* CQJSClient.swift */,
 			);
 			path = CQJSHandle;
+			sourceTree = "<group>";
+		};
+		2431F1F52952FFF80007B24D /* CQImage */ = {
+			isa = PBXGroup;
+			children = (
+				2431F1F6295300020007B24D /* AAPLImage.h */,
+				2431F1F7295300030007B24D /* AAPLImage.m */,
+			);
+			path = CQImage;
 			sourceTree = "<group>";
 		};
 		24356954270307F50015C447 /* CQGridLock */ = {
@@ -808,6 +820,7 @@
 		34744DF722EDEA9D007F52DC /* CQSwift */ = {
 			isa = PBXGroup;
 			children = (
+				2431F1F52952FFF80007B24D /* CQImage */,
 				24E227302939906C00F73D3E /* CQGray */,
 				24666C3E28D4702C00DD818A /* CQCalendar */,
 				24E59B3228B77205004E99EE /* CQTextScroll */,
@@ -1154,6 +1167,7 @@
 				24C77409293D805200C884DE /* CQGrayMetalView.swift in Sources */,
 				24FBF24E28A1037D001E2370 /* CQIndicatorView.swift in Sources */,
 				24E30C0E28D1D3E20015FC75 /* CQTypeView.swift in Sources */,
+				2431F1F8295300030007B24D /* AAPLImage.m in Sources */,
 				24D063BC28C21B5E008147BF /* CQCrossFlowVC.swift in Sources */,
 				244DA61824470619008B3B57 /* CQMoreCell.swift in Sources */,
 				247AA34E28F7AF2D00492449 /* CQCalendarDateHeader.swift in Sources */,

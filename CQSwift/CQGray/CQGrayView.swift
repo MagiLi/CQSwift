@@ -110,13 +110,13 @@ class CQGrayView: UIView {
     func setupUI() {
         self.isUserInteractionEnabled = false
         self.translatesAutoresizingMaskIntoConstraints = false
-        //self.backgroundColor = .gray
+        self.backgroundColor = .gray
         // 灰度
-        //没有饱和度的背景区域（即纯灰色区域）不会产生变化。
-        //self.layer.compositingFilter = "saturationBlendMode"
+        // 没有饱和度的背景区域（即纯灰色区域）不会产生变化。
+        self.layer.compositingFilter = "saturationBlendMode"
         
-        self.backgroundColor = .black
-        self.layer.compositingFilter = "colorBlendMode"
+//        self.backgroundColor = .black
+//        self.layer.compositingFilter = "colorBlendMode"
     }
     
     //MARK: lazy

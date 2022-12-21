@@ -18,8 +18,7 @@ class CQBgColorRender: NSObject, MTKViewDelegate {
     //所有应用程序需要与GPU交互的第一个对象，是一个对象MTLCommandQueue.
     //使用MTLCommandQueue 去创建对象，并且加入MTLCommandBuffer 对象中。
     //确保它们能够按照正确顺序发送到GPU。对于每一帧，一个新的MTLCommandBuffer 对象创建并且填满了由GPU执行的命令.
-    var commandQueue: MTLCommandQueue?
-    
+    var commandQueue: MTLCommandQueue? 
     var growing = true//1. 增加颜色/减小颜色的 标记
     var primaryChannel = 0//2.颜色通道值(0~3)
     var colorChannels:[Double] = [1.0, 0.0, 0.0, 1.0]//3.颜色通道数组colorChannels(颜色值)

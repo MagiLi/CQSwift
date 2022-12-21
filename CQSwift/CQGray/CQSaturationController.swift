@@ -12,11 +12,18 @@ typealias colorG = (r:Double, g:Double, b:Double)
 
 class CQSaturationController: UIViewController {
 
-    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.imgView.frame = self.view.bounds
+        self.filterView.frame = self.view.bounds
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.backgroundColor = .white
+        self.view.addSubview(self.imgView)
+//        self.view.addSubview(self.filterView)
         
         let bgColor_red = 255.0/255.0
         let bgColor_green = 0.0/255.0
@@ -24,7 +31,7 @@ class CQSaturationController: UIViewController {
         let bgColor:colorG = (r:bgColor_red, g:bgColor_green, b:bgColor_blue)
         let color_red = 142.0/255.0
         let color_green = 142.0/255.0
-        let color_blue = 147.0/255.0
+        let color_blue = 142.0/255.0
         let sourceColor:colorG = (r:color_red, g:color_green, b:color_blue)
         
         // use background color
@@ -36,8 +43,9 @@ class CQSaturationController: UIViewController {
         // setLum
         let resultColor = self.setSatLumFunc(color: setSat, lum: lum)
         
-        self.view.backgroundColor = UIColor(r: resultColor.r, g: resultColor.g, b: resultColor.b)
+        self.filterView.backgroundColor = UIColor(red: resultColor.r, green: resultColor.g, blue: resultColor.b, alpha: 1.0 )
     }
+    
     func setSatLumFunc(color:colorG, lum:Double) -> colorG {
         let d = lum - self.lumFunc(bgColor: color)
         let red = color.r + d
@@ -131,4 +139,13 @@ class CQSaturationController: UIViewController {
         return 0.3*bgColor.r + 0.59*bgColor.g + 0.11*bgColor.b
     }
     
+    lazy var imgView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "face_01")
+        return view
+    }()
+    lazy var filterView: UIView = {
+        let view = UIView()
+        return view
+    }()
 }
