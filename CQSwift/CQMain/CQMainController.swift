@@ -27,7 +27,7 @@ struct PHError:Error {
 
 
 @available(iOS 11.0, *)
-class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSource, UNUserNotificationCenterDelegate {
     
     var tableView : UITableView?
 
@@ -37,6 +37,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
         ["JS交互"],
         ["Loading", "指针", "手机通讯录"],
         ["渐变"],
+        ["Metal"],
         ["Third demo"]
     ]
     
@@ -85,7 +86,8 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
 //        print("dateTime: \(stamp)")
         
 //        _ = self.date(stampTime: stampString)
-        NotificationCenter.default.addObserver(self, selector: #selector(receivewalletNoti(noti:)), name: NSNotification.Name(rawValue: "noti_test"), object: nil)
+        // 本地通知测试
+        //NotificationCenter.default.addObserver(self, selector: #selector(receivewalletNoti(noti:)), name: NSNotification.Name(rawValue: "noti_test"), object: nil)
     }
     @objc fileprivate func receivewalletNoti(noti:Notification){
         if let info = noti.object as? [String:Any] {
@@ -268,14 +270,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
     //MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "noti_test"), object: ["notiType":4005410002])
-//        let url = URL(string: "other:")
-//        if UIApplication.shared.canOpenURL(url!) {
-//            UIApplication.shared.openURL(url!)
-//        } else {
-//            print("kfdlskkkkkkk")
-//        }
-        //CQGrayManager.shared.switchFilter(index: indexPath.row)
+
         switch indexPath.section {
         case 0:
             if indexPath.row == 0 {
@@ -332,6 +327,9 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
             let vc = CQGradientController()
             self.navigationController?.pushViewController(vc, animated: true)
         case 5:
+            let vc = CQMetalMainController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        case 6:
             let vc = THMainController()
             self.navigationController?.pushViewController(vc, animated: true)
         default:
@@ -339,9 +337,54 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     }
     
+    func localNoti() {
+        let center = UNUserNotificationCenter.current()
+        //center.delegate = self
+        center.requestAuthorization(options: [.badge, .sound, .alert]) { (granted, error) in
+            if granted {
+                print("发通知")
+                center.delegate = self
+                center.getNotificationSettings { settings in }
+                let content = UNMutableNotificationContent()
+                content.title = "迪佛舒服开始了"
+                content.body = "khjjjkhjfklsfsl"
+                content.sound = UNNotificationSound.default
+                
+                // 通知下拉时候的动作
+                let action = UNNotificationAction(identifier: "action", title: "进入应用", options: UNNotificationActionOptions.foreground)
+                let clearAction = UNNotificationAction(identifier: "clearaction", title: "忽略", options: UNNotificationActionOptions.destructive)
+                let category = UNNotificationCategory(identifier: "categoryIdentifier", actions: [action,clearAction], intentIdentifiers: [], options: [])
+                center.setNotificationCategories([category])
+                
+                let timeTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
+                
+                let requestidentifier = "requestidentifier"
+                let request = UNNotificationRequest(identifier: requestidentifier, content: content, trigger: timeTrigger)
+                // 将通知请求添加到发送中心
+                center.add(request) { (error: Error?) in
+                    print(error?.localizedDescription ?? "--")
+                }
+            } else {
+                print(error?.localizedDescription)
+            }
+        } 
+    }
+    
     //MARK: viewDidLayoutSubviews
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView?.frame = self.view.bounds
+    }
+    
+    //MARK: UNUserNotificationCenterDelegate
+    // 将要通知
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+          print("willPresent")
+    }
+        
+    // 已经完成推送
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+          print("didReceive")
+          completionHandler()
     }
 }

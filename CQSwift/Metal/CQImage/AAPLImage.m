@@ -26,7 +26,7 @@ Implementation of a very simple container for image data
         typedef struct __attribute__ ((packed)) TGAHeader
         {
             // The size of the ID info following the header.
-            // 1字节无符号整型。表示图像信息字段长度，取值范围0-255。
+            // 1字节无符号整型(uint32_t 占4字节)。表示图像信息字段长度，取值范围0-255。
             // 为0时表示没有图像信息字段
             uint8_t  IDSize;
             

@@ -18,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+//        let setting = UIUserNotificationSettings(types: [.badge, .alert, .sound], categories: nil)
+//        application.registerUserNotificationSettings(setting)
+
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()
         self.mainNavVC = CQMainNavController.init(rootViewController: CQMainController())
