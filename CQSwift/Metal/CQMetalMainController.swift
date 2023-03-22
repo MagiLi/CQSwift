@@ -11,7 +11,7 @@ import UIKit
 class CQMetalMainController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     fileprivate let dataAray: [[String]] = [
-        ["CQMCalculationsVC"],
+        ["CQMCalculationsVC", "CQMDrawViewController"],
     ]
     var tableView : UITableView?
     
