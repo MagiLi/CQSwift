@@ -55,14 +55,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         CQLog(url.absoluteString)
-        if url.absoluteString.hasPrefix("other://") {
+        if url.absoluteString.hasPrefix("other://metal.main") {
             if self.mainNavVC.topViewController?.classForCoder == CQMetalMainController.classForCoder() {
                 return true
             }
-//            if self.mainNavVC.topViewController?.isKind(of: CQMetalMainController.self) {
-//                return
-//            }
             self.mainNavVC.pushViewController(CQMetalMainController(), animated: true)
+        //} else if url.absoluteString.hasPrefix("other://swifter.desktop") {
+        } else if url.absoluteString.hasPrefix("other://profile") {
+            guard let topVC = self.mainNavVC.topViewController else {
+                return true
+            }
+            if topVC.isKind(of: CQDesktopMenuController.self) {
+                return true
+            }
+            self.mainNavVC.pushViewController(CQDesktopMenuController(), animated: true)
         } else {
             return true
         }

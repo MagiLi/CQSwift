@@ -34,7 +34,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
     fileprivate let dataAray: [[String]] = [
         ["collectionView", "tableView", "tableView嵌套", "自定义ScrollView", "饱和度混合模式"],
         ["九宫格手势解锁", "日历", "字幕滚动"],
-        ["JS交互"],
+        ["JS交互", "Swifter-server"],
         ["Loading", "指针", "手机通讯录"],
         ["渐变"],
         ["Metal"],
@@ -310,8 +310,13 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         case 2:
-            let vc = CQWebViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
+            if indexPath.row == 0 {
+                let vc = CQWebViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                let vc = CQSwifterController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         case 3:
             if indexPath.row == 0 {
                 let vc = CQLoadingController()

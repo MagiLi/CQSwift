@@ -134,6 +134,9 @@
 		24F949B424F4B15E006CC572 /* CQGrid.metal in Sources */ = {isa = PBXBuildFile; fileRef = 24F949B324F4B15E006CC572 /* CQGrid.metal */; };
 		24FBF24C28A1035F001E2370 /* CQIndicatorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FBF24B28A1035F001E2370 /* CQIndicatorVC.swift */; };
 		24FBF24E28A1037D001E2370 /* CQIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FBF24D28A1037D001E2370 /* CQIndicatorView.swift */; };
+		24FF067529CC3D470030E787 /* CQSwifterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FF067429CC3D470030E787 /* CQSwifterController.swift */; };
+		24FF067729CC3DC10030E787 /* CQDesktopMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FF067629CC3DC10030E787 /* CQDesktopMenuController.swift */; };
+		24FF067929CC3E820030E787 /* shortcuts.html in Resources */ = {isa = PBXBuildFile; fileRef = 24FF067829CC3E820030E787 /* shortcuts.html */; };
 		3404B881230C1ACB004CFA91 /* CQMainNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404B880230C1ACB004CFA91 /* CQMainNavController.swift */; };
 		3404B883230C2663004CFA91 /* CQMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404B882230C2663004CFA91 /* CQMainController.swift */; };
 		3404B885230C29A9004CFA91 /* CQMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404B884230C29A9004CFA91 /* CQMainCell.swift */; };
@@ -325,6 +328,9 @@
 		24F949B324F4B15E006CC572 /* CQGrid.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = CQGrid.metal; sourceTree = "<group>"; };
 		24FBF24B28A1035F001E2370 /* CQIndicatorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQIndicatorVC.swift; sourceTree = "<group>"; };
 		24FBF24D28A1037D001E2370 /* CQIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQIndicatorView.swift; sourceTree = "<group>"; };
+		24FF067429CC3D470030E787 /* CQSwifterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSwifterController.swift; sourceTree = "<group>"; };
+		24FF067629CC3DC10030E787 /* CQDesktopMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQDesktopMenuController.swift; sourceTree = "<group>"; };
+		24FF067829CC3E820030E787 /* shortcuts.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = shortcuts.html; sourceTree = "<group>"; };
 		2FEE63F04346C3CAF9CEA536 /* Pods_CQSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CQSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3404B880230C1ACB004CFA91 /* CQMainNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMainNavController.swift; sourceTree = "<group>"; };
 		3404B882230C2663004CFA91 /* CQMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMainController.swift; sourceTree = "<group>"; };
@@ -781,6 +787,16 @@
 			path = CQIndicator;
 			sourceTree = "<group>";
 		};
+		24FF067329CC3CE80030E787 /* CQSwifter */ = {
+			isa = PBXGroup;
+			children = (
+				24FF067429CC3D470030E787 /* CQSwifterController.swift */,
+				24FF067629CC3DC10030E787 /* CQDesktopMenuController.swift */,
+				24FF067829CC3E820030E787 /* shortcuts.html */,
+			);
+			path = CQSwifter;
+			sourceTree = "<group>";
+		};
 		3404E6CB2311136200014104 /* CQTableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -875,6 +891,7 @@
 		34744DF722EDEA9D007F52DC /* CQSwift */ = {
 			isa = PBXGroup;
 			children = (
+				24FF067329CC3CE80030E787 /* CQSwifter */,
 				24BDEF6929CA9B7A002C002C /* Metal */,
 				24E227302939906C00F73D3E /* CQGray */,
 				24666C3E28D4702C00DD818A /* CQCalendar */,
@@ -1081,6 +1098,7 @@
 			files = (
 				24F1888F293DCD6800801E9F /* CQOpenGLGray.vsh in Resources */,
 				34744E0322EDEA9F007F52DC /* LaunchScreen.storyboard in Resources */,
+				24FF067929CC3E820030E787 /* shortcuts.html in Resources */,
 				34ECF8C82335BDCE00DDF8BD /* CQRXSwiftUIObserverableVC.storyboard in Resources */,
 				24F18890293DCD6800801E9F /* CQOpenGLGray.fsh in Resources */,
 				34744E0022EDEA9F007F52DC /* Assets.xcassets in Resources */,
@@ -1179,6 +1197,7 @@
 				241D5DA72887A6140076725B /* CASpringAnimation+Utils.swift in Sources */,
 				247847DC244850A500229463 /* CQMoreViewModel.swift in Sources */,
 				241E5AFE28D83B16009B63E6 /* CQCMonth.swift in Sources */,
+				24FF067529CC3D470030E787 /* CQSwifterController.swift in Sources */,
 				24D063C428C22BAB008147BF /* CQCrossFlowHeader.swift in Sources */,
 				34C1F5F9233F9DD6004F3146 /* CQRXDriverVC.swift in Sources */,
 				24E59B3628B772AA004E99EE /* CQTextScrollView.swift in Sources */,
@@ -1209,6 +1228,7 @@
 				346FEA7528F5AD310040B03A /* CQEventListController.m in Sources */,
 				34D6A5A6232B348500B740CA /* CQRXSwifObservableVC.swift in Sources */,
 				24BB0AFD28E6E64D00FA208A /* CQCStowView.swift in Sources */,
+				24FF067729CC3DC10030E787 /* CQDesktopMenuController.swift in Sources */,
 				242F365127166D77006562BF /* CQWebViewController.swift in Sources */,
 				241D5DC42887A9A90076725B /* CGRect+Utils.swift in Sources */,
 				2426242C27EAFD0100AEC968 /* UIImage+CQExtern.m in Sources */,

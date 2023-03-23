@@ -14,21 +14,21 @@ import RxCocoa
 #endif
 import Differentiator
     
-open class CollectionViewSectionedDataSource<S: SectionModelType>
+open class CollectionViewSectionedDataSource<Section: SectionModelType>
     : NSObject
     , UICollectionViewDataSource
     , SectionedViewDataSourceType {
-    public typealias I = S.Item
-    public typealias Section = S
-    public typealias ConfigureCell = (CollectionViewSectionedDataSource<S>, UICollectionView, IndexPath, I) -> UICollectionViewCell
-    public typealias ConfigureSupplementaryView = (CollectionViewSectionedDataSource<S>, UICollectionView, String, IndexPath) -> UICollectionReusableView
-    public typealias MoveItem = (CollectionViewSectionedDataSource<S>, _ sourceIndexPath:IndexPath, _ destinationIndexPath:IndexPath) -> Void
-    public typealias CanMoveItemAtIndexPath = (CollectionViewSectionedDataSource<S>, IndexPath) -> Bool
+    public typealias Item = Section.Item
+    public typealias Section = Section
+    public typealias ConfigureCell = (CollectionViewSectionedDataSource<Section>, UICollectionView, IndexPath, Item) -> UICollectionViewCell
+    public typealias ConfigureSupplementaryView = (CollectionViewSectionedDataSource<Section>, UICollectionView, String, IndexPath) -> UICollectionReusableView
+    public typealias MoveItem = (CollectionViewSectionedDataSource<Section>, _ sourceIndexPath:IndexPath, _ destinationIndexPath:IndexPath) -> Void
+    public typealias CanMoveItemAtIndexPath = (CollectionViewSectionedDataSource<Section>, IndexPath) -> Bool
 
 
     public init(
         configureCell: @escaping ConfigureCell,
-        configureSupplementaryView: @escaping ConfigureSupplementaryView,
+        configureSupplementaryView: ConfigureSupplementaryView? = nil,
         moveItem: @escaping MoveItem = { _, _, _ in () },
         canMoveItemAtIndexPath: @escaping CanMoveItemAtIndexPath = { _, _ in false }
     ) {
@@ -56,20 +56,20 @@ open class CollectionViewSectionedDataSource<S: SectionModelType>
     // and their relationship with section.
     // If particular item is mutable, that is irrelevant for this logic to function
     // properly.
-    public typealias SectionModelSnapshot = SectionModel<S, I>
+    public typealias SectionModelSnapshot = SectionModel<Section, Item>
     
     private var _sectionModels: [SectionModelSnapshot] = []
 
-    open var sectionModels: [S] {
+    open var sectionModels: [Section] {
         return _sectionModels.map { Section(original: $0.model, items: $0.items) }
     }
 
-    open subscript(section: Int) -> S {
+    open subscript(section: Int) -> Section {
         let sectionModel = self._sectionModels[section]
-        return S(original: sectionModel.model, items: sectionModel.items)
+        return Section(original: sectionModel.model, items: sectionModel.items)
     }
     
-    open subscript(indexPath: IndexPath) -> I {
+    open subscript(indexPath: IndexPath) -> Item {
         get {
             return self._sectionModels[indexPath.section].items[indexPath.item]
         }
@@ -81,10 +81,15 @@ open class CollectionViewSectionedDataSource<S: SectionModelType>
     }
     
     open func model(at indexPath: IndexPath) throws -> Any {
+        guard indexPath.section < self._sectionModels.count,
+              indexPath.item < self._sectionModels[indexPath.section].items.count else {
+            throw RxDataSourceError.outOfBounds(indexPath: indexPath)
+        }
+    
         return self[indexPath]
     }
     
-    open func setSections(_ sections: [S]) {
+    open func setSections(_ sections: [Section]) {
         self._sectionModels = sections.map { SectionModelSnapshot(model: $0, items: $0.items) }
     }
     
@@ -96,7 +101,7 @@ open class CollectionViewSectionedDataSource<S: SectionModelType>
         }
     }
 
-    open var configureSupplementaryView: ConfigureSupplementaryView {
+    open var configureSupplementaryView: ConfigureSupplementaryView? {
         didSet {
             #if DEBUG
             ensureNotMutatedAfterBinding()
@@ -111,7 +116,7 @@ open class CollectionViewSectionedDataSource<S: SectionModelType>
             #endif
         }
     }
-    open var canMoveItemAtIndexPath: ((CollectionViewSectionedDataSource<S>, IndexPath) -> Bool)? {
+    open var canMoveItemAtIndexPath: ((CollectionViewSectionedDataSource<Section>, IndexPath) -> Bool)? {
         didSet {
             #if DEBUG
             ensureNotMutatedAfterBinding()
@@ -136,7 +141,7 @@ open class CollectionViewSectionedDataSource<S: SectionModelType>
     }
     
     open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        return configureSupplementaryView(self, collectionView, kind, indexPath)
+        return configureSupplementaryView!(self, collectionView, kind, indexPath)
     }
     
     open func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
@@ -151,6 +156,14 @@ open class CollectionViewSectionedDataSource<S: SectionModelType>
         self._sectionModels.moveFromSourceIndexPath(sourceIndexPath, destinationIndexPath: destinationIndexPath)
         self.moveItem(self, sourceIndexPath, destinationIndexPath)
     }
-    
+
+    override open func responds(to aSelector: Selector!) -> Bool {
+        if aSelector == #selector(UICollectionViewDataSource.collectionView(_:viewForSupplementaryElementOfKind:at:)) {
+            return configureSupplementaryView != nil
+        }
+        else {
+            return super.responds(to: aSelector)
+        }
+    }
 }
 #endif

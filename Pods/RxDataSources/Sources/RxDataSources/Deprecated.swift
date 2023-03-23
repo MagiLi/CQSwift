@@ -6,9 +6,10 @@
 //  Copyright © 2017 kzaher. All rights reserved.
 //
 
+#if os(iOS) || os(tvOS)
 extension CollectionViewSectionedDataSource {
     @available(*, deprecated, renamed: "configureSupplementaryView")
-    public var supplementaryViewFactory: ConfigureSupplementaryView {
+    public var supplementaryViewFactory: ConfigureSupplementaryView? {
         get {
             return self.configureSupplementaryView
         }
@@ -17,3 +18,4 @@ extension CollectionViewSectionedDataSource {
         }
     }
 }
+#endif

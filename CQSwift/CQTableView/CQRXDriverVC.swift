@@ -295,7 +295,7 @@ class CQRXDriverVC: UIViewController {
         //toArray: 将一个可观察序列转换为一个数组，将该数组作为一个新的单元素可观察序列发出，然后终止
         Observable.range(start: 1, count: 10)
         .toArray()
-        .subscribe(onNext: { print($0) })
+        .subscribe({ print($0) })
         .disposed(by: disposeBag)
         
         // reduce: 从一个设置的初始化值开始，然后对一个可观察序列发出的所有元素应用累加器闭包，并以单个元素可观察序列的形式返回聚合结果 - 类似scan
@@ -387,25 +387,25 @@ class CQRXDriverVC: UIViewController {
     func testReplayConnectOperators(){
         // replay: 将源可观察序列转换为可连接的序列，并将向每个新订阅服务器重放以前排放的缓冲大小
         // 首先拥有和publish一样的能力，共享 Observable sequence， 其次使用replay还需要我们传入一个参数（buffer size）来缓存已发送的事件，当有新的订阅者订阅了，会把缓存的事件发送给新的订阅者
-        let interval = Observable<Int>.interval(1.0, scheduler: MainScheduler.instance).replay(5)
-        interval.subscribe({print(Date.time, "订阅1: 事件: \($0)")})
-        .disposed(by: disposeBag)
-        
-        delay(2) {
-            _ = interval.connect()
-        }
-        delay(4) {
-            interval.subscribe(onNext: {print(Date.time, "订阅2: 事件: \($0)")})
-                .disposed(by: self.disposeBag)
-        }
-        delay(8) {
-               interval.subscribe(onNext: { print(Date.time,"订阅: 3, 事件: \($0)") })
-                   .disposed(by: self.disposeBag)
-        }
-        
-        delay(20, closure:{
-            self.disposeBag = DisposeBag()
-        })
+//        let interval = Observable<Int>.interval(1.0, scheduler: MainScheduler.instance).replay(5)
+//        interval.subscribe({print(Date.time, "订阅1: 事件: \($0)")})
+//        .disposed(by: disposeBag)
+//
+//        delay(2) {
+//            _ = interval.connect()
+//        }
+//        delay(4) {
+//            interval.subscribe(onNext: {print(Date.time, "订阅2: 事件: \($0)")})
+//                .disposed(by: self.disposeBag)
+//        }
+//        delay(8) {
+//               interval.subscribe(onNext: { print(Date.time,"订阅: 3, 事件: \($0)") })
+//                   .disposed(by: self.disposeBag)
+//        }
+//
+//        delay(20, closure:{
+//            self.disposeBag = DisposeBag()
+//        })
     }
     
     /// push - connect 将源可观察序列转换为可连接序列
@@ -414,44 +414,44 @@ class CQRXDriverVC: UIViewController {
         // 共享一个Observable的事件序列，避免创建多个Observable sequence。
         // 注意:需要调用connect之后才会开始发送事件
         
-        let interval = Observable<Int>.interval(1, scheduler: MainScheduler.instance).publish()
-        interval.subscribe({
-            print("订阅1: 事件: \($0)")
-        }).disposed(by: disposeBag)
-        
-        delay(2) {
-            _ = interval.connect()
-        }
-        
-        delay(4) {
-            interval.subscribe({
-                print("订阅2: 事件: \($0)")
-            }).disposed(by: self.disposeBag)
-        }
-        
-        delay(6) {
-            interval.subscribe({
-                print("订阅3: 事件: \($0)")
-            }).disposed(by: self.disposeBag)
-        }
-        delay(10, closure: {
-            self.disposeBag = DisposeBag()
-        })
+//        let interval = Observable<Int>.interval(1, scheduler: MainScheduler.instance).publish()
+//        interval.subscribe({
+//            print("订阅1: 事件: \($0)")
+//        }).disposed(by: disposeBag)
+//
+//        delay(2) {
+//            _ = interval.connect()
+//        }
+//
+//        delay(4) {
+//            interval.subscribe({
+//                print("订阅2: 事件: \($0)")
+//            }).disposed(by: self.disposeBag)
+//        }
+//
+//        delay(6) {
+//            interval.subscribe({
+//                print("订阅3: 事件: \($0)")
+//            }).disposed(by: self.disposeBag)
+//        }
+//        delay(10, closure: {
+//            self.disposeBag = DisposeBag()
+//        })
         
     }
     /// 没有共享序列
     func testWithoutConnect() {
-        let interval = Observable<Int>.interval(1, scheduler: MainScheduler.instance)
-        interval.subscribe({print("订阅1: 事件: \($0)")})
-            .disposed(by: disposeBag)
-        delay(2) {
-            interval.subscribe({print("订阅2: 事件: \($0)")})
-                .disposed(by: self.disposeBag)
-        }
-        
-        delay(4) {
-                self.disposeBag = DisposeBag()
-            }
+//        let interval = Observable<Int>.interval(1, scheduler: MainScheduler.instance)
+//        interval.subscribe({print("订阅1: 事件: \($0)")})
+//            .disposed(by: disposeBag)
+//        delay(2) {
+//            interval.subscribe({print("订阅2: 事件: \($0)")})
+//                .disposed(by: self.disposeBag)
+//        }
+//        
+//        delay(4) {
+//                self.disposeBag = DisposeBag()
+//            }
         // 发现有一个问题:在延时3s之后订阅的Subscription: 2的计数并没有和Subscription: 1一致，而是又从0开始了，如果想共享，怎么办?
     }
     /// 延迟几秒执行

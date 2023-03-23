@@ -7,13 +7,13 @@
 //
 
 /// Represents a disposable that does nothing on disposal.
-/// 不做任何处理 disposable类
+///
 /// Nop = No Operation
-fileprivate struct NopDisposable : Disposable {
+private struct NopDisposable : Disposable {
  
     fileprivate static let noOp: Disposable = NopDisposable()
     
-    fileprivate init() {
+    private init() {
         
     }
     
@@ -24,9 +24,7 @@ fileprivate struct NopDisposable : Disposable {
 
 extension Disposables {
     /**
-     Creates a disposable(任意的) that does nothing on disposal（处置）.
+     Creates a disposable that does nothing on disposal.
      */
-    static public func create() -> Disposable {
-        return NopDisposable.noOp
-    }
+    static public func create() -> Disposable { NopDisposable.noOp }
 }
