@@ -97,6 +97,8 @@
 		24BDEF7029CAA0A3002C002C /* CQCalculations.metal in Sources */ = {isa = PBXBuildFile; fileRef = 24BDEF6F29CAA0A3002C002C /* CQCalculations.metal */; };
 		24BDEF7229CAA2A9002C002C /* CQGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BDEF7129CAA2A9002C002C /* CQGlobal.swift */; };
 		24BDEF7529CADD75002C002C /* CQMDrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BDEF7429CADD75002C002C /* CQMDrawViewController.swift */; };
+		24BDEF7829CAF37C002C002C /* CQMRenderPrimitivesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BDEF7729CAF37C002C002C /* CQMRenderPrimitivesVC.swift */; };
+		24BDEF7C29CAF57E002C002C /* CQRenderPrimitives.metal in Sources */ = {isa = PBXBuildFile; fileRef = 24BDEF7B29CAF57E002C002C /* CQRenderPrimitives.metal */; };
 		24C77409293D805200C884DE /* CQGrayMetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C77408293D805200C884DE /* CQGrayMetalView.swift */; };
 		24C7740B293D834D00C884DE /* CQGray.metal in Sources */ = {isa = PBXBuildFile; fileRef = 24C7740A293D834D00C884DE /* CQGray.metal */; };
 		24CD3AB5243EBEA100BB4D10 /* CQCoreDataTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CD3AB4243EBEA100BB4D10 /* CQCoreDataTool.swift */; };
@@ -284,6 +286,9 @@
 		24BDEF6F29CAA0A3002C002C /* CQCalculations.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = CQCalculations.metal; sourceTree = "<group>"; };
 		24BDEF7129CAA2A9002C002C /* CQGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGlobal.swift; sourceTree = "<group>"; };
 		24BDEF7429CADD75002C002C /* CQMDrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMDrawViewController.swift; sourceTree = "<group>"; };
+		24BDEF7729CAF37C002C002C /* CQMRenderPrimitivesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMRenderPrimitivesVC.swift; sourceTree = "<group>"; };
+		24BDEF7B29CAF57E002C002C /* CQRenderPrimitives.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = CQRenderPrimitives.metal; sourceTree = "<group>"; };
+		24BDEF7E29CB029E002C002C /* CQShaderTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQShaderTypes.h; sourceTree = "<group>"; };
 		24C77408293D805200C884DE /* CQGrayMetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGrayMetalView.swift; sourceTree = "<group>"; };
 		24C7740A293D834D00C884DE /* CQGray.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = CQGray.metal; sourceTree = "<group>"; };
 		24CD3AB4243EBEA100BB4D10 /* CQCoreDataTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCoreDataTool.swift; sourceTree = "<group>"; };
@@ -629,11 +634,13 @@
 		24BDEF6929CA9B7A002C002C /* Metal */ = {
 			isa = PBXGroup;
 			children = (
+				24BDEF7629CAF34B002C002C /* UsingRenderPipelineRenderPrimitives */,
 				342C1C13235949890058E583 /* MetalHistory */,
 				24BDEF7329CADA32002C002C /* UsingMetalDrawViewContents */,
 				2431F1F52952FFF80007B24D /* CQImage */,
 				24BDEF6A29CA9B7A002C002C /* PerformingCalculationsOnGPU */,
 				24BDEF6D29CA9D6D002C002C /* CQMetalMainController.swift */,
+				24BDEF7E29CB029E002C002C /* CQShaderTypes.h */,
 			);
 			path = Metal;
 			sourceTree = "<group>";
@@ -653,6 +660,15 @@
 				24BDEF7429CADD75002C002C /* CQMDrawViewController.swift */,
 			);
 			path = UsingMetalDrawViewContents;
+			sourceTree = "<group>";
+		};
+		24BDEF7629CAF34B002C002C /* UsingRenderPipelineRenderPrimitives */ = {
+			isa = PBXGroup;
+			children = (
+				24BDEF7729CAF37C002C002C /* CQMRenderPrimitivesVC.swift */,
+				24BDEF7B29CAF57E002C002C /* CQRenderPrimitives.metal */,
+			);
+			path = UsingRenderPipelineRenderPrimitives;
 			sourceTree = "<group>";
 		};
 		24CD3AB0243EBE8200BB4D10 /* CQCoreData */ = {
@@ -1275,6 +1291,7 @@
 				34C1A3B62316598F0079A935 /* CQWaveView.swift in Sources */,
 				3404E6CF231117CE00014104 /* CQTableViewModel.swift in Sources */,
 				241D5DAE2887A6DA0076725B /* RubberBand.swift in Sources */,
+				24BDEF7C29CAF57E002C002C /* CQRenderPrimitives.metal in Sources */,
 				34DD454428353522001D6177 /* CQNestedScrollView.swift in Sources */,
 				2489F7112861AC780085C076 /* CQGradientView.swift in Sources */,
 				24DE5C9528582D68009512F5 /* UIImage+Extern.swift in Sources */,
@@ -1283,6 +1300,7 @@
 				242DEF1B28C2FCAC00F7167E /* CQCrossDecorationView.swift in Sources */,
 				24BDEF7529CADD75002C002C /* CQMDrawViewController.swift in Sources */,
 				34ACC121236A875000C676C0 /* CQDispatchVC.swift in Sources */,
+				24BDEF7829CAF37C002C002C /* CQMRenderPrimitivesVC.swift in Sources */,
 				3412C460230D3CC30048A095 /* UIColor+CQExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

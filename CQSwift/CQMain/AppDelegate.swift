@@ -53,6 +53,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        CQLog(url.absoluteString)
+        if url.absoluteString.hasPrefix("other://") {
+            if self.mainNavVC.topViewController?.classForCoder == CQMetalMainController.classForCoder() {
+                return true
+            }
+//            if self.mainNavVC.topViewController?.isKind(of: CQMetalMainController.self) {
+//                return
+//            }
+            self.mainNavVC.pushViewController(CQMetalMainController(), animated: true)
+        } else {
+            return true
+        }
+        // return NO if the application can't open for some reason
+        return true
+    }
 
 }
 

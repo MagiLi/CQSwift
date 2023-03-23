@@ -7,29 +7,34 @@ PODS:
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
   - RxSwift (4.5.0)
+  - Swifter (1.5.0)
   - SwiftTheme (0.4.5)
 
 DEPENDENCIES:
   - RxCocoa
   - RxDataSources (= 3.0)
   - RxSwift
+  - Swifter
   - SwiftTheme
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Differentiator
     - RxCocoa
     - RxDataSources
     - RxSwift
     - SwiftTheme
+  trunk:
+    - Swifter
 
 SPEC CHECKSUMS:
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
   RxDataSources: 5a5ad827b6ad91730bb4b3ed87739f28a7be3d84
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+  Swifter: e71dd674404923d7f03ebb03f3f222d1c570bc8e
   SwiftTheme: 4560ca4a4274aef71dd3f985aa8007c6e59993fd
 
-PODFILE CHECKSUM: c54a4227b9777c0863c422da1532873c9d44efce
+PODFILE CHECKSUM: f068603bd69182a593318cd5c241575e05cde196
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.11.3
