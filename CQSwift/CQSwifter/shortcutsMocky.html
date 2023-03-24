@@ -6,19 +6,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="#ffffff">
-        <meta name="apple-mobile-web-app-title" content="\(title)">
-            
-<!--        <link rel="apple-touch-icon-precomposed" href="data:image/jpeg;base64,\(feature_icon)"/>-->
-        <link rel="apple-touch-icon-precomposed" href="https://dariel-1256714552.cos.ap-shanghai.myqcloud.com/IkKEhyTLQpYtqXMZBYtQ.png"/>
-        <title>\(title)</title>
+        <meta name="apple-mobile-web-app-title" content="方法三标题">
+<!--        <meta name="viewport" content="initial-scale=1.0">-->
+        
+        <link rel="apple-touch-icon-precomposed" href="data:image/jpeg;base64,imageData"/>
+        <title>方法三网页标题</title>
         
     </head>
     <script>document.documentElement.style.fontSize = 100 * document.documentElement.clientWidth / 375 + "px"</script>
     <style>
         
         * { margin: 0; padding: 0 }
-        body, html { height: 100%; width: 100%; overflow: hidden; background: #f3f2f2; text-align: center }
-        .main { color: #333; text-align: center }
+        body, html { position: relative; height: 100%; width: 100%; overflow: hidden; background: #f3f2f2; text-align: center }
+        .main { color: #333; text-align: center; }
         .subject { margin-top: 1rem; font-size: .2rem }
         .guide { width: 100%; position: absolute; left: 0; bottom: .3rem }
         .guide .content { position: relative; z-index: 20; width: 3.5rem; padding-top: .16rem; padding-bottom: .06rem; margin: 0 auto; border-radius: .04rem; box-shadow: 0 6px 15px rgba(0, 0, 0, .13); background: #fff; font-size: .14rem }
@@ -26,12 +26,19 @@
         .guide .icon { width: .2rem; height: .24rem; margin: 0 .035rem .02rem; vertical-align: bottom }
         .guide .toolbar { width: 100%; height: auto; margin-top: -.12rem; position: relative; z-index: 10 }
         .guide .arrow { width: .27rem; height: auto; position: absolute; left: 50%; bottom: -.26rem; margin-left: -.135rem; z-index: 10 }
-    
+        .middle_tips{color:#999; font-size: 30px; margin-top: 100px; text-align: center}
+        .middle_appname{color:blue; font-size: 30px; margin-top: 30px; text-align: center}
+        .middle_enter{width: 100%; height: 54px; background-color:cyan;}
     </style>
     <body>
-        <!--urlToRedirect.absoluteString: 定义好的URL Scheme链接-->
-        <a id="redirect" href="\(urlToRedirect.absoluteString)"></a>
-        <div id="container">
+        <a id="redirect" href="mkaddtohomescreen://page/view3"></a>
+        <div id="middle_container" class="backguide">
+          <div class="middle_tips">你即将进入</div>
+          <img class="middle_icon" src=""></img>
+          <div class="middle_appname">MKAddToHomeScreen</div>
+          <button class="middle_enter" onclick="jumpSchema()" style="background-color: #red; widht=100%; height=64px">立即进入</button>
+        </div>
+        <div id="jump_container">
             <div class="main">
                 <div class="subject">添加快捷功能到桌面</div>
             </div>
@@ -53,10 +60,21 @@
 
 <script type="text/javascript">
     
+    function jumpSchema() {
+        var element = document.getElementById('redirect');
+        var event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true, document.defaultView, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
+        document.body.style.backgroundColor = '#FFFFFF';
+        setTimeout(function() { element.dispatchEvent(event); }, 25);
+    }
+    
     if (window.navigator.standalone) {
         
-        var element = document.getElementById('container');
-        element.style.display = "none";
+        var middle_element = document.getElementById('middle_container');
+        var jump_element = document.getElementById('jump_container');
+        
+        middle_element.style.display = "inline";
+        jump_element.style.display = "none"
         
         var element = document.getElementById('redirect');
         var event = document.createEvent('MouseEvents');
@@ -66,8 +84,13 @@
         
     } else {
         
-        var element = document.getElementById('container');
-        element.style.display = "inline";
+        var middle_element = document.getElementById('middle_container');
+        var jump_element = document.getElementById('jump_container');
+        
+        middle_element.style.display = "none";
+        jump_element.style.display = "inline";
     }
 
 </script>
+
+<!--https://designer.mocky.io/design-->

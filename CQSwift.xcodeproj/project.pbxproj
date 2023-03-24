@@ -81,6 +81,7 @@
 		24903A3728362E8200F5EC98 /* CQNestedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24903A3628362E8200F5EC98 /* CQNestedManager.swift */; };
 		2492FD46244D6FAD00957345 /* CQMainNavController+CQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2492FD45244D6FAD00957345 /* CQMainNavController+CQExtension.swift */; };
 		24A0727029407BE000D73EC7 /* CQSaturationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A0726F29407BE000D73EC7 /* CQSaturationController.swift */; };
+		24A13C6529CD7F3E00300410 /* shortcutsMocky.html in Resources */ = {isa = PBXBuildFile; fileRef = 24A13C6429CD7F3E00300410 /* shortcutsMocky.html */; };
 		24A43BDB28A1FE0300FD360B /* CQIndicatorGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A43BDA28A1FE0300FD360B /* CQIndicatorGradientView.swift */; };
 		24A43BDD28A2079B00FD360B /* CQGradientRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A43BDC28A2079B00FD360B /* CQGradientRingView.swift */; };
 		24A43BE128A2320200FD360B /* CQIGArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A43BE028A2320200FD360B /* CQIGArrowView.swift */; };
@@ -273,6 +274,7 @@
 		24903A3628362E8200F5EC98 /* CQNestedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQNestedManager.swift; sourceTree = "<group>"; };
 		2492FD45244D6FAD00957345 /* CQMainNavController+CQExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CQMainNavController+CQExtension.swift"; sourceTree = "<group>"; };
 		24A0726F29407BE000D73EC7 /* CQSaturationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSaturationController.swift; sourceTree = "<group>"; };
+		24A13C6429CD7F3E00300410 /* shortcutsMocky.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = shortcutsMocky.html; sourceTree = "<group>"; };
 		24A43BDA28A1FE0300FD360B /* CQIndicatorGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQIndicatorGradientView.swift; sourceTree = "<group>"; };
 		24A43BDC28A2079B00FD360B /* CQGradientRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGradientRingView.swift; sourceTree = "<group>"; };
 		24A43BE028A2320200FD360B /* CQIGArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQIGArrowView.swift; sourceTree = "<group>"; };
@@ -793,6 +795,7 @@
 				24FF067429CC3D470030E787 /* CQSwifterController.swift */,
 				24FF067629CC3DC10030E787 /* CQDesktopMenuController.swift */,
 				24FF067829CC3E820030E787 /* shortcuts.html */,
+				24A13C6429CD7F3E00300410 /* shortcutsMocky.html */,
 			);
 			path = CQSwifter;
 			sourceTree = "<group>";
@@ -1096,6 +1099,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24A13C6529CD7F3E00300410 /* shortcutsMocky.html in Resources */,
 				24F1888F293DCD6800801E9F /* CQOpenGLGray.vsh in Resources */,
 				34744E0322EDEA9F007F52DC /* LaunchScreen.storyboard in Resources */,
 				24FF067929CC3E820030E787 /* shortcuts.html in Resources */,
