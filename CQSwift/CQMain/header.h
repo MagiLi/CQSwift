@@ -12,6 +12,5 @@
 #import "UIImage+CQExtern.h"
 #import "NSAttributedString+Extension.h"
 #import "CQEventListController.h"
-#import "CQShaderTypes.h"
 
 #endif /* header_h */

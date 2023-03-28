@@ -293,7 +293,6 @@
 		24BDEF7429CADD75002C002C /* CQMDrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMDrawViewController.swift; sourceTree = "<group>"; };
 		24BDEF7729CAF37C002C002C /* CQMRenderPrimitivesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMRenderPrimitivesVC.swift; sourceTree = "<group>"; };
 		24BDEF7B29CAF57E002C002C /* CQRenderPrimitives.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = CQRenderPrimitives.metal; sourceTree = "<group>"; };
-		24BDEF7E29CB029E002C002C /* CQShaderTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQShaderTypes.h; sourceTree = "<group>"; };
 		24C77408293D805200C884DE /* CQGrayMetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGrayMetalView.swift; sourceTree = "<group>"; };
 		24C7740A293D834D00C884DE /* CQGray.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = CQGray.metal; sourceTree = "<group>"; };
 		24CD3AB4243EBEA100BB4D10 /* CQCoreDataTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCoreDataTool.swift; sourceTree = "<group>"; };
@@ -648,7 +647,6 @@
 				2431F1F52952FFF80007B24D /* CQImage */,
 				24BDEF6A29CA9B7A002C002C /* PerformingCalculationsOnGPU */,
 				24BDEF6D29CA9D6D002C002C /* CQMetalMainController.swift */,
-				24BDEF7E29CB029E002C002C /* CQShaderTypes.h */,
 			);
 			path = Metal;
 			sourceTree = "<group>";
