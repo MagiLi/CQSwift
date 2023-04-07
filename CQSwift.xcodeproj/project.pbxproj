@@ -71,6 +71,11 @@
 		2477F22427BE1A3A00218542 /* CQCycleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2477F22327BE1A3A00218542 /* CQCycleController.swift */; };
 		247847DA2448476B00229463 /* CQTopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247847D92448476B00229463 /* CQTopViewModel.swift */; };
 		247847DC244850A500229463 /* CQMoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247847DB244850A500229463 /* CQMoreViewModel.swift */; };
+		247A245E29DFFCA600458143 /* CQWSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A245D29DFFCA600458143 /* CQWSmallView.swift */; };
+		247A245F29DFFF6600458143 /* CQWSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A245D29DFFCA600458143 /* CQWSmallView.swift */; };
+		247A246229E007D000458143 /* CQSCircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A246129E007D000458143 /* CQSCircleImage.swift */; };
+		247A246429E00AB700458143 /* CQSMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A246329E00AB700458143 /* CQSMapView.swift */; };
+		247A246C29E0104900458143 /* CQSContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A246B29E0104900458143 /* CQSContentView.swift */; };
 		247AA34E28F7AF2D00492449 /* CQCalendarDateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247AA34D28F7AF2D00492449 /* CQCalendarDateHeader.swift */; };
 		247AA35028F7B32300492449 /* CQCDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247AA34F28F7B32300492449 /* CQCDateView.swift */; };
 		247AA35228F7E15900492449 /* CQCalendarTipsFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247AA35128F7E15900492449 /* CQCalendarTipsFooter.swift */; };
@@ -115,6 +120,13 @@
 		24D08F46291A374700BD6EAB /* PHCDatePickerContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D08F45291A374700BD6EAB /* PHCDatePickerContentView.swift */; };
 		24D16FED28D85DB400794C9F /* CQCalendarFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D16FEC28D85DB400794C9F /* CQCalendarFooter.swift */; };
 		24D16FEF28D85E7B00794C9F /* CQCalendarWeekCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D16FEE28D85E7B00794C9F /* CQCalendarWeekCell.swift */; };
+		24DAAEC329DFEA0100EC8D54 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24DAAEC229DFEA0100EC8D54 /* WidgetKit.framework */; };
+		24DAAEC529DFEA0100EC8D54 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24DAAEC429DFEA0100EC8D54 /* SwiftUI.framework */; };
+		24DAAEC829DFEA0100EC8D54 /* CQWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DAAEC729DFEA0100EC8D54 /* CQWidgets.swift */; };
+		24DAAECB29DFEA0400EC8D54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24DAAECA29DFEA0400EC8D54 /* Assets.xcassets */; };
+		24DAAECD29DFEA0400EC8D54 /* CQWidgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 24DAAEC929DFEA0100EC8D54 /* CQWidgets.intentdefinition */; };
+		24DAAECE29DFEA0400EC8D54 /* CQWidgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 24DAAEC929DFEA0100EC8D54 /* CQWidgets.intentdefinition */; };
+		24DAAED129DFEA0400EC8D54 /* CQWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 24DAAEC129DFEA0100EC8D54 /* CQWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		24DE5C9528582D68009512F5 /* UIImage+Extern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DE5C9428582D68009512F5 /* UIImage+Extern.swift */; };
 		24E227322939908100F73D3E /* CQGrayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E227312939908100F73D3E /* CQGrayView.swift */; };
 		24E2273C2939EDBA00F73D3E /* CQGrayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E2273B2939EDB900F73D3E /* CQGrayManager.swift */; };
@@ -178,6 +190,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		24DAAECF29DFEA0400EC8D54 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 34744DED22EDEA9D007F52DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 24DAAEC029DFEA0100EC8D54;
+			remoteInfo = CQWidgetsExtension;
+		};
 		34744E0A22EDEA9F007F52DC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 34744DED22EDEA9D007F52DC /* Project object */;
@@ -193,6 +212,20 @@
 			remoteInfo = CQSwift;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		24DAAED229DFEA0400EC8D54 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				24DAAED129DFEA0400EC8D54 /* CQWidgetsExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		241D5D9D2887A6140076725B /* CGPoint+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Utils.swift"; sourceTree = "<group>"; };
@@ -264,6 +297,10 @@
 		2477F22327BE1A3A00218542 /* CQCycleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCycleController.swift; sourceTree = "<group>"; };
 		247847D92448476B00229463 /* CQTopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQTopViewModel.swift; sourceTree = "<group>"; };
 		247847DB244850A500229463 /* CQMoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMoreViewModel.swift; sourceTree = "<group>"; };
+		247A245D29DFFCA600458143 /* CQWSmallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQWSmallView.swift; sourceTree = "<group>"; };
+		247A246129E007D000458143 /* CQSCircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSCircleImage.swift; sourceTree = "<group>"; };
+		247A246329E00AB700458143 /* CQSMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSMapView.swift; sourceTree = "<group>"; };
+		247A246B29E0104900458143 /* CQSContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSContentView.swift; sourceTree = "<group>"; };
 		247AA34D28F7AF2D00492449 /* CQCalendarDateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCalendarDateHeader.swift; sourceTree = "<group>"; };
 		247AA34F28F7B32300492449 /* CQCDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCDateView.swift; sourceTree = "<group>"; };
 		247AA35128F7E15900492449 /* CQCalendarTipsFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCalendarTipsFooter.swift; sourceTree = "<group>"; };
@@ -308,6 +345,13 @@
 		24D08F45291A374700BD6EAB /* PHCDatePickerContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHCDatePickerContentView.swift; sourceTree = "<group>"; };
 		24D16FEC28D85DB400794C9F /* CQCalendarFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCalendarFooter.swift; sourceTree = "<group>"; };
 		24D16FEE28D85E7B00794C9F /* CQCalendarWeekCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCalendarWeekCell.swift; sourceTree = "<group>"; };
+		24DAAEC129DFEA0100EC8D54 /* CQWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CQWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		24DAAEC229DFEA0100EC8D54 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		24DAAEC429DFEA0100EC8D54 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		24DAAEC729DFEA0100EC8D54 /* CQWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQWidgets.swift; sourceTree = "<group>"; };
+		24DAAEC929DFEA0100EC8D54 /* CQWidgets.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = CQWidgets.intentdefinition; sourceTree = "<group>"; };
+		24DAAECA29DFEA0400EC8D54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		24DAAECC29DFEA0400EC8D54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24DE5C9428582D68009512F5 /* UIImage+Extern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extern.swift"; sourceTree = "<group>"; };
 		24E227312939908100F73D3E /* CQGrayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGrayView.swift; sourceTree = "<group>"; };
 		24E2273B2939EDB900F73D3E /* CQGrayManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CQGrayManager.swift; sourceTree = "<group>"; };
@@ -382,6 +426,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		24DAAEBE29DFEA0100EC8D54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24DAAEC529DFEA0100EC8D54 /* SwiftUI.framework in Frameworks */,
+				24DAAEC329DFEA0100EC8D54 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		34744DF222EDEA9D007F52DC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -619,6 +672,24 @@
 			path = CQCycle;
 			sourceTree = "<group>";
 		};
+		247A245C29DFFC7600458143 /* CQWViews */ = {
+			isa = PBXGroup;
+			children = (
+				247A245D29DFFCA600458143 /* CQWSmallView.swift */,
+			);
+			path = CQWViews;
+			sourceTree = "<group>";
+		};
+		247A246029E0079400458143 /* CQSwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				247A246129E007D000458143 /* CQSCircleImage.swift */,
+				247A246329E00AB700458143 /* CQSMapView.swift */,
+				247A246B29E0104900458143 /* CQSContentView.swift */,
+			);
+			path = CQSwiftUI;
+			sourceTree = "<group>";
+		};
 		2489F70D2861AC440085C076 /* CQGradient */ = {
 			isa = PBXGroup;
 			children = (
@@ -708,6 +779,18 @@
 				24D08F41291A344800BD6EAB /* PHCDatePickerHeaderView.swift */,
 			);
 			path = CQDatePicker;
+			sourceTree = "<group>";
+		};
+		24DAAEC629DFEA0100EC8D54 /* CQWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				247A245C29DFFC7600458143 /* CQWViews */,
+				24DAAEC729DFEA0100EC8D54 /* CQWidgets.swift */,
+				24DAAEC929DFEA0100EC8D54 /* CQWidgets.intentdefinition */,
+				24DAAECA29DFEA0400EC8D54 /* Assets.xcassets */,
+				24DAAECC29DFEA0400EC8D54 /* Info.plist */,
+			);
+			path = CQWidgets;
 			sourceTree = "<group>";
 		};
 		24E227302939906C00F73D3E /* CQGray */ = {
@@ -873,6 +956,7 @@
 				34744DF722EDEA9D007F52DC /* CQSwift */,
 				34744E0C22EDEA9F007F52DC /* CQSwiftTests */,
 				34744E1722EDEA9F007F52DC /* CQSwiftUITests */,
+				24DAAEC629DFEA0100EC8D54 /* CQWidgets */,
 				34744DF622EDEA9D007F52DC /* Products */,
 				51FB9ACED9373FB80EAB99D4 /* Pods */,
 				897BE2416489BF9C34282B59 /* Frameworks */,
@@ -885,6 +969,7 @@
 				34744DF522EDEA9D007F52DC /* CQSwift.app */,
 				34744E0922EDEA9F007F52DC /* CQSwiftTests.xctest */,
 				34744E1422EDEA9F007F52DC /* CQSwiftUITests.xctest */,
+				24DAAEC129DFEA0100EC8D54 /* CQWidgetsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -892,6 +977,7 @@
 		34744DF722EDEA9D007F52DC /* CQSwift */ = {
 			isa = PBXGroup;
 			children = (
+				247A246029E0079400458143 /* CQSwiftUI */,
 				24FF067329CC3CE80030E787 /* CQSwifter */,
 				24BDEF6929CA9B7A002C002C /* Metal */,
 				24E227302939906C00F73D3E /* CQGray */,
@@ -985,6 +1071,8 @@
 			children = (
 				34D6A5A7232B396300B740CA /* SwiftTheme.framework */,
 				2FEE63F04346C3CAF9CEA536 /* Pods_CQSwift.framework */,
+				24DAAEC229DFEA0100EC8D54 /* WidgetKit.framework */,
+				24DAAEC429DFEA0100EC8D54 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -992,6 +1080,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		24DAAEC029DFEA0100EC8D54 /* CQWidgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24DAAED529DFEA0400EC8D54 /* Build configuration list for PBXNativeTarget "CQWidgetsExtension" */;
+			buildPhases = (
+				24DAAEBD29DFEA0100EC8D54 /* Sources */,
+				24DAAEBE29DFEA0100EC8D54 /* Frameworks */,
+				24DAAEBF29DFEA0100EC8D54 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CQWidgetsExtension;
+			productName = CQWidgetsExtension;
+			productReference = 24DAAEC129DFEA0100EC8D54 /* CQWidgetsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		34744DF422EDEA9D007F52DC /* CQSwift */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34744E1D22EDEA9F007F52DC /* Build configuration list for PBXNativeTarget "CQSwift" */;
@@ -1001,10 +1106,12 @@
 				34744DF222EDEA9D007F52DC /* Frameworks */,
 				34744DF322EDEA9D007F52DC /* Resources */,
 				64DDDDFB3F9584E0D3823420 /* [CP] Embed Pods Frameworks */,
+				24DAAED229DFEA0400EC8D54 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				24DAAED029DFEA0400EC8D54 /* PBXTargetDependency */,
 			);
 			name = CQSwift;
 			productName = CQSwift;
@@ -1054,10 +1161,13 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = CQ;
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "李超群";
 				TargetAttributes = {
+					24DAAEC029DFEA0100EC8D54 = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
 					34744DF422EDEA9D007F52DC = {
 						CreatedOnToolsVersion = 10.2.1;
 						LastSwiftMigration = 1150;
@@ -1088,11 +1198,20 @@
 				34744DF422EDEA9D007F52DC /* CQSwift */,
 				34744E0822EDEA9F007F52DC /* CQSwiftTests */,
 				34744E1322EDEA9F007F52DC /* CQSwiftUITests */,
+				24DAAEC029DFEA0100EC8D54 /* CQWidgetsExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		24DAAEBF29DFEA0100EC8D54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24DAAECB29DFEA0400EC8D54 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		34744DF322EDEA9D007F52DC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1163,6 +1282,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		24DAAEBD29DFEA0100EC8D54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				247A245E29DFFCA600458143 /* CQWSmallView.swift in Sources */,
+				24DAAECD29DFEA0400EC8D54 /* CQWidgets.intentdefinition in Sources */,
+				24DAAEC829DFEA0100EC8D54 /* CQWidgets.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		34744DF122EDEA9D007F52DC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1190,6 +1319,7 @@
 				24E227322939908100F73D3E /* CQGrayView.swift in Sources */,
 				34DD453C28352937001D6177 /* CQNestedTableVC.swift in Sources */,
 				244DA61E24470619008B3B57 /* CQFrequentlyAppModel+CoreDataClass.swift in Sources */,
+				247A246229E007D000458143 /* CQSCircleImage.swift in Sources */,
 				2427A4F428E5961D002B5C8E /* CQCalenderEventManager.swift in Sources */,
 				241D5DBD2887A7A10076725B /* PipView.swift in Sources */,
 				24BDEF7029CAA0A3002C002C /* CQCalculations.metal in Sources */,
@@ -1220,6 +1350,7 @@
 				24D08F46291A374700BD6EAB /* PHCDatePickerContentView.swift in Sources */,
 				242CE79C243C27ED00DF059D /* CQTransitionModelManager.swift in Sources */,
 				24F18889293DCB2300801E9F /* CQGrayOpenGLView.swift in Sources */,
+				247A246429E00AB700458143 /* CQSMapView.swift in Sources */,
 				34DD453E28352A6A001D6177 /* CQNestedHeaderView.swift in Sources */,
 				24D063C028C21FD8008147BF /* CQCFlowSectionModel.swift in Sources */,
 				244DA61D24470619008B3B57 /* CQAppSectionModel.swift in Sources */,
@@ -1242,6 +1373,7 @@
 				241D5DA52887A6140076725B /* GeometryUtils.swift in Sources */,
 				2489F70F2861AC600085C076 /* CQGradientController.swift in Sources */,
 				2427846B28290B83003F4354 /* CQLoadingController.swift in Sources */,
+				247A245F29DFFF6600458143 /* CQWSmallView.swift in Sources */,
 				244DA61624470619008B3B57 /* CQMoreEditContentView.swift in Sources */,
 				24BDEF6E29CA9D6D002C002C /* CQMetalMainController.swift in Sources */,
 				24C77409293D805200C884DE /* CQGrayMetalView.swift in Sources */,
@@ -1282,6 +1414,7 @@
 				2489F7132861AF040085C076 /* CQGradientView1.swift in Sources */,
 				247847DA2448476B00229463 /* CQTopViewModel.swift in Sources */,
 				241D5DA62887A6140076725B /* Comparable+Utils.swift in Sources */,
+				247A246C29E0104900458143 /* CQSContentView.swift in Sources */,
 				34ECF8C62335BDA800DDF8BD /* CQRXSwiftUIObserverableVC.swift in Sources */,
 				3412C452230D2F400048A095 /* CQCollectionViewCell.swift in Sources */,
 				24D16FED28D85DB400794C9F /* CQCalendarFooter.swift in Sources */,
@@ -1311,6 +1444,7 @@
 				3419702B235D475200E154A2 /* qrcode.metal in Sources */,
 				247AA35028F7B32300492449 /* CQCDateView.swift in Sources */,
 				34C1A3B62316598F0079A935 /* CQWaveView.swift in Sources */,
+				24DAAECE29DFEA0400EC8D54 /* CQWidgets.intentdefinition in Sources */,
 				3404E6CF231117CE00014104 /* CQTableViewModel.swift in Sources */,
 				241D5DAE2887A6DA0076725B /* RubberBand.swift in Sources */,
 				24BDEF7C29CAF57E002C002C /* CQRenderPrimitives.metal in Sources */,
@@ -1346,6 +1480,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		24DAAED029DFEA0400EC8D54 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 24DAAEC029DFEA0100EC8D54 /* CQWidgetsExtension */;
+			targetProxy = 24DAAECF29DFEA0400EC8D54 /* PBXContainerItemProxy */;
+		};
 		34744E0B22EDEA9F007F52DC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 34744DF422EDEA9D007F52DC /* CQSwift */;
@@ -1378,6 +1517,68 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		24DAAED329DFEA0400EC8D54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9U6QH7T338;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CQWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CQWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 李超群. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ccb.leye.test3.CQWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		24DAAED429DFEA0400EC8D54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9U6QH7T338;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CQWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CQWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 李超群. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ccb.leye.test3.CQWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		34744E1B22EDEA9F007F52DC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1429,7 +1630,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1484,7 +1685,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1498,13 +1699,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 587643FE5871BF1FD3AC8A41 /* Pods-CQSwift.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9U6QH7T338;
 				INFOPLIST_FILE = CQSwift/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1523,13 +1725,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 67CD48A612D079967774FEDA /* Pods-CQSwift.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9U6QH7T338;
 				INFOPLIST_FILE = CQSwift/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1628,6 +1831,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		24DAAED529DFEA0400EC8D54 /* Build configuration list for PBXNativeTarget "CQWidgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24DAAED329DFEA0400EC8D54 /* Debug */,
+				24DAAED429DFEA0400EC8D54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		34744DF022EDEA9D007F52DC /* Build configuration list for PBXProject "CQSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
