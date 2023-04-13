@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 struct PHError:Error {
     var desc = ""
@@ -32,7 +33,7 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var tableView : UITableView?
 
     fileprivate let dataAray: [[String]] = [
-        ["collectionView", "tableView", "tableView嵌套", "自定义ScrollView", "饱和度混合模式"],
+        ["collectionView", "tableView", "tableView嵌套", "自定义ScrollView", "饱和度混合模式", "SwiftUI"],
         ["九宫格手势解锁", "日历", "字幕滚动"],
         ["JS交互", "Swifter-server"],
         ["Loading", "指针", "手机通讯录"],
@@ -270,7 +271,6 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
     //MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
         switch indexPath.section {
         case 0:
             if indexPath.row == 0 {
@@ -290,6 +290,16 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
             } else if indexPath.row == 4 { //"饱和度混合模式"
                 let vc = CQSaturationController()
                 self.navigationController?.pushViewController(vc, animated: true)
+            } else if indexPath.row == 5 {
+                // 在swift中使用swiftUI
+                let landmarkVC = UIHostingController(rootView: CQSContentView())
+                if #available(iOS 16.0, *) {
+                    landmarkVC.sizingOptions = .intrinsicContentSize
+                } else {
+                    // Fallback on earlier versions
+                }
+                landmarkVC.modalPresentationStyle = .fullScreen
+                self.present(landmarkVC, animated: true)
             }
         case 1:
             if indexPath.row == 0 {

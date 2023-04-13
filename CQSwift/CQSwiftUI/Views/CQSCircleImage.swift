@@ -9,17 +9,18 @@
 import SwiftUI
 
 struct CQSCircleImage: View {
+    
+    var  image: Image
+    
     var body: some View {
         if #available(iOS 15.0, *) {
-            Image("turtlerock")
-                .clipShape(Circle())
+            image.clipShape(Circle())
                 .overlay {
                     Circle().stroke(.white, lineWidth: 4)
                 }
                 .shadow(radius: 7)
         } else {
-            Image("turtlerock")
-                .clipShape(Circle())
+            image.clipShape(Circle())
         }
         
     }
@@ -27,6 +28,6 @@ struct CQSCircleImage: View {
 
 struct CQSCircleImage_Previews: PreviewProvider {
     static var previews: some View {
-        CQSCircleImage()
+        CQSCircleImage(image: Image("charleyrivers"))
     }
 }
