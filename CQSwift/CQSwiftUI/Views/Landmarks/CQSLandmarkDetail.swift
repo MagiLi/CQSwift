@@ -9,7 +9,13 @@
 import SwiftUI
 
 struct CQSLandmarkDetail: View {
+    
+    @EnvironmentObject var modelData:CQSModelData
     var landmark:CQSLandmark
+    
+    var landmarkIndex: Int {
+        modelData.landmarks.firstIndex { $0.id == landmark.id }!
+    }
     
     var body: some View {
         ScrollView {
@@ -29,9 +35,10 @@ struct CQSLandmarkDetail: View {
                 HStack {
                     Text(landmark.park)
                         .font(.subheadline)
-                    Spacer()
-                    Text(landmark.state)
-                        .font(.subheadline)
+//                    Spacer()
+//                    Text(landmark.state)
+//                        .font(.subheadline)
+                    CQSFavoriteButton(isSet: $modelData.landmarks[landmarkIndex].isFavorite)
                 }
                 .foregroundColor(.secondary)
                 
@@ -51,7 +58,11 @@ struct CQSLandmarkDetail: View {
 }
 
 struct CQSLandmarkDetail_Previews: PreviewProvider {
+    
+    static let modelData = CQSModelData()
+    
     static var previews: some View {
-        CQSLandmarkDetail(landmark: landmarks[0])
+        CQSLandmarkDetail(landmark: modelData.landmarks[0])
+            .environmentObject(modelData)
     }
 }

@@ -20,16 +20,23 @@ struct CQSLandmarkRow: View {
             Text(landmark.name)
             
             Spacer()
+            
+            if landmark.isFavorite {
+                Image(systemName: "star.fill")
+                    .foregroundColor(.yellow)
+            }
         }
     }
 }
 
 struct CQSLandmarkRow_Previews: PreviewProvider {
+    static var landmarks = CQSModelData().landmarks
     static var previews: some View {
         
 //        ForEach([landmarks[0], landmarks[1]]) { landmark in
 //            CQSLandmarkRow(landmark: landmark)
 //        }
+
         Group {
             CQSLandmarkRow(landmark: landmarks[0])
             CQSLandmarkRow(landmark: landmarks[1])

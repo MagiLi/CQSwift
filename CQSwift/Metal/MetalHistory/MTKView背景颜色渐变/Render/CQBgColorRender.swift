@@ -9,7 +9,7 @@
 import UIKit
 import MetalKit
 
-struct Color {
+struct CQColor {
     let red, green, blue, alpha : Double
 }
 
@@ -60,7 +60,7 @@ class CQBgColorRender: NSObject, MTKViewDelegate {
     }
     
     //MAKE: makeFancyColor
-    fileprivate func makeFancyColor() -> Color {
+    fileprivate func makeFancyColor() -> CQColor {
         
         if growing {
             //动态信道索引 (1,2,3,0)通道间切换
@@ -82,7 +82,7 @@ class CQBgColorRender: NSObject, MTKViewDelegate {
             }
         }
         
-        return Color(red: colorChannels[0], green: colorChannels[1], blue: colorChannels[2], alpha: colorChannels[3])
+        return CQColor(red: colorChannels[0], green: colorChannels[1], blue: colorChannels[2], alpha: colorChannels[3])
     }
     
     convenience init(mtkView: MTKView) {
