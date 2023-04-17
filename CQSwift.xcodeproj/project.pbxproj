@@ -85,6 +85,9 @@
 		2489F7112861AC780085C076 /* CQGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489F7102861AC780085C076 /* CQGradientView.swift */; };
 		2489F7132861AF040085C076 /* CQGradientView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489F7122861AF040085C076 /* CQGradientView1.swift */; };
 		24903A3728362E8200F5EC98 /* CQNestedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24903A3628362E8200F5EC98 /* CQNestedManager.swift */; };
+		24925A2329ECDFBE00558B68 /* CQSCategoryHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24925A2229ECDFBE00558B68 /* CQSCategoryHome.swift */; };
+		24925A2629ECE5A000558B68 /* CQSCategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24925A2529ECE5A000558B68 /* CQSCategoryRow.swift */; };
+		24925A2829ECEDAE00558B68 /* CQSCategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24925A2729ECEDAE00558B68 /* CQSCategoryItem.swift */; };
 		2492FD46244D6FAD00957345 /* CQMainNavController+CQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2492FD45244D6FAD00957345 /* CQMainNavController+CQExtension.swift */; };
 		24A0727029407BE000D73EC7 /* CQSaturationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A0726F29407BE000D73EC7 /* CQSaturationController.swift */; };
 		24A13C6529CD7F3E00300410 /* shortcutsMocky.html in Resources */ = {isa = PBXBuildFile; fileRef = 24A13C6429CD7F3E00300410 /* shortcutsMocky.html */; };
@@ -328,6 +331,9 @@
 		2489F7102861AC780085C076 /* CQGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGradientView.swift; sourceTree = "<group>"; };
 		2489F7122861AF040085C076 /* CQGradientView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGradientView1.swift; sourceTree = "<group>"; };
 		24903A3628362E8200F5EC98 /* CQNestedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQNestedManager.swift; sourceTree = "<group>"; };
+		24925A2229ECDFBE00558B68 /* CQSCategoryHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSCategoryHome.swift; sourceTree = "<group>"; };
+		24925A2529ECE5A000558B68 /* CQSCategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSCategoryRow.swift; sourceTree = "<group>"; };
+		24925A2729ECEDAE00558B68 /* CQSCategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSCategoryItem.swift; sourceTree = "<group>"; };
 		2492FD45244D6FAD00957345 /* CQMainNavController+CQExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CQMainNavController+CQExtension.swift"; sourceTree = "<group>"; };
 		24A0726F29407BE000D73EC7 /* CQSaturationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSaturationController.swift; sourceTree = "<group>"; };
 		24A13C6429CD7F3E00300410 /* shortcutsMocky.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = shortcutsMocky.html; sourceTree = "<group>"; };
@@ -698,6 +704,7 @@
 				24D850CC29E934C800B35975 /* Badges */,
 				24D850BF29E934C000B35975 /* Landmarks */,
 				2463998A29E7DA0200490DB2 /* CQSContentView.swift */,
+				24925A2429ECE58A00558B68 /* Category */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -765,6 +772,16 @@
 				2489F7122861AF040085C076 /* CQGradientView1.swift */,
 			);
 			path = CQGradient;
+			sourceTree = "<group>";
+		};
+		24925A2429ECE58A00558B68 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				24925A2229ECDFBE00558B68 /* CQSCategoryHome.swift */,
+				24925A2529ECE5A000558B68 /* CQSCategoryRow.swift */,
+				24925A2729ECEDAE00558B68 /* CQSCategoryItem.swift */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		24B25CD92875298E0046DDA8 /* CQCustomScrollView */ = {
@@ -1400,6 +1417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24925A2629ECE5A000558B68 /* CQSCategoryRow.swift in Sources */,
 				24BB0AF928E6D7E500FA208A /* CQCFlowLayoutShow.swift in Sources */,
 				2422068727043E1500350DF0 /* CQGridLockManager.swift in Sources */,
 				24666C4028D4704400DD818A /* CQCalendarController.swift in Sources */,
@@ -1449,6 +1467,7 @@
 				24D850E229E9481600B35975 /* CQSHikeGraph.swift in Sources */,
 				24F949B424F4B15E006CC572 /* CQGrid.metal in Sources */,
 				24BB0AF728E680CE00FA208A /* CQLoadingAnimateView.swift in Sources */,
+				24925A2329ECDFBE00558B68 /* CQSCategoryHome.swift in Sources */,
 				24D08F40291A343700BD6EAB /* PHCalendarDatePickerView.swift in Sources */,
 				2463999129E7DA0300490DB2 /* CQSModelData.swift in Sources */,
 				3412C450230D2EDF0048A095 /* CQCollectionViewController.swift in Sources */,
@@ -1559,6 +1578,7 @@
 				244DA61724470619008B3B57 /* CQMoreHeader.swift in Sources */,
 				244DA61924470619008B3B57 /* CQMoreEditHeader.swift in Sources */,
 				3419702B235D475200E154A2 /* qrcode.metal in Sources */,
+				24925A2829ECEDAE00558B68 /* CQSCategoryItem.swift in Sources */,
 				247AA35028F7B32300492449 /* CQCDateView.swift in Sources */,
 				34C1A3B62316598F0079A935 /* CQWaveView.swift in Sources */,
 				24DAAECE29DFEA0400EC8D54 /* CQWidgets.intentdefinition in Sources */,

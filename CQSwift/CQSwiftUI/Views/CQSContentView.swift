@@ -12,9 +12,35 @@ struct CQSContentView: View {
     // 在应用程序的生命周期内，使用@StateObject属性只初始化给定属性的模型对象一次。
      @StateObject private var modelData = CQSModelData()
     
+    @State private var selection: Tab = .featured
+    
+    enum Tab {
+        case featured
+        case list
+    }
+    
     var body: some View {
-        CQSLandmarkList()
-            .environmentObject(modelData)
+        TabView(selection: $selection) {
+            CQSCategoryHome()
+                .environmentObject(modelData)
+                .tabItem({
+                    Label("Featured", systemImage: "star")
+                })
+                .tag(Tab.featured)
+            
+            CQSLandmarkList()
+                .environmentObject(modelData)
+                .tabItem({
+                    Label("List", systemImage: "list.bullet")
+                })
+                .tag(Tab.list) 
+        }
+     
+        
+//        CQSHikeView(hike: CQSModelData().hikes[0])
+        
+//        CQSCategoryHome()
+//            .environmentObject(modelData)
     }
 }
 

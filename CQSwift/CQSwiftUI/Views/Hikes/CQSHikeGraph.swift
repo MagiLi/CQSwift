@@ -7,6 +7,17 @@ The elevation, heart rate, and pace of a hike plotted on a graph.
 
 import SwiftUI
 
+extension Animation {
+    
+    static func ripple(index: Int) -> Animation {
+        //.default
+        .spring(dampingFraction: 0.5)
+        .speed(2)
+        .delay(0.3 * Double(index))
+    }
+        
+}
+
 struct CQSHikeGraph: View {
     var hike: CQSHike
     var path: KeyPath<CQSHike.CQSObservation, Range<Double>>
@@ -40,6 +51,7 @@ struct CQSHikeGraph: View {
                         range: observation[keyPath: path],
                         overallRange: overallRange
                     )
+                    .animation(.ripple(index: index))
                 }
                 .offset(x: 0, y: proxy.size.height * heightRatio)
             }

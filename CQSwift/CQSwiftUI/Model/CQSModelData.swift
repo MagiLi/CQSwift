@@ -14,6 +14,17 @@ final class CQSModelData: ObservableObject {
     @Published var  landmarks:[CQSLandmark] = load("landmarkData.json")
     
     var  hikes:[CQSHike] = load("hikeData.json")
+    
+    var features: [CQSLandmark] {
+        landmarks.filter{ $0.isFeatured }
+    }
+    
+    var category: [String: [CQSLandmark]] {
+        Dictionary(
+            grouping: landmarks,
+            by: { $0.category.rawValue }
+        )
+    }
 }
 
 
