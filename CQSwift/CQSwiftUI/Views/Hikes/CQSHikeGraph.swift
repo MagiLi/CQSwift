@@ -12,8 +12,8 @@ extension Animation {
     static func ripple(index: Int) -> Animation {
         //.default
         .spring(dampingFraction: 0.5)
-        .speed(2)
-        .delay(0.3 * Double(index))
+//        .speed(2)
+//        .delay(0.3 * Double(index))
     }
         
 }

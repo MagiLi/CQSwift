@@ -27,15 +27,19 @@ struct CQSContentView: View {
                     Label("Featured", systemImage: "star")
                 })
                 .tag(Tab.featured)
-            
+
             CQSLandmarkList()
                 .environmentObject(modelData)
                 .tabItem({
                     Label("List", systemImage: "list.bullet")
                 })
-                .tag(Tab.list) 
+                .tag(Tab.list)
         }
-     
+        
+//        let cards = CQSModelData().features.map({ landmark in
+//            CQSFeatureCard(landmark: landmark)
+//        })
+//        CQSPageView(pages: cards)
         
 //        CQSHikeView(hike: CQSModelData().hikes[0])
         

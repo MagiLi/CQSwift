@@ -12,8 +12,8 @@ final class CQSModelData: ObservableObject {
     // 可观察对象需要发布对其数据的任何更改，以便其订阅者能够获取更改。
     // 所以需要@Published修饰
     @Published var  landmarks:[CQSLandmark] = load("landmarkData.json")
-    
     var  hikes:[CQSHike] = load("hikeData.json")
+    @Published var profile = CQSProfile.default
     
     var features: [CQSLandmark] {
         landmarks.filter{ $0.isFeatured }

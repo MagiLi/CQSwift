@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2404F11729EF7FEA00D9DD96 /* CQSPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404F11629EF7FEA00D9DD96 /* CQSPageViewController.swift */; };
+		2404F11929EF91FB00D9DD96 /* CQSFeatureCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404F11829EF91FB00D9DD96 /* CQSFeatureCard.swift */; };
+		2404F11B29EFBDA300D9DD96 /* CQSPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404F11A29EFBDA300D9DD96 /* CQSPageView.swift */; };
 		241D5DA32887A6140076725B /* CGPoint+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D5D9D2887A6140076725B /* CGPoint+Utils.swift */; };
 		241D5DA42887A6140076725B /* UISpringTimingParameters+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D5D9E2887A6140076725B /* UISpringTimingParameters+Utils.swift */; };
 		241D5DA52887A6140076725B /* GeometryUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D5D9F2887A6140076725B /* GeometryUtils.swift */; };
@@ -88,6 +91,10 @@
 		24925A2329ECDFBE00558B68 /* CQSCategoryHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24925A2229ECDFBE00558B68 /* CQSCategoryHome.swift */; };
 		24925A2629ECE5A000558B68 /* CQSCategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24925A2529ECE5A000558B68 /* CQSCategoryRow.swift */; };
 		24925A2829ECEDAE00558B68 /* CQSCategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24925A2729ECEDAE00558B68 /* CQSCategoryItem.swift */; };
+		24925A2A29ED1F6B00558B68 /* CQSProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24925A2929ED1F6B00558B68 /* CQSProfile.swift */; };
+		24925A2D29ED22A200558B68 /* CQSProfileHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24925A2C29ED22A200558B68 /* CQSProfileHost.swift */; };
+		24925A2F29ED239300558B68 /* CQSProfileSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24925A2E29ED239300558B68 /* CQSProfileSummary.swift */; };
+		24925A3129ED248500558B68 /* CQSHikeBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24925A3029ED248500558B68 /* CQSHikeBadge.swift */; };
 		2492FD46244D6FAD00957345 /* CQMainNavController+CQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2492FD45244D6FAD00957345 /* CQMainNavController+CQExtension.swift */; };
 		24A0727029407BE000D73EC7 /* CQSaturationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A0726F29407BE000D73EC7 /* CQSaturationController.swift */; };
 		24A13C6529CD7F3E00300410 /* shortcutsMocky.html in Resources */ = {isa = PBXBuildFile; fileRef = 24A13C6429CD7F3E00300410 /* shortcutsMocky.html */; };
@@ -96,6 +103,7 @@
 		24A43BE128A2320200FD360B /* CQIGArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A43BE028A2320200FD360B /* CQIGArrowView.swift */; };
 		24B25CDB28752A040046DDA8 /* CQCustomScrollVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B25CDA28752A040046DDA8 /* CQCustomScrollVC.swift */; };
 		24B25CDD28752A2B0046DDA8 /* CQCustomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B25CDC28752A2B0046DDA8 /* CQCustomScrollView.swift */; };
+		24B72D8729ED36A300120887 /* CQSProfileEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B72D8629ED36A300120887 /* CQSProfileEditor.swift */; };
 		24BB0AF528E67EF800FA208A /* CQLoadingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BB0AF428E67EF800FA208A /* CQLoadingManager.swift */; };
 		24BB0AF728E680CE00FA208A /* CQLoadingAnimateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BB0AF628E680CE00FA208A /* CQLoadingAnimateView.swift */; };
 		24BB0AF928E6D7E500FA208A /* CQCFlowLayoutShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BB0AF828E6D7E500FA208A /* CQCFlowLayoutShow.swift */; };
@@ -154,6 +162,7 @@
 		24E30C0728D1C2BC0015FC75 /* CQWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 24E30C0628D1C2BC0015FC75 /* CQWeakProxy.m */; };
 		24E30C0C28D1D3B90015FC75 /* CQTypeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E30C0B28D1D3B90015FC75 /* CQTypeTitleView.swift */; };
 		24E30C0E28D1D3E20015FC75 /* CQTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E30C0D28D1D3E20015FC75 /* CQTypeView.swift */; };
+		24E5120B29EFD9AB001EC96B /* CQSPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5120A29EFD9AB001EC96B /* CQSPageControl.swift */; };
 		24E59B3428B77237004E99EE /* CQTextScrollVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E59B3328B77237004E99EE /* CQTextScrollVC.swift */; };
 		24E59B3628B772AA004E99EE /* CQTextScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E59B3528B772AA004E99EE /* CQTextScrollView.swift */; };
 		24E5E4C424EE511600F60138 /* CQMTKVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E5E4C324EE511600F60138 /* CQMTKVIewController.swift */; };
@@ -249,6 +258,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2404F11629EF7FEA00D9DD96 /* CQSPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSPageViewController.swift; sourceTree = "<group>"; };
+		2404F11829EF91FB00D9DD96 /* CQSFeatureCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSFeatureCard.swift; sourceTree = "<group>"; };
+		2404F11A29EFBDA300D9DD96 /* CQSPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSPageView.swift; sourceTree = "<group>"; };
 		241D5D9D2887A6140076725B /* CGPoint+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Utils.swift"; sourceTree = "<group>"; };
 		241D5D9E2887A6140076725B /* UISpringTimingParameters+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISpringTimingParameters+Utils.swift"; sourceTree = "<group>"; };
 		241D5D9F2887A6140076725B /* GeometryUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryUtils.swift; sourceTree = "<group>"; };
@@ -334,6 +346,10 @@
 		24925A2229ECDFBE00558B68 /* CQSCategoryHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSCategoryHome.swift; sourceTree = "<group>"; };
 		24925A2529ECE5A000558B68 /* CQSCategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSCategoryRow.swift; sourceTree = "<group>"; };
 		24925A2729ECEDAE00558B68 /* CQSCategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSCategoryItem.swift; sourceTree = "<group>"; };
+		24925A2929ED1F6B00558B68 /* CQSProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSProfile.swift; sourceTree = "<group>"; };
+		24925A2C29ED22A200558B68 /* CQSProfileHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSProfileHost.swift; sourceTree = "<group>"; };
+		24925A2E29ED239300558B68 /* CQSProfileSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSProfileSummary.swift; sourceTree = "<group>"; };
+		24925A3029ED248500558B68 /* CQSHikeBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSHikeBadge.swift; sourceTree = "<group>"; };
 		2492FD45244D6FAD00957345 /* CQMainNavController+CQExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CQMainNavController+CQExtension.swift"; sourceTree = "<group>"; };
 		24A0726F29407BE000D73EC7 /* CQSaturationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSaturationController.swift; sourceTree = "<group>"; };
 		24A13C6429CD7F3E00300410 /* shortcutsMocky.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = shortcutsMocky.html; sourceTree = "<group>"; };
@@ -342,6 +358,7 @@
 		24A43BE028A2320200FD360B /* CQIGArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQIGArrowView.swift; sourceTree = "<group>"; };
 		24B25CDA28752A040046DDA8 /* CQCustomScrollVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCustomScrollVC.swift; sourceTree = "<group>"; };
 		24B25CDC28752A2B0046DDA8 /* CQCustomScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCustomScrollView.swift; sourceTree = "<group>"; };
+		24B72D8629ED36A300120887 /* CQSProfileEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSProfileEditor.swift; sourceTree = "<group>"; };
 		24BB0AF428E67EF800FA208A /* CQLoadingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQLoadingManager.swift; sourceTree = "<group>"; };
 		24BB0AF628E680CE00FA208A /* CQLoadingAnimateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQLoadingAnimateView.swift; sourceTree = "<group>"; };
 		24BB0AF828E6D7E500FA208A /* CQCFlowLayoutShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCFlowLayoutShow.swift; sourceTree = "<group>"; };
@@ -401,6 +418,7 @@
 		24E30C0628D1C2BC0015FC75 /* CQWeakProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQWeakProxy.m; sourceTree = "<group>"; };
 		24E30C0B28D1D3B90015FC75 /* CQTypeTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQTypeTitleView.swift; sourceTree = "<group>"; };
 		24E30C0D28D1D3E20015FC75 /* CQTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQTypeView.swift; sourceTree = "<group>"; };
+		24E5120A29EFD9AB001EC96B /* CQSPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSPageControl.swift; sourceTree = "<group>"; };
 		24E59B3328B77237004E99EE /* CQTextScrollVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQTextScrollVC.swift; sourceTree = "<group>"; };
 		24E59B3528B772AA004E99EE /* CQTextScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQTextScrollView.swift; sourceTree = "<group>"; };
 		24E5E4C324EE511600F60138 /* CQMTKVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMTKVIewController.swift; sourceTree = "<group>"; };
@@ -502,6 +520,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2404F11329EF7BB900D9DD96 /* PageView */ = {
+			isa = PBXGroup;
+			children = (
+				2404F11629EF7FEA00D9DD96 /* CQSPageViewController.swift */,
+				2404F11829EF91FB00D9DD96 /* CQSFeatureCard.swift */,
+				2404F11A29EFBDA300D9DD96 /* CQSPageView.swift */,
+				24E5120A29EFD9AB001EC96B /* CQSPageControl.swift */,
+			);
+			path = PageView;
+			sourceTree = "<group>";
+		};
 		241D5D9B2887A5F90076725B /* ThirdDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -684,6 +713,7 @@
 				2463998C29E7DA0300490DB2 /* CQSModelData.swift */,
 				24D850BB29E9213F00B35975 /* CQSHexagonParameters.swift */,
 				24D850DA29E945C200B35975 /* CQSHike.swift */,
+				24925A2929ED1F6B00558B68 /* CQSProfile.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -700,6 +730,8 @@
 		2463999729E7DA7800490DB2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2404F11329EF7BB900D9DD96 /* PageView */,
+				24925A2B29ED229000558B68 /* Profile */,
 				24D850DC29E9481600B35975 /* Hikes */,
 				24D850CC29E934C800B35975 /* Badges */,
 				24D850BF29E934C000B35975 /* Landmarks */,
@@ -782,6 +814,16 @@
 				24925A2729ECEDAE00558B68 /* CQSCategoryItem.swift */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		24925A2B29ED229000558B68 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				24925A2C29ED22A200558B68 /* CQSProfileHost.swift */,
+				24925A2E29ED239300558B68 /* CQSProfileSummary.swift */,
+				24B72D8629ED36A300120887 /* CQSProfileEditor.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		24B25CD92875298E0046DDA8 /* CQCustomScrollView */ = {
@@ -896,6 +938,7 @@
 				24D850DE29E9481600B35975 /* CQSHikeGraph.swift */,
 				24D850DF29E9481600B35975 /* CQSHikeDetail.swift */,
 				24D850E029E9481600B35975 /* CQSHikeView.swift */,
+				24925A3029ED248500558B68 /* CQSHikeBadge.swift */,
 			);
 			path = Hikes;
 			sourceTree = "<group>";
@@ -1427,7 +1470,9 @@
 				24903A3728362E8200F5EC98 /* CQNestedManager.swift in Sources */,
 				24BDEF7229CAA2A9002C002C /* CQGlobal.swift in Sources */,
 				241D5DB62887A76D0076725B /* THPictureController.swift in Sources */,
+				24925A2D29ED22A200558B68 /* CQSProfileHost.swift in Sources */,
 				24D850E429E9481600B35975 /* CQSHikeView.swift in Sources */,
+				2404F11B29EFBDA300D9DD96 /* CQSPageView.swift in Sources */,
 				241D5DC32887A9A90076725B /* SimpleScrollView.swift in Sources */,
 				24C7740B293D834D00C884DE /* CQGray.metal in Sources */,
 				241D5DB02887A6DA0076725B /* SpringTimingParameters.swift in Sources */,
@@ -1461,10 +1506,13 @@
 				24E59B3628B772AA004E99EE /* CQTextScrollView.swift in Sources */,
 				34DD4542283532C1001D6177 /* CQNestedCell.swift in Sources */,
 				24356956270308650015C447 /* CQGridLockController.swift in Sources */,
+				24925A3129ED248500558B68 /* CQSHikeBadge.swift in Sources */,
 				2435695E27030C8C0015C447 /* CQGridLockCreateVC.swift in Sources */,
 				24E59B3428B77237004E99EE /* CQTextScrollVC.swift in Sources */,
 				3404B883230C2663004CFA91 /* CQMainController.swift in Sources */,
+				24925A2F29ED239300558B68 /* CQSProfileSummary.swift in Sources */,
 				24D850E229E9481600B35975 /* CQSHikeGraph.swift in Sources */,
+				24E5120B29EFD9AB001EC96B /* CQSPageControl.swift in Sources */,
 				24F949B424F4B15E006CC572 /* CQGrid.metal in Sources */,
 				24BB0AF728E680CE00FA208A /* CQLoadingAnimateView.swift in Sources */,
 				24925A2329ECDFBE00558B68 /* CQSCategoryHome.swift in Sources */,
@@ -1482,6 +1530,7 @@
 				242CE79C243C27ED00DF059D /* CQTransitionModelManager.swift in Sources */,
 				24F18889293DCB2300801E9F /* CQGrayOpenGLView.swift in Sources */,
 				34DD453E28352A6A001D6177 /* CQNestedHeaderView.swift in Sources */,
+				24925A2A29ED1F6B00558B68 /* CQSProfile.swift in Sources */,
 				24D063C028C21FD8008147BF /* CQCFlowSectionModel.swift in Sources */,
 				244DA61D24470619008B3B57 /* CQAppSectionModel.swift in Sources */,
 				24D08F44291A367A00BD6EAB /* Date+CQExtension.swift in Sources */,
@@ -1497,8 +1546,10 @@
 				241D5DC42887A9A90076725B /* CGRect+Utils.swift in Sources */,
 				2426242C27EAFD0100AEC968 /* UIImage+CQExtern.m in Sources */,
 				24A43BDD28A2079B00FD360B /* CQGradientRingView.swift in Sources */,
+				24B72D8729ED36A300120887 /* CQSProfileEditor.swift in Sources */,
 				342C1C15235949AA0058E583 /* CQMetalFirstController.swift in Sources */,
 				242CE798243C27ED00DF059D /* CQError.swift in Sources */,
+				2404F11729EF7FEA00D9DD96 /* CQSPageViewController.swift in Sources */,
 				242DEF1D28C3282F00F7167E /* CQCrossFlowFooter.swift in Sources */,
 				342C1C1923594DA40058E583 /* CQMetalSecondController.swift in Sources */,
 				241D5DA52887A6140076725B /* GeometryUtils.swift in Sources */,
@@ -1587,6 +1638,7 @@
 				24BDEF7C29CAF57E002C002C /* CQRenderPrimitives.metal in Sources */,
 				34DD454428353522001D6177 /* CQNestedScrollView.swift in Sources */,
 				2489F7112861AC780085C076 /* CQGradientView.swift in Sources */,
+				2404F11929EF91FB00D9DD96 /* CQSFeatureCard.swift in Sources */,
 				24DE5C9528582D68009512F5 /* UIImage+Extern.swift in Sources */,
 				34C1A3B3231658250079A935 /* CQMainHeaderView.swift in Sources */,
 				2458AB72285AC3FA0078A53F /* CQContactVC.swift in Sources */,
