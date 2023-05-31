@@ -60,6 +60,8 @@ class CQMainController: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.view.addSubview(tableView!)
         
         
+        //print("UIDevice.current.model: \(UIDevice.current.model)") 
+        
 //        _ = self.getNowTimeTimestamp()
         
         // 这样写时间跟北京时间相同
