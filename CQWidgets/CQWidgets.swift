@@ -14,7 +14,7 @@ struct Provider: IntentTimelineProvider {
     
     var requestStatus: Bool = true // 从服务器请求数据的状态
     var requestMessages = [
-        "读书之法，在循序而渐进，熟读而精思。读书之法，在循序而渐进，熟读而精思。读书之法，在循序而渐进，熟读而精思。读书之法，在循序而渐进，熟读而精思。读书之法，在循序而渐进，熟读而精思。读书之法，在循序而渐进，熟读而精思。",
+        "读书之法，在循序而渐进，熟读而精思。",
         "读书不觉已春深，一寸光阴一寸金",
         "总会有不期而遇的温暖。",
         "路虽远行则将至，事虽难做则必成。",
@@ -86,20 +86,15 @@ struct CQWidgetsTitleView : View {
         }
     }
 }
-struct CQWidgetsDecriptionView : View {
+struct CQWidgetsDescriptionView : View {
     var entry: Provider.Entry
     var body: some View {
         VStack {
             Spacer()
             HStack {
-                Spacer()
-                if #available(iOSApplicationExtension 16.0, *) {
-                    Text(entry.placeContent)
-                        .font(.system(.body, weight: .bold))
-                } else {
-                    Text(entry.placeContent)
-                        .font(.system(size: 17.0))
-                }
+                Spacer() 
+                Text(entry.placeContent)
+                    .font(.system(size: 15.0, weight: .bold))
                 Spacer()
             }
             .foregroundColor(.white)
@@ -124,7 +119,7 @@ struct CQWidgetsEntryView : View {
             VStack {
                 CQWidgetsTitleView(entry: entry)
                     .padding([.top, .bottom], 10)
-                CQWidgetsDecriptionView(entry: entry)
+                CQWidgetsDescriptionView(entry: entry)
                     .background(Color.pink.opacity(1.0))
             }
             
