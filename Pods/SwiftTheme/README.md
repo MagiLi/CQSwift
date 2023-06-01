@@ -12,11 +12,10 @@
 
 <p align="center">
 <a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/language-swift5-f48041.svg?style=flat"></a>
-<a href="https://developer.apple.com/ios"><img src="https://img.shields.io/badge/platform-iOS%208%2B-blue.svg?style=flat"></a>
-<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"></a>
-<a href="http://cocoadocs.org/docsets/SwiftTheme"><img src="https://img.shields.io/badge/CocoaPods-compatible-4BC51D.svg?style=flat"></a>
+<a href="http://cocoadocs.org/docsets/SwiftTheme"><img src="https://img.shields.io/cocoapods/v/SwiftTheme.svg?style=flat"></a>
+<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/carthage-compatible-4BC51D.svg?style=flat"></a>
+<a href="https://developer.apple.com/ios"><img src="https://img.shields.io/badge/platform-iOS%209%2B | tvOS%209%2B-blue.svg?style=flat"></a>
 <a href="https://github.com/wxxsw/SwiftTheme/blob/master/LICENSE"><img src="http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat"></a>
-<a href="https://github.com/wxxsw/SwiftTheme/tree/0.4.5"><img src="https://img.shields.io/badge/release-0.4.5-blue.svg"></a>
 </p>
 
 ## Screenshot
@@ -49,7 +48,7 @@ Vary background color of UIView according to the theme setting:
 view.theme_backgroundColor = ["#FFF", "#000"]
 ```
 
-Vary text color of UILable and UIButton:
+Vary text color of UILabel and UIButton:
 
 ```swift
 label.theme_textColor = ["#000", "#FFF"]
@@ -99,7 +98,7 @@ view.theme_backgroundColor = colorPickers
 
 
 
-### Plist Mode
+### Plist/JSON Mode
 You may want to make your app download and install an indefinite number of themes. To fulfill this requirement, we provide plist mode. Simply put, you write configuration info such as colors, image cuts and so on, in a plist file. Then, you can use their keys in the logic code. So, the plist file and the resource files are used to constitute a theme package.
 
 Usage demo of plist mode.
@@ -114,7 +113,7 @@ imageView.theme_image = "SelectedThemeCell.iconImage"
 The plist file name is the first paramter of the switching method. In this example, the plist file and other resource files are in the application bundle. It's also ok if they are in sandbox.
 
 ```swift
-ThemeManager.setTheme(plistName: "Red", path: .MainBundle)
+ThemeManager.setTheme(plistName: "Red", path: .mainBundle)
 ```
 
 > plist mode allow you install more themes without modifying logic code. So, you can add the feature that, downloading and installing themes for your app.
@@ -159,8 +158,14 @@ use_frameworks!
 github "wxxsw/SwiftTheme"
 ```
 
+#### Swift Package Manager
+
+1. Select `Xcode -> File -> Swift Packages -> Add Package Dependency...` 
+2. Enter `https://github.com/wxxsw/SwiftTheme`.
+3. Click `Next`, then select the version, complete.
+
 #### Source files
-Copy all the files in "Source" folder into your project
+Copy all the files in "Sources" folder into your project
 
 ## Documents
 
@@ -194,12 +199,12 @@ ThemeManager.setTheme(index: 1) // ThemePickers will use the second parameter, e
 ②
 // use "day.plist" in the appllication bundle as the theme configuration file. 
 // In this mode, SwiftTheme will find the resource files in the appllication bundle.
-ThemeManager.setTheme(plistName: "day", path: .MainBundle)
+ThemeManager.setTheme(plistName: "day", path: .mainBundle)
 // use "night.plist" in the sandbox as the theme configuration file, "someURL" is its file path. 
 // In this mode, SwiftTheme will find the resource files in the same path.
-ThemeManager.setTheme(plistName: "night", path: .Sandbox(someURL))
+ThemeManager.setTheme(plistName: "night", path: .sandbox(someURL))
 // use a dictionary as the theme configuration, but find resource files in the sandbox.(Not recommend)
-ThemeManager.setTheme(dict: dict, path: .Sandbox(someURL))
+ThemeManager.setTheme(dict: dict, path: .sandbox(someURL))
 ```
 
 #### Custom Behaviors
@@ -266,6 +271,10 @@ NotificationCenter.default.addObserver(
 - var theme_barStyle: ThemeBarStylePicker?
 - var theme_barTintColor: ThemeColorPicker?
 
+##### UISegmentedControl
+- var theme_selectedSegmentTintColor: ThemeColorPicker?
+- func theme_setTitleTextAttributes(_ picker: ThemeStringAttributesPicker?, forState state: UIControl.State)
+
 ##### UISwitch
 - var theme_onTintColor: ThemeColorPicker?
 - var theme_thumbTintColor: ThemeColorPicker?
@@ -294,15 +303,22 @@ NotificationCenter.default.addObserver(
 - var theme_activityIndicatorViewStyle: ThemeActivityIndicatorViewStylePicker?
 
 ##### UIButton
-- func theme_setImage(picker: ThemeImagePicker, forState state: UIControlState)
-- func theme_setBackgroundImage(picker: ThemeImagePicker, forState state: UIControlState)
-- func theme_setTitleColor(picker: ThemeColorPicker, forState state: UIControlState)
+- func theme_setImage(picker: ThemeImagePicker?, forState state: UIControlState)
+- func theme_setBackgroundImage(picker: ThemeImagePicker?, forState state: UIControlState)
+- func theme_setTitleColor(picker: ThemeColorPicker?, forState state: UIControlState)
+- func theme_setAttributedTitle(picker: ThemeAttributedStringPicker?, forState state: UIControlState)
 
 ##### CALayer
 - var theme_backgroundColor: ThemeCGColorPicker?
 - var theme_borderWidth: ThemeCGFloatPicker?
 - var theme_borderColor: ThemeCGColorPicker?
 - var theme_shadowColor: ThemeCGColorPicker?
+
+##### CATextLayer
+- var theme_foregroundColor: ThemeCGColorPicker?
+
+##### CAGradientLayer
+- var theme_colors: ThemeAnyPicker?
 
 ##### UIRefreshControl
 - var theme_titleAttributes: ThemeDictionaryPicker?
@@ -322,7 +338,9 @@ NotificationCenter.default.addObserver(
 // "#013E"			RGBA in short
 ①
 ThemeColorPicker(colors: "#FFFFFF", "#000")
+ThemeColorPicker(colors: UIColor.red, UIColor.blue)
 ThemeColorPicker.pickerWithColors(["#FFFFFF", "#000"])
+ThemeColorPicker.pickerWithUIColors([UIColor.red, UIColor.blue])
 ②
 ThemeColorPicker(keyPath: "someStringKeyPath")
 ThemeColorPicker.pickerWithKeyPath("someStringKeyPath")
@@ -354,7 +372,10 @@ ThemeCGFloatPicker.pickerWithKeyPath("someNumberKeyPath")
 ```swift
 ①
 ThemeCGColorPicker(colors: "#FFFFFF", "#000")
+ThemeCGColorPicker(colors: UIColor.red, UIColor.blue)
+ThemeCGColorPicker(colors: UIColor.red.cgColor, UIColor.blue.cgColor)
 ThemeCGColorPicker.pickerWithColors(["#FFFFFF", "#000"])
+ThemeCGColorPicker.pickerWithUIColors([UIColor.blue, UIColor.red])
 ②
 ThemeCGColorPicker(keyPath: "someStringKeyPath")
 ThemeCGColorPicker.pickerWithKeyPath("someStringKeyPath")
@@ -366,7 +387,9 @@ ThemeCGColorPicker.pickerWithKeyPath("someStringKeyPath")
 ThemeFontPicker(fonts: UIFont.systemFont(ofSize: 10), UIFont.systemFont(ofSize: 11))
 ThemeFontPicker.pickerWithFonts([UIFont.systemFont(ofSize: 10), UIFont.systemFont(ofSize: 11)])
 ②
-// Reading font from plist is not supported now
+// name the key you like, but the available values format like this: "PingFangSC-Regular,16"
+ThemeFontPicker(keyPath: "someStringKeyPath")
+ThemeFontPicker.pickerWithKeyPath("someStringKeyPath")
 ```
 
 #### ThemeDictionaryPicker
@@ -375,16 +398,25 @@ ThemeFontPicker.pickerWithFonts([UIFont.systemFont(ofSize: 10), UIFont.systemFon
 ThemeDictionaryPicker(dicts: ["key": "value"], ["key": "value"])
 ThemeDictionaryPicker.pickerWithDicts([["key": "value"], ["key": "value"]])
 ②
-ThemeBarStylePicker(keyPath: "someStringKeyPath") { (Any?) -> [String: AnyObject]? in ... }
+ThemeDictionaryPicker(keyPath: "someStringKeyPath") { (Any?) -> [String: AnyObject]? in ... }
 ```
 
 #### ThemeStringAttributesPicker
 ```swift
 ①
-ThemeDictionaryPicker(dicts: ["key": "value"], ["key": "value"])
-ThemeDictionaryPicker.pickerWithAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)])
+ThemeStringAttributesPicker(["key": "value"], ["key": "value"])
+ThemeStringAttributesPicker.pickerWithAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)])
 ②
-ThemeBarStylePicker(keyPath: "someStringKeyPath") { (Any?) -> [NSAttributedString.Key: Any]? in ... }
+ThemeStringAttributesPicker(keyPath: "someStringKeyPath") { (Any?) -> [NSAttributedString.Key: Any]? in ... }
+```
+
+#### ThemeAttributedStringPicker
+```swift
+①
+ThemeAttributedStringPicker(NSAttributedString(...), NSAttributedString(...))
+ThemeAttributedStringPicker.pickerWithAttributedStrings([NSAttributedString(...)])
+②
+ThemeAttributedStringPicker(keyPath: "someStringKeyPath") { (Any?) -> NSAttributedString? in ... }
 ```
 
 #### ThemeBarStylePicker
@@ -402,11 +434,11 @@ ThemeBarStylePicker.pickerWithKeyPath("someStringKeyPath")
 #### ThemeStatusBarStylePicker
 ```swift
 ①
-ThemeStatusBarStylePicker(styles: .default, .lightContent)
-ThemeStatusBarStylePicker.pickerWithStyles([.default, .lightContent])
-ThemeStatusBarStylePicker.pickerWithStringStyles(["default", "lightContent"])
+ThemeStatusBarStylePicker(styles: .default, .lightContent, .darkContent)
+ThemeStatusBarStylePicker.pickerWithStyles([.default, .lightContent, .darkContent])
+ThemeStatusBarStylePicker.pickerWithStringStyles(["default", "lightContent", "darkContent"])
 ②
-// name the key you like, but the available values are "default" and "lightContent"
+// name the key you like, but the available values are "default", "lightContent" and "darkContent"
 ThemeStatusBarStylePicker(keyPath: "someStringKeyPath")
 ThemeStatusBarStylePicker.pickerWithKeyPath("someStringKeyPath")
 ```
@@ -447,12 +479,25 @@ ThemeVisualEffectPicker(keyPath: "someStringKeyPath")
 ThemeVisualEffectPicker.pickerWithKeyPath("someStringKeyPath")
 ```
 
+#### ThemeAnyPicker
+```swift
+①
+ThemeAnyPicker(anys: 0, "123", UIColor.red)
+ThemeAnyPicker.pickerWithAnys([0, "123", UIColor.red])
+②
+ThemeAnyPicker(keyPath: "someStringKeyPath")
+ThemeAnyPicker.pickerWithKeyPath("someStringKeyPath")
+```
+
 ### *More*
 
-Download this project and find more. There are two demo targets:
+Download this project and find more. There are four demo targets:
 
 - `Demo` shows how to use index mode and how to save the last selection of themes and other general usages.
 - `PlistDemo` shows how to use plist mode and how to download themes that packaged in zip files.
+- `JsonDemo` is like `PlistDemo`, but use `json`.
+- `OCDemo` is `Demo`'s Objective-C version.
+- `TVOSDemo` is used to test tvos compatibility.
 
 ## FAQ
 

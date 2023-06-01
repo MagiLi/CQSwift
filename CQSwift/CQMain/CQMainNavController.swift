@@ -11,6 +11,20 @@ import SwiftTheme
 
 class CQMainNavController: UINavigationController {
     
+    // widget点击不同区域跳转指定页面
+    func widgetToSpecialPage(string:String) {
+        if !string.hasPrefix(widgetScheme) { return }
+        let content = string[widgetScheme.endIndex..<string.endIndex]
+         if content == "collectionView" {
+             self.pushViewController(CQMetalMainController(), animated: true)
+         } else if content == "tableView" {
+             self.pushViewController(CQTableViewController(), animated: true)
+         } else if content == "swiftUI" {
+             let gridLockVC = CQGridLockController()
+             self.pushViewController(gridLockVC, animated: true)
+         }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.navigationBar.barStyle = .default

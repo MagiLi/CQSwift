@@ -124,6 +124,9 @@
 		24BF3D812A2842A300A15F59 /* CQWidgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 24DAAEC929DFEA0100EC8D54 /* CQWidgets.intentdefinition */; };
 		24BF3D822A287C6200A15F59 /* CQGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BDEF7129CAA2A9002C002C /* CQGlobal.swift */; };
 		24BF3D832A287C6300A15F59 /* CQGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BDEF7129CAA2A9002C002C /* CQGlobal.swift */; };
+		24BF3D852A288F0200A15F59 /* CQNetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF3D842A288F0200A15F59 /* CQNetManager.swift */; };
+		24BF3D862A288F0200A15F59 /* CQNetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF3D842A288F0200A15F59 /* CQNetManager.swift */; };
+		24BF3D872A288F0200A15F59 /* CQNetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF3D842A288F0200A15F59 /* CQNetManager.swift */; };
 		24C77409293D805200C884DE /* CQGrayMetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C77408293D805200C884DE /* CQGrayMetalView.swift */; };
 		24C7740B293D834D00C884DE /* CQGray.metal in Sources */ = {isa = PBXBuildFile; fileRef = 24C7740A293D834D00C884DE /* CQGray.metal */; };
 		24CD3AB5243EBEA100BB4D10 /* CQCoreDataTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CD3AB4243EBEA100BB4D10 /* CQCoreDataTool.swift */; };
@@ -224,6 +227,8 @@
 		34ECF8C62335BDA800DDF8BD /* CQRXSwiftUIObserverableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ECF8C52335BDA800DDF8BD /* CQRXSwiftUIObserverableVC.swift */; };
 		34ECF8C82335BDCE00DDF8BD /* CQRXSwiftUIObserverableVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34ECF8C72335BDCE00DDF8BD /* CQRXSwiftUIObserverableVC.storyboard */; };
 		58B6657D117F6F09A2A3668C /* Pods_CQSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEE63F04346C3CAF9CEA536 /* Pods_CQSwift.framework */; };
+		5BE54990F0CE3846E371A2ED /* Pods_CQStaticWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF0C559C83B0620A373BD497 /* Pods_CQStaticWidgetExtension.framework */; };
+		FB9542ADCE415C3E397E9541 /* Pods_CQWidgetsExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C98D1F04A49DC272B5C7FA7B /* Pods_CQWidgetsExtension.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -273,6 +278,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0FC279E8BCF713F7601024C9 /* Pods-CQStaticWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CQStaticWidgetExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CQStaticWidgetExtension/Pods-CQStaticWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		2404F11629EF7FEA00D9DD96 /* CQSPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSPageViewController.swift; sourceTree = "<group>"; };
 		2404F11829EF91FB00D9DD96 /* CQSFeatureCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSFeatureCard.swift; sourceTree = "<group>"; };
 		2404F11A29EFBDA300D9DD96 /* CQSPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQSPageView.swift; sourceTree = "<group>"; };
@@ -390,6 +396,7 @@
 		24BF3D752A28372600A15F59 /* CQStaticWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQStaticWidget.swift; sourceTree = "<group>"; };
 		24BF3D772A28372A00A15F59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24BF3D792A28372A00A15F59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24BF3D842A288F0200A15F59 /* CQNetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQNetManager.swift; sourceTree = "<group>"; };
 		24C77408293D805200C884DE /* CQGrayMetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQGrayMetalView.swift; sourceTree = "<group>"; };
 		24C7740A293D834D00C884DE /* CQGray.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = CQGray.metal; sourceTree = "<group>"; };
 		24CD3AB4243EBEA100BB4D10 /* CQCoreDataTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCoreDataTool.swift; sourceTree = "<group>"; };
@@ -499,8 +506,13 @@
 		34DD454528353789001D6177 /* CQNestedSubTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQNestedSubTableView.swift; sourceTree = "<group>"; };
 		34ECF8C52335BDA800DDF8BD /* CQRXSwiftUIObserverableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQRXSwiftUIObserverableVC.swift; sourceTree = "<group>"; };
 		34ECF8C72335BDCE00DDF8BD /* CQRXSwiftUIObserverableVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CQRXSwiftUIObserverableVC.storyboard; sourceTree = "<group>"; };
+		563B687FF5ABEAF1F40F272E /* Pods-CQWidgetsExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CQWidgetsExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CQWidgetsExtension/Pods-CQWidgetsExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		587643FE5871BF1FD3AC8A41 /* Pods-CQSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CQSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CQSwift/Pods-CQSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		61F34D066C3A1E2211CC5DAD /* Pods-CQStaticWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CQStaticWidgetExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-CQStaticWidgetExtension/Pods-CQStaticWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 		67CD48A612D079967774FEDA /* Pods-CQSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CQSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-CQSwift/Pods-CQSwift.release.xcconfig"; sourceTree = "<group>"; };
+		A9181A0DD8C0CE972C94291E /* Pods-CQWidgetsExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CQWidgetsExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-CQWidgetsExtension/Pods-CQWidgetsExtension.release.xcconfig"; sourceTree = "<group>"; };
+		AF0C559C83B0620A373BD497 /* Pods_CQStaticWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CQStaticWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C98D1F04A49DC272B5C7FA7B /* Pods_CQWidgetsExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CQWidgetsExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -510,6 +522,7 @@
 			files = (
 				24BF3D732A28372500A15F59 /* SwiftUI.framework in Frameworks */,
 				24BF3D722A28372500A15F59 /* WidgetKit.framework in Frameworks */,
+				5BE54990F0CE3846E371A2ED /* Pods_CQStaticWidgetExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +532,7 @@
 			files = (
 				24DAAEC529DFEA0100EC8D54 /* SwiftUI.framework in Frameworks */,
 				24DAAEC329DFEA0100EC8D54 /* WidgetKit.framework in Frameworks */,
+				FB9542ADCE415C3E397E9541 /* Pods_CQWidgetsExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,6 +647,7 @@
 				3404B882230C2663004CFA91 /* CQMainController.swift */,
 				34C1A3B2231658250079A935 /* CQMainHeaderView.swift */,
 				3404B884230C29A9004CFA91 /* CQMainCell.swift */,
+				24BF3D842A288F0200A15F59 /* CQNetManager.swift */,
 			);
 			path = CQMain;
 			sourceTree = "<group>";
@@ -1254,6 +1269,10 @@
 			children = (
 				587643FE5871BF1FD3AC8A41 /* Pods-CQSwift.debug.xcconfig */,
 				67CD48A612D079967774FEDA /* Pods-CQSwift.release.xcconfig */,
+				0FC279E8BCF713F7601024C9 /* Pods-CQStaticWidgetExtension.debug.xcconfig */,
+				61F34D066C3A1E2211CC5DAD /* Pods-CQStaticWidgetExtension.release.xcconfig */,
+				563B687FF5ABEAF1F40F272E /* Pods-CQWidgetsExtension.debug.xcconfig */,
+				A9181A0DD8C0CE972C94291E /* Pods-CQWidgetsExtension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1265,6 +1284,8 @@
 				2FEE63F04346C3CAF9CEA536 /* Pods_CQSwift.framework */,
 				24DAAEC229DFEA0100EC8D54 /* WidgetKit.framework */,
 				24DAAEC429DFEA0100EC8D54 /* SwiftUI.framework */,
+				AF0C559C83B0620A373BD497 /* Pods_CQStaticWidgetExtension.framework */,
+				C98D1F04A49DC272B5C7FA7B /* Pods_CQWidgetsExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1276,6 +1297,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24BF3D7D2A28372A00A15F59 /* Build configuration list for PBXNativeTarget "CQStaticWidgetExtension" */;
 			buildPhases = (
+				7DF96E30AF51D9129D3AD6EC /* [CP] Check Pods Manifest.lock */,
 				24BF3D6D2A28372500A15F59 /* Sources */,
 				24BF3D6E2A28372500A15F59 /* Frameworks */,
 				24BF3D6F2A28372500A15F59 /* Resources */,
@@ -1293,6 +1315,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24DAAED529DFEA0400EC8D54 /* Build configuration list for PBXNativeTarget "CQWidgetsExtension" */;
 			buildPhases = (
+				8AD1113CA7E15859642D2E42 /* [CP] Check Pods Manifest.lock */,
 				24DAAEBD29DFEA0100EC8D54 /* Sources */,
 				24DAAEBE29DFEA0100EC8D54 /* Frameworks */,
 				24DAAEBF29DFEA0100EC8D54 /* Resources */,
@@ -1503,6 +1526,50 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CQSwift/Pods-CQSwift-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		7DF96E30AF51D9129D3AD6EC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CQStaticWidgetExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8AD1113CA7E15859642D2E42 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CQWidgetsExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1511,6 +1578,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24BF3D762A28372600A15F59 /* CQStaticWidget.swift in Sources */,
+				24BF3D872A288F0200A15F59 /* CQNetManager.swift in Sources */,
 				24BF3D812A2842A300A15F59 /* CQWidgets.intentdefinition in Sources */,
 				24BF3D832A287C6300A15F59 /* CQGlobal.swift in Sources */,
 				24BF3D802A28429900A15F59 /* CQWidgets.swift in Sources */,
@@ -1524,6 +1592,7 @@
 				24DAAECD29DFEA0400EC8D54 /* CQWidgets.intentdefinition in Sources */,
 				24DAAEC829DFEA0100EC8D54 /* CQWidgets.swift in Sources */,
 				24BF3D822A287C6200A15F59 /* CQGlobal.swift in Sources */,
+				24BF3D862A288F0200A15F59 /* CQNetManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1712,6 +1781,7 @@
 				24DE5C9528582D68009512F5 /* UIImage+Extern.swift in Sources */,
 				34C1A3B3231658250079A935 /* CQMainHeaderView.swift in Sources */,
 				2458AB72285AC3FA0078A53F /* CQContactVC.swift in Sources */,
+				24BF3D852A288F0200A15F59 /* CQNetManager.swift in Sources */,
 				242DEF1B28C2FCAC00F7167E /* CQCrossDecorationView.swift in Sources */,
 				24BDEF7529CADD75002C002C /* CQMDrawViewController.swift in Sources */,
 				24D850CA29E934C000B35975 /* CQSCircleImage.swift in Sources */,
@@ -1786,7 +1856,9 @@
 /* Begin XCBuildConfiguration section */
 		24BF3D7E2A28372A00A15F59 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0FC279E8BCF713F7601024C9 /* Pods-CQStaticWidgetExtension.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1817,7 +1889,9 @@
 		};
 		24BF3D7F2A28372A00A15F59 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61F34D066C3A1E2211CC5DAD /* Pods-CQStaticWidgetExtension.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1848,7 +1922,9 @@
 		};
 		24DAAED329DFEA0400EC8D54 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 563B687FF5ABEAF1F40F272E /* Pods-CQWidgetsExtension.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1879,7 +1955,9 @@
 		};
 		24DAAED429DFEA0400EC8D54 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9181A0DD8C0CE972C94291E /* Pods-CQWidgetsExtension.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1911,6 +1989,7 @@
 		34744E1B22EDEA9F007F52DC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1959,10 +2038,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				MTL_HEADER_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1972,6 +2054,7 @@
 		34744E1C22EDEA9F007F52DC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -2014,9 +2097,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				MTL_HEADER_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -2028,7 +2114,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 587643FE5871BF1FD3AC8A41 /* Pods-CQSwift.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -2040,6 +2126,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MTL_HEADER_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ccb.leye.test3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2054,7 +2141,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 67CD48A612D079967774FEDA /* Pods-CQSwift.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -2066,6 +2153,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MTL_HEADER_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ccb.leye.test3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

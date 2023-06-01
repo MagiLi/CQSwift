@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.9.1)
   - Differentiator (5.0.0)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
@@ -11,9 +12,10 @@ PODS:
     - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
   - Swifter (1.5.0)
-  - SwiftTheme (0.4.5)
+  - SwiftTheme (0.6.4)
 
 DEPENDENCIES:
+  - Alamofire
   - RxCocoa
   - RxDataSources
   - RxSwift
@@ -21,25 +23,26 @@ DEPENDENCIES:
   - SwiftTheme
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
-    - SwiftTheme
   trunk:
+    - Alamofire
     - Differentiator
     - RxCocoa
     - RxDataSources
     - RxRelay
     - RxSwift
     - Swifter
+    - SwiftTheme
 
 SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   Swifter: e71dd674404923d7f03ebb03f3f222d1c570bc8e
-  SwiftTheme: 4560ca4a4274aef71dd3f985aa8007c6e59993fd
+  SwiftTheme: 007cbaf1f9e171caf6448a4657533e54c682b285
 
-PODFILE CHECKSUM: 4a35a1d6447f020376758bfe4116e74fa3284bdc
+PODFILE CHECKSUM: 992172433ff83371900e2ca8c2e441bbeb7f7da4
 
 COCOAPODS: 1.11.3

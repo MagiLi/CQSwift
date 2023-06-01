@@ -59,17 +59,16 @@ struct CQStaticWidgetEntryView : View {
                 let url = URL(string: "\(widgetScheme)\(title)")!
                 Link(destination: url) {
                     Label(title, systemImage: "paperplane.circle.fill")
-                        .padding(5.0)
-                        .border(.gray, width: 1.0)
+                        .padding(10.0)
                         .frame(height: 30.0)
-                        .cornerRadius(15.0)
-                        //.background(.purple)
-                        //.shadow(color: .red, radius: 7)
+                        .background(.purple)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
                 }
                     //.widgetURL(url)
                     
                 Spacer()
             }
+            .foregroundColor(.white)
         }
     }
 }

@@ -43,10 +43,12 @@ struct Provider: IntentTimelineProvider {
 
     // 在请求初始快照后，调用该方法。请求常规时间线
     func getTimeline(for configuration: CQConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        
+//        Alamofire.SessionManager(configuration)
+        
         var entries: [CQEntry] = []
 
         //configuration.CQFunc
-        
         //从当前日期开始，生成一个由五个条目组成的时间线，间隔一小时。
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
