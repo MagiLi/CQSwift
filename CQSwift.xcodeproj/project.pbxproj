@@ -78,8 +78,6 @@
 		2477F22427BE1A3A00218542 /* CQCycleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2477F22327BE1A3A00218542 /* CQCycleController.swift */; };
 		247847DA2448476B00229463 /* CQTopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247847D92448476B00229463 /* CQTopViewModel.swift */; };
 		247847DC244850A500229463 /* CQMoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247847DB244850A500229463 /* CQMoreViewModel.swift */; };
-		247A245E29DFFCA600458143 /* CQWSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A245D29DFFCA600458143 /* CQWSmallView.swift */; };
-		247A245F29DFFF6600458143 /* CQWSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A245D29DFFCA600458143 /* CQWSmallView.swift */; };
 		247AA34E28F7AF2D00492449 /* CQCalendarDateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247AA34D28F7AF2D00492449 /* CQCalendarDateHeader.swift */; };
 		247AA35028F7B32300492449 /* CQCDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247AA34F28F7B32300492449 /* CQCDateView.swift */; };
 		247AA35228F7E15900492449 /* CQCalendarTipsFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247AA35128F7E15900492449 /* CQCalendarTipsFooter.swift */; };
@@ -334,7 +332,6 @@
 		2477F22327BE1A3A00218542 /* CQCycleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCycleController.swift; sourceTree = "<group>"; };
 		247847D92448476B00229463 /* CQTopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQTopViewModel.swift; sourceTree = "<group>"; };
 		247847DB244850A500229463 /* CQMoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQMoreViewModel.swift; sourceTree = "<group>"; };
-		247A245D29DFFCA600458143 /* CQWSmallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQWSmallView.swift; sourceTree = "<group>"; };
 		247AA34D28F7AF2D00492449 /* CQCalendarDateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCalendarDateHeader.swift; sourceTree = "<group>"; };
 		247AA34F28F7B32300492449 /* CQCDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCDateView.swift; sourceTree = "<group>"; };
 		247AA35128F7E15900492449 /* CQCalendarTipsFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCalendarTipsFooter.swift; sourceTree = "<group>"; };
@@ -778,14 +775,6 @@
 			path = CQCycle;
 			sourceTree = "<group>";
 		};
-		247A245C29DFFC7600458143 /* CQWViews */ = {
-			isa = PBXGroup;
-			children = (
-				247A245D29DFFCA600458143 /* CQWSmallView.swift */,
-			);
-			path = CQWViews;
-			sourceTree = "<group>";
-		};
 		247A246029E0079400458143 /* CQSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -946,7 +935,6 @@
 		24DAAEC629DFEA0100EC8D54 /* CQWidgets */ = {
 			isa = PBXGroup;
 			children = (
-				247A245C29DFFC7600458143 /* CQWViews */,
 				24DAAEC729DFEA0100EC8D54 /* CQWidgets.swift */,
 				24DAAEC929DFEA0100EC8D54 /* CQWidgets.intentdefinition */,
 				24DAAECA29DFEA0400EC8D54 /* Assets.xcassets */,
@@ -1450,7 +1438,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				247A245E29DFFCA600458143 /* CQWSmallView.swift in Sources */,
 				24DAAECD29DFEA0400EC8D54 /* CQWidgets.intentdefinition in Sources */,
 				24DAAEC829DFEA0100EC8D54 /* CQWidgets.swift in Sources */,
 			);
@@ -1555,7 +1542,6 @@
 				241D5DA52887A6140076725B /* GeometryUtils.swift in Sources */,
 				2489F70F2861AC600085C076 /* CQGradientController.swift in Sources */,
 				2427846B28290B83003F4354 /* CQLoadingController.swift in Sources */,
-				247A245F29DFFF6600458143 /* CQWSmallView.swift in Sources */,
 				244DA61624470619008B3B57 /* CQMoreEditContentView.swift in Sources */,
 				24BDEF6E29CA9D6D002C002C /* CQMetalMainController.swift in Sources */,
 				24C77409293D805200C884DE /* CQGrayMetalView.swift in Sources */,

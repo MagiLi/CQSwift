@@ -21,6 +21,7 @@ struct Provider: IntentTimelineProvider {
         "横空出世，莽昆仑，阅尽人间春色。",
     ]
     
+    //占位视图，例如网络请求失败、发生未知错误、第一次展示小组件都会展示这个view
     func placeholder(in context: Context) -> CQEntry {
         if context.isPreview { // 在小部件库中显示您的小部件
             return CQEntry(date: Date(), configuration: CQConfigurationIntent(), placeContent: "丈夫之四海，万里犹比邻。")
@@ -29,7 +30,7 @@ struct Provider: IntentTimelineProvider {
         }
     }
 
-    // 提供预览快照
+    // 提供预览快照，默认值
     func getSnapshot(for configuration: CQConfigurationIntent, in context: Context, completion: @escaping (CQEntry) -> ()) {
         let entry: CQEntry
         if context.isPreview && !requestStatus { // 在小部件库中显示您的小部件
@@ -92,7 +93,7 @@ struct CQWidgetsDescriptionView : View {
         VStack {
             Spacer()
             HStack {
-                Spacer() 
+                Spacer()
                 Text(entry.placeContent)
                     .font(.system(size: 15.0, weight: .bold))
                 Spacer()
@@ -122,28 +123,6 @@ struct CQWidgetsEntryView : View {
                 CQWidgetsDescriptionView(entry: entry)
                     .background(Color.pink.opacity(1.0))
             }
-            
-//            HStack {
-//                Spacer()
-//                VStack {
-//                    Spacer()
-//                    Text(entry.date, style: .time)
-//                    Spacer()
-//                    if #available(iOSApplicationExtension 16.0, *) {
-//                        Text(entry.placeContent)
-//                            .font(.system(.body, weight: .bold))
-//                            .background(Color.pink.opacity(1.0))
-//                    } else {
-//                        Text(entry.placeContent)
-//                            .font(.system(size: 17.0))
-//                            .background(Color.pink.opacity(1.0))
-//                    }
-//                    Spacer()
-//                }
-//                .foregroundColor(.white)
-//                .padding([.leading, .trailing], 15.0)
-//                Spacer()
-//            }
         default:
             HStack {
                 Spacer()
