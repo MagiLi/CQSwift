@@ -56,6 +56,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // widget link url
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         CQLog(url.absoluteString)
+        if url.absoluteString.hasPrefix(widgetScheme) {
+           let content = url.absoluteString[widgetScheme.endIndex..<url.absoluteString.endIndex]
+            if content == "collectionView" {
+                self.mainNavVC.pushViewController(CQMetalMainController(), animated: true)
+            } else if content == "tableView" {
+                self.mainNavVC.pushViewController(CQTableViewController(), animated: true)
+            } else if content == "swiftUI" {
+                let gridLockVC = CQGridLockController()
+                self.mainNavVC.pushViewController(gridLockVC, animated: true)
+            }
+ 
+            return true
+        }
         if url.absoluteString.hasPrefix("other://metal.main") {
             if self.mainNavVC.topViewController?.classForCoder == CQMetalMainController.classForCoder() {
                 return true

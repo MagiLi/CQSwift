@@ -52,13 +52,22 @@ struct CQStaticWidgetEntryView : View {
         VStack(alignment: .leading) {
             Spacer()
             ForEach(list, id: \.self) { title in
-                Label(title, image: "paperplane.circle.fill")
-                    .padding(5.0)
-                    .border(.gray, width: 1.0)
-                    .cornerRadius(3.0)
-                    .background(.purple)
-                    .widgetURL(URL(string: "widget://\(title)"))
-                    //.shadow(color: .red, radius: 7)
+                
+                // systemSmall(小号组件)只能用widgetURL修饰符实现URL传递接收。
+                // systemMedium、systemLarge可以用Link或者 widgetUrl处理
+                // 点击不同区域传递不同URL
+                let url = URL(string: "\(widgetScheme)\(title)")!
+                Link(destination: url) {
+                    Label(title, systemImage: "paperplane.circle.fill")
+                        .padding(5.0)
+                        .border(.gray, width: 1.0)
+                        .frame(height: 30.0)
+                        .cornerRadius(15.0)
+                        //.background(.purple)
+                        //.shadow(color: .red, radius: 7)
+                }
+                    //.widgetURL(url)
+                    
                 Spacer()
             }
         }
@@ -81,7 +90,7 @@ struct CQStaticWidget: Widget {
         }
         .configurationDisplayName("静态Widget1")
         .description("This is an example widget1.")
-        .supportedFamilies([.systemSmall])
+        .supportedFamilies([.systemMedium])
     }
 }
 

@@ -8,6 +8,8 @@
 
 import Foundation
 
+let widgetScheme = "widget://"
+
 func CQLog<T>(_ message : T, file : String = #file, funcName : String = #function, lineNum : Int = #line) {
 
     #if DEBUG

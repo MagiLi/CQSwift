@@ -122,6 +122,8 @@
 		24BF3D7C2A28372A00A15F59 /* CQStaticWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 24BF3D712A28372500A15F59 /* CQStaticWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		24BF3D802A28429900A15F59 /* CQWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DAAEC729DFEA0100EC8D54 /* CQWidgets.swift */; };
 		24BF3D812A2842A300A15F59 /* CQWidgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 24DAAEC929DFEA0100EC8D54 /* CQWidgets.intentdefinition */; };
+		24BF3D822A287C6200A15F59 /* CQGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BDEF7129CAA2A9002C002C /* CQGlobal.swift */; };
+		24BF3D832A287C6300A15F59 /* CQGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BDEF7129CAA2A9002C002C /* CQGlobal.swift */; };
 		24C77409293D805200C884DE /* CQGrayMetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C77408293D805200C884DE /* CQGrayMetalView.swift */; };
 		24C7740B293D834D00C884DE /* CQGray.metal in Sources */ = {isa = PBXBuildFile; fileRef = 24C7740A293D834D00C884DE /* CQGray.metal */; };
 		24CD3AB5243EBEA100BB4D10 /* CQCoreDataTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CD3AB4243EBEA100BB4D10 /* CQCoreDataTool.swift */; };
@@ -1510,6 +1512,7 @@
 			files = (
 				24BF3D762A28372600A15F59 /* CQStaticWidget.swift in Sources */,
 				24BF3D812A2842A300A15F59 /* CQWidgets.intentdefinition in Sources */,
+				24BF3D832A287C6300A15F59 /* CQGlobal.swift in Sources */,
 				24BF3D802A28429900A15F59 /* CQWidgets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1520,6 +1523,7 @@
 			files = (
 				24DAAECD29DFEA0400EC8D54 /* CQWidgets.intentdefinition in Sources */,
 				24DAAEC829DFEA0100EC8D54 /* CQWidgets.swift in Sources */,
+				24BF3D822A287C6200A15F59 /* CQGlobal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
