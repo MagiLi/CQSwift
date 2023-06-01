@@ -147,7 +147,7 @@ struct CQWidgetsEntryView : View {
     }
 }
 
-@main
+//@main
 struct CQWidgets: Widget {
     let kind: String = "CQWidgets"
 
