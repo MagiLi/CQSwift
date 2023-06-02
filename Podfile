@@ -8,6 +8,7 @@ widgetTargets = ['CQStaticWidgetExtension','CQWidgetsExtension']
 
 def common
   pod 'Alamofire'
+  pod 'YYWebImage'
 end
 
 target 'CQSwift' do

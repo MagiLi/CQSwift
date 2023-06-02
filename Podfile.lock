@@ -13,6 +13,13 @@ PODS:
   - RxSwift (6.5.0)
   - Swifter (1.5.0)
   - SwiftTheme (0.6.4)
+  - YYCache (1.0.4)
+  - YYImage (1.0.4):
+    - YYImage/Core (= 1.0.4)
+  - YYImage/Core (1.0.4)
+  - YYWebImage (1.0.5):
+    - YYCache
+    - YYImage
 
 DEPENDENCIES:
   - Alamofire
@@ -21,6 +28,7 @@ DEPENDENCIES:
   - RxSwift
   - Swifter
   - SwiftTheme
+  - YYWebImage
 
 SPEC REPOS:
   trunk:
@@ -32,6 +40,9 @@ SPEC REPOS:
     - RxSwift
     - Swifter
     - SwiftTheme
+    - YYCache
+    - YYImage
+    - YYWebImage
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
@@ -42,7 +53,10 @@ SPEC CHECKSUMS:
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   Swifter: e71dd674404923d7f03ebb03f3f222d1c570bc8e
   SwiftTheme: 007cbaf1f9e171caf6448a4657533e54c682b285
+  YYCache: 8105b6638f5e849296c71f331ff83891a4942952
+  YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
+  YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 992172433ff83371900e2ca8c2e441bbeb7f7da4
+PODFILE CHECKSUM: 352f078b994d5fe5df4645fe60efa7d35feb0f0f
 
 COCOAPODS: 1.11.3

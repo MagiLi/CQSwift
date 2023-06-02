@@ -10,9 +10,10 @@ import WidgetKit
 import SwiftUI
 import Intents
 
+
 struct Provider: IntentTimelineProvider {
     
-    var requestStatus: Bool = true // 从服务器请求数据的状态
+//    var requestStatus: Bool = true // 从服务器请求数据的状态
     var requestMessages = [
         "读书之法，在循序而渐进，熟读而精思。",
         "读书不觉已春深，一寸光阴一寸金",
@@ -21,53 +22,59 @@ struct Provider: IntentTimelineProvider {
         "横空出世，莽昆仑，阅尽人间春色。",
     ]
     
-    //占位视图，例如网络请求失败、发生未知错误、第一次展示小组件都会展示这个view
+    //占位视图，第一次展示小组件都会展示这个。
+    // 网络请求失败、发生未知错误
     func placeholder(in context: Context) -> CQEntry {
-        if context.isPreview { // 在小部件库中显示您的小部件
-            return CQEntry(date: Date(), configuration: CQConfigurationIntent(), placeContent: "丈夫之四海，万里犹比邻。")
-        } else {
-            return CQEntry(date: Date(), configuration: CQConfigurationIntent(), placeContent: "-----")
-        }
+        return CQEntry(date: Date(), configuration: CQConfigurationIntent(), placeContent: "-----")
     }
 
     // 提供预览快照，默认值
     func getSnapshot(for configuration: CQConfigurationIntent, in context: Context, completion: @escaping (CQEntry) -> ()) {
-        let entry: CQEntry
-        if context.isPreview && !requestStatus { // 在小部件库中显示您的小部件
-            entry = CQEntry(date: Date(), configuration: configuration, placeContent: "往者不可谏，来者犹可追。")
-        } else {
-            entry = CQEntry(date: Date(), configuration: configuration, placeContent: "不用谁施舍阳光，你自己就是太阳。")
-        }
+        // 在小组件库中显示您的小部件，添加小组件时预览的样式
+        let entry = CQEntry(date: Date(), configuration: configuration, placeContent: "往者不可谏，来者犹可追。")
         completion(entry)
     }
 
     // 在请求初始快照后，调用该方法。请求常规时间线
     func getTimeline(for configuration: CQConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        
-//        Alamofire.SessionManager(configuration)
-        
-        var entries: [CQEntry] = []
-
-        //configuration.CQFunc
-        //从当前日期开始，生成一个由五个条目组成的时间线，间隔一小时。
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            //间隔一小时。
-            //let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            //间隔15分钟。
-            let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset * 15, to: currentDate)!
-            let entry = CQEntry(date: entryDate, configuration: configuration, placeContent: requestMessages[hourOffset])
-            entries.append(entry)
+        CQNetManager.manager.downLoadImage { image in
+            let entryDate = Calendar.current.date(byAdding: .minute, value: 15, to: Date())!
+            let entry = CQEntry(date: entryDate, configuration: configuration, placeContent: requestMessages[1], image: image)
+            let timeline = Timeline(entries: [entry], policy: .atEnd)
+            completion(timeline)
+        } failure: { message in
+//            let entryDate = Calendar.current.date(byAdding: .minute, value: 15, to: Date())!
+//            let entry = CQEntry(date: entryDate, configuration: configuration, placeContent: message)
+//            let timeline = Timeline(entries: [entry], policy: .atEnd)
+//            completion(timeline)
+            let entry = self.placeholder(in: context)
+            let timeline = Timeline(entries: [entry], policy: .atEnd)
+            completion(timeline)
         }
- 
-        /*  policy: 加载策略。
-         *  atEnd: 最后一个日期过后请求新的时间线
-         *  never: 在新的时间线可用时提示WidgetKit
-         *  after(_ date: Date): 指定WidgetKit请求新时间线的未来日期。
-         */
-        //let timeline = Timeline(entries: entries, policy: .after(Date(timeIntervalSinceNow: 60)))
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
+        
+        
+//        var entries: [CQEntry] = []
+//
+//        //configuration.CQFunc
+//        //从当前日期开始，生成一个由五个条目组成的时间线，间隔一小时。
+//        let currentDate = Date()
+//        for hourOffset in 0 ..< 5 {
+//            //间隔一小时。
+//            //let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
+//            //间隔15分钟。
+//            let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset * 15, to: currentDate)!
+//            let entry = CQEntry(date: entryDate, configuration: configuration, placeContent: requestMessages[hourOffset])
+//            entries.append(entry)
+//        }
+//
+//        /*  policy: 加载策略。
+//         *  atEnd: 最后一个日期过后请求新的时间线
+//         *  never: 在新的时间线可用时提示WidgetKit
+//         *  after(_ date: Date): 指定WidgetKit请求新时间线的未来日期。
+//         */
+//        //let timeline = Timeline(entries: entries, policy: .after(Date(timeIntervalSinceNow: 60)))
+//        let timeline = Timeline(entries: entries, policy: .atEnd)
+//        completion(timeline)
     }
 }
 
@@ -76,6 +83,7 @@ struct CQEntry: TimelineEntry {
     let date: Date
     let configuration: CQConfigurationIntent
     let placeContent:String
+    var image:Image? = nil
 }
 
 struct CQWidgetsTitleView : View {
@@ -90,7 +98,7 @@ struct CQWidgetsTitleView : View {
     }
 }
 struct CQWidgetsDescriptionView : View {
-    var entry: Provider.Entry
+    @Binding var entry: Provider.Entry
     var body: some View {
         VStack {
             Spacer()
@@ -103,14 +111,39 @@ struct CQWidgetsDescriptionView : View {
             .foregroundColor(.white)
             Spacer()
         }
+        .background( Color.pink.opacity((entry.image == nil) ? 1.0 : 0.0))
     }
 }
-struct CQWidgetsEntryView : View {
-    var entry: Provider.Entry
 
+//struct CQWidgetsImgView:View {
+//    let url:URL
 //    var body: some View {
-//        Text(entry.date, style: .time)
+//        if #available(iOSApplicationExtension 15.0, *) {
+//            AsyncImage(url: url) { img in
+//                img
+//                    .resizable()
+//                    .scaledToFill() // 按比例填充
+//            } placeholder: {
+//
+//            }
+//
+//        } else {
+//            if let imageSource = CGImageSourceCreateWithURL(url as NSURL, nil),
+//               let cgImage = CGImageSourceCreateImageAtIndex(imageSource, 0, nil) {
+//                Image(cgImage, scale: 1.0, label: Text(""))
+//                    .resizable()
+//                    .scaledToFill() // 按比例填充
+//            } else {
+//                Image("placeholder")
+//                    .resizable()
+//                    .scaledToFill() // 按比例填充
+//            }
+//        }
 //    }
+//}
+
+struct CQWidgetsEntryView : View {
+    @State var entry: Provider.Entry
     
     @Environment(\ .widgetFamily) var family:WidgetFamily
 
@@ -119,11 +152,17 @@ struct CQWidgetsEntryView : View {
     var body: some View {
         switch family {
         case .systemSmall:
-            VStack {
-                CQWidgetsTitleView(entry: entry)
-                    .padding([.top, .bottom], 10)
-                CQWidgetsDescriptionView(entry: entry)
-                    .background(Color.pink.opacity(1.0))
+            ZStack {
+                if let image = entry.image {
+                    image
+                        .resizable()
+                        .scaledToFill()
+                }
+                VStack {
+                    CQWidgetsTitleView(entry: entry)
+                        .padding([.top, .bottom], 10)
+                    CQWidgetsDescriptionView(entry: $entry)
+                }
             }
         default:
             HStack {
@@ -155,7 +194,6 @@ struct CQWidgets: Widget {
 
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: CQConfigurationIntent.self, provider: Provider()) { entry in
-            
             CQWidgetsEntryView(entry: entry)
                 .background(Color.pink.opacity(0.9))
         }
