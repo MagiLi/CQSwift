@@ -37,7 +37,7 @@ struct Provider: IntentTimelineProvider {
         }
     }
 
-    // 在请求初始快照后，调用该方法。请求常规时间线
+    // 在请求初始快照后，调用该方法。请求常规时间线（最快5分钟刷新一次）
     func getTimeline(for configuration: CQConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
 
         CQNetManager.manager.downLoadImage { image in

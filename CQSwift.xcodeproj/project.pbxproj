@@ -15,6 +15,9 @@
 		241661DE2A2DD44300FF3FC1 /* CQAppGroupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241661DD2A2DD44300FF3FC1 /* CQAppGroupManager.swift */; };
 		241661DF2A2DD49E00FF3FC1 /* CQAppGroupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241661DD2A2DD44300FF3FC1 /* CQAppGroupManager.swift */; };
 		241661E02A2DD49F00FF3FC1 /* CQAppGroupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241661DD2A2DD44300FF3FC1 /* CQAppGroupManager.swift */; };
+		241661E22A2DD6F400FF3FC1 /* CQWidgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241661E12A2DD6F400FF3FC1 /* CQWidgetManager.swift */; };
+		241661E32A2DD6F400FF3FC1 /* CQWidgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241661E12A2DD6F400FF3FC1 /* CQWidgetManager.swift */; };
+		241661E42A2DD6F400FF3FC1 /* CQWidgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241661E12A2DD6F400FF3FC1 /* CQWidgetManager.swift */; };
 		241D5DA32887A6140076725B /* CGPoint+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D5D9D2887A6140076725B /* CGPoint+Utils.swift */; };
 		241D5DA42887A6140076725B /* UISpringTimingParameters+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D5D9E2887A6140076725B /* UISpringTimingParameters+Utils.swift */; };
 		241D5DA52887A6140076725B /* GeometryUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D5D9F2887A6140076725B /* GeometryUtils.swift */; };
@@ -291,6 +294,7 @@
 		241661DB2A2DD40100FF3FC1 /* CQWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CQWidgetsExtension.entitlements; sourceTree = "<group>"; };
 		241661DC2A2DD40B00FF3FC1 /* CQStaticWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CQStaticWidgetExtension.entitlements; sourceTree = "<group>"; };
 		241661DD2A2DD44300FF3FC1 /* CQAppGroupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQAppGroupManager.swift; sourceTree = "<group>"; };
+		241661E12A2DD6F400FF3FC1 /* CQWidgetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQWidgetManager.swift; sourceTree = "<group>"; };
 		241D5D9D2887A6140076725B /* CGPoint+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Utils.swift"; sourceTree = "<group>"; };
 		241D5D9E2887A6140076725B /* UISpringTimingParameters+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISpringTimingParameters+Utils.swift"; sourceTree = "<group>"; };
 		241D5D9F2887A6140076725B /* GeometryUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryUtils.swift; sourceTree = "<group>"; };
@@ -1000,6 +1004,7 @@
 		24DAAEC629DFEA0100EC8D54 /* CQWidgets */ = {
 			isa = PBXGroup;
 			children = (
+				241661E12A2DD6F400FF3FC1 /* CQWidgetManager.swift */,
 				24DAAEC729DFEA0100EC8D54 /* CQWidgets.swift */,
 				24DAAEC929DFEA0100EC8D54 /* CQWidgets.intentdefinition */,
 				24DAAECA29DFEA0400EC8D54 /* Assets.xcassets */,
@@ -1593,6 +1598,7 @@
 				241661E02A2DD49F00FF3FC1 /* CQAppGroupManager.swift in Sources */,
 				24BF3D762A28372600A15F59 /* CQStaticWidget.swift in Sources */,
 				241661CD2A2D7A7100FF3FC1 /* Date+CQExtension.swift in Sources */,
+				241661E42A2DD6F400FF3FC1 /* CQWidgetManager.swift in Sources */,
 				24BF3D872A288F0200A15F59 /* CQNetManager.swift in Sources */,
 				24BF3D812A2842A300A15F59 /* CQWidgets.intentdefinition in Sources */,
 				24BF3D832A287C6300A15F59 /* CQGlobal.swift in Sources */,
@@ -1605,6 +1611,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24DAAECD29DFEA0400EC8D54 /* CQWidgets.intentdefinition in Sources */,
+				241661E32A2DD6F400FF3FC1 /* CQWidgetManager.swift in Sources */,
 				241661DF2A2DD49E00FF3FC1 /* CQAppGroupManager.swift in Sources */,
 				24DAAEC829DFEA0100EC8D54 /* CQWidgets.swift in Sources */,
 				241661CC2A2D7A7100FF3FC1 /* Date+CQExtension.swift in Sources */,
@@ -1652,6 +1659,7 @@
 				24BB0AFB28E6D99900FA208A /* CQCFlowLayoutStow.swift in Sources */,
 				241D5DBC2887A7A10076725B /* PipPlaceholder.swift in Sources */,
 				24D850CE29E934C800B35975 /* CQSBadgeBackround.swift in Sources */,
+				241661E22A2DD6F400FF3FC1 /* CQWidgetManager.swift in Sources */,
 				342C1C17235949C20058E583 /* Shader.metal in Sources */,
 				241D5DA72887A6140076725B /* CASpringAnimation+Utils.swift in Sources */,
 				247847DC244850A500229463 /* CQMoreViewModel.swift in Sources */,

@@ -46,6 +46,6 @@ struct CQAppGroupManager {
     }
     static func defaultsGet() -> Any? {
         guard let defaults = UserDefaults(suiteName: groupIdentifier) else { return nil }
-        return defaults.object(forKey: "key")
+        return defaults.object(forKey: "key") 
     }
 }
