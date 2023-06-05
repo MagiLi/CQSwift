@@ -30,9 +30,11 @@ struct Provider: IntentTimelineProvider {
 
     // 提供预览快照，默认值
     func getSnapshot(for configuration: CQConfigurationIntent, in context: Context, completion: @escaping (CQEntry) -> ()) {
-        // 在小组件库中显示您的小部件，添加小组件时预览的样式
-        let entry = CQEntry(date: Date(), configuration: configuration, placeContent: "往者不可谏，来者犹可追。")
-        completion(entry)
+        if context.isPreview {
+            // 在小组件库中显示您的小部件，添加小组件时预览的样式
+            let entry = CQEntry(date: Date(), configuration: configuration, placeContent: "往者不可谏，来者犹可追。")
+            completion(entry)
+        }
     }
 
     // 在请求初始快照后，调用该方法。请求常规时间线
@@ -91,11 +93,21 @@ struct CQWidgetsTitleView : View {
     var body: some View {
         HStack {
             Spacer()
-            Text(entry.date, style: .time)
-                .foregroundColor(.white)
+            VStack {
+                // configuration: 小组件的配置
+                let function = entry.configuration.CQFunc.rawValue
+                Text(String(function))
+                    .font(.system(size: 17, weight: .bold))
+                let dateString = entry.date.convertToString("yyyy-MM-dd HH:mm:ss")
+                Text(dateString)
+                    .font(.system(size: 12, weight: .bold))
+            }
             Spacer()
         }
+        .foregroundColor(.white)
     }
+    
+    
 }
 struct CQWidgetsDescriptionView : View {
     @Binding var entry: Provider.Entry
@@ -188,7 +200,7 @@ struct CQWidgetsEntryView : View {
     }
 }
 
-//@main
+@main
 struct CQWidgets: Widget {
     let kind: String = "CQWidgets"
 

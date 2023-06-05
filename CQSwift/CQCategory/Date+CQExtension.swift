@@ -26,4 +26,12 @@ extension Date {
         }
     }
     
+    func convertToString(_ dateFormat:String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = dateFormat
+        formatter.timeZone = .autoupdatingCurrent
+        formatter.locale = Locale.init(identifier: "zh_Hans_CN")
+        formatter.calendar = Calendar.init(identifier: .iso8601)
+        return formatter.string(from: self)
+    }
 }

@@ -10,6 +10,8 @@
 		2404F11729EF7FEA00D9DD96 /* CQSPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404F11629EF7FEA00D9DD96 /* CQSPageViewController.swift */; };
 		2404F11929EF91FB00D9DD96 /* CQSFeatureCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404F11829EF91FB00D9DD96 /* CQSFeatureCard.swift */; };
 		2404F11B29EFBDA300D9DD96 /* CQSPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404F11A29EFBDA300D9DD96 /* CQSPageView.swift */; };
+		241661CC2A2D7A7100FF3FC1 /* Date+CQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D08F43291A367A00BD6EAB /* Date+CQExtension.swift */; };
+		241661CD2A2D7A7100FF3FC1 /* Date+CQExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D08F43291A367A00BD6EAB /* Date+CQExtension.swift */; };
 		241D5DA32887A6140076725B /* CGPoint+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D5D9D2887A6140076725B /* CGPoint+Utils.swift */; };
 		241D5DA42887A6140076725B /* UISpringTimingParameters+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D5D9E2887A6140076725B /* UISpringTimingParameters+Utils.swift */; };
 		241D5DA52887A6140076725B /* GeometryUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D5D9F2887A6140076725B /* GeometryUtils.swift */; };
@@ -1578,6 +1580,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24BF3D762A28372600A15F59 /* CQStaticWidget.swift in Sources */,
+				241661CD2A2D7A7100FF3FC1 /* Date+CQExtension.swift in Sources */,
 				24BF3D872A288F0200A15F59 /* CQNetManager.swift in Sources */,
 				24BF3D812A2842A300A15F59 /* CQWidgets.intentdefinition in Sources */,
 				24BF3D832A287C6300A15F59 /* CQGlobal.swift in Sources */,
@@ -1591,6 +1594,7 @@
 			files = (
 				24DAAECD29DFEA0400EC8D54 /* CQWidgets.intentdefinition in Sources */,
 				24DAAEC829DFEA0100EC8D54 /* CQWidgets.swift in Sources */,
+				241661CC2A2D7A7100FF3FC1 /* Date+CQExtension.swift in Sources */,
 				24BF3D822A287C6200A15F59 /* CQGlobal.swift in Sources */,
 				24BF3D862A288F0200A15F59 /* CQNetManager.swift in Sources */,
 			);

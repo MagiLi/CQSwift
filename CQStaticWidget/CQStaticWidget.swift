@@ -107,7 +107,7 @@ struct CQStaticWidget2: Widget {
 }
 
 
-@main
+//@main
 struct CQWidgetBundle: WidgetBundle {
 
     @WidgetBundleBuilder
