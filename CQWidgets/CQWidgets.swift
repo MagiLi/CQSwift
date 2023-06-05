@@ -39,6 +39,7 @@ struct Provider: IntentTimelineProvider {
 
     // 在请求初始快照后，调用该方法。请求常规时间线
     func getTimeline(for configuration: CQConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+
         CQNetManager.manager.downLoadImage { image in
             let entryDate = Calendar.current.date(byAdding: .minute, value: 15, to: Date())!
             let entry = CQEntry(date: entryDate, configuration: configuration, placeContent: requestMessages[1], image: image)

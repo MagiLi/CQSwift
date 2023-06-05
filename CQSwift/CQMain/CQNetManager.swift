@@ -49,6 +49,7 @@ class CQNetManager:NSObject {
         } completion: { image, url, fromType, stage, error in
             DispatchQueue.main.async {
                 if let img = image, error == nil {
+                    CQAppGroupManager.saveImage("widgetBackground", img: img)
                     success(Image(uiImage: img))
                 } else {
                     let message = error?.localizedDescription ?? "获取图片失败"
@@ -57,4 +58,6 @@ class CQNetManager:NSObject {
             }
         }
     }
+   
+    
 }

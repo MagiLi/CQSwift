@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension UIImage {
     
@@ -36,6 +37,15 @@ extension UIImage {
         let theImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return theImage
+    }
+    
+    static func loadImage(_ url:URL) -> Image {
+        if let imageSource = CGImageSourceCreateWithURL(url as NSURL, nil),
+           let cgImage = CGImageSourceCreateImageAtIndex(imageSource, 0, nil) {
+            return Image(cgImage, scale: 1.0, label: Text(""))
+        } else {
+            return Image("placeholder")
+        }
     }
 }
 
