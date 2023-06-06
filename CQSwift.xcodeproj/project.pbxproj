@@ -18,6 +18,8 @@
 		241661E22A2DD6F400FF3FC1 /* CQWidgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241661E12A2DD6F400FF3FC1 /* CQWidgetManager.swift */; };
 		241661E32A2DD6F400FF3FC1 /* CQWidgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241661E12A2DD6F400FF3FC1 /* CQWidgetManager.swift */; };
 		241661E42A2DD6F400FF3FC1 /* CQWidgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241661E12A2DD6F400FF3FC1 /* CQWidgetManager.swift */; };
+		241661E52A2DDF5100FF3FC1 /* UIImage+Extern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DE5C9428582D68009512F5 /* UIImage+Extern.swift */; };
+		241661E62A2DDF5200FF3FC1 /* UIImage+Extern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DE5C9428582D68009512F5 /* UIImage+Extern.swift */; };
 		241D5DA32887A6140076725B /* CGPoint+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D5D9D2887A6140076725B /* CGPoint+Utils.swift */; };
 		241D5DA42887A6140076725B /* UISpringTimingParameters+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D5D9E2887A6140076725B /* UISpringTimingParameters+Utils.swift */; };
 		241D5DA52887A6140076725B /* GeometryUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D5D9F2887A6140076725B /* GeometryUtils.swift */; };
@@ -1600,6 +1602,7 @@
 				241661CD2A2D7A7100FF3FC1 /* Date+CQExtension.swift in Sources */,
 				241661E42A2DD6F400FF3FC1 /* CQWidgetManager.swift in Sources */,
 				24BF3D872A288F0200A15F59 /* CQNetManager.swift in Sources */,
+				241661E62A2DDF5200FF3FC1 /* UIImage+Extern.swift in Sources */,
 				24BF3D812A2842A300A15F59 /* CQWidgets.intentdefinition in Sources */,
 				24BF3D832A287C6300A15F59 /* CQGlobal.swift in Sources */,
 				24BF3D802A28429900A15F59 /* CQWidgets.swift in Sources */,
@@ -1611,6 +1614,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24DAAECD29DFEA0400EC8D54 /* CQWidgets.intentdefinition in Sources */,
+				241661E52A2DDF5100FF3FC1 /* UIImage+Extern.swift in Sources */,
 				241661E32A2DD6F400FF3FC1 /* CQWidgetManager.swift in Sources */,
 				241661DF2A2DD49E00FF3FC1 /* CQAppGroupManager.swift in Sources */,
 				24DAAEC829DFEA0100EC8D54 /* CQWidgets.swift in Sources */,

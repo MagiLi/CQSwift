@@ -33,6 +33,13 @@ class CQNetManager:NSObject {
             let code = response.response?.statusCode ?? -1
             CQLog("stausCode: \(code)")
             if let url = response.destinationURL {
+                Task {
+                    let img = await UIImage.loadImage(url)
+//                    async let img1 = UIImage.loadImage(url1)
+//                    async let img2 = UIImage.loadImage(url2)
+//                    async let img3 = UIImage.loadImage(url3)
+//                    let images = await [img1, img2, img3]
+                }
                 success(url)
             } else {
                 failure(code)

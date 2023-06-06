@@ -39,7 +39,7 @@ extension UIImage {
         return theImage
     }
     
-    static func loadImage(_ url:URL) -> Image {
+    static func loadImage(_ url:URL) async -> Image {
         if let imageSource = CGImageSourceCreateWithURL(url as NSURL, nil),
            let cgImage = CGImageSourceCreateImageAtIndex(imageSource, 0, nil) {
             return Image(cgImage, scale: 1.0, label: Text(""))
