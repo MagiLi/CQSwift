@@ -105,16 +105,15 @@ struct CQStaticWidget2: Widget {
         .supportedFamilies([.systemSmall])
     }
 }
-
-
 //@main
 struct CQWidgetBundle: WidgetBundle {
 
     @WidgetBundleBuilder
     var body: some Widget {
+       
         CQStaticWidget()
         CQWidgets()
-        CQStaticWidget2()
+        CQStaticWidget2() 
     }
 
 }

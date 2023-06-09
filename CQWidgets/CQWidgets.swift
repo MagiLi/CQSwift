@@ -159,7 +159,7 @@ struct CQWidgetsEntryView : View {
     @State var entry: Provider.Entry
     
     @Environment(\ .widgetFamily) var family:WidgetFamily
-
+    //@Environment(\.widgetRenderingMode) var renderingMode
     //@ViewBuilder声明主体，因为它使用的视图类型各不相同
     @ViewBuilder
     var body: some View {
@@ -177,6 +177,29 @@ struct CQWidgetsEntryView : View {
                     CQWidgetsDescriptionView(entry: $entry)
                 }
             }
+        case .accessoryInline: //锁屏小组件：只能显示Image 与Text
+            HStack {
+                Image(systemName: "figure.bowling")
+                Text("Playing")
+            }
+            
+        case .accessoryCircular: //锁屏小组件：
+            ZStack {
+                if #available(iOSApplicationExtension 16.0, *) {
+                    AccessoryWidgetBackground()
+                } else {
+                    // Fallback on earlier versions
+                }
+                Image(systemName: "figure.bowling")
+            }
+        case .accessoryRectangular: //锁屏小组件：
+            ZStack {
+                if #available(iOSApplicationExtension 16.0, *) {
+                    AccessoryWidgetBackground()
+                }
+                Text("Lock Widget Rectangular")
+            } 
+           
         default:
             HStack {
                 Spacer()
@@ -206,13 +229,22 @@ struct CQWidgets: Widget {
     let kind: String = "CQWidgets"
 
     var body: some WidgetConfiguration {
+  
         IntentConfiguration(kind: kind, intent: CQConfigurationIntent.self, provider: Provider()) { entry in
             CQWidgetsEntryView(entry: entry)
                 .background(Color.pink.opacity(0.9))
         }
         .configurationDisplayName("您好！")
         .description("欢迎添加 widget.")
-        .supportedFamilies([.systemSmall, .systemMedium, .systemMedium])
+        .supportedFamilies(self.supportFamilies())
+    }
+    
+    fileprivate func supportFamilies() -> [WidgetFamily] {
+        if #available(iOSApplicationExtension 16.0, *) {
+            return [.systemSmall, .systemMedium, .systemMedium, .accessoryInline, .accessoryCircular, .accessoryRectangular]
+        } else {
+            return [.systemSmall, .systemMedium, .systemMedium]
+        }
     }
 }
 
